@@ -1,0 +1,144 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  // url      = env("DATABASE_URL") // ← این خط را حتماً اضافه کنید
+}
+
+model user {
+  id                String              @id @default(uuid())
+  name              String
+  email             String              @unique
+  password          String
+  phone_number      String
+  national_code     String?
+  location          String?
+  userRoles         user_role[]
+  loginTransactions login_transaction[]
+  courses           course[]
+  courseRates       course_rate[]
+  courseFavorites   course_favorite[]
+  courseComments    course_comment[]
+}
+
+model user_role {
+  id         String   @id @default(uuid())
+  user_id    String
+  role_id    String
+  isActive   Boolean  @default(true)
+  created_at DateTime @default(now())
+  role       role     @relation(fields: [role_id], references: [id], onDelete: NoAction)
+  user       user     @relation(fields: [user_id], references: [id], onDelete: NoAction)
+}
+
+model role {
+  id        String      @id @default(uuid())
+  name      String
+  userRoles user_role[]
+}
+
+model login_transaction {
+  id         String   @id @default(uuid())
+  ip         String
+  login_date DateTime @default(now())
+  user_id    String
+  user       user     @relation(fields: [user_id], references: [id])
+}
+
+model course {
+  id    String @id @default(uuid())
+  title String
+
+  description        String
+  mini_description   String
+  isActive           Boolean           @default(false)
+  picture            String
+  price              Decimal
+  discount           Decimal           @default(0)
+  google_title       String
+  google_description String
+  created_by         String
+  type_id            String
+  type               course_type       @relation(fields: [type_id], references: [id], onDelete: NoAction)
+  created_at         DateTime          @default(now())
+  teacher            user              @relation(fields: [created_by], references: [id])
+  courseRates        course_rate[]
+  courseFavorites    course_favorite[]
+  courseSessions     course_session[]
+  courseCategories   course_category[]
+}
+
+model course_rate {
+  id        String @id @default(uuid())
+  rate      Float
+  course_id String
+  user_id   String
+  user      user   @relation(fields: [user_id], references: [id])
+  course    course @relation(fields: [course_id], references: [id])
+}
+
+model course_favorite {
+  id        String @id @default(uuid())
+  user_id   String
+  course_id String
+  user      user   @relation(fields: [user_id], references: [id])
+  course    course @relation(fields: [course_id], references: [id])
+}
+
+model course_comment {
+  id             String           @id @default(uuid())
+  title          String
+  text           String
+  user_id        String
+  parent_id      String?
+  parent         course_comment?  @relation(fields: [parent_id], references: [id], name: "course_comment_children", onDelete: Cascade)
+  user           user             @relation(fields: [user_id], references: [id])
+  courseComments course_comment[] @relation(name: "course_comment_children")
+}
+
+model course_session {
+  id        String  @id @default(uuid())
+  title     String
+  text      String
+  file      String?
+  course_id String
+  course    course  @relation(fields: [course_id], references: [id])
+}
+
+model course_type {
+  id      String   @id @default(uuid())
+  title   String
+  file    String?
+  courses course[]
+}
+
+model category {
+  id               String            @id @default(uuid())
+  title            String
+  file             String?
+  courseCategories course_category[]
+}
+
+model course_category {
+  id          String   @id @default(uuid())
+  course_id   String
+  category_id String
+  category    category @relation(fields: [category_id], references: [id])
+  course      course   @relation(fields: [course_id], references: [id])
+}
+
+model order {
+  id String @id @default(uuid())
+}
+
+model course_order {
+  id String @id @default(uuid())
+}
