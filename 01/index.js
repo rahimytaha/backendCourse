@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const authRouter = require("./routes/auth/index");
-const userRouter = require("./routes/users");
+const userRouter = require("./routes/users/index.route");
 
 app.use("/public", express.static("public"));
 
