@@ -9,7 +9,7 @@ userRouter.get(
   "/all",
   catchAsysnc(async (req, res, next) => {
     errorResponseValidation(req, res);
-    const data =await getAllUsers();
+    const data = await getAllUsers();
     res.send(data);
   }),
 );

@@ -1,7 +1,7 @@
 const express = require("express");
 require("module-alias/register");
 const app = express();
-const errorHandler = require("./utils/errorHandler.util")
+const errorHandler = require("./utils/errorHandler.util");
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
@@ -18,7 +18,7 @@ app.use("/users", userRouter);
 app.get("/", (req, res, next) => {
   res.send("test");
 });
-app.use(errorHandler)
+app.use(errorHandler);
 app.listen(port, () => {
   console.log("server staarted");
 });
