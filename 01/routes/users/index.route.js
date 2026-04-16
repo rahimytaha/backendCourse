@@ -3,6 +3,10 @@ const express = require("express");
 const {
   getAllUsers,
   createUser,
+  updateUser,
+  deleteUser,
+  getUserById,
+  loginAs,
 } = require("../../services/users/index.service");
 const {
   errorResponseValidation,
@@ -13,13 +17,19 @@ const userRouter = express.Router();
 const expressValidator = require("express-validator");
 userRouter.get(
   "/all",
+  expressValidator.query("query").optional().escape(),
+  expressValidator.query("page").optional().toInt(),
+  expressValidator.query("limit").optional().toInt(),
+  expressValidator.query("orderBy").optional().notEmpty(),
+  expressValidator.query("orderType").optional().notEmpty,
   catchAsysnc(async (req, res, next) => {
     errorResponseValidation(req, res);
-    const data = await getAllUsers();
+    const { query, page, limit, orderBy, orderType } = req.body;
+    const data = await getAllUsers(query, page, limit, orderBy, orderType);
     res.send(data);
   }),
 );
-userRouter.get(
+userRouter.post(
   "/create",
   passwordValidationChain(),
   expressValidator.body("name").notEmpty().escape(),
@@ -30,11 +40,89 @@ userRouter.get(
     .escape()
     .isMobilePhone("fa-IR"),
   expressValidator.body("location").notEmpty().escape(),
-  passwordValidationChain(),
   catchAsysnc(async (req, res, next) => {
     errorResponseValidation(req, res);
-    const data = await createUser();
+    const data = await createUser(req.body);
     res.send(data);
   }),
 );
+// update profile by admin with userId
+
+userRouter.put(
+  "update/:id",
+  passwordValidationChain(),
+  expressValidator.param("id").isUUID().notEmpty().escape(),
+  expressValidator.body("name").notEmpty().escape(),
+  expressValidator.body("email").notEmpty().escape().isEmail(),
+  expressValidator
+    .body("phone_number")
+    .notEmpty()
+    .escape()
+    .isMobilePhone("fa-IR"),
+  expressValidator.body("location").notEmpty().escape(),
+  catchAsysnc(async (req, res, next) => {
+    const userId = req.params.id;
+    errorResponseValidation(req, res);
+    const data = await updateUser(userId, req.body);
+    res.send(data);
+  }),
+);
+// update profile by user
+userRouter.put(
+  "update",
+
+  passwordValidationChain(),
+  expressValidator.body("name").notEmpty().escape(),
+  expressValidator.body("email").notEmpty().escape().isEmail(),
+  expressValidator
+    .body("phone_number")
+    .notEmpty()
+    .escape()
+    .isMobilePhone("fa-IR"),
+  expressValidator.body("location").notEmpty().escape(),
+  catchAsysnc(async (req, res, next) => {
+    const userId = 1;
+    errorResponseValidation(req, res);
+    const data = await updateUser(userId, req.body);
+    res.send(data);
+  }),
+);
+userRouter.delete(
+  "/delete/:id",
+  expressValidator.param("id").isUUID().notEmpty().escape(),
+  catchAsysnc(async (req, res) => {
+    const userId = req.params.id;
+    const response = await deleteUser(userId);
+    res.send(response);
+  }),
+);
+// get user detail for admin by admin with userId
+userRouter.get(
+  "/profile/:id",
+  expressValidator.param("id").isUUID().notEmpty().escape(),
+  catchAsysnc(async (req, res) => {
+    const userId = req.params.id;
+    const response = await getUserById(userId);
+    res.send(response);
+  }),
+);
+// get user detail by user with itself token
+userRouter.get( 
+  "/profile",
+  catchAsysnc(async (req, res) => {
+    const userId = 1
+    const response = await getUserById(userId);
+    res.send(response);
+  }),
+);
+userRouter.patch(
+  "/loginAs/:id",
+  expressValidator.param("id").isUUID().notEmpty().escape(),
+  catchAsysnc(async (req, res) => {
+    const userId = req.params.id;
+    const response = await loginAs(userId);
+    res.send(response);
+  }),
+);
+
 module.exports = userRouter;
