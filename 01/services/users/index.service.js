@@ -9,23 +9,22 @@ const getAllUsers = async (
   const startRecord = page * limit;
   const endRecord = (page + 1) * limit;
 
-  // const filterOption = {
-  //   OR: query
-  //     ? [
-  //         { name: { contains: query } },
-  //         { email: { contains: query } },
-  //         { phone_number: { contains: query } },
-  //       ]
-  //     : undefined,
-  // };
-  const users = await prisma.user.findMany()
-  //  .user.findMany({
-  //   // where: filterOption,
-  //   omit: { password: true },
-  //   skip: startRecord,
-  //   take: endRecord,
-  //   orderBy: { [orderBy]: orderType },
-  // });
+  const filterOption = {
+    OR: query
+      ? [
+          { name: { contains: query } },
+          { email: { contains: query } },
+          { phone_number: { contains: query } },
+        ]
+      : undefined,
+  };
+  const users = await prisma.user.findMany({
+    where: filterOption,
+    // omit: { password: true },
+    skip: startRecord,
+    take: endRecord,
+    orderBy: { [orderBy]: orderType },
+  });
   return users;
 };
 const createUser = async (data) => {

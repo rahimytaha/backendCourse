@@ -1,4 +1,4 @@
-const { validationResult } = require("express-validator");
+const { validationResult, body } = require("express-validator");
 
 const errorResponseValidation = (req, res) => {
   const errors = validationResult(req);
@@ -14,5 +14,10 @@ const errorResponseValidation = (req, res) => {
     });
   }
 };
-
-module.exports = errorResponseValidation
+const passwordValidationChain = () =>
+  body("password")
+    .notEmpty()
+    .escape()
+    .isLength({ min: 8 })
+    .withMessage("it's not a VALID password");
+module.exports = { errorResponseValidation, passwordValidationChain };

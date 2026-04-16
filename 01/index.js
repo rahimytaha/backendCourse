@@ -1,5 +1,6 @@
 const express = require("express");
 require("module-alias/register");
+require("dotenv").config()
 const app = express();
 const errorHandler = require("./utils/errorHandler.util");
 const port = process.env.PORT || 3000;
