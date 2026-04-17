@@ -7,6 +7,9 @@ const {
   deleteUser,
   getUserById,
   loginAs,
+  getRoleList,
+  addRole,
+  deleteRole,
 } = require("../../services/users/index.service");
 const {
   errorResponseValidation,
@@ -107,10 +110,10 @@ userRouter.get(
   }),
 );
 // get user detail by user with itself token
-userRouter.get( 
+userRouter.get(
   "/profile",
   catchAsysnc(async (req, res) => {
-    const userId = 1
+    const userId = 1;
     const response = await getUserById(userId);
     res.send(response);
   }),
@@ -125,4 +128,30 @@ userRouter.patch(
   }),
 );
 
+// role system routers
+userRouter.get(
+  "role/list",
+  catchAsysnc(async (req, res) => {
+    const data = await getRoleList();
+    res.send(data);
+  }),
+);
+userRouter.patch(
+  "role/:id/:roleId",
+  expressValidator.param("id").notEmpty().isUUID(),
+  expressValidator.param("roleId").notEmpty().isUUID(),
+  catchAsysnc(async (req, res) => {
+    await addRole(req.params.id, req.params.roleId);
+    res.send(true);
+  }),
+);
+userRouter.delete(
+  "role/:id/:roleId",
+  expressValidator.param("id").notEmpty().isUUID(),
+  expressValidator.param("roleId").notEmpty().isUUID(),
+  catchAsysnc(async (req, res) => {
+    await deleteRole(req.params.id, req.params.roleId);
+    res.send(true);
+  }),
+);
 module.exports = userRouter;
