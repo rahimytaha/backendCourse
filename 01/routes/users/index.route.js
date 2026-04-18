@@ -18,6 +18,28 @@ const {
 const catchAsysnc = require("../../utils/catchAsync.util");
 const userRouter = express.Router();
 const expressValidator = require("express-validator");
+/**
+ * @swagger
+ * /api/users:
+ *   get:
+ *     summary: دریافت لیست همه کاربران
+ *     description: این endpoint لیست تمام کاربران ثبت‌نام شده را برمی‌گرداند [citation:8]
+ *     tags:
+ *       - Users
+ *     parameters:
+ *       - in: query
+ *          name: page
+ *          schema:
+ *            type: integer
+ *            default: 0
+ *       - in: query
+ *          name:query
+ *          schema:
+ *            type: string
+ *          default: "j"
+
+ * 
+ */
 userRouter.get(
   "/all",
   expressValidator.query("query").optional().escape(),
