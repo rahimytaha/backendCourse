@@ -63,6 +63,7 @@ const userRouter = require("./routes/users/index.route");
 app.use("/public", express.static("public"));
 
 app.use("/auth", authRouter);
+app.use("/course", authRouter);
 app.use("/users", userRouter);
 
 app.get("/", (req, res, next) => {
