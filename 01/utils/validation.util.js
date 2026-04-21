@@ -40,7 +40,8 @@ const minPriceChain = validator.query("minPrice").optional().toInt().escape();
 const maxPriceChain = validator.query("maxPrice").optional().toInt().escape();
 const minRateChain = validator.query("maxRate").optional().toInt().escape();
 const maxRateChain = validator.query("maxRate").optional().toInt().escape();
-const typeIdChain = validator.query("maxRate").optional().isUUID().escape();
+const typeIdChain = validator.query("typeId").optional().isUUID().escape();
+const idChain = validator.query("id").optional().isUUID().escape();
 const categoryRequirmentChain = validator
   .query("categoryRequirment")
   .optional()
@@ -57,6 +58,16 @@ module.exports = {
   errorResponseValidation,
   passwordValidationChain,
   categoryListChain,
+  idChain,
   categoryRequirmentChain,
-  typeIdChain,minRateChain,maxPriceChain,maxRateChain,minPriceChain,orderTypeChain,orderByChain,queryChain,pageChain,perPageChain
+  typeIdChain,
+  minRateChain,
+  maxPriceChain,
+  maxRateChain,
+  minPriceChain,
+  orderTypeChain,
+  orderByChain,
+  queryChain,
+  pageChain,
+  perPageChain,
 };

@@ -36,7 +36,7 @@ const allCourses = async (
     orderBy: { [orderBy]: orderType },
   });
 };
-const detailCourse = async (id) => {
+const detailCourse = async (id,isActive) => {
   const course = await prisma.course.findFirst({ where: { id } });
   if (!course) new Error({ status: 404, message: "course not found" });
   return course;
@@ -50,4 +50,10 @@ const deleteCourse = async (id) => {
   await detailCourse(id);
   await prisma.course.delete({ where: { id } });
 };
-module.exports = { deleteCourse, updateCourse, allCourses, createCourse };
+module.exports = {
+  deleteCourse,
+  updateCourse,
+  allCourses,
+  createCourse,
+  detailCourse,
+};
