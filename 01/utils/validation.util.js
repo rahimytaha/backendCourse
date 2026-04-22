@@ -1,4 +1,4 @@
-const { validationResult, body } = require("express-validator");
+const { validationResult, body, query } = require("express-validator");
 
 const errorResponseValidation = (req, res) => {
   const errors = validationResult(req);
@@ -21,35 +21,31 @@ const passwordValidationChain = () =>
     .isLength({ min: 8 })
     .withMessage("it's not a VALID password");
 
-const pageChain = validator
-  .query("page")
+const pageChain = query("page")
   .optional()
   .default(0)
   .toInt()
   .isLength({ min: 0 });
-const perPageChain = validator
-  .query("perPage")
+const perPageChain =query("perPage")
   .optional()
   .default(1)
   .toInt()
   .isLength({ min: 1 });
-const queryChain = validator.query("query").optional().escape().toLowerCase();
-const orderByChain = validator.query("orderBy").optional().escape();
-const orderTypeChain = validator.query("orderType").optional().escape();
-const minPriceChain = validator.query("minPrice").optional().toInt().escape();
-const maxPriceChain = validator.query("maxPrice").optional().toInt().escape();
-const minRateChain = validator.query("maxRate").optional().toInt().escape();
-const maxRateChain = validator.query("maxRate").optional().toInt().escape();
-const typeIdChain = validator.query("typeId").optional().isUUID().escape();
-const idChain = validator.query("id").optional().isUUID().escape();
-const categoryRequirmentChain = validator
-  .query("categoryRequirment")
+const queryChain = query("query").optional().escape().toLowerCase();
+const orderByChain = query("orderBy").optional().escape();
+const orderTypeChain = query("orderType").optional().escape();
+const minPriceChain = query("minPrice").optional().toInt().escape();
+const maxPriceChain = query("maxPrice").optional().toInt().escape();
+const minRateChain = query("maxRate").optional().toInt().escape();
+const maxRateChain = query("maxRate").optional().toInt().escape();
+const typeIdChain = query("typeId").optional().isUUID().escape();
+const idChain = query("id").optional().isUUID().escape();
+const categoryRequirmentChain = query("categoryRequirment")
   .optional()
   .toInt()
   .isInt()
   .escape();
-const categoryListChain = validator
-  .query("categoryList")
+const categoryListChain =query("categoryList")
   .optional()
   .toArray()
   .isArray();
