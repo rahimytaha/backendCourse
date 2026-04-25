@@ -73,6 +73,7 @@ model course {
   courseFavorites    course_favorite[]
   courseSessions     course_session[]
   courseCategories   course_category[]
+  courseComments     course_comment[]
 }
 
 model course_rate {
@@ -97,10 +98,13 @@ model course_comment {
   title          String
   text           String
   user_id        String
+  isActive       Boolean          @default(false)
   parent_id      String?
+  course_id      String
   parent         course_comment?  @relation(fields: [parent_id], references: [id], name: "course_comment_children", onDelete: Cascade)
   user           user             @relation(fields: [user_id], references: [id])
   courseComments course_comment[] @relation(name: "course_comment_children")
+  course         course           @relation(fields: [course_id], references: [id], onDelete: Cascade)
 }
 
 model course_session {

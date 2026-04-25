@@ -2160,6 +2160,7 @@ export namespace Prisma {
     courseFavorites: number
     courseSessions: number
     courseCategories: number
+    courseComments: number
   }
 
   export type CourseCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2167,6 +2168,7 @@ export namespace Prisma {
     courseFavorites?: boolean | CourseCountOutputTypeCountCourseFavoritesArgs
     courseSessions?: boolean | CourseCountOutputTypeCountCourseSessionsArgs
     courseCategories?: boolean | CourseCountOutputTypeCountCourseCategoriesArgs
+    courseComments?: boolean | CourseCountOutputTypeCountCourseCommentsArgs
   }
 
   // Custom InputTypes
@@ -2206,6 +2208,13 @@ export namespace Prisma {
    */
   export type CourseCountOutputTypeCountCourseCategoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: course_categoryWhereInput
+  }
+
+  /**
+   * CourseCountOutputType without action
+   */
+  export type CourseCountOutputTypeCountCourseCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: course_commentWhereInput
   }
 
 
@@ -6976,6 +6985,7 @@ export namespace Prisma {
     courseFavorites?: boolean | course$courseFavoritesArgs<ExtArgs>
     courseSessions?: boolean | course$courseSessionsArgs<ExtArgs>
     courseCategories?: boolean | course$courseCategoriesArgs<ExtArgs>
+    courseComments?: boolean | course$courseCommentsArgs<ExtArgs>
     _count?: boolean | CourseCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["course"]>
 
@@ -7039,6 +7049,7 @@ export namespace Prisma {
     courseFavorites?: boolean | course$courseFavoritesArgs<ExtArgs>
     courseSessions?: boolean | course$courseSessionsArgs<ExtArgs>
     courseCategories?: boolean | course$courseCategoriesArgs<ExtArgs>
+    courseComments?: boolean | course$courseCommentsArgs<ExtArgs>
     _count?: boolean | CourseCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type courseIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7059,6 +7070,7 @@ export namespace Prisma {
       courseFavorites: Prisma.$course_favoritePayload<ExtArgs>[]
       courseSessions: Prisma.$course_sessionPayload<ExtArgs>[]
       courseCategories: Prisma.$course_categoryPayload<ExtArgs>[]
+      courseComments: Prisma.$course_commentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7474,6 +7486,7 @@ export namespace Prisma {
     courseFavorites<T extends course$courseFavoritesArgs<ExtArgs> = {}>(args?: Subset<T, course$courseFavoritesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$course_favoritePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     courseSessions<T extends course$courseSessionsArgs<ExtArgs> = {}>(args?: Subset<T, course$courseSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$course_sessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     courseCategories<T extends course$courseCategoriesArgs<ExtArgs> = {}>(args?: Subset<T, course$courseCategoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$course_categoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    courseComments<T extends course$courseCommentsArgs<ExtArgs> = {}>(args?: Subset<T, course$courseCommentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$course_commentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8010,6 +8023,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: Course_categoryScalarFieldEnum | Course_categoryScalarFieldEnum[]
+  }
+
+  /**
+   * course.courseComments
+   */
+  export type course$courseCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the course_comment
+     */
+    select?: course_commentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the course_comment
+     */
+    omit?: course_commentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: course_commentInclude<ExtArgs> | null
+    where?: course_commentWhereInput
+    orderBy?: course_commentOrderByWithRelationInput | course_commentOrderByWithRelationInput[]
+    cursor?: course_commentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Course_commentScalarFieldEnum | Course_commentScalarFieldEnum[]
   }
 
   /**
@@ -10183,7 +10220,9 @@ export namespace Prisma {
     title: string | null
     text: string | null
     user_id: string | null
+    isActive: boolean | null
     parent_id: string | null
+    course_id: string | null
   }
 
   export type Course_commentMaxAggregateOutputType = {
@@ -10191,7 +10230,9 @@ export namespace Prisma {
     title: string | null
     text: string | null
     user_id: string | null
+    isActive: boolean | null
     parent_id: string | null
+    course_id: string | null
   }
 
   export type Course_commentCountAggregateOutputType = {
@@ -10199,7 +10240,9 @@ export namespace Prisma {
     title: number
     text: number
     user_id: number
+    isActive: number
     parent_id: number
+    course_id: number
     _all: number
   }
 
@@ -10209,7 +10252,9 @@ export namespace Prisma {
     title?: true
     text?: true
     user_id?: true
+    isActive?: true
     parent_id?: true
+    course_id?: true
   }
 
   export type Course_commentMaxAggregateInputType = {
@@ -10217,7 +10262,9 @@ export namespace Prisma {
     title?: true
     text?: true
     user_id?: true
+    isActive?: true
     parent_id?: true
+    course_id?: true
   }
 
   export type Course_commentCountAggregateInputType = {
@@ -10225,7 +10272,9 @@ export namespace Prisma {
     title?: true
     text?: true
     user_id?: true
+    isActive?: true
     parent_id?: true
+    course_id?: true
     _all?: true
   }
 
@@ -10306,7 +10355,9 @@ export namespace Prisma {
     title: string
     text: string
     user_id: string
+    isActive: boolean
     parent_id: string | null
+    course_id: string
     _count: Course_commentCountAggregateOutputType | null
     _min: Course_commentMinAggregateOutputType | null
     _max: Course_commentMaxAggregateOutputType | null
@@ -10331,10 +10382,13 @@ export namespace Prisma {
     title?: boolean
     text?: boolean
     user_id?: boolean
+    isActive?: boolean
     parent_id?: boolean
+    course_id?: boolean
     parent?: boolean | course_comment$parentArgs<ExtArgs>
     user?: boolean | userDefaultArgs<ExtArgs>
     courseComments?: boolean | course_comment$courseCommentsArgs<ExtArgs>
+    course?: boolean | courseDefaultArgs<ExtArgs>
     _count?: boolean | Course_commentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["course_comment"]>
 
@@ -10343,9 +10397,12 @@ export namespace Prisma {
     title?: boolean
     text?: boolean
     user_id?: boolean
+    isActive?: boolean
     parent_id?: boolean
+    course_id?: boolean
     parent?: boolean | course_comment$parentArgs<ExtArgs>
     user?: boolean | userDefaultArgs<ExtArgs>
+    course?: boolean | courseDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["course_comment"]>
 
   export type course_commentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -10353,9 +10410,12 @@ export namespace Prisma {
     title?: boolean
     text?: boolean
     user_id?: boolean
+    isActive?: boolean
     parent_id?: boolean
+    course_id?: boolean
     parent?: boolean | course_comment$parentArgs<ExtArgs>
     user?: boolean | userDefaultArgs<ExtArgs>
+    course?: boolean | courseDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["course_comment"]>
 
   export type course_commentSelectScalar = {
@@ -10363,23 +10423,28 @@ export namespace Prisma {
     title?: boolean
     text?: boolean
     user_id?: boolean
+    isActive?: boolean
     parent_id?: boolean
+    course_id?: boolean
   }
 
-  export type course_commentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "text" | "user_id" | "parent_id", ExtArgs["result"]["course_comment"]>
+  export type course_commentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "text" | "user_id" | "isActive" | "parent_id" | "course_id", ExtArgs["result"]["course_comment"]>
   export type course_commentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     parent?: boolean | course_comment$parentArgs<ExtArgs>
     user?: boolean | userDefaultArgs<ExtArgs>
     courseComments?: boolean | course_comment$courseCommentsArgs<ExtArgs>
+    course?: boolean | courseDefaultArgs<ExtArgs>
     _count?: boolean | Course_commentCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type course_commentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     parent?: boolean | course_comment$parentArgs<ExtArgs>
     user?: boolean | userDefaultArgs<ExtArgs>
+    course?: boolean | courseDefaultArgs<ExtArgs>
   }
   export type course_commentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     parent?: boolean | course_comment$parentArgs<ExtArgs>
     user?: boolean | userDefaultArgs<ExtArgs>
+    course?: boolean | courseDefaultArgs<ExtArgs>
   }
 
   export type $course_commentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -10388,13 +10453,16 @@ export namespace Prisma {
       parent: Prisma.$course_commentPayload<ExtArgs> | null
       user: Prisma.$userPayload<ExtArgs>
       courseComments: Prisma.$course_commentPayload<ExtArgs>[]
+      course: Prisma.$coursePayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       title: string
       text: string
       user_id: string
+      isActive: boolean
       parent_id: string | null
+      course_id: string
     }, ExtArgs["result"]["course_comment"]>
     composites: {}
   }
@@ -10792,6 +10860,7 @@ export namespace Prisma {
     parent<T extends course_comment$parentArgs<ExtArgs> = {}>(args?: Subset<T, course_comment$parentArgs<ExtArgs>>): Prisma__course_commentClient<$Result.GetResult<Prisma.$course_commentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     user<T extends userDefaultArgs<ExtArgs> = {}>(args?: Subset<T, userDefaultArgs<ExtArgs>>): Prisma__userClient<$Result.GetResult<Prisma.$userPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     courseComments<T extends course_comment$courseCommentsArgs<ExtArgs> = {}>(args?: Subset<T, course_comment$courseCommentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$course_commentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    course<T extends courseDefaultArgs<ExtArgs> = {}>(args?: Subset<T, courseDefaultArgs<ExtArgs>>): Prisma__courseClient<$Result.GetResult<Prisma.$coursePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10825,7 +10894,9 @@ export namespace Prisma {
     readonly title: FieldRef<"course_comment", 'String'>
     readonly text: FieldRef<"course_comment", 'String'>
     readonly user_id: FieldRef<"course_comment", 'String'>
+    readonly isActive: FieldRef<"course_comment", 'Boolean'>
     readonly parent_id: FieldRef<"course_comment", 'String'>
+    readonly course_id: FieldRef<"course_comment", 'String'>
   }
     
 
@@ -17489,7 +17560,9 @@ export namespace Prisma {
     title: 'title',
     text: 'text',
     user_id: 'user_id',
-    parent_id: 'parent_id'
+    isActive: 'isActive',
+    parent_id: 'parent_id',
+    course_id: 'course_id'
   };
 
   export type Course_commentScalarFieldEnum = (typeof Course_commentScalarFieldEnum)[keyof typeof Course_commentScalarFieldEnum]
@@ -17907,6 +17980,7 @@ export namespace Prisma {
     courseFavorites?: Course_favoriteListRelationFilter
     courseSessions?: Course_sessionListRelationFilter
     courseCategories?: Course_categoryListRelationFilter
+    courseComments?: Course_commentListRelationFilter
   }
 
   export type courseOrderByWithRelationInput = {
@@ -17929,6 +18003,7 @@ export namespace Prisma {
     courseFavorites?: course_favoriteOrderByRelationAggregateInput
     courseSessions?: course_sessionOrderByRelationAggregateInput
     courseCategories?: course_categoryOrderByRelationAggregateInput
+    courseComments?: course_commentOrderByRelationAggregateInput
   }
 
   export type courseWhereUniqueInput = Prisma.AtLeast<{
@@ -17954,6 +18029,7 @@ export namespace Prisma {
     courseFavorites?: Course_favoriteListRelationFilter
     courseSessions?: Course_sessionListRelationFilter
     courseCategories?: Course_categoryListRelationFilter
+    courseComments?: Course_commentListRelationFilter
   }, "id">
 
   export type courseOrderByWithAggregationInput = {
@@ -18107,10 +18183,13 @@ export namespace Prisma {
     title?: StringFilter<"course_comment"> | string
     text?: StringFilter<"course_comment"> | string
     user_id?: StringFilter<"course_comment"> | string
+    isActive?: BoolFilter<"course_comment"> | boolean
     parent_id?: StringNullableFilter<"course_comment"> | string | null
+    course_id?: StringFilter<"course_comment"> | string
     parent?: XOR<Course_commentNullableScalarRelationFilter, course_commentWhereInput> | null
     user?: XOR<UserScalarRelationFilter, userWhereInput>
     courseComments?: Course_commentListRelationFilter
+    course?: XOR<CourseScalarRelationFilter, courseWhereInput>
   }
 
   export type course_commentOrderByWithRelationInput = {
@@ -18118,10 +18197,13 @@ export namespace Prisma {
     title?: SortOrder
     text?: SortOrder
     user_id?: SortOrder
+    isActive?: SortOrder
     parent_id?: SortOrderInput | SortOrder
+    course_id?: SortOrder
     parent?: course_commentOrderByWithRelationInput
     user?: userOrderByWithRelationInput
     courseComments?: course_commentOrderByRelationAggregateInput
+    course?: courseOrderByWithRelationInput
   }
 
   export type course_commentWhereUniqueInput = Prisma.AtLeast<{
@@ -18132,10 +18214,13 @@ export namespace Prisma {
     title?: StringFilter<"course_comment"> | string
     text?: StringFilter<"course_comment"> | string
     user_id?: StringFilter<"course_comment"> | string
+    isActive?: BoolFilter<"course_comment"> | boolean
     parent_id?: StringNullableFilter<"course_comment"> | string | null
+    course_id?: StringFilter<"course_comment"> | string
     parent?: XOR<Course_commentNullableScalarRelationFilter, course_commentWhereInput> | null
     user?: XOR<UserScalarRelationFilter, userWhereInput>
     courseComments?: Course_commentListRelationFilter
+    course?: XOR<CourseScalarRelationFilter, courseWhereInput>
   }, "id">
 
   export type course_commentOrderByWithAggregationInput = {
@@ -18143,7 +18228,9 @@ export namespace Prisma {
     title?: SortOrder
     text?: SortOrder
     user_id?: SortOrder
+    isActive?: SortOrder
     parent_id?: SortOrderInput | SortOrder
+    course_id?: SortOrder
     _count?: course_commentCountOrderByAggregateInput
     _max?: course_commentMaxOrderByAggregateInput
     _min?: course_commentMinOrderByAggregateInput
@@ -18157,7 +18244,9 @@ export namespace Prisma {
     title?: StringWithAggregatesFilter<"course_comment"> | string
     text?: StringWithAggregatesFilter<"course_comment"> | string
     user_id?: StringWithAggregatesFilter<"course_comment"> | string
+    isActive?: BoolWithAggregatesFilter<"course_comment"> | boolean
     parent_id?: StringNullableWithAggregatesFilter<"course_comment"> | string | null
+    course_id?: StringWithAggregatesFilter<"course_comment"> | string
   }
 
   export type course_sessionWhereInput = {
@@ -18670,6 +18759,7 @@ export namespace Prisma {
     courseFavorites?: course_favoriteCreateNestedManyWithoutCourseInput
     courseSessions?: course_sessionCreateNestedManyWithoutCourseInput
     courseCategories?: course_categoryCreateNestedManyWithoutCourseInput
+    courseComments?: course_commentCreateNestedManyWithoutCourseInput
   }
 
   export type courseUncheckedCreateInput = {
@@ -18690,6 +18780,7 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutCourseInput
     courseSessions?: course_sessionUncheckedCreateNestedManyWithoutCourseInput
     courseCategories?: course_categoryUncheckedCreateNestedManyWithoutCourseInput
+    courseComments?: course_commentUncheckedCreateNestedManyWithoutCourseInput
   }
 
   export type courseUpdateInput = {
@@ -18710,6 +18801,7 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUpdateManyWithoutCourseNestedInput
     courseSessions?: course_sessionUpdateManyWithoutCourseNestedInput
     courseCategories?: course_categoryUpdateManyWithoutCourseNestedInput
+    courseComments?: course_commentUpdateManyWithoutCourseNestedInput
   }
 
   export type courseUncheckedUpdateInput = {
@@ -18730,6 +18822,7 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedUpdateManyWithoutCourseNestedInput
     courseSessions?: course_sessionUncheckedUpdateManyWithoutCourseNestedInput
     courseCategories?: course_categoryUncheckedUpdateManyWithoutCourseNestedInput
+    courseComments?: course_commentUncheckedUpdateManyWithoutCourseNestedInput
   }
 
   export type courseCreateManyInput = {
@@ -18869,9 +18962,11 @@ export namespace Prisma {
     id?: string
     title: string
     text: string
+    isActive?: boolean
     parent?: course_commentCreateNestedOneWithoutCourseCommentsInput
     user: userCreateNestedOneWithoutCourseCommentsInput
     courseComments?: course_commentCreateNestedManyWithoutParentInput
+    course: courseCreateNestedOneWithoutCourseCommentsInput
   }
 
   export type course_commentUncheckedCreateInput = {
@@ -18879,7 +18974,9 @@ export namespace Prisma {
     title: string
     text: string
     user_id: string
+    isActive?: boolean
     parent_id?: string | null
+    course_id: string
     courseComments?: course_commentUncheckedCreateNestedManyWithoutParentInput
   }
 
@@ -18887,9 +18984,11 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     parent?: course_commentUpdateOneWithoutCourseCommentsNestedInput
     user?: userUpdateOneRequiredWithoutCourseCommentsNestedInput
     courseComments?: course_commentUpdateManyWithoutParentNestedInput
+    course?: courseUpdateOneRequiredWithoutCourseCommentsNestedInput
   }
 
   export type course_commentUncheckedUpdateInput = {
@@ -18897,7 +18996,9 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     parent_id?: NullableStringFieldUpdateOperationsInput | string | null
+    course_id?: StringFieldUpdateOperationsInput | string
     courseComments?: course_commentUncheckedUpdateManyWithoutParentNestedInput
   }
 
@@ -18906,13 +19007,16 @@ export namespace Prisma {
     title: string
     text: string
     user_id: string
+    isActive?: boolean
     parent_id?: string | null
+    course_id: string
   }
 
   export type course_commentUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type course_commentUncheckedUpdateManyInput = {
@@ -18920,7 +19024,9 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     parent_id?: NullableStringFieldUpdateOperationsInput | string | null
+    course_id?: StringFieldUpdateOperationsInput | string
   }
 
   export type course_sessionCreateInput = {
@@ -19634,7 +19740,9 @@ export namespace Prisma {
     title?: SortOrder
     text?: SortOrder
     user_id?: SortOrder
+    isActive?: SortOrder
     parent_id?: SortOrder
+    course_id?: SortOrder
   }
 
   export type course_commentMaxOrderByAggregateInput = {
@@ -19642,7 +19750,9 @@ export namespace Prisma {
     title?: SortOrder
     text?: SortOrder
     user_id?: SortOrder
+    isActive?: SortOrder
     parent_id?: SortOrder
+    course_id?: SortOrder
   }
 
   export type course_commentMinOrderByAggregateInput = {
@@ -19650,7 +19760,9 @@ export namespace Prisma {
     title?: SortOrder
     text?: SortOrder
     user_id?: SortOrder
+    isActive?: SortOrder
     parent_id?: SortOrder
+    course_id?: SortOrder
   }
 
   export type course_sessionCountOrderByAggregateInput = {
@@ -20152,6 +20264,13 @@ export namespace Prisma {
     connect?: course_categoryWhereUniqueInput | course_categoryWhereUniqueInput[]
   }
 
+  export type course_commentCreateNestedManyWithoutCourseInput = {
+    create?: XOR<course_commentCreateWithoutCourseInput, course_commentUncheckedCreateWithoutCourseInput> | course_commentCreateWithoutCourseInput[] | course_commentUncheckedCreateWithoutCourseInput[]
+    connectOrCreate?: course_commentCreateOrConnectWithoutCourseInput | course_commentCreateOrConnectWithoutCourseInput[]
+    createMany?: course_commentCreateManyCourseInputEnvelope
+    connect?: course_commentWhereUniqueInput | course_commentWhereUniqueInput[]
+  }
+
   export type course_rateUncheckedCreateNestedManyWithoutCourseInput = {
     create?: XOR<course_rateCreateWithoutCourseInput, course_rateUncheckedCreateWithoutCourseInput> | course_rateCreateWithoutCourseInput[] | course_rateUncheckedCreateWithoutCourseInput[]
     connectOrCreate?: course_rateCreateOrConnectWithoutCourseInput | course_rateCreateOrConnectWithoutCourseInput[]
@@ -20178,6 +20297,13 @@ export namespace Prisma {
     connectOrCreate?: course_categoryCreateOrConnectWithoutCourseInput | course_categoryCreateOrConnectWithoutCourseInput[]
     createMany?: course_categoryCreateManyCourseInputEnvelope
     connect?: course_categoryWhereUniqueInput | course_categoryWhereUniqueInput[]
+  }
+
+  export type course_commentUncheckedCreateNestedManyWithoutCourseInput = {
+    create?: XOR<course_commentCreateWithoutCourseInput, course_commentUncheckedCreateWithoutCourseInput> | course_commentCreateWithoutCourseInput[] | course_commentUncheckedCreateWithoutCourseInput[]
+    connectOrCreate?: course_commentCreateOrConnectWithoutCourseInput | course_commentCreateOrConnectWithoutCourseInput[]
+    createMany?: course_commentCreateManyCourseInputEnvelope
+    connect?: course_commentWhereUniqueInput | course_commentWhereUniqueInput[]
   }
 
   export type DecimalFieldUpdateOperationsInput = {
@@ -20260,6 +20386,20 @@ export namespace Prisma {
     deleteMany?: course_categoryScalarWhereInput | course_categoryScalarWhereInput[]
   }
 
+  export type course_commentUpdateManyWithoutCourseNestedInput = {
+    create?: XOR<course_commentCreateWithoutCourseInput, course_commentUncheckedCreateWithoutCourseInput> | course_commentCreateWithoutCourseInput[] | course_commentUncheckedCreateWithoutCourseInput[]
+    connectOrCreate?: course_commentCreateOrConnectWithoutCourseInput | course_commentCreateOrConnectWithoutCourseInput[]
+    upsert?: course_commentUpsertWithWhereUniqueWithoutCourseInput | course_commentUpsertWithWhereUniqueWithoutCourseInput[]
+    createMany?: course_commentCreateManyCourseInputEnvelope
+    set?: course_commentWhereUniqueInput | course_commentWhereUniqueInput[]
+    disconnect?: course_commentWhereUniqueInput | course_commentWhereUniqueInput[]
+    delete?: course_commentWhereUniqueInput | course_commentWhereUniqueInput[]
+    connect?: course_commentWhereUniqueInput | course_commentWhereUniqueInput[]
+    update?: course_commentUpdateWithWhereUniqueWithoutCourseInput | course_commentUpdateWithWhereUniqueWithoutCourseInput[]
+    updateMany?: course_commentUpdateManyWithWhereWithoutCourseInput | course_commentUpdateManyWithWhereWithoutCourseInput[]
+    deleteMany?: course_commentScalarWhereInput | course_commentScalarWhereInput[]
+  }
+
   export type course_rateUncheckedUpdateManyWithoutCourseNestedInput = {
     create?: XOR<course_rateCreateWithoutCourseInput, course_rateUncheckedCreateWithoutCourseInput> | course_rateCreateWithoutCourseInput[] | course_rateUncheckedCreateWithoutCourseInput[]
     connectOrCreate?: course_rateCreateOrConnectWithoutCourseInput | course_rateCreateOrConnectWithoutCourseInput[]
@@ -20314,6 +20454,20 @@ export namespace Prisma {
     update?: course_categoryUpdateWithWhereUniqueWithoutCourseInput | course_categoryUpdateWithWhereUniqueWithoutCourseInput[]
     updateMany?: course_categoryUpdateManyWithWhereWithoutCourseInput | course_categoryUpdateManyWithWhereWithoutCourseInput[]
     deleteMany?: course_categoryScalarWhereInput | course_categoryScalarWhereInput[]
+  }
+
+  export type course_commentUncheckedUpdateManyWithoutCourseNestedInput = {
+    create?: XOR<course_commentCreateWithoutCourseInput, course_commentUncheckedCreateWithoutCourseInput> | course_commentCreateWithoutCourseInput[] | course_commentUncheckedCreateWithoutCourseInput[]
+    connectOrCreate?: course_commentCreateOrConnectWithoutCourseInput | course_commentCreateOrConnectWithoutCourseInput[]
+    upsert?: course_commentUpsertWithWhereUniqueWithoutCourseInput | course_commentUpsertWithWhereUniqueWithoutCourseInput[]
+    createMany?: course_commentCreateManyCourseInputEnvelope
+    set?: course_commentWhereUniqueInput | course_commentWhereUniqueInput[]
+    disconnect?: course_commentWhereUniqueInput | course_commentWhereUniqueInput[]
+    delete?: course_commentWhereUniqueInput | course_commentWhereUniqueInput[]
+    connect?: course_commentWhereUniqueInput | course_commentWhereUniqueInput[]
+    update?: course_commentUpdateWithWhereUniqueWithoutCourseInput | course_commentUpdateWithWhereUniqueWithoutCourseInput[]
+    updateMany?: course_commentUpdateManyWithWhereWithoutCourseInput | course_commentUpdateManyWithWhereWithoutCourseInput[]
+    deleteMany?: course_commentScalarWhereInput | course_commentScalarWhereInput[]
   }
 
   export type userCreateNestedOneWithoutCourseRatesInput = {
@@ -20399,6 +20553,12 @@ export namespace Prisma {
     connect?: course_commentWhereUniqueInput | course_commentWhereUniqueInput[]
   }
 
+  export type courseCreateNestedOneWithoutCourseCommentsInput = {
+    create?: XOR<courseCreateWithoutCourseCommentsInput, courseUncheckedCreateWithoutCourseCommentsInput>
+    connectOrCreate?: courseCreateOrConnectWithoutCourseCommentsInput
+    connect?: courseWhereUniqueInput
+  }
+
   export type course_commentUncheckedCreateNestedManyWithoutParentInput = {
     create?: XOR<course_commentCreateWithoutParentInput, course_commentUncheckedCreateWithoutParentInput> | course_commentCreateWithoutParentInput[] | course_commentUncheckedCreateWithoutParentInput[]
     connectOrCreate?: course_commentCreateOrConnectWithoutParentInput | course_commentCreateOrConnectWithoutParentInput[]
@@ -20436,6 +20596,14 @@ export namespace Prisma {
     update?: course_commentUpdateWithWhereUniqueWithoutParentInput | course_commentUpdateWithWhereUniqueWithoutParentInput[]
     updateMany?: course_commentUpdateManyWithWhereWithoutParentInput | course_commentUpdateManyWithWhereWithoutParentInput[]
     deleteMany?: course_commentScalarWhereInput | course_commentScalarWhereInput[]
+  }
+
+  export type courseUpdateOneRequiredWithoutCourseCommentsNestedInput = {
+    create?: XOR<courseCreateWithoutCourseCommentsInput, courseUncheckedCreateWithoutCourseCommentsInput>
+    connectOrCreate?: courseCreateOrConnectWithoutCourseCommentsInput
+    upsert?: courseUpsertWithoutCourseCommentsInput
+    connect?: courseWhereUniqueInput
+    update?: XOR<XOR<courseUpdateToOneWithWhereWithoutCourseCommentsInput, courseUpdateWithoutCourseCommentsInput>, courseUncheckedUpdateWithoutCourseCommentsInput>
   }
 
   export type course_commentUncheckedUpdateManyWithoutParentNestedInput = {
@@ -20817,6 +20985,7 @@ export namespace Prisma {
     courseFavorites?: course_favoriteCreateNestedManyWithoutCourseInput
     courseSessions?: course_sessionCreateNestedManyWithoutCourseInput
     courseCategories?: course_categoryCreateNestedManyWithoutCourseInput
+    courseComments?: course_commentCreateNestedManyWithoutCourseInput
   }
 
   export type courseUncheckedCreateWithoutTeacherInput = {
@@ -20836,6 +21005,7 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutCourseInput
     courseSessions?: course_sessionUncheckedCreateNestedManyWithoutCourseInput
     courseCategories?: course_categoryUncheckedCreateNestedManyWithoutCourseInput
+    courseComments?: course_commentUncheckedCreateNestedManyWithoutCourseInput
   }
 
   export type courseCreateOrConnectWithoutTeacherInput = {
@@ -20894,15 +21064,19 @@ export namespace Prisma {
     id?: string
     title: string
     text: string
+    isActive?: boolean
     parent?: course_commentCreateNestedOneWithoutCourseCommentsInput
     courseComments?: course_commentCreateNestedManyWithoutParentInput
+    course: courseCreateNestedOneWithoutCourseCommentsInput
   }
 
   export type course_commentUncheckedCreateWithoutUserInput = {
     id?: string
     title: string
     text: string
+    isActive?: boolean
     parent_id?: string | null
+    course_id: string
     courseComments?: course_commentUncheckedCreateNestedManyWithoutParentInput
   }
 
@@ -21079,7 +21253,9 @@ export namespace Prisma {
     title?: StringFilter<"course_comment"> | string
     text?: StringFilter<"course_comment"> | string
     user_id?: StringFilter<"course_comment"> | string
+    isActive?: BoolFilter<"course_comment"> | boolean
     parent_id?: StringNullableFilter<"course_comment"> | string | null
+    course_id?: StringFilter<"course_comment"> | string
   }
 
   export type roleCreateWithoutUserRolesInput = {
@@ -21448,6 +21624,36 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type course_commentCreateWithoutCourseInput = {
+    id?: string
+    title: string
+    text: string
+    isActive?: boolean
+    parent?: course_commentCreateNestedOneWithoutCourseCommentsInput
+    user: userCreateNestedOneWithoutCourseCommentsInput
+    courseComments?: course_commentCreateNestedManyWithoutParentInput
+  }
+
+  export type course_commentUncheckedCreateWithoutCourseInput = {
+    id?: string
+    title: string
+    text: string
+    user_id: string
+    isActive?: boolean
+    parent_id?: string | null
+    courseComments?: course_commentUncheckedCreateNestedManyWithoutParentInput
+  }
+
+  export type course_commentCreateOrConnectWithoutCourseInput = {
+    where: course_commentWhereUniqueInput
+    create: XOR<course_commentCreateWithoutCourseInput, course_commentUncheckedCreateWithoutCourseInput>
+  }
+
+  export type course_commentCreateManyCourseInputEnvelope = {
+    data: course_commentCreateManyCourseInput | course_commentCreateManyCourseInput[]
+    skipDuplicates?: boolean
+  }
+
   export type course_typeUpsertWithoutCoursesInput = {
     update: XOR<course_typeUpdateWithoutCoursesInput, course_typeUncheckedUpdateWithoutCoursesInput>
     create: XOR<course_typeCreateWithoutCoursesInput, course_typeUncheckedCreateWithoutCoursesInput>
@@ -21596,6 +21802,22 @@ export namespace Prisma {
     category_id?: StringFilter<"course_category"> | string
   }
 
+  export type course_commentUpsertWithWhereUniqueWithoutCourseInput = {
+    where: course_commentWhereUniqueInput
+    update: XOR<course_commentUpdateWithoutCourseInput, course_commentUncheckedUpdateWithoutCourseInput>
+    create: XOR<course_commentCreateWithoutCourseInput, course_commentUncheckedCreateWithoutCourseInput>
+  }
+
+  export type course_commentUpdateWithWhereUniqueWithoutCourseInput = {
+    where: course_commentWhereUniqueInput
+    data: XOR<course_commentUpdateWithoutCourseInput, course_commentUncheckedUpdateWithoutCourseInput>
+  }
+
+  export type course_commentUpdateManyWithWhereWithoutCourseInput = {
+    where: course_commentScalarWhereInput
+    data: XOR<course_commentUpdateManyMutationInput, course_commentUncheckedUpdateManyWithoutCourseInput>
+  }
+
   export type userCreateWithoutCourseRatesInput = {
     id?: string
     name: string
@@ -21648,6 +21870,7 @@ export namespace Prisma {
     courseFavorites?: course_favoriteCreateNestedManyWithoutCourseInput
     courseSessions?: course_sessionCreateNestedManyWithoutCourseInput
     courseCategories?: course_categoryCreateNestedManyWithoutCourseInput
+    courseComments?: course_commentCreateNestedManyWithoutCourseInput
   }
 
   export type courseUncheckedCreateWithoutCourseRatesInput = {
@@ -21667,6 +21890,7 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutCourseInput
     courseSessions?: course_sessionUncheckedCreateNestedManyWithoutCourseInput
     courseCategories?: course_categoryUncheckedCreateNestedManyWithoutCourseInput
+    courseComments?: course_commentUncheckedCreateNestedManyWithoutCourseInput
   }
 
   export type courseCreateOrConnectWithoutCourseRatesInput = {
@@ -21743,6 +21967,7 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUpdateManyWithoutCourseNestedInput
     courseSessions?: course_sessionUpdateManyWithoutCourseNestedInput
     courseCategories?: course_categoryUpdateManyWithoutCourseNestedInput
+    courseComments?: course_commentUpdateManyWithoutCourseNestedInput
   }
 
   export type courseUncheckedUpdateWithoutCourseRatesInput = {
@@ -21762,6 +21987,7 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedUpdateManyWithoutCourseNestedInput
     courseSessions?: course_sessionUncheckedUpdateManyWithoutCourseNestedInput
     courseCategories?: course_categoryUncheckedUpdateManyWithoutCourseNestedInput
+    courseComments?: course_commentUncheckedUpdateManyWithoutCourseNestedInput
   }
 
   export type userCreateWithoutCourseFavoritesInput = {
@@ -21816,6 +22042,7 @@ export namespace Prisma {
     courseRates?: course_rateCreateNestedManyWithoutCourseInput
     courseSessions?: course_sessionCreateNestedManyWithoutCourseInput
     courseCategories?: course_categoryCreateNestedManyWithoutCourseInput
+    courseComments?: course_commentCreateNestedManyWithoutCourseInput
   }
 
   export type courseUncheckedCreateWithoutCourseFavoritesInput = {
@@ -21835,6 +22062,7 @@ export namespace Prisma {
     courseRates?: course_rateUncheckedCreateNestedManyWithoutCourseInput
     courseSessions?: course_sessionUncheckedCreateNestedManyWithoutCourseInput
     courseCategories?: course_categoryUncheckedCreateNestedManyWithoutCourseInput
+    courseComments?: course_commentUncheckedCreateNestedManyWithoutCourseInput
   }
 
   export type courseCreateOrConnectWithoutCourseFavoritesInput = {
@@ -21911,6 +22139,7 @@ export namespace Prisma {
     courseRates?: course_rateUpdateManyWithoutCourseNestedInput
     courseSessions?: course_sessionUpdateManyWithoutCourseNestedInput
     courseCategories?: course_categoryUpdateManyWithoutCourseNestedInput
+    courseComments?: course_commentUpdateManyWithoutCourseNestedInput
   }
 
   export type courseUncheckedUpdateWithoutCourseFavoritesInput = {
@@ -21930,14 +22159,17 @@ export namespace Prisma {
     courseRates?: course_rateUncheckedUpdateManyWithoutCourseNestedInput
     courseSessions?: course_sessionUncheckedUpdateManyWithoutCourseNestedInput
     courseCategories?: course_categoryUncheckedUpdateManyWithoutCourseNestedInput
+    courseComments?: course_commentUncheckedUpdateManyWithoutCourseNestedInput
   }
 
   export type course_commentCreateWithoutCourseCommentsInput = {
     id?: string
     title: string
     text: string
+    isActive?: boolean
     parent?: course_commentCreateNestedOneWithoutCourseCommentsInput
     user: userCreateNestedOneWithoutCourseCommentsInput
+    course: courseCreateNestedOneWithoutCourseCommentsInput
   }
 
   export type course_commentUncheckedCreateWithoutCourseCommentsInput = {
@@ -21945,7 +22177,9 @@ export namespace Prisma {
     title: string
     text: string
     user_id: string
+    isActive?: boolean
     parent_id?: string | null
+    course_id: string
   }
 
   export type course_commentCreateOrConnectWithoutCourseCommentsInput = {
@@ -21992,8 +22226,10 @@ export namespace Prisma {
     id?: string
     title: string
     text: string
+    isActive?: boolean
     user: userCreateNestedOneWithoutCourseCommentsInput
     courseComments?: course_commentCreateNestedManyWithoutParentInput
+    course: courseCreateNestedOneWithoutCourseCommentsInput
   }
 
   export type course_commentUncheckedCreateWithoutParentInput = {
@@ -22001,6 +22237,8 @@ export namespace Prisma {
     title: string
     text: string
     user_id: string
+    isActive?: boolean
+    course_id: string
     courseComments?: course_commentUncheckedCreateNestedManyWithoutParentInput
   }
 
@@ -22012,6 +22250,51 @@ export namespace Prisma {
   export type course_commentCreateManyParentInputEnvelope = {
     data: course_commentCreateManyParentInput | course_commentCreateManyParentInput[]
     skipDuplicates?: boolean
+  }
+
+  export type courseCreateWithoutCourseCommentsInput = {
+    id?: string
+    title: string
+    description: string
+    mini_description: string
+    isActive?: boolean
+    picture: string
+    price: Decimal | DecimalJsLike | number | string
+    discount?: Decimal | DecimalJsLike | number | string
+    google_title: string
+    google_description: string
+    created_at?: Date | string
+    type: course_typeCreateNestedOneWithoutCoursesInput
+    teacher: userCreateNestedOneWithoutCoursesInput
+    courseRates?: course_rateCreateNestedManyWithoutCourseInput
+    courseFavorites?: course_favoriteCreateNestedManyWithoutCourseInput
+    courseSessions?: course_sessionCreateNestedManyWithoutCourseInput
+    courseCategories?: course_categoryCreateNestedManyWithoutCourseInput
+  }
+
+  export type courseUncheckedCreateWithoutCourseCommentsInput = {
+    id?: string
+    title: string
+    description: string
+    mini_description: string
+    isActive?: boolean
+    picture: string
+    price: Decimal | DecimalJsLike | number | string
+    discount?: Decimal | DecimalJsLike | number | string
+    google_title: string
+    google_description: string
+    created_by: string
+    type_id: string
+    created_at?: Date | string
+    courseRates?: course_rateUncheckedCreateNestedManyWithoutCourseInput
+    courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutCourseInput
+    courseSessions?: course_sessionUncheckedCreateNestedManyWithoutCourseInput
+    courseCategories?: course_categoryUncheckedCreateNestedManyWithoutCourseInput
+  }
+
+  export type courseCreateOrConnectWithoutCourseCommentsInput = {
+    where: courseWhereUniqueInput
+    create: XOR<courseCreateWithoutCourseCommentsInput, courseUncheckedCreateWithoutCourseCommentsInput>
   }
 
   export type course_commentUpsertWithoutCourseCommentsInput = {
@@ -22029,8 +22312,10 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     parent?: course_commentUpdateOneWithoutCourseCommentsNestedInput
     user?: userUpdateOneRequiredWithoutCourseCommentsNestedInput
+    course?: courseUpdateOneRequiredWithoutCourseCommentsNestedInput
   }
 
   export type course_commentUncheckedUpdateWithoutCourseCommentsInput = {
@@ -22038,7 +22323,9 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     parent_id?: NullableStringFieldUpdateOperationsInput | string | null
+    course_id?: StringFieldUpdateOperationsInput | string
   }
 
   export type userUpsertWithoutCourseCommentsInput = {
@@ -22098,6 +22385,57 @@ export namespace Prisma {
     data: XOR<course_commentUpdateManyMutationInput, course_commentUncheckedUpdateManyWithoutParentInput>
   }
 
+  export type courseUpsertWithoutCourseCommentsInput = {
+    update: XOR<courseUpdateWithoutCourseCommentsInput, courseUncheckedUpdateWithoutCourseCommentsInput>
+    create: XOR<courseCreateWithoutCourseCommentsInput, courseUncheckedCreateWithoutCourseCommentsInput>
+    where?: courseWhereInput
+  }
+
+  export type courseUpdateToOneWithWhereWithoutCourseCommentsInput = {
+    where?: courseWhereInput
+    data: XOR<courseUpdateWithoutCourseCommentsInput, courseUncheckedUpdateWithoutCourseCommentsInput>
+  }
+
+  export type courseUpdateWithoutCourseCommentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    mini_description?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    picture?: StringFieldUpdateOperationsInput | string
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    discount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    google_title?: StringFieldUpdateOperationsInput | string
+    google_description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: course_typeUpdateOneRequiredWithoutCoursesNestedInput
+    teacher?: userUpdateOneRequiredWithoutCoursesNestedInput
+    courseRates?: course_rateUpdateManyWithoutCourseNestedInput
+    courseFavorites?: course_favoriteUpdateManyWithoutCourseNestedInput
+    courseSessions?: course_sessionUpdateManyWithoutCourseNestedInput
+    courseCategories?: course_categoryUpdateManyWithoutCourseNestedInput
+  }
+
+  export type courseUncheckedUpdateWithoutCourseCommentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    mini_description?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    picture?: StringFieldUpdateOperationsInput | string
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    discount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    google_title?: StringFieldUpdateOperationsInput | string
+    google_description?: StringFieldUpdateOperationsInput | string
+    created_by?: StringFieldUpdateOperationsInput | string
+    type_id?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    courseRates?: course_rateUncheckedUpdateManyWithoutCourseNestedInput
+    courseFavorites?: course_favoriteUncheckedUpdateManyWithoutCourseNestedInput
+    courseSessions?: course_sessionUncheckedUpdateManyWithoutCourseNestedInput
+    courseCategories?: course_categoryUncheckedUpdateManyWithoutCourseNestedInput
+  }
+
   export type courseCreateWithoutCourseSessionsInput = {
     id?: string
     title: string
@@ -22115,6 +22453,7 @@ export namespace Prisma {
     courseRates?: course_rateCreateNestedManyWithoutCourseInput
     courseFavorites?: course_favoriteCreateNestedManyWithoutCourseInput
     courseCategories?: course_categoryCreateNestedManyWithoutCourseInput
+    courseComments?: course_commentCreateNestedManyWithoutCourseInput
   }
 
   export type courseUncheckedCreateWithoutCourseSessionsInput = {
@@ -22134,6 +22473,7 @@ export namespace Prisma {
     courseRates?: course_rateUncheckedCreateNestedManyWithoutCourseInput
     courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutCourseInput
     courseCategories?: course_categoryUncheckedCreateNestedManyWithoutCourseInput
+    courseComments?: course_commentUncheckedCreateNestedManyWithoutCourseInput
   }
 
   export type courseCreateOrConnectWithoutCourseSessionsInput = {
@@ -22169,6 +22509,7 @@ export namespace Prisma {
     courseRates?: course_rateUpdateManyWithoutCourseNestedInput
     courseFavorites?: course_favoriteUpdateManyWithoutCourseNestedInput
     courseCategories?: course_categoryUpdateManyWithoutCourseNestedInput
+    courseComments?: course_commentUpdateManyWithoutCourseNestedInput
   }
 
   export type courseUncheckedUpdateWithoutCourseSessionsInput = {
@@ -22188,6 +22529,7 @@ export namespace Prisma {
     courseRates?: course_rateUncheckedUpdateManyWithoutCourseNestedInput
     courseFavorites?: course_favoriteUncheckedUpdateManyWithoutCourseNestedInput
     courseCategories?: course_categoryUncheckedUpdateManyWithoutCourseNestedInput
+    courseComments?: course_commentUncheckedUpdateManyWithoutCourseNestedInput
   }
 
   export type courseCreateWithoutTypeInput = {
@@ -22207,6 +22549,7 @@ export namespace Prisma {
     courseFavorites?: course_favoriteCreateNestedManyWithoutCourseInput
     courseSessions?: course_sessionCreateNestedManyWithoutCourseInput
     courseCategories?: course_categoryCreateNestedManyWithoutCourseInput
+    courseComments?: course_commentCreateNestedManyWithoutCourseInput
   }
 
   export type courseUncheckedCreateWithoutTypeInput = {
@@ -22226,6 +22569,7 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutCourseInput
     courseSessions?: course_sessionUncheckedCreateNestedManyWithoutCourseInput
     courseCategories?: course_categoryUncheckedCreateNestedManyWithoutCourseInput
+    courseComments?: course_commentUncheckedCreateNestedManyWithoutCourseInput
   }
 
   export type courseCreateOrConnectWithoutTypeInput = {
@@ -22324,6 +22668,7 @@ export namespace Prisma {
     courseRates?: course_rateCreateNestedManyWithoutCourseInput
     courseFavorites?: course_favoriteCreateNestedManyWithoutCourseInput
     courseSessions?: course_sessionCreateNestedManyWithoutCourseInput
+    courseComments?: course_commentCreateNestedManyWithoutCourseInput
   }
 
   export type courseUncheckedCreateWithoutCourseCategoriesInput = {
@@ -22343,6 +22688,7 @@ export namespace Prisma {
     courseRates?: course_rateUncheckedCreateNestedManyWithoutCourseInput
     courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutCourseInput
     courseSessions?: course_sessionUncheckedCreateNestedManyWithoutCourseInput
+    courseComments?: course_commentUncheckedCreateNestedManyWithoutCourseInput
   }
 
   export type courseCreateOrConnectWithoutCourseCategoriesInput = {
@@ -22401,6 +22747,7 @@ export namespace Prisma {
     courseRates?: course_rateUpdateManyWithoutCourseNestedInput
     courseFavorites?: course_favoriteUpdateManyWithoutCourseNestedInput
     courseSessions?: course_sessionUpdateManyWithoutCourseNestedInput
+    courseComments?: course_commentUpdateManyWithoutCourseNestedInput
   }
 
   export type courseUncheckedUpdateWithoutCourseCategoriesInput = {
@@ -22420,6 +22767,7 @@ export namespace Prisma {
     courseRates?: course_rateUncheckedUpdateManyWithoutCourseNestedInput
     courseFavorites?: course_favoriteUncheckedUpdateManyWithoutCourseNestedInput
     courseSessions?: course_sessionUncheckedUpdateManyWithoutCourseNestedInput
+    courseComments?: course_commentUncheckedUpdateManyWithoutCourseNestedInput
   }
 
   export type user_roleCreateManyUserInput = {
@@ -22465,7 +22813,9 @@ export namespace Prisma {
     id?: string
     title: string
     text: string
+    isActive?: boolean
     parent_id?: string | null
+    course_id: string
   }
 
   export type user_roleUpdateWithoutUserInput = {
@@ -22524,6 +22874,7 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUpdateManyWithoutCourseNestedInput
     courseSessions?: course_sessionUpdateManyWithoutCourseNestedInput
     courseCategories?: course_categoryUpdateManyWithoutCourseNestedInput
+    courseComments?: course_commentUpdateManyWithoutCourseNestedInput
   }
 
   export type courseUncheckedUpdateWithoutTeacherInput = {
@@ -22543,6 +22894,7 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedUpdateManyWithoutCourseNestedInput
     courseSessions?: course_sessionUncheckedUpdateManyWithoutCourseNestedInput
     courseCategories?: course_categoryUncheckedUpdateManyWithoutCourseNestedInput
+    courseComments?: course_commentUncheckedUpdateManyWithoutCourseNestedInput
   }
 
   export type courseUncheckedUpdateManyWithoutTeacherInput = {
@@ -22597,15 +22949,19 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     parent?: course_commentUpdateOneWithoutCourseCommentsNestedInput
     courseComments?: course_commentUpdateManyWithoutParentNestedInput
+    course?: courseUpdateOneRequiredWithoutCourseCommentsNestedInput
   }
 
   export type course_commentUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     parent_id?: NullableStringFieldUpdateOperationsInput | string | null
+    course_id?: StringFieldUpdateOperationsInput | string
     courseComments?: course_commentUncheckedUpdateManyWithoutParentNestedInput
   }
 
@@ -22613,7 +22969,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     parent_id?: NullableStringFieldUpdateOperationsInput | string | null
+    course_id?: StringFieldUpdateOperationsInput | string
   }
 
   export type user_roleCreateManyRoleInput = {
@@ -22665,6 +23023,15 @@ export namespace Prisma {
   export type course_categoryCreateManyCourseInput = {
     id?: string
     category_id: string
+  }
+
+  export type course_commentCreateManyCourseInput = {
+    id?: string
+    title: string
+    text: string
+    user_id: string
+    isActive?: boolean
+    parent_id?: string | null
   }
 
   export type course_rateUpdateWithoutCourseInput = {
@@ -22736,19 +23103,52 @@ export namespace Prisma {
     category_id?: StringFieldUpdateOperationsInput | string
   }
 
+  export type course_commentUpdateWithoutCourseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    parent?: course_commentUpdateOneWithoutCourseCommentsNestedInput
+    user?: userUpdateOneRequiredWithoutCourseCommentsNestedInput
+    courseComments?: course_commentUpdateManyWithoutParentNestedInput
+  }
+
+  export type course_commentUncheckedUpdateWithoutCourseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    parent_id?: NullableStringFieldUpdateOperationsInput | string | null
+    courseComments?: course_commentUncheckedUpdateManyWithoutParentNestedInput
+  }
+
+  export type course_commentUncheckedUpdateManyWithoutCourseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    parent_id?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type course_commentCreateManyParentInput = {
     id?: string
     title: string
     text: string
     user_id: string
+    isActive?: boolean
+    course_id: string
   }
 
   export type course_commentUpdateWithoutParentInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     user?: userUpdateOneRequiredWithoutCourseCommentsNestedInput
     courseComments?: course_commentUpdateManyWithoutParentNestedInput
+    course?: courseUpdateOneRequiredWithoutCourseCommentsNestedInput
   }
 
   export type course_commentUncheckedUpdateWithoutParentInput = {
@@ -22756,6 +23156,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    course_id?: StringFieldUpdateOperationsInput | string
     courseComments?: course_commentUncheckedUpdateManyWithoutParentNestedInput
   }
 
@@ -22764,6 +23166,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    course_id?: StringFieldUpdateOperationsInput | string
   }
 
   export type courseCreateManyTypeInput = {
@@ -22798,6 +23202,7 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUpdateManyWithoutCourseNestedInput
     courseSessions?: course_sessionUpdateManyWithoutCourseNestedInput
     courseCategories?: course_categoryUpdateManyWithoutCourseNestedInput
+    courseComments?: course_commentUpdateManyWithoutCourseNestedInput
   }
 
   export type courseUncheckedUpdateWithoutTypeInput = {
@@ -22817,6 +23222,7 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedUpdateManyWithoutCourseNestedInput
     courseSessions?: course_sessionUncheckedUpdateManyWithoutCourseNestedInput
     courseCategories?: course_categoryUncheckedUpdateManyWithoutCourseNestedInput
+    courseComments?: course_commentUncheckedUpdateManyWithoutCourseNestedInput
   }
 
   export type courseUncheckedUpdateManyWithoutTypeInput = {

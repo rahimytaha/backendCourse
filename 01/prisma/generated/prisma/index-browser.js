@@ -184,7 +184,9 @@ exports.Prisma.Course_commentScalarFieldEnum = {
   title: 'title',
   text: 'text',
   user_id: 'user_id',
-  parent_id: 'parent_id'
+  isActive: 'isActive',
+  parent_id: 'parent_id',
+  course_id: 'course_id'
 };
 
 exports.Prisma.Course_sessionScalarFieldEnum = {
