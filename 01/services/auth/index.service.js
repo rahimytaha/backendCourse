@@ -17,19 +17,19 @@ const sanitizeUser = (user) => {
   return safeUser;
 };
 
-// const ensureBaseRoles = async () => {
-//   const roleNames = ["owner", "teacher", "student"];
-//   await Promise.all(
-//     roleNames.map(async (name) => {
-//       const existing = await prisma.role.findFirst({
-//         where: { name: { equals: name, mode: "insensitive" } },
-//       });
-//       if (!existing) {
-//         await prisma.role.create({ data: { name } });
-//       }
-//     }),
-//   );
-// };
+const ensureBaseRoles = async () => {
+  const roleNames = ["owner", "teacher", "student"];
+  await Promise.all(
+    roleNames.map(async (name) => {
+      const existing = await prisma.role.findFirst({
+        where: { name: { equals: name, mode: "insensitive" } },
+      });
+      if (!existing) {
+        await prisma.role.create({ data: { name } });
+      }
+    }),
+  );
+};
 
 const getRoleByName = async (name) => {
   const role = await prisma.role.findFirst({
@@ -89,10 +89,16 @@ const buildAuthPayload = (user) => {
 };
 
 const register = async (data) => {
-  // await ensureBaseRoles();
+  await ensureBaseRoles();
   const checkUser = await prisma.user.findUnique({ where: { email: data.email } });
 
   if (checkUser) throw new Error("this email exist");
+
+  const checkReferral = await prisma.user.findUnique({
+    where: { referral_code: data.referral_code },
+  });
+
+  if (!checkReferral) throw new Error("invalid referral code");
 
   const usersCount = await prisma.user.count();
   const defaultRoleName = usersCount === 0 ? "owner" : "student";
@@ -105,6 +111,7 @@ const register = async (data) => {
       ...data,
       password: hashedPassword,
       referral_code: referralCode,
+      referral_id: checkReferral ? checkReferral.id : null,
     },
   });
 
@@ -151,7 +158,7 @@ const resetPassword = async (token, newPassword) => {
 };
 
 const listRoles = async () => {
-  // await ensureBaseRoles();
+  await ensureBaseRoles();
   return prisma.role.findMany({ orderBy: { name: "asc" } });
 };
 
@@ -166,7 +173,7 @@ const createRole = async (name) => {
 };
 
 const assignRoleToUser = async (ownerUserId, userId, roleId) => {
-  // await ensureBaseRoles();
+  await ensureBaseRoles();
   const owner = await getUserWithRolesById(ownerUserId);
   const ownerRoles = toRoleNames(owner.userRoles);
   if (!ownerRoles.includes("owner")) throw new Error("only owner can manage roles");

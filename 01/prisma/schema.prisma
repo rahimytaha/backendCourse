@@ -19,6 +19,7 @@ model user {
   password          String
   phone_number      String              
   referral_code     String              @unique
+  referral_user_id  String
   national_code     String?
   location          String?
   userRoles         user_role[]

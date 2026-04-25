@@ -1,23 +1,25 @@
-const prisma = require("../utils/client.util");
+// prisma/seed.js
+const prisma = require('../utils/client.util');
 
 async function main() {
-  await prisma.role.upsert({
-    where: { name: "owner" },
-    update: {},
-    create: { name: "owner" },
-  });
+  const roles = ["owner", "teacher", "student"];
 
-  await prisma.role.upsert({
-    where: { name: "teacher" },
-    update: {},
-    create: { name: "teacher" },
-  });
-
-  await prisma.role.upsert({
-    where: { name: "student" },
-    update: {},
-    create: { name: "student" },
-  });
+  await Promise.all(
+    roles.map((name) =>
+      prisma.role.upsert({
+        where: { name },
+        update: {},
+        create: { name },
+      })
+    )
+  );
 }
 
-main().finally(() => prisma.$disconnect());
+main()
+  .catch((e) => {
+    console.error(e);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });

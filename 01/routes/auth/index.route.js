@@ -18,10 +18,7 @@ const {
   removeRoleFromUser,
 } = require("../../services/auth/index.service");
 const catchAsync = require("../../utils/catchAsync.util");
-const {
-  validAuth,
-  authorizeRoles,
-} = require("../../utils/auth.util");
+const { validAuth, authorizeRoles } = require("../../utils/auth.util");
 
 /**
  * @swagger
@@ -86,6 +83,9 @@ const {
  *               phone_number:
  *                 type: string
  *                 example: "09121234567"
+ *               referral_code:
+ *                 type: string
+ *                 example: "A12su3D2"
  *     responses:
  *       201:
  *         $ref: '#/components/responses/201Res'
@@ -270,10 +270,17 @@ authRouter.post(
   nameValidationChain(),
   passwordValidationChain(),
   expressValidator.body("phone_number").isMobilePhone("fa-IR").escape(),
+  expressValidator.body("referral_code").isString(),
   catchAsync(async (req, res) => {
     errorResponseValidation(req, res);
-    const { name, email, password, phone_number } = req.body;
-    const data = await register({ name, email, password, phone_number });
+    const { name, email, password, phone_number, referral_code } = req.body;
+    const data = await register({
+      name,
+      email,
+      password,
+      phone_number,
+      referral_code,
+    });
     res.status(201).send(data);
   }),
 );
