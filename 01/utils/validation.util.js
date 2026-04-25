@@ -14,12 +14,23 @@ const errorResponseValidation = (req, res) => {
     });
   }
 };
+
+// auth
 const passwordValidationChain = () =>
   body("password")
     .notEmpty()
     .escape()
     .isLength({ min: 8 })
     .withMessage("it's not a VALID password");
+
+const emailValidationChain = () =>
+  body("email")
+    .notEmpty()
+    .isEmail()
+    .withMessage("it's not a VALID email")
+    .escape();
+
+const nameValidationChain = () => body("name").notEmpty().escape();
 
 const pageChain = () =>
   query("page").optional().default(0).toInt().isLength({ min: 0 });
@@ -42,6 +53,8 @@ const categoryListChain = () =>
 module.exports = {
   errorResponseValidation,
   passwordValidationChain,
+  emailValidationChain,
+  nameValidationChain,
   categoryListChain,
   idChain,
   categoryRequirmentChain,

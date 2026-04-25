@@ -2331,6 +2331,7 @@ export namespace Prisma {
     email: string | null
     password: string | null
     phone_number: string | null
+    referral_code: string | null
     national_code: string | null
     location: string | null
   }
@@ -2341,6 +2342,7 @@ export namespace Prisma {
     email: string | null
     password: string | null
     phone_number: string | null
+    referral_code: string | null
     national_code: string | null
     location: string | null
   }
@@ -2351,6 +2353,7 @@ export namespace Prisma {
     email: number
     password: number
     phone_number: number
+    referral_code: number
     national_code: number
     location: number
     _all: number
@@ -2363,6 +2366,7 @@ export namespace Prisma {
     email?: true
     password?: true
     phone_number?: true
+    referral_code?: true
     national_code?: true
     location?: true
   }
@@ -2373,6 +2377,7 @@ export namespace Prisma {
     email?: true
     password?: true
     phone_number?: true
+    referral_code?: true
     national_code?: true
     location?: true
   }
@@ -2383,6 +2388,7 @@ export namespace Prisma {
     email?: true
     password?: true
     phone_number?: true
+    referral_code?: true
     national_code?: true
     location?: true
     _all?: true
@@ -2466,6 +2472,7 @@ export namespace Prisma {
     email: string
     password: string
     phone_number: string
+    referral_code: string
     national_code: string | null
     location: string | null
     _count: UserCountAggregateOutputType | null
@@ -2493,6 +2500,7 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     phone_number?: boolean
+    referral_code?: boolean
     national_code?: boolean
     location?: boolean
     userRoles?: boolean | user$userRolesArgs<ExtArgs>
@@ -2510,6 +2518,7 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     phone_number?: boolean
+    referral_code?: boolean
     national_code?: boolean
     location?: boolean
   }, ExtArgs["result"]["user"]>
@@ -2520,6 +2529,7 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     phone_number?: boolean
+    referral_code?: boolean
     national_code?: boolean
     location?: boolean
   }, ExtArgs["result"]["user"]>
@@ -2530,11 +2540,12 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     phone_number?: boolean
+    referral_code?: boolean
     national_code?: boolean
     location?: boolean
   }
 
-  export type userOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "phone_number" | "national_code" | "location", ExtArgs["result"]["user"]>
+  export type userOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "phone_number" | "referral_code" | "national_code" | "location", ExtArgs["result"]["user"]>
   export type userInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     userRoles?: boolean | user$userRolesArgs<ExtArgs>
     loginTransactions?: boolean | user$loginTransactionsArgs<ExtArgs>
@@ -2563,6 +2574,7 @@ export namespace Prisma {
       email: string
       password: string
       phone_number: string
+      referral_code: string
       national_code: string | null
       location: string | null
     }, ExtArgs["result"]["user"]>
@@ -2999,6 +3011,7 @@ export namespace Prisma {
     readonly email: FieldRef<"user", 'String'>
     readonly password: FieldRef<"user", 'String'>
     readonly phone_number: FieldRef<"user", 'String'>
+    readonly referral_code: FieldRef<"user", 'String'>
     readonly national_code: FieldRef<"user", 'String'>
     readonly location: FieldRef<"user", 'String'>
   }
@@ -17481,6 +17494,7 @@ export namespace Prisma {
     email: 'email',
     password: 'password',
     phone_number: 'phone_number',
+    referral_code: 'referral_code',
     national_code: 'national_code',
     location: 'location'
   };
@@ -17738,6 +17752,7 @@ export namespace Prisma {
     email?: StringFilter<"user"> | string
     password?: StringFilter<"user"> | string
     phone_number?: StringFilter<"user"> | string
+    referral_code?: StringFilter<"user"> | string
     national_code?: StringNullableFilter<"user"> | string | null
     location?: StringNullableFilter<"user"> | string | null
     userRoles?: User_roleListRelationFilter
@@ -17754,6 +17769,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     phone_number?: SortOrder
+    referral_code?: SortOrder
     national_code?: SortOrderInput | SortOrder
     location?: SortOrderInput | SortOrder
     userRoles?: user_roleOrderByRelationAggregateInput
@@ -17767,6 +17783,7 @@ export namespace Prisma {
   export type userWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     email?: string
+    referral_code?: string
     AND?: userWhereInput | userWhereInput[]
     OR?: userWhereInput[]
     NOT?: userWhereInput | userWhereInput[]
@@ -17781,7 +17798,7 @@ export namespace Prisma {
     courseRates?: Course_rateListRelationFilter
     courseFavorites?: Course_favoriteListRelationFilter
     courseComments?: Course_commentListRelationFilter
-  }, "id" | "email">
+  }, "id" | "email" | "referral_code">
 
   export type userOrderByWithAggregationInput = {
     id?: SortOrder
@@ -17789,6 +17806,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     phone_number?: SortOrder
+    referral_code?: SortOrder
     national_code?: SortOrderInput | SortOrder
     location?: SortOrderInput | SortOrder
     _count?: userCountOrderByAggregateInput
@@ -17805,6 +17823,7 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"user"> | string
     password?: StringWithAggregatesFilter<"user"> | string
     phone_number?: StringWithAggregatesFilter<"user"> | string
+    referral_code?: StringWithAggregatesFilter<"user"> | string
     national_code?: StringNullableWithAggregatesFilter<"user"> | string | null
     location?: StringNullableWithAggregatesFilter<"user"> | string | null
   }
@@ -18512,6 +18531,7 @@ export namespace Prisma {
     email: string
     password: string
     phone_number: string
+    referral_code: string
     national_code?: string | null
     location?: string | null
     userRoles?: user_roleCreateNestedManyWithoutUserInput
@@ -18528,6 +18548,7 @@ export namespace Prisma {
     email: string
     password: string
     phone_number: string
+    referral_code: string
     national_code?: string | null
     location?: string | null
     userRoles?: user_roleUncheckedCreateNestedManyWithoutUserInput
@@ -18544,6 +18565,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
+    referral_code?: StringFieldUpdateOperationsInput | string
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     userRoles?: user_roleUpdateManyWithoutUserNestedInput
@@ -18560,6 +18582,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
+    referral_code?: StringFieldUpdateOperationsInput | string
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     userRoles?: user_roleUncheckedUpdateManyWithoutUserNestedInput
@@ -18576,6 +18599,7 @@ export namespace Prisma {
     email: string
     password: string
     phone_number: string
+    referral_code: string
     national_code?: string | null
     location?: string | null
   }
@@ -18586,6 +18610,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
+    referral_code?: StringFieldUpdateOperationsInput | string
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -18596,6 +18621,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
+    referral_code?: StringFieldUpdateOperationsInput | string
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -19373,6 +19399,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     phone_number?: SortOrder
+    referral_code?: SortOrder
     national_code?: SortOrder
     location?: SortOrder
   }
@@ -19383,6 +19410,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     phone_number?: SortOrder
+    referral_code?: SortOrder
     national_code?: SortOrder
     location?: SortOrder
   }
@@ -19393,6 +19421,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     phone_number?: SortOrder
+    referral_code?: SortOrder
     national_code?: SortOrder
     location?: SortOrder
   }
@@ -21279,6 +21308,7 @@ export namespace Prisma {
     email: string
     password: string
     phone_number: string
+    referral_code: string
     national_code?: string | null
     location?: string | null
     loginTransactions?: login_transactionCreateNestedManyWithoutUserInput
@@ -21294,6 +21324,7 @@ export namespace Prisma {
     email: string
     password: string
     phone_number: string
+    referral_code: string
     national_code?: string | null
     location?: string | null
     loginTransactions?: login_transactionUncheckedCreateNestedManyWithoutUserInput
@@ -21346,6 +21377,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
+    referral_code?: StringFieldUpdateOperationsInput | string
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     loginTransactions?: login_transactionUpdateManyWithoutUserNestedInput
@@ -21361,6 +21393,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
+    referral_code?: StringFieldUpdateOperationsInput | string
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     loginTransactions?: login_transactionUncheckedUpdateManyWithoutUserNestedInput
@@ -21416,6 +21449,7 @@ export namespace Prisma {
     email: string
     password: string
     phone_number: string
+    referral_code: string
     national_code?: string | null
     location?: string | null
     userRoles?: user_roleCreateNestedManyWithoutUserInput
@@ -21431,6 +21465,7 @@ export namespace Prisma {
     email: string
     password: string
     phone_number: string
+    referral_code: string
     national_code?: string | null
     location?: string | null
     userRoles?: user_roleUncheckedCreateNestedManyWithoutUserInput
@@ -21462,6 +21497,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
+    referral_code?: StringFieldUpdateOperationsInput | string
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     userRoles?: user_roleUpdateManyWithoutUserNestedInput
@@ -21477,6 +21513,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
+    referral_code?: StringFieldUpdateOperationsInput | string
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     userRoles?: user_roleUncheckedUpdateManyWithoutUserNestedInput
@@ -21509,6 +21546,7 @@ export namespace Prisma {
     email: string
     password: string
     phone_number: string
+    referral_code: string
     national_code?: string | null
     location?: string | null
     userRoles?: user_roleCreateNestedManyWithoutUserInput
@@ -21524,6 +21562,7 @@ export namespace Prisma {
     email: string
     password: string
     phone_number: string
+    referral_code: string
     national_code?: string | null
     location?: string | null
     userRoles?: user_roleUncheckedCreateNestedManyWithoutUserInput
@@ -21694,6 +21733,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
+    referral_code?: StringFieldUpdateOperationsInput | string
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     userRoles?: user_roleUpdateManyWithoutUserNestedInput
@@ -21709,6 +21749,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
+    referral_code?: StringFieldUpdateOperationsInput | string
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     userRoles?: user_roleUncheckedUpdateManyWithoutUserNestedInput
@@ -21824,6 +21865,7 @@ export namespace Prisma {
     email: string
     password: string
     phone_number: string
+    referral_code: string
     national_code?: string | null
     location?: string | null
     userRoles?: user_roleCreateNestedManyWithoutUserInput
@@ -21839,6 +21881,7 @@ export namespace Prisma {
     email: string
     password: string
     phone_number: string
+    referral_code: string
     national_code?: string | null
     location?: string | null
     userRoles?: user_roleUncheckedCreateNestedManyWithoutUserInput
@@ -21915,6 +21958,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
+    referral_code?: StringFieldUpdateOperationsInput | string
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     userRoles?: user_roleUpdateManyWithoutUserNestedInput
@@ -21930,6 +21974,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
+    referral_code?: StringFieldUpdateOperationsInput | string
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     userRoles?: user_roleUncheckedUpdateManyWithoutUserNestedInput
@@ -21996,6 +22041,7 @@ export namespace Prisma {
     email: string
     password: string
     phone_number: string
+    referral_code: string
     national_code?: string | null
     location?: string | null
     userRoles?: user_roleCreateNestedManyWithoutUserInput
@@ -22011,6 +22057,7 @@ export namespace Prisma {
     email: string
     password: string
     phone_number: string
+    referral_code: string
     national_code?: string | null
     location?: string | null
     userRoles?: user_roleUncheckedCreateNestedManyWithoutUserInput
@@ -22087,6 +22134,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
+    referral_code?: StringFieldUpdateOperationsInput | string
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     userRoles?: user_roleUpdateManyWithoutUserNestedInput
@@ -22102,6 +22150,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
+    referral_code?: StringFieldUpdateOperationsInput | string
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     userRoles?: user_roleUncheckedUpdateManyWithoutUserNestedInput
@@ -22193,6 +22242,7 @@ export namespace Prisma {
     email: string
     password: string
     phone_number: string
+    referral_code: string
     national_code?: string | null
     location?: string | null
     userRoles?: user_roleCreateNestedManyWithoutUserInput
@@ -22208,6 +22258,7 @@ export namespace Prisma {
     email: string
     password: string
     phone_number: string
+    referral_code: string
     national_code?: string | null
     location?: string | null
     userRoles?: user_roleUncheckedCreateNestedManyWithoutUserInput
@@ -22345,6 +22396,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
+    referral_code?: StringFieldUpdateOperationsInput | string
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     userRoles?: user_roleUpdateManyWithoutUserNestedInput
@@ -22360,6 +22412,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
+    referral_code?: StringFieldUpdateOperationsInput | string
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     userRoles?: user_roleUncheckedUpdateManyWithoutUserNestedInput

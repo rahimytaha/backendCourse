@@ -17,7 +17,8 @@ model user {
   name              String
   email             String              @unique
   password          String
-  phone_number      String
+  phone_number      String              
+  referral_code     String              @unique
   national_code     String?
   location          String?
   userRoles         user_role[]
