@@ -140,6 +140,9 @@ const { validAuth, authorizeRoles } = require("../../utils/auth.util");
  *               email:
  *                 type: string
  *                 example: john@example.com
+ *               url:
+ *                 type: string
+ *                 example: http://example.com
  *     responses:
  *       200:
  *         description: Reset token sent (if user exists)
@@ -299,9 +302,10 @@ authRouter.post(
 authRouter.post(
   "/forget_password",
   emailValidationChain(),
+  expressValidator.body("url").isURL().notEmpty(),
   catchAsync(async (req, res) => {
     errorResponseValidation(req, res);
-    const data = await forgotPassword(req.body.email);
+    const data = await forgotPassword(req.body.email, req.body.url);
     res.status(200).send({status: 200, message: "Reset token sent successfully", data});
   }),
 );

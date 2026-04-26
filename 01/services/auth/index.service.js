@@ -8,9 +8,14 @@ const {
   toPermissions,
 } = require("../../utils/auth.util");
 const prisma = require("../../utils/client.util");
+const {
+  generateForgotPasswordEmail,
+  sendEmail,
+} = require("../../utils/sendEmail");
 
 const ACCESS_TOKEN_TTL = process.env.ACCESS_TOKEN_TTL || "24h";
 const RESET_TOKEN_TTL = process.env.RESET_TOKEN_TTL || "15m";
+const NODE_ENV = process.env.NODE_ENV;
 
 const sanitizeUser = (user) => {
   const { password, ...safeUser } = user;
@@ -139,17 +144,34 @@ const login = async (data) => {
   return buildAuthPayload(checkUser);
 };
 
-const forgotPassword = async (email) => {
+const forgotPassword = async (email, url) => {
   const user = await prisma.user.findUnique({ where: { email } });
   if (!user) return { success: true };
+
   const resetToken = generateToken(
     { sub: user.id, email: user.email, type: "reset" },
     RESET_TOKEN_TTL,
   );
-  return {
-    success: true,
-    resetToken,
-  };
+
+  const resetUrl = `${url}?token=${resetToken}`;
+
+  if (NODE_ENV === "development") {
+    return {
+      success: true,
+      reset_token: resetToken,
+    };
+  } else {
+    await sendEmail({
+      to: user.email,
+      subject: "Password Reset Request",
+      htmlContent: generateForgotPasswordEmail(user.name, resetUrl),
+    });
+
+    return {
+      success: true,
+      message: "Reset token sent to email successfully",
+    };
+  }
 };
 
 const resetPassword = async (token, newPassword) => {
