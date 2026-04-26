@@ -63,29 +63,29 @@ const loginAs = async (userId) => {
 };
 
 /// role section
-const addRole = async (userId, roleId) => {
-  const checlExistRole = await prisma.user_role.findFirst({
-    where: { user_id: userId, role_id: roleId },
-  });
-  if (checlExistRole) throw Error("user have this role");
-  await prisma.user_role.create({ data: { user_id: userId, role_id: roleId } });
-};
-const deleteRole = async (userId, roleId) => {
-  const checlExistRole = await prisma.user_role.findFirst({
-    where: { user_id: userId, role_id: roleId },
-  });
-  if (!checlExistRole) throw Error("user have not this role");
-  await prisma.user_role.delete({ where: { id: checlExistRole.id } });
-};
-const getRoleList = async () => {
-  const list = await prisma.role.findMany();
-  return list;
-};
-const getRoleById = async (roleId) => {
-  const role = await prisma.role.findFirst({ where: { id: roleId } });
-  if (!role) throw Error("role could not found");
-  return role;
-};
+// const addRole = async (userId, roleId) => {
+//   const checlExistRole = await prisma.user_role.findFirst({
+//     where: { user_id: userId, role_id: roleId },
+//   });
+//   if (checlExistRole) throw Error("user have this role");
+//   await prisma.user_role.create({ data: { user_id: userId, role_id: roleId } });
+// };
+// const deleteRole = async (userId, roleId) => {
+//   const checlExistRole = await prisma.user_role.findFirst({
+//     where: { user_id: userId, role_id: roleId },
+//   });
+//   if (!checlExistRole) throw Error("user have not this role");
+//   await prisma.user_role.delete({ where: { id: checlExistRole.id } });
+// };
+// const getRoleList = async () => {
+//   const list = await prisma.role.findMany();
+//   return list;
+// };
+// const getRoleById = async (roleId) => {
+//   const role = await prisma.role.findFirst({ where: { id: roleId } });
+//   if (!role) throw Error("role could not found");
+//   return role;
+// };
 module.exports = {
   getAllUsers,
   loginAs,
@@ -93,8 +93,8 @@ module.exports = {
   updateUser,
   deleteUser,
   getUserById,
-  getRoleById,
-  getRoleList,
-  addRole,
-  deleteRole,
+  // getRoleById,
+  // getRoleList,
+  // addRole,
+  // deleteRole,
 };

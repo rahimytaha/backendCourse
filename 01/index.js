@@ -1,63 +1,52 @@
 const express = require("express");
 require("module-alias/register");
 require("dotenv").config();
-require("./config/component.swagger")
-
-
-/**
- * @swagger
- * components:
- *   responses:
- *     UnauthorizedError:
- *       description: احراز هویت نشده - توکن معتبر ارائه نشده است
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               success:
- *                 type: boolean
- *                 example: false
- *               message:
- *                 type: string
- *                 example: "لطفاً وارد حساب کاربری خود شوید"
- */
-
-
+require("./config/component.swagger");
 
 const swaggerJsdocs = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
+
 const swagger_option = {
   definition: {
     openapi: "3.0.0",
-    info: { title: "backend course" },
+    info: {
+      title: "backend course",
+      description: "API documentation for backend course",
+      version: "1.0.0",
+    },
     components: {
-      securitySchema: {
+      securitySchemes: {
         bearerAuth: {
           type: "http",
-          schema: "bearer",
+          scheme: "bearer",
           bearerFormat: "JWT",
         },
       },
-      security: [{ bearerAuth: [] }],
     },
+    security: [
+      {
+        bearerAuth: [],
+      },
+    ],
   },
   apis: ["./**/*.route.js"],
 };
 
 const app = express();
+
 app.use(
   "/doc",
   swaggerUi.serve,
-  swaggerUi.setup(swaggerJsdocs(swagger_option)),
+  swaggerUi.setup(swaggerJsdocs(swagger_option))
 );
+
 const errorHandler = require("./utils/errorHandler.util");
 const port = process.env.PORT || 3001;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const authRouter = require("./routes/auth/index");
+const authRouter = require("./routes/auth/index.route");
 const userRouter = require("./routes/users/index.route");
 const courseRouter = require("./routes/courses/index.route");
 
@@ -70,7 +59,9 @@ app.use("/users", userRouter);
 app.get("/", (req, res, next) => {
   res.send("test");
 });
+
 app.use(errorHandler);
+
 app.listen(port, () => {
-  console.log("server staarted");
+  console.log("server started");
 });

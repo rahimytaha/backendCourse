@@ -398,81 +398,81 @@ userRouter.patch(
   }),
 );
 
-/** 
- * @swagger
- * /users/role:
- *   get:
- *     summary: get all roles (admin)
- *     tags: [Roles,Users]
- *     responses:
- *       400:
- *         $ref: '#/components/responses/400Err'
- *       403:
- *         $ref:  '#/components/responses/403Err'
- * 
- */
-// role system routers
-userRouter.get(
-  "role/list",
-  catchAsysnc(async (req, res) => {
-    const data = await getRoleList();
-    res.send(data);
-  }),
-);
-/**
- * @swagger
- * /users/role/{id}/{roleId}:
- *   patch:
- *     summary: add role to an user (admin)
- *     tags:
- *       - Users
- *       - Roles
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *       - in: path
- *         name: roleId
- *         required: true
- *     responses:
- *       400:
- *         $ref: '#/components/responses/400Err'
- *       403:
- *         $ref:  '#/components/responses/403Err'
- *   delete:
- *     summary: delete role from an user (admin)
- *     tags:
- *       - Users
- *       - Roles
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *       - in: path
- *         name: roleId
- *         required: true
- *     responses:
- *       400:
- *         $ref: '#/components/responses/400Err'
- *       403:
- *         $ref:  '#/components/responses/403Err'
- */
-userRouter.patch(
-  "role/:id/:roleId",
-  expressValidator.param("id").notEmpty().isUUID(),
-  expressValidator.param("roleId").notEmpty().isUUID(),
-  catchAsysnc(async (req, res) => {
-    await addRole(req.params.id, req.params.roleId);
-    res.send(true);
-  }),
-);
-userRouter.delete(
-  "role/:id/:roleId",
-  expressValidator.param("id").notEmpty().isUUID(),
-  expressValidator.param("roleId").notEmpty().isUUID(),
-  catchAsysnc(async (req, res) => {
-    await deleteRole(req.params.id, req.params.roleId);
-    res.send(true);
-  }),
-);
+// /** 
+//  * @swagger
+//  * /users/role:
+//  *   get:
+//  *     summary: get all roles (admin)
+//  *     tags: [Roles,Users]
+//  *     responses:
+//  *       400:
+//  *         $ref: '#/components/responses/400Err'
+//  *       403:
+//  *         $ref:  '#/components/responses/403Err'
+//  * 
+//  */
+// // role system routers
+// userRouter.get(
+//   "role/list",
+//   catchAsysnc(async (req, res) => {
+//     const data = await getRoleList();
+//     res.send(data);
+//   }),
+// );
+// /**
+//  * @swagger
+//  * /users/role/{id}/{roleId}:
+//  *   patch:
+//  *     summary: add role to an user (admin)
+//  *     tags:
+//  *       - Users
+//  *       - Roles
+//  *     parameters:
+//  *       - in: path
+//  *         name: id
+//  *         required: true
+//  *       - in: path
+//  *         name: roleId
+//  *         required: true
+//  *     responses:
+//  *       400:
+//  *         $ref: '#/components/responses/400Err'
+//  *       403:
+//  *         $ref:  '#/components/responses/403Err'
+//  *   delete:
+//  *     summary: delete role from an user (admin)
+//  *     tags:
+//  *       - Users
+//  *       - Roles
+//  *     parameters:
+//  *       - in: path
+//  *         name: id
+//  *         required: true
+//  *       - in: path
+//  *         name: roleId
+//  *         required: true
+//  *     responses:
+//  *       400:
+//  *         $ref: '#/components/responses/400Err'
+//  *       403:
+//  *         $ref:  '#/components/responses/403Err'
+//  */
+// userRouter.patch(
+//   "role/:id/:roleId",
+//   expressValidator.param("id").notEmpty().isUUID(),
+//   expressValidator.param("roleId").notEmpty().isUUID(),
+//   catchAsysnc(async (req, res) => {
+//     await addRole(req.params.id, req.params.roleId);
+//     res.send(true);
+//   }),
+// );
+// userRouter.delete(
+//   "role/:id/:roleId",
+//   expressValidator.param("id").notEmpty().isUUID(),
+//   expressValidator.param("roleId").notEmpty().isUUID(),
+//   catchAsysnc(async (req, res) => {
+//     await deleteRole(req.params.id, req.params.roleId);
+//     res.send(true);
+//   }),
+// );
 module.exports = userRouter;

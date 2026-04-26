@@ -19,6 +19,7 @@ const {
   categoryListChain,
   errorResponseValidation,
 } = require("../../utils/validation.util");
+const { validAuth, authorizePermissions } = require("../../utils/auth.util");
 
 /**
  * @swagger
@@ -219,6 +220,8 @@ courseRouter.get(
  */
 courseRouter.get(
   "/admin",
+  validAuth,
+  authorizePermissions(["course:read:any"]),
   pageChain(),
   perPageChain(),
   queryChain(),
@@ -342,6 +345,8 @@ courseRouter.get(
  */
 courseRouter.get(
   "/mine",
+  validAuth,
+  authorizePermissions(["course:read:own"]),
   pageChain(),
   perPageChain(),
   queryChain(),
@@ -446,6 +451,8 @@ courseRouter.get(
  */
 courseRouter.post(
   "/admin",
+  validAuth,
+  authorizePermissions(["course:create"]),
   validator.body("description").escape().notEmpty().isString(),
   validator.body("mini_description").escape().notEmpty().isString(),
   validator.body("picture").escape().notEmpty().isString(),
@@ -530,6 +537,8 @@ courseRouter.get(
  */
 courseRouter.get(
   "/admin/:id",
+  validAuth,
+  authorizePermissions(["course:read:any"]),
   idChain(),
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
@@ -574,6 +583,8 @@ courseRouter.get(
  */
 courseRouter.patch(
   "/:id/:status",
+  validAuth,
+  authorizePermissions(["course:update:own"]),
   idChain(),
   validator.param("status").notEmpty().toBoolean().escape(),
   catchAsysnc(async (req, res) => {
@@ -640,6 +651,8 @@ courseRouter.patch(
  */
 courseRouter.put(
   "/:id",
+  validAuth,
+  authorizePermissions(["course:update:own"]),
   idChain(),
   validator.body("description").optional().escape().isString(),
   validator.body("mini_description").optional().escape().isString(),
@@ -695,6 +708,8 @@ courseRouter.put(
  */
 courseRouter.delete(
   "/:id",
+  validAuth,
+  authorizePermissions(["course:update:own"]),
   idChain(),
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
