@@ -2,7 +2,7 @@
 const prisma = require('../utils/client.util');
 
 async function main() {
-  const roles = ["owner", "teacher", "student", "admin"];
+  const roles = ["owner", "teacher", "student", "admin", "author"];
 
   await Promise.all(
     roles.map((name) =>

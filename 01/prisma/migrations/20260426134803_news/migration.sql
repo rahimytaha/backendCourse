@@ -6,6 +6,7 @@ CREATE TABLE "user" (
     "password" TEXT NOT NULL,
     "phone_number" TEXT NOT NULL,
     "referral_code" TEXT NOT NULL,
+    "referral_user_id" TEXT NOT NULL,
     "national_code" TEXT,
     "location" TEXT,
 
@@ -142,6 +143,19 @@ CREATE TABLE "course_order" (
     "id" TEXT NOT NULL,
 
     CONSTRAINT "course_order_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "News" (
+    "id" SERIAL NOT NULL,
+    "title" TEXT NOT NULL,
+    "content" TEXT NOT NULL,
+    "author_id" TEXT NOT NULL,
+    "published" BOOLEAN NOT NULL DEFAULT false,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "News_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex

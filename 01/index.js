@@ -49,12 +49,14 @@ app.use(express.urlencoded({ extended: true }));
 const authRouter = require("./routes/auth/index.route");
 const userRouter = require("./routes/users/index.route");
 const courseRouter = require("./routes/courses/index.route");
+const newsRouter = require("./routes/news/index.route");
 
 app.use("/public", express.static("public"));
 
 app.use("/auth", authRouter);
-app.use("/course", courseRouter);
 app.use("/users", userRouter);
+app.use("/course", courseRouter);
+app.use("/news", newsRouter);
 
 app.get("/", (req, res, next) => {
   res.send("test");

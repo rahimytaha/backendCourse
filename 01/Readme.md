@@ -8,6 +8,9 @@ This project is a backend application utilizing **Prisma** as an ORM and **Postg
 - Password Reset (Forgot & Reset)
 - Role Management (Assign/Remove roles to/from users)
 - Access Control based on Roles and Permissions
+- News Section (Blogs and roles as author)
+- Courses Section
+- Order System (Buy and save courses)
 
 ## Tech Stack
 

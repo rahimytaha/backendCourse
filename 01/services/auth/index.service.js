@@ -18,7 +18,7 @@ const sanitizeUser = (user) => {
 };
 
 const ensureBaseRoles = async () => {
-  const roleNames = ["owner", "teacher", "student", "admin"];
+  const roleNames = ["owner", "teacher", "student", "admin", "author"];
   await Promise.all(
     roleNames.map(async (name) => {
       const existing = await prisma.role.findFirst({
@@ -90,15 +90,23 @@ const buildAuthPayload = (user) => {
 
 const register = async (data) => {
   await ensureBaseRoles();
-  const checkUser = await prisma.user.findUnique({ where: { email: data.email } });
+  const checkUser = await prisma.user.findUnique({
+    where: { email: data.email },
+  });
 
   if (checkUser) throw new Error("this email exist");
 
-  const checkReferral = await prisma.user.findUnique({
-    where: { referral_code: data.referral_code },
-  });
+  let checkReferral = null;
 
-  if (!checkReferral) throw new Error("invalid referral code");
+  if (data.referral_code) {
+    checkReferral = await prisma.user.findUnique({
+      where: { referral_code: data.referral_code },
+    });
+
+    if (!checkReferral) {
+      throw new Error("referral code is invalid");
+    }
+  }
 
   const usersCount = await prisma.user.count();
   const defaultRoleName = usersCount === 0 ? "owner" : "student";
@@ -111,7 +119,7 @@ const register = async (data) => {
       ...data,
       password: hashedPassword,
       referral_code: referralCode,
-      referral_id: checkReferral ? checkReferral.id : null,
+      referral_user_id: checkReferral ? checkReferral.id : null,
     },
   });
 
@@ -176,7 +184,8 @@ const assignRoleToUser = async (ownerUserId, userId, roleId) => {
   await ensureBaseRoles();
   const owner = await getUserWithRolesById(ownerUserId);
   const ownerRoles = toRoleNames(owner.userRoles);
-  if (!ownerRoles.includes("owner")) throw new Error("only owner can manage roles");
+  if (!ownerRoles.includes("owner"))
+    throw new Error("only owner can manage roles");
   const user = await getUserWithRolesById(userId);
   if (!user) throw new Error("user not found");
   const role = await prisma.role.findUnique({ where: { id: roleId } });
@@ -188,7 +197,8 @@ const assignRoleToUser = async (ownerUserId, userId, roleId) => {
 const removeRoleFromUser = async (ownerUserId, userId, roleId) => {
   const owner = await getUserWithRolesById(ownerUserId);
   const ownerRoles = toRoleNames(owner.userRoles);
-  if (!ownerRoles.includes("owner")) throw new Error("only owner can manage roles");
+  if (!ownerRoles.includes("owner"))
+    throw new Error("only owner can manage roles");
   const userRole = await prisma.user_role.findFirst({
     where: { user_id: userId, role_id: roleId },
   });
