@@ -12,6 +12,7 @@ const {
   deleteNews,
   publishNews,
 } = require("../../services/news/index.service");
+const logger = require('../../utils/logger');
 
 /**
  * @swagger
@@ -468,6 +469,7 @@ newsRouter.post(
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
     const { title, content, published } = req.body;
+    logger.info(`Creating news: ${title}, by user ${req.user.id}`); 
     const data = await createNews({ title, content, published }, req.user.id);
     res
       .status(201)
@@ -504,6 +506,7 @@ newsRouter.get(
     .withMessage("order must be either 'asc' or 'desc'"),
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
+    logger.info(`Fetching news with filters: ${JSON.stringify(req.query)}`);
     const data = await getAllNews(
       req.query.title,
       req.query.content,
@@ -524,6 +527,7 @@ newsRouter.get(
     .withMessage("id must be an integer"),
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
+    logger.info(`Fetching news by id: ${req.params.id}`);
     const data = await getNewsById(req.params.id);
     res.status(200).json({ status: 200, message: "Detail of news", data });
   }),
@@ -540,6 +544,7 @@ newsRouter.put(
     .withMessage("id must be an integer"),
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
+    logger.info(`Updating news with id: ${req.params.id} by user ${req.user.id}`);
     const data = await updateNews(req.params.id, req.body, req.user.id);
     res
       .status(201)
@@ -558,7 +563,8 @@ newsRouter.delete(
     .withMessage("id must be an integer"),
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
-    const data = await deleteNews(req.params.id, req.user.id);
+    logger.info(`Deleting news with id: ${req.params.id} by user ${req.user.id}`);
+    await deleteNews(req.params.id, req.user.id);
     res.status(201).json({ status: 201, message: "News deleted successfully" });
   }),
 );
@@ -578,6 +584,7 @@ newsRouter.put(
     .withMessage("published must be a boolean"),
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
+    logger.info(`Publishing news with id: ${req.params.id} by user ${req.user.id}`);
     const data = await publishNews(
       req.params.id,
       req.body.published,

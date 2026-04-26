@@ -20,6 +20,7 @@ const {
   errorResponseValidation,
 } = require("../../utils/validation.util");
 const { validAuth, authorizePermissions } = require("../../utils/auth.util");
+const logger = require("../../utils/logger");
 
 /**
  * @swagger
@@ -125,6 +126,7 @@ courseRouter.get(
       categoryRequirment,
       categoryList,
     } = req.query;
+    logger.info(`Fetching courses with filters: ${JSON.stringify(req.query)}`);
     const data = await courseService.allCourses(
       page,
       perPage,
@@ -148,7 +150,7 @@ courseRouter.get(
  * @swagger
  * /course/admin:
  *   get:
- *     summary: Get list of courses 
+ *     summary: Get list of courses
  *     tags:
  *       -  Courses
  *     parameters:
@@ -250,6 +252,9 @@ courseRouter.get(
       categoryRequirment,
       categoryList,
     } = req.query;
+    logger.info(
+      `Admin fetching courses with filters: ${JSON.stringify(req.query)}`,
+    );
     const data = await courseService.allCourses(
       page,
       perPage,
@@ -375,6 +380,9 @@ courseRouter.get(
       categoryRequirment,
       categoryList,
     } = req.query;
+    logger.info(
+      `User fetching their courses with filters: ${JSON.stringify(req.query)}`,
+    );
     const data = await courseService.allCourses(
       page,
       perPage,
@@ -398,7 +406,7 @@ courseRouter.get(
  * @swagger
  * /course/admin:
  *   post:
- *     summary: Create a new course 
+ *     summary: Create a new course
  *     tags:
  *       -  Courses
  *     requestBody:
@@ -465,6 +473,9 @@ courseRouter.post(
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
     const data = req.body;
+    logger.info(
+      `Admin creating new course with data: ${JSON.stringify(req.body)}`,
+    );
     const newCourse = await courseService.createCourse(data);
     res.send(newCourse);
   }),
@@ -503,6 +514,7 @@ courseRouter.get(
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
     const { id } = req.params;
+    logger.info(`Fetching course details for user with id: ${req.params.id}`);
     const course = await courseService.detailCourse(id, true);
     res.send(course);
   }),
@@ -543,6 +555,7 @@ courseRouter.get(
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
     const { id } = req.params;
+    logger.info(`Admin fetching course details with id: ${req.params.id}`);
     const course = await courseService.detailCourse(id);
     res.send(course);
   }),
@@ -590,6 +603,7 @@ courseRouter.patch(
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
     const { id, status } = req.params;
+    logger.info(`Updating course status for course with id: ${req.params.id}, new status: ${req.params.status}`);
     const course = await courseService.updateCourse(id, { isActive: status });
     res.send(course);
   }),
@@ -672,6 +686,7 @@ courseRouter.put(
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
     const { id } = req.params;
+    logger.info(`Updating course with id: ${req.params.id}, new data: ${JSON.stringify(req.body)}`);
     const data = req.body;
     const course = await courseService.updateCourse(id, data);
     res.send(course);
@@ -714,6 +729,7 @@ courseRouter.delete(
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
     const { id } = req.params;
+    logger.info(`Deleting course with id: ${req.params.id}`);
     await courseService.deleteCourse(id);
     res.send(true);
   }),

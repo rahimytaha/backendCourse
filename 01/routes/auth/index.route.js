@@ -20,6 +20,8 @@ const {
 const catchAsync = require("../../utils/catchAsync.util");
 const { validAuth, authorizeRoles } = require("../../utils/auth.util");
 
+const logger = require("../../utils/logger");
+
 /**
  * @swagger
  * components:
@@ -277,6 +279,7 @@ authRouter.post(
   catchAsync(async (req, res) => {
     errorResponseValidation(req, res);
     const { name, email, password, phone_number, referral_code } = req.body;
+    logger.info(`Registering new user with email: ${req.body.email}`);
     const data = await register({
       name,
       email,
@@ -294,6 +297,7 @@ authRouter.post(
   passwordValidationChain(),
   catchAsync(async (req, res) => {
     errorResponseValidation(req, res);
+    logger.info(`User login attempt with email: ${req.body.email}`);
     const data = await login(req.body);
     res.status(200).send(data);
   }),
@@ -305,8 +309,11 @@ authRouter.post(
   expressValidator.body("url").isURL().notEmpty(),
   catchAsync(async (req, res) => {
     errorResponseValidation(req, res);
+    logger.info(`Sending reset password token to email: ${req.body.email}`);
     const data = await forgotPassword(req.body.email, req.body.url);
-    res.status(200).send({status: 200, message: "Reset token sent successfully", data});
+    res
+      .status(200)
+      .send({ status: 200, message: "Reset token sent successfully", data });
   }),
 );
 
@@ -316,8 +323,11 @@ authRouter.post(
   expressValidator.body("token").notEmpty().isJWT(),
   catchAsync(async (req, res) => {
     errorResponseValidation(req, res);
+    logger.info(`Resetting password for token: ${req.body.token}`);
     const data = await resetPassword(req.body.token, req.body.password);
-    res.status(200).send({status: 200, message: "Password changed successfully", data});
+    res
+      .status(200)
+      .send({ status: 200, message: "Password changed successfully", data });
   }),
 );
 
@@ -326,6 +336,7 @@ authRouter.get(
   validAuth,
   authorizeRoles(["owner"]),
   catchAsync(async (req, res) => {
+    logger.info("Fetching list of roles");
     const data = await listRoles();
     res.status(200).send(data);
   }),
@@ -338,6 +349,7 @@ authRouter.post(
   expressValidator.body("name").notEmpty().isString().trim(),
   catchAsync(async (req, res) => {
     errorResponseValidation(req, res);
+    logger.info(`Creating new role with name: ${req.body.name}`);
     const data = await createRole(req.body.name);
     res.status(201).send(data);
   }),
@@ -351,6 +363,7 @@ authRouter.patch(
   expressValidator.param("roleId").isUUID(),
   catchAsync(async (req, res) => {
     errorResponseValidation(req, res);
+    logger.info(`Assigning role ${req.params.roleId} to user ${req.params.userId}`);
     const data = await assignRoleToUser(
       req.user.id,
       req.params.userId,
@@ -368,6 +381,7 @@ authRouter.delete(
   expressValidator.param("roleId").isUUID(),
   catchAsync(async (req, res) => {
     errorResponseValidation(req, res);
+    logger.info(`Removing role ${req.params.roleId} from user ${req.params.userId}`);
     const data = await removeRoleFromUser(
       req.user.id,
       req.params.userId,
