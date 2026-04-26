@@ -56,4 +56,11 @@ const acceptComment = async (id) => {
   });
   // send notification
 };
-module.exports = {};
+module.exports = {
+  createComment,
+  deleteComment,
+  listComment,
+  updateComment,
+  detailComment,
+  acceptComment,
+};
