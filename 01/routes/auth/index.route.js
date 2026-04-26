@@ -124,7 +124,7 @@ const { validAuth, authorizeRoles } = require("../../utils/auth.util");
 
 /**
  * @swagger
- * /auth/forgetpass:
+ * /auth/forget_password:
  *   post:
  *     summary: Send password reset token
  *     tags: [Auth]
@@ -149,7 +149,7 @@ const { validAuth, authorizeRoles } = require("../../utils/auth.util");
 
 /**
  * @swagger
- * /auth/resetpass:
+ * /auth/reset_password:
  *   post:
  *     summary: Reset password using token
  *     tags: [Auth]
@@ -297,23 +297,23 @@ authRouter.post(
 );
 
 authRouter.post(
-  "/forget-password",
+  "/forget_password",
   emailValidationChain(),
   catchAsync(async (req, res) => {
     errorResponseValidation(req, res);
     const data = await forgotPassword(req.body.email);
-    res.status(200).send(data);
+    res.status(200).send({status: 200, message: data});
   }),
 );
 
 authRouter.post(
-  "/reset-password",
+  "/reset_password",
   passwordValidationChain(),
   expressValidator.body("token").notEmpty().isJWT(),
   catchAsync(async (req, res) => {
     errorResponseValidation(req, res);
     const data = await resetPassword(req.body.token, req.body.password);
-    res.status(200).send(data);
+    res.status(200).send({status: 200, message: data});
   }),
 );
 
