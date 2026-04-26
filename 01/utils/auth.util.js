@@ -1,17 +1,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const prisma = require("./client.util");
-
-const ROLE_PERMISSIONS = {
-  owner: ["*"],
-  teacher: [
-    "course:read:any",
-    "course:read:own",
-    "course:create",
-    "course:update:own",
-  ],
-  student: ["course:read:any", "course:read:own"],
-};
+const { ROLE_PERMISSIONS } = require("../config/roles");
 
 const hashPassword = (plainPassword) => {
   const salt = bcrypt.genSaltSync(10);
@@ -117,7 +107,6 @@ const authorizePermissions = (requiredPermissions = []) => {
 };
 
 module.exports = {
-  ROLE_PERMISSIONS,
   hashPassword,
   comparePassword,
   generateToken,

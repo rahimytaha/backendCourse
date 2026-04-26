@@ -18,6 +18,7 @@ const {
 const catchAsysnc = require("../../utils/catchAsync.util");
 const userRouter = express.Router();
 const expressValidator = require("express-validator");
+const { authorizePermissions, authorizeRoles } = require("../../utils/auth.util");
 
 /**
  * @swagger
@@ -97,6 +98,7 @@ userRouter.get(
   expressValidator.query("limit").optional().toInt(),
   expressValidator.query("orderBy").optional().notEmpty(),
   expressValidator.query("orderType").optional().notEmpty(),
+  authorizePermissions(['user:read:any']),
   catchAsysnc(async (req, res, next) => {
     errorResponseValidation(req, res);
     const {
@@ -169,6 +171,7 @@ userRouter.post(
     .escape()
     .isMobilePhone("fa-IR"),
   expressValidator.body("location").notEmpty().escape(),
+  authorizePermissions(['user:create']),
   catchAsysnc(async (req, res, next) => {
     errorResponseValidation(req, res);
     const data = await createUser(req.body);
@@ -262,6 +265,7 @@ userRouter.put(
     .escape()
     .isMobilePhone("fa-IR"),
   expressValidator.body("location").notEmpty().escape(),
+  authorizePermissions(['user:update:any']),
   catchAsysnc(async (req, res, next) => {
     const userId = req.params.id;
     errorResponseValidation(req, res);
@@ -325,6 +329,7 @@ userRouter.put(
     .escape()
     .isMobilePhone("fa-IR"),
   expressValidator.body("location").notEmpty().escape(),
+  authorizePermissions(['user:update:own']),
   catchAsysnc(async (req, res, next) => {
     const userId = 1;
     errorResponseValidation(req, res);
@@ -336,6 +341,7 @@ userRouter.put(
 userRouter.delete(
   "/:id",
   expressValidator.param("id").isUUID().notEmpty().escape(),
+  authorizePermissions(['user:delete:any']),
   catchAsysnc(async (req, res) => {
     const userId = req.params.id;
     const response = await deleteUser(userId);
@@ -346,6 +352,7 @@ userRouter.delete(
 userRouter.get(
   "/:id",
   expressValidator.param("id").isUUID().notEmpty().escape(),
+  authorizePermissions(['user:read:any']),
   catchAsysnc(async (req, res) => {
     const userId = req.params.id;
     const response = await getUserById(userId);
@@ -369,6 +376,7 @@ userRouter.get(
 // get user detail by user with itself token
 userRouter.get(
   "/",
+  authorizePermissions(['user:read:own']),
   catchAsysnc(async (req, res) => {
     const userId = 1;
     const response = await getUserById(userId);
@@ -390,6 +398,7 @@ userRouter.get(
  */
 userRouter.patch(
   "/loginAs/:id",
+  authorizeRoles(['admin', 'owner']),
   expressValidator.param("id").isUUID().notEmpty().escape(),
   catchAsysnc(async (req, res) => {
     const userId = req.params.id;

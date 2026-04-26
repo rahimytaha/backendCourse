@@ -18,7 +18,7 @@ const sanitizeUser = (user) => {
 };
 
 const ensureBaseRoles = async () => {
-  const roleNames = ["owner", "teacher", "student"];
+  const roleNames = ["owner", "teacher", "student", "admin"];
   await Promise.all(
     roleNames.map(async (name) => {
       const existing = await prisma.role.findFirst({
