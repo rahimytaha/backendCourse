@@ -19,6 +19,7 @@ model user {
   password          String
   phone_number      String
   referral_code     String              @unique
+  referral_user_id  String?
   national_code     String?
   location          String?
   userRoles         user_role[]
@@ -145,4 +146,14 @@ model order {
 
 model course_order {
   id String @id @default(uuid())
+}
+
+model News {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  author_id String
+  published Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

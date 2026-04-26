@@ -18,7 +18,7 @@ const {
 const catchAsysnc = require("../../utils/catchAsync.util");
 const userRouter = express.Router();
 const expressValidator = require("express-validator");
-const { authorizePermissions, authorizeRoles } = require("../../utils/auth.util");
+const { authorizePermissions, authorizeRoles, validAuth } = require("../../utils/auth.util");
 
 /**
  * @swagger
@@ -55,7 +55,7 @@ const { authorizePermissions, authorizeRoles } = require("../../utils/auth.util"
  * @swagger
  * /users/all:
  *   get:
- *     summary: get all users list (Admin)
+ *     summary: get all users list
  *     tags:
  *       - Users
  *     parameters:
@@ -98,6 +98,7 @@ userRouter.get(
   expressValidator.query("limit").optional().toInt(),
   expressValidator.query("orderBy").optional().notEmpty(),
   expressValidator.query("orderType").optional().notEmpty(),
+  validAuth,
   authorizePermissions(['user:read:any']),
   catchAsysnc(async (req, res, next) => {
     errorResponseValidation(req, res);
@@ -116,7 +117,7 @@ userRouter.get(
  * @swagger
  * /users/create:
  *  post:
- *    summary: create an user (admin)
+ *    summary: create an user
  *    tags:
  *      - Users
  *    requestBody:
@@ -171,6 +172,7 @@ userRouter.post(
     .escape()
     .isMobilePhone("fa-IR"),
   expressValidator.body("location").notEmpty().escape(),
+  validAuth,
   authorizePermissions(['user:create']),
   catchAsysnc(async (req, res, next) => {
     errorResponseValidation(req, res);
@@ -195,7 +197,7 @@ userRouter.post(
  *      403:
  *        $ref:  '#/components/responses/403Err'
  *  delete:
- *    summary: delete user by id (admin)
+ *    summary: delete user by id
  *    tags:
  *      - Users
  *    parameters:
@@ -209,7 +211,7 @@ userRouter.post(
  *      403:
  *        $ref:  '#/components/responses/403Err'
  *  put:
- *    summary: update user by id (Admin)
+ *    summary: update user by id
  *    tags:
  *      - Users
  *    parameters:
@@ -265,7 +267,8 @@ userRouter.put(
     .escape()
     .isMobilePhone("fa-IR"),
   expressValidator.body("location").notEmpty().escape(),
-  authorizePermissions(['user:update:any']),
+  validAuth,
+  authorizePermissions(['user:update']),
   catchAsysnc(async (req, res, next) => {
     const userId = req.params.id;
     errorResponseValidation(req, res);
@@ -277,7 +280,7 @@ userRouter.put(
  * @swagger
  * /users/:
  *  put:
- *    summary: update user by id (Admin)
+ *    summary: update user by id
  *    tags:
  *      - Users
  *    requestBody:
@@ -329,6 +332,7 @@ userRouter.put(
     .escape()
     .isMobilePhone("fa-IR"),
   expressValidator.body("location").notEmpty().escape(),
+  validAuth,
   authorizePermissions(['user:update:own']),
   catchAsysnc(async (req, res, next) => {
     const userId = 1;
@@ -340,8 +344,9 @@ userRouter.put(
 
 userRouter.delete(
   "/:id",
+  validAuth,
   expressValidator.param("id").isUUID().notEmpty().escape(),
-  authorizePermissions(['user:delete:any']),
+  authorizePermissions(['user:delete']),
   catchAsysnc(async (req, res) => {
     const userId = req.params.id;
     const response = await deleteUser(userId);
@@ -351,6 +356,7 @@ userRouter.delete(
 // get user detail for admin by admin with userId
 userRouter.get(
   "/:id",
+  validAuth,
   expressValidator.param("id").isUUID().notEmpty().escape(),
   authorizePermissions(['user:read:any']),
   catchAsysnc(async (req, res) => {
@@ -376,6 +382,7 @@ userRouter.get(
 // get user detail by user with itself token
 userRouter.get(
   "/",
+  validAuth,
   authorizePermissions(['user:read:own']),
   catchAsysnc(async (req, res) => {
     const userId = 1;
@@ -387,7 +394,7 @@ userRouter.get(
  * @swagger
  * /users/loginAs/{id}:
  *   patch:
- *     summary: login as an user (admin)
+ *     summary: login as an user
  *     tags:
  *       - Users
  *     responses:
@@ -398,6 +405,7 @@ userRouter.get(
  */
 userRouter.patch(
   "/loginAs/:id",
+  validAuth,
   authorizeRoles(['admin', 'owner']),
   expressValidator.param("id").isUUID().notEmpty().escape(),
   catchAsysnc(async (req, res) => {

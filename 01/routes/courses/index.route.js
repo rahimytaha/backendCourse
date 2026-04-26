@@ -25,7 +25,7 @@ const { validAuth, authorizePermissions } = require("../../utils/auth.util");
  * @swagger
  * /course:
  *   get:
- *     summary: Get list of courses (public)
+ *     summary: Get list of courses
  *     tags:
  *       - Courses
  *     parameters:
@@ -148,7 +148,7 @@ courseRouter.get(
  * @swagger
  * /course/admin:
  *   get:
- *     summary: Get list of courses (admin)
+ *     summary: Get list of courses 
  *     tags:
  *       -  Courses
  *     parameters:
@@ -273,7 +273,7 @@ courseRouter.get(
  * @swagger
  * /course/mine:
  *   get:
- *     summary: Get my courses (authenticated user)
+ *     summary: Get my courses
  *     tags:
  *       -  Courses
  *     parameters:
@@ -398,7 +398,7 @@ courseRouter.get(
  * @swagger
  * /course/admin:
  *   post:
- *     summary: Create a new course (admin)
+ *     summary: Create a new course 
  *     tags:
  *       -  Courses
  *     requestBody:

@@ -13,6 +13,11 @@ const ROLE_PERMISSIONS = {
     "user:read:own",
     "user:update:own",
   ],
+  author: [
+    "news:update",
+    "news:delete",
+    "news:create",
+  ],
 };
 
 module.exports = {

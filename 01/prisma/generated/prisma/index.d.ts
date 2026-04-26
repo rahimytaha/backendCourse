@@ -83,6 +83,11 @@ export type order = $Result.DefaultSelection<Prisma.$orderPayload>
  * 
  */
 export type course_order = $Result.DefaultSelection<Prisma.$course_orderPayload>
+/**
+ * Model News
+ * 
+ */
+export type News = $Result.DefaultSelection<Prisma.$NewsPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -344,6 +349,16 @@ export class PrismaClient<
     * ```
     */
   get course_order(): Prisma.course_orderDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.news`: Exposes CRUD operations for the **News** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more News
+    * const news = await prisma.news.findMany()
+    * ```
+    */
+  get news(): Prisma.NewsDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -791,7 +806,8 @@ export namespace Prisma {
     category: 'category',
     course_category: 'course_category',
     order: 'order',
-    course_order: 'course_order'
+    course_order: 'course_order',
+    News: 'News'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -807,7 +823,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "user_role" | "role" | "login_transaction" | "course" | "course_rate" | "course_favorite" | "course_comment" | "course_session" | "course_type" | "category" | "course_category" | "order" | "course_order"
+      modelProps: "user" | "user_role" | "role" | "login_transaction" | "course" | "course_rate" | "course_favorite" | "course_comment" | "course_session" | "course_type" | "category" | "course_category" | "order" | "course_order" | "news"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1847,6 +1863,80 @@ export namespace Prisma {
           }
         }
       }
+      News: {
+        payload: Prisma.$NewsPayload<ExtArgs>
+        fields: Prisma.NewsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.NewsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.NewsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsPayload>
+          }
+          findFirst: {
+            args: Prisma.NewsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.NewsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsPayload>
+          }
+          findMany: {
+            args: Prisma.NewsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsPayload>[]
+          }
+          create: {
+            args: Prisma.NewsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsPayload>
+          }
+          createMany: {
+            args: Prisma.NewsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.NewsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsPayload>[]
+          }
+          delete: {
+            args: Prisma.NewsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsPayload>
+          }
+          update: {
+            args: Prisma.NewsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsPayload>
+          }
+          deleteMany: {
+            args: Prisma.NewsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.NewsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.NewsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsPayload>[]
+          }
+          upsert: {
+            args: Prisma.NewsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsPayload>
+          }
+          aggregate: {
+            args: Prisma.NewsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateNews>
+          }
+          groupBy: {
+            args: Prisma.NewsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<NewsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.NewsCountArgs<ExtArgs>
+            result: $Utils.Optional<NewsCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1969,6 +2059,7 @@ export namespace Prisma {
     course_category?: course_categoryOmit
     order?: orderOmit
     course_order?: course_orderOmit
+    news?: NewsOmit
   }
 
   /* Types for Logging */
@@ -2332,6 +2423,7 @@ export namespace Prisma {
     password: string | null
     phone_number: string | null
     referral_code: string | null
+    referral_user_id: string | null
     national_code: string | null
     location: string | null
   }
@@ -2343,6 +2435,7 @@ export namespace Prisma {
     password: string | null
     phone_number: string | null
     referral_code: string | null
+    referral_user_id: string | null
     national_code: string | null
     location: string | null
   }
@@ -2354,6 +2447,7 @@ export namespace Prisma {
     password: number
     phone_number: number
     referral_code: number
+    referral_user_id: number
     national_code: number
     location: number
     _all: number
@@ -2367,6 +2461,7 @@ export namespace Prisma {
     password?: true
     phone_number?: true
     referral_code?: true
+    referral_user_id?: true
     national_code?: true
     location?: true
   }
@@ -2378,6 +2473,7 @@ export namespace Prisma {
     password?: true
     phone_number?: true
     referral_code?: true
+    referral_user_id?: true
     national_code?: true
     location?: true
   }
@@ -2389,6 +2485,7 @@ export namespace Prisma {
     password?: true
     phone_number?: true
     referral_code?: true
+    referral_user_id?: true
     national_code?: true
     location?: true
     _all?: true
@@ -2473,6 +2570,7 @@ export namespace Prisma {
     password: string
     phone_number: string
     referral_code: string
+    referral_user_id: string | null
     national_code: string | null
     location: string | null
     _count: UserCountAggregateOutputType | null
@@ -2501,6 +2599,7 @@ export namespace Prisma {
     password?: boolean
     phone_number?: boolean
     referral_code?: boolean
+    referral_user_id?: boolean
     national_code?: boolean
     location?: boolean
     userRoles?: boolean | user$userRolesArgs<ExtArgs>
@@ -2519,6 +2618,7 @@ export namespace Prisma {
     password?: boolean
     phone_number?: boolean
     referral_code?: boolean
+    referral_user_id?: boolean
     national_code?: boolean
     location?: boolean
   }, ExtArgs["result"]["user"]>
@@ -2530,6 +2630,7 @@ export namespace Prisma {
     password?: boolean
     phone_number?: boolean
     referral_code?: boolean
+    referral_user_id?: boolean
     national_code?: boolean
     location?: boolean
   }, ExtArgs["result"]["user"]>
@@ -2541,11 +2642,12 @@ export namespace Prisma {
     password?: boolean
     phone_number?: boolean
     referral_code?: boolean
+    referral_user_id?: boolean
     national_code?: boolean
     location?: boolean
   }
 
-  export type userOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "phone_number" | "referral_code" | "national_code" | "location", ExtArgs["result"]["user"]>
+  export type userOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "phone_number" | "referral_code" | "referral_user_id" | "national_code" | "location", ExtArgs["result"]["user"]>
   export type userInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     userRoles?: boolean | user$userRolesArgs<ExtArgs>
     loginTransactions?: boolean | user$loginTransactionsArgs<ExtArgs>
@@ -2575,6 +2677,7 @@ export namespace Prisma {
       password: string
       phone_number: string
       referral_code: string
+      referral_user_id: string | null
       national_code: string | null
       location: string | null
     }, ExtArgs["result"]["user"]>
@@ -3012,6 +3115,7 @@ export namespace Prisma {
     readonly password: FieldRef<"user", 'String'>
     readonly phone_number: FieldRef<"user", 'String'>
     readonly referral_code: FieldRef<"user", 'String'>
+    readonly referral_user_id: FieldRef<"user", 'String'>
     readonly national_code: FieldRef<"user", 'String'>
     readonly location: FieldRef<"user", 'String'>
   }
@@ -17475,6 +17579,1066 @@ export namespace Prisma {
 
 
   /**
+   * Model News
+   */
+
+  export type AggregateNews = {
+    _count: NewsCountAggregateOutputType | null
+    _avg: NewsAvgAggregateOutputType | null
+    _sum: NewsSumAggregateOutputType | null
+    _min: NewsMinAggregateOutputType | null
+    _max: NewsMaxAggregateOutputType | null
+  }
+
+  export type NewsAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type NewsSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type NewsMinAggregateOutputType = {
+    id: number | null
+    title: string | null
+    content: string | null
+    author_id: string | null
+    published: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type NewsMaxAggregateOutputType = {
+    id: number | null
+    title: string | null
+    content: string | null
+    author_id: string | null
+    published: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type NewsCountAggregateOutputType = {
+    id: number
+    title: number
+    content: number
+    author_id: number
+    published: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type NewsAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type NewsSumAggregateInputType = {
+    id?: true
+  }
+
+  export type NewsMinAggregateInputType = {
+    id?: true
+    title?: true
+    content?: true
+    author_id?: true
+    published?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type NewsMaxAggregateInputType = {
+    id?: true
+    title?: true
+    content?: true
+    author_id?: true
+    published?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type NewsCountAggregateInputType = {
+    id?: true
+    title?: true
+    content?: true
+    author_id?: true
+    published?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type NewsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which News to aggregate.
+     */
+    where?: NewsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of News to fetch.
+     */
+    orderBy?: NewsOrderByWithRelationInput | NewsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: NewsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` News from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` News.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned News
+    **/
+    _count?: true | NewsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: NewsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: NewsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: NewsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: NewsMaxAggregateInputType
+  }
+
+  export type GetNewsAggregateType<T extends NewsAggregateArgs> = {
+        [P in keyof T & keyof AggregateNews]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateNews[P]>
+      : GetScalarType<T[P], AggregateNews[P]>
+  }
+
+
+
+
+  export type NewsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NewsWhereInput
+    orderBy?: NewsOrderByWithAggregationInput | NewsOrderByWithAggregationInput[]
+    by: NewsScalarFieldEnum[] | NewsScalarFieldEnum
+    having?: NewsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: NewsCountAggregateInputType | true
+    _avg?: NewsAvgAggregateInputType
+    _sum?: NewsSumAggregateInputType
+    _min?: NewsMinAggregateInputType
+    _max?: NewsMaxAggregateInputType
+  }
+
+  export type NewsGroupByOutputType = {
+    id: number
+    title: string
+    content: string
+    author_id: string
+    published: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: NewsCountAggregateOutputType | null
+    _avg: NewsAvgAggregateOutputType | null
+    _sum: NewsSumAggregateOutputType | null
+    _min: NewsMinAggregateOutputType | null
+    _max: NewsMaxAggregateOutputType | null
+  }
+
+  type GetNewsGroupByPayload<T extends NewsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<NewsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof NewsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], NewsGroupByOutputType[P]>
+            : GetScalarType<T[P], NewsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type NewsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    content?: boolean
+    author_id?: boolean
+    published?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["news"]>
+
+  export type NewsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    content?: boolean
+    author_id?: boolean
+    published?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["news"]>
+
+  export type NewsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    content?: boolean
+    author_id?: boolean
+    published?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["news"]>
+
+  export type NewsSelectScalar = {
+    id?: boolean
+    title?: boolean
+    content?: boolean
+    author_id?: boolean
+    published?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type NewsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "content" | "author_id" | "published" | "createdAt" | "updatedAt", ExtArgs["result"]["news"]>
+
+  export type $NewsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "News"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      title: string
+      content: string
+      author_id: string
+      published: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["news"]>
+    composites: {}
+  }
+
+  type NewsGetPayload<S extends boolean | null | undefined | NewsDefaultArgs> = $Result.GetResult<Prisma.$NewsPayload, S>
+
+  type NewsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<NewsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: NewsCountAggregateInputType | true
+    }
+
+  export interface NewsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['News'], meta: { name: 'News' } }
+    /**
+     * Find zero or one News that matches the filter.
+     * @param {NewsFindUniqueArgs} args - Arguments to find a News
+     * @example
+     * // Get one News
+     * const news = await prisma.news.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends NewsFindUniqueArgs>(args: SelectSubset<T, NewsFindUniqueArgs<ExtArgs>>): Prisma__NewsClient<$Result.GetResult<Prisma.$NewsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one News that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {NewsFindUniqueOrThrowArgs} args - Arguments to find a News
+     * @example
+     * // Get one News
+     * const news = await prisma.news.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends NewsFindUniqueOrThrowArgs>(args: SelectSubset<T, NewsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__NewsClient<$Result.GetResult<Prisma.$NewsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first News that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsFindFirstArgs} args - Arguments to find a News
+     * @example
+     * // Get one News
+     * const news = await prisma.news.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends NewsFindFirstArgs>(args?: SelectSubset<T, NewsFindFirstArgs<ExtArgs>>): Prisma__NewsClient<$Result.GetResult<Prisma.$NewsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first News that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsFindFirstOrThrowArgs} args - Arguments to find a News
+     * @example
+     * // Get one News
+     * const news = await prisma.news.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends NewsFindFirstOrThrowArgs>(args?: SelectSubset<T, NewsFindFirstOrThrowArgs<ExtArgs>>): Prisma__NewsClient<$Result.GetResult<Prisma.$NewsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more News that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all News
+     * const news = await prisma.news.findMany()
+     * 
+     * // Get first 10 News
+     * const news = await prisma.news.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const newsWithIdOnly = await prisma.news.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends NewsFindManyArgs>(args?: SelectSubset<T, NewsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NewsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a News.
+     * @param {NewsCreateArgs} args - Arguments to create a News.
+     * @example
+     * // Create one News
+     * const News = await prisma.news.create({
+     *   data: {
+     *     // ... data to create a News
+     *   }
+     * })
+     * 
+     */
+    create<T extends NewsCreateArgs>(args: SelectSubset<T, NewsCreateArgs<ExtArgs>>): Prisma__NewsClient<$Result.GetResult<Prisma.$NewsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many News.
+     * @param {NewsCreateManyArgs} args - Arguments to create many News.
+     * @example
+     * // Create many News
+     * const news = await prisma.news.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends NewsCreateManyArgs>(args?: SelectSubset<T, NewsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many News and returns the data saved in the database.
+     * @param {NewsCreateManyAndReturnArgs} args - Arguments to create many News.
+     * @example
+     * // Create many News
+     * const news = await prisma.news.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many News and only return the `id`
+     * const newsWithIdOnly = await prisma.news.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends NewsCreateManyAndReturnArgs>(args?: SelectSubset<T, NewsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NewsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a News.
+     * @param {NewsDeleteArgs} args - Arguments to delete one News.
+     * @example
+     * // Delete one News
+     * const News = await prisma.news.delete({
+     *   where: {
+     *     // ... filter to delete one News
+     *   }
+     * })
+     * 
+     */
+    delete<T extends NewsDeleteArgs>(args: SelectSubset<T, NewsDeleteArgs<ExtArgs>>): Prisma__NewsClient<$Result.GetResult<Prisma.$NewsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one News.
+     * @param {NewsUpdateArgs} args - Arguments to update one News.
+     * @example
+     * // Update one News
+     * const news = await prisma.news.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends NewsUpdateArgs>(args: SelectSubset<T, NewsUpdateArgs<ExtArgs>>): Prisma__NewsClient<$Result.GetResult<Prisma.$NewsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more News.
+     * @param {NewsDeleteManyArgs} args - Arguments to filter News to delete.
+     * @example
+     * // Delete a few News
+     * const { count } = await prisma.news.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends NewsDeleteManyArgs>(args?: SelectSubset<T, NewsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more News.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many News
+     * const news = await prisma.news.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends NewsUpdateManyArgs>(args: SelectSubset<T, NewsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more News and returns the data updated in the database.
+     * @param {NewsUpdateManyAndReturnArgs} args - Arguments to update many News.
+     * @example
+     * // Update many News
+     * const news = await prisma.news.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more News and only return the `id`
+     * const newsWithIdOnly = await prisma.news.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends NewsUpdateManyAndReturnArgs>(args: SelectSubset<T, NewsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NewsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one News.
+     * @param {NewsUpsertArgs} args - Arguments to update or create a News.
+     * @example
+     * // Update or create a News
+     * const news = await prisma.news.upsert({
+     *   create: {
+     *     // ... data to create a News
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the News we want to update
+     *   }
+     * })
+     */
+    upsert<T extends NewsUpsertArgs>(args: SelectSubset<T, NewsUpsertArgs<ExtArgs>>): Prisma__NewsClient<$Result.GetResult<Prisma.$NewsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of News.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsCountArgs} args - Arguments to filter News to count.
+     * @example
+     * // Count the number of News
+     * const count = await prisma.news.count({
+     *   where: {
+     *     // ... the filter for the News we want to count
+     *   }
+     * })
+    **/
+    count<T extends NewsCountArgs>(
+      args?: Subset<T, NewsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], NewsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a News.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends NewsAggregateArgs>(args: Subset<T, NewsAggregateArgs>): Prisma.PrismaPromise<GetNewsAggregateType<T>>
+
+    /**
+     * Group by News.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends NewsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: NewsGroupByArgs['orderBy'] }
+        : { orderBy?: NewsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, NewsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetNewsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the News model
+   */
+  readonly fields: NewsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for News.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__NewsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the News model
+   */
+  interface NewsFieldRefs {
+    readonly id: FieldRef<"News", 'Int'>
+    readonly title: FieldRef<"News", 'String'>
+    readonly content: FieldRef<"News", 'String'>
+    readonly author_id: FieldRef<"News", 'String'>
+    readonly published: FieldRef<"News", 'Boolean'>
+    readonly createdAt: FieldRef<"News", 'DateTime'>
+    readonly updatedAt: FieldRef<"News", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * News findUnique
+   */
+  export type NewsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the News
+     */
+    select?: NewsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the News
+     */
+    omit?: NewsOmit<ExtArgs> | null
+    /**
+     * Filter, which News to fetch.
+     */
+    where: NewsWhereUniqueInput
+  }
+
+  /**
+   * News findUniqueOrThrow
+   */
+  export type NewsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the News
+     */
+    select?: NewsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the News
+     */
+    omit?: NewsOmit<ExtArgs> | null
+    /**
+     * Filter, which News to fetch.
+     */
+    where: NewsWhereUniqueInput
+  }
+
+  /**
+   * News findFirst
+   */
+  export type NewsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the News
+     */
+    select?: NewsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the News
+     */
+    omit?: NewsOmit<ExtArgs> | null
+    /**
+     * Filter, which News to fetch.
+     */
+    where?: NewsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of News to fetch.
+     */
+    orderBy?: NewsOrderByWithRelationInput | NewsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for News.
+     */
+    cursor?: NewsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` News from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` News.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of News.
+     */
+    distinct?: NewsScalarFieldEnum | NewsScalarFieldEnum[]
+  }
+
+  /**
+   * News findFirstOrThrow
+   */
+  export type NewsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the News
+     */
+    select?: NewsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the News
+     */
+    omit?: NewsOmit<ExtArgs> | null
+    /**
+     * Filter, which News to fetch.
+     */
+    where?: NewsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of News to fetch.
+     */
+    orderBy?: NewsOrderByWithRelationInput | NewsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for News.
+     */
+    cursor?: NewsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` News from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` News.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of News.
+     */
+    distinct?: NewsScalarFieldEnum | NewsScalarFieldEnum[]
+  }
+
+  /**
+   * News findMany
+   */
+  export type NewsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the News
+     */
+    select?: NewsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the News
+     */
+    omit?: NewsOmit<ExtArgs> | null
+    /**
+     * Filter, which News to fetch.
+     */
+    where?: NewsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of News to fetch.
+     */
+    orderBy?: NewsOrderByWithRelationInput | NewsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing News.
+     */
+    cursor?: NewsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` News from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` News.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of News.
+     */
+    distinct?: NewsScalarFieldEnum | NewsScalarFieldEnum[]
+  }
+
+  /**
+   * News create
+   */
+  export type NewsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the News
+     */
+    select?: NewsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the News
+     */
+    omit?: NewsOmit<ExtArgs> | null
+    /**
+     * The data needed to create a News.
+     */
+    data: XOR<NewsCreateInput, NewsUncheckedCreateInput>
+  }
+
+  /**
+   * News createMany
+   */
+  export type NewsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many News.
+     */
+    data: NewsCreateManyInput | NewsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * News createManyAndReturn
+   */
+  export type NewsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the News
+     */
+    select?: NewsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the News
+     */
+    omit?: NewsOmit<ExtArgs> | null
+    /**
+     * The data used to create many News.
+     */
+    data: NewsCreateManyInput | NewsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * News update
+   */
+  export type NewsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the News
+     */
+    select?: NewsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the News
+     */
+    omit?: NewsOmit<ExtArgs> | null
+    /**
+     * The data needed to update a News.
+     */
+    data: XOR<NewsUpdateInput, NewsUncheckedUpdateInput>
+    /**
+     * Choose, which News to update.
+     */
+    where: NewsWhereUniqueInput
+  }
+
+  /**
+   * News updateMany
+   */
+  export type NewsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update News.
+     */
+    data: XOR<NewsUpdateManyMutationInput, NewsUncheckedUpdateManyInput>
+    /**
+     * Filter which News to update
+     */
+    where?: NewsWhereInput
+    /**
+     * Limit how many News to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * News updateManyAndReturn
+   */
+  export type NewsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the News
+     */
+    select?: NewsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the News
+     */
+    omit?: NewsOmit<ExtArgs> | null
+    /**
+     * The data used to update News.
+     */
+    data: XOR<NewsUpdateManyMutationInput, NewsUncheckedUpdateManyInput>
+    /**
+     * Filter which News to update
+     */
+    where?: NewsWhereInput
+    /**
+     * Limit how many News to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * News upsert
+   */
+  export type NewsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the News
+     */
+    select?: NewsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the News
+     */
+    omit?: NewsOmit<ExtArgs> | null
+    /**
+     * The filter to search for the News to update in case it exists.
+     */
+    where: NewsWhereUniqueInput
+    /**
+     * In case the News found by the `where` argument doesn't exist, create a new News with this data.
+     */
+    create: XOR<NewsCreateInput, NewsUncheckedCreateInput>
+    /**
+     * In case the News was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<NewsUpdateInput, NewsUncheckedUpdateInput>
+  }
+
+  /**
+   * News delete
+   */
+  export type NewsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the News
+     */
+    select?: NewsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the News
+     */
+    omit?: NewsOmit<ExtArgs> | null
+    /**
+     * Filter which News to delete.
+     */
+    where: NewsWhereUniqueInput
+  }
+
+  /**
+   * News deleteMany
+   */
+  export type NewsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which News to delete
+     */
+    where?: NewsWhereInput
+    /**
+     * Limit how many News to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * News without action
+   */
+  export type NewsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the News
+     */
+    select?: NewsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the News
+     */
+    omit?: NewsOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -17495,6 +18659,7 @@ export namespace Prisma {
     password: 'password',
     phone_number: 'phone_number',
     referral_code: 'referral_code',
+    referral_user_id: 'referral_user_id',
     national_code: 'national_code',
     location: 'location'
   };
@@ -17634,6 +18799,19 @@ export namespace Prisma {
   export type Course_orderScalarFieldEnum = (typeof Course_orderScalarFieldEnum)[keyof typeof Course_orderScalarFieldEnum]
 
 
+  export const NewsScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    content: 'content',
+    author_id: 'author_id',
+    published: 'published',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type NewsScalarFieldEnum = (typeof NewsScalarFieldEnum)[keyof typeof NewsScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -17753,6 +18931,7 @@ export namespace Prisma {
     password?: StringFilter<"user"> | string
     phone_number?: StringFilter<"user"> | string
     referral_code?: StringFilter<"user"> | string
+    referral_user_id?: StringNullableFilter<"user"> | string | null
     national_code?: StringNullableFilter<"user"> | string | null
     location?: StringNullableFilter<"user"> | string | null
     userRoles?: User_roleListRelationFilter
@@ -17770,6 +18949,7 @@ export namespace Prisma {
     password?: SortOrder
     phone_number?: SortOrder
     referral_code?: SortOrder
+    referral_user_id?: SortOrderInput | SortOrder
     national_code?: SortOrderInput | SortOrder
     location?: SortOrderInput | SortOrder
     userRoles?: user_roleOrderByRelationAggregateInput
@@ -17790,6 +18970,7 @@ export namespace Prisma {
     name?: StringFilter<"user"> | string
     password?: StringFilter<"user"> | string
     phone_number?: StringFilter<"user"> | string
+    referral_user_id?: StringNullableFilter<"user"> | string | null
     national_code?: StringNullableFilter<"user"> | string | null
     location?: StringNullableFilter<"user"> | string | null
     userRoles?: User_roleListRelationFilter
@@ -17807,6 +18988,7 @@ export namespace Prisma {
     password?: SortOrder
     phone_number?: SortOrder
     referral_code?: SortOrder
+    referral_user_id?: SortOrderInput | SortOrder
     national_code?: SortOrderInput | SortOrder
     location?: SortOrderInput | SortOrder
     _count?: userCountOrderByAggregateInput
@@ -17824,6 +19006,7 @@ export namespace Prisma {
     password?: StringWithAggregatesFilter<"user"> | string
     phone_number?: StringWithAggregatesFilter<"user"> | string
     referral_code?: StringWithAggregatesFilter<"user"> | string
+    referral_user_id?: StringNullableWithAggregatesFilter<"user"> | string | null
     national_code?: StringNullableWithAggregatesFilter<"user"> | string | null
     location?: StringNullableWithAggregatesFilter<"user"> | string | null
   }
@@ -18525,6 +19708,70 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"course_order"> | string
   }
 
+  export type NewsWhereInput = {
+    AND?: NewsWhereInput | NewsWhereInput[]
+    OR?: NewsWhereInput[]
+    NOT?: NewsWhereInput | NewsWhereInput[]
+    id?: IntFilter<"News"> | number
+    title?: StringFilter<"News"> | string
+    content?: StringFilter<"News"> | string
+    author_id?: StringFilter<"News"> | string
+    published?: BoolFilter<"News"> | boolean
+    createdAt?: DateTimeFilter<"News"> | Date | string
+    updatedAt?: DateTimeFilter<"News"> | Date | string
+  }
+
+  export type NewsOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    author_id?: SortOrder
+    published?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NewsWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: NewsWhereInput | NewsWhereInput[]
+    OR?: NewsWhereInput[]
+    NOT?: NewsWhereInput | NewsWhereInput[]
+    title?: StringFilter<"News"> | string
+    content?: StringFilter<"News"> | string
+    author_id?: StringFilter<"News"> | string
+    published?: BoolFilter<"News"> | boolean
+    createdAt?: DateTimeFilter<"News"> | Date | string
+    updatedAt?: DateTimeFilter<"News"> | Date | string
+  }, "id">
+
+  export type NewsOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    author_id?: SortOrder
+    published?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: NewsCountOrderByAggregateInput
+    _avg?: NewsAvgOrderByAggregateInput
+    _max?: NewsMaxOrderByAggregateInput
+    _min?: NewsMinOrderByAggregateInput
+    _sum?: NewsSumOrderByAggregateInput
+  }
+
+  export type NewsScalarWhereWithAggregatesInput = {
+    AND?: NewsScalarWhereWithAggregatesInput | NewsScalarWhereWithAggregatesInput[]
+    OR?: NewsScalarWhereWithAggregatesInput[]
+    NOT?: NewsScalarWhereWithAggregatesInput | NewsScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"News"> | number
+    title?: StringWithAggregatesFilter<"News"> | string
+    content?: StringWithAggregatesFilter<"News"> | string
+    author_id?: StringWithAggregatesFilter<"News"> | string
+    published?: BoolWithAggregatesFilter<"News"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"News"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"News"> | Date | string
+  }
+
   export type userCreateInput = {
     id?: string
     name: string
@@ -18532,6 +19779,7 @@ export namespace Prisma {
     password: string
     phone_number: string
     referral_code: string
+    referral_user_id?: string | null
     national_code?: string | null
     location?: string | null
     userRoles?: user_roleCreateNestedManyWithoutUserInput
@@ -18549,6 +19797,7 @@ export namespace Prisma {
     password: string
     phone_number: string
     referral_code: string
+    referral_user_id?: string | null
     national_code?: string | null
     location?: string | null
     userRoles?: user_roleUncheckedCreateNestedManyWithoutUserInput
@@ -18566,6 +19815,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     referral_code?: StringFieldUpdateOperationsInput | string
+    referral_user_id?: NullableStringFieldUpdateOperationsInput | string | null
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     userRoles?: user_roleUpdateManyWithoutUserNestedInput
@@ -18583,6 +19833,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     referral_code?: StringFieldUpdateOperationsInput | string
+    referral_user_id?: NullableStringFieldUpdateOperationsInput | string | null
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     userRoles?: user_roleUncheckedUpdateManyWithoutUserNestedInput
@@ -18600,6 +19851,7 @@ export namespace Prisma {
     password: string
     phone_number: string
     referral_code: string
+    referral_user_id?: string | null
     national_code?: string | null
     location?: string | null
   }
@@ -18611,6 +19863,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     referral_code?: StringFieldUpdateOperationsInput | string
+    referral_user_id?: NullableStringFieldUpdateOperationsInput | string | null
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -18622,6 +19875,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     referral_code?: StringFieldUpdateOperationsInput | string
+    referral_user_id?: NullableStringFieldUpdateOperationsInput | string | null
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -19298,6 +20552,73 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
   }
 
+  export type NewsCreateInput = {
+    title: string
+    content: string
+    author_id: string
+    published?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type NewsUncheckedCreateInput = {
+    id?: number
+    title: string
+    content: string
+    author_id: string
+    published?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type NewsUpdateInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    author_id?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NewsUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    author_id?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NewsCreateManyInput = {
+    id?: number
+    title: string
+    content: string
+    author_id: string
+    published?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type NewsUpdateManyMutationInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    author_id?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NewsUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    author_id?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -19400,6 +20721,7 @@ export namespace Prisma {
     password?: SortOrder
     phone_number?: SortOrder
     referral_code?: SortOrder
+    referral_user_id?: SortOrder
     national_code?: SortOrder
     location?: SortOrder
   }
@@ -19411,6 +20733,7 @@ export namespace Prisma {
     password?: SortOrder
     phone_number?: SortOrder
     referral_code?: SortOrder
+    referral_user_id?: SortOrder
     national_code?: SortOrder
     location?: SortOrder
   }
@@ -19422,6 +20745,7 @@ export namespace Prisma {
     password?: SortOrder
     phone_number?: SortOrder
     referral_code?: SortOrder
+    referral_user_id?: SortOrder
     national_code?: SortOrder
     location?: SortOrder
   }
@@ -19899,6 +21223,71 @@ export namespace Prisma {
 
   export type course_orderMinOrderByAggregateInput = {
     id?: SortOrder
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type NewsCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    author_id?: SortOrder
+    published?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NewsAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type NewsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    author_id?: SortOrder
+    published?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NewsMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    author_id?: SortOrder
+    published?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NewsSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type user_roleCreateNestedManyWithoutUserInput = {
@@ -20775,6 +22164,14 @@ export namespace Prisma {
     update?: XOR<XOR<courseUpdateToOneWithWhereWithoutCourseCategoriesInput, courseUpdateWithoutCourseCategoriesInput>, courseUncheckedUpdateWithoutCourseCategoriesInput>
   }
 
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -20949,6 +22346,22 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type user_roleCreateWithoutUserInput = {
@@ -21309,6 +22722,7 @@ export namespace Prisma {
     password: string
     phone_number: string
     referral_code: string
+    referral_user_id?: string | null
     national_code?: string | null
     location?: string | null
     loginTransactions?: login_transactionCreateNestedManyWithoutUserInput
@@ -21325,6 +22739,7 @@ export namespace Prisma {
     password: string
     phone_number: string
     referral_code: string
+    referral_user_id?: string | null
     national_code?: string | null
     location?: string | null
     loginTransactions?: login_transactionUncheckedCreateNestedManyWithoutUserInput
@@ -21378,6 +22793,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     referral_code?: StringFieldUpdateOperationsInput | string
+    referral_user_id?: NullableStringFieldUpdateOperationsInput | string | null
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     loginTransactions?: login_transactionUpdateManyWithoutUserNestedInput
@@ -21394,6 +22810,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     referral_code?: StringFieldUpdateOperationsInput | string
+    referral_user_id?: NullableStringFieldUpdateOperationsInput | string | null
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     loginTransactions?: login_transactionUncheckedUpdateManyWithoutUserNestedInput
@@ -21450,6 +22867,7 @@ export namespace Prisma {
     password: string
     phone_number: string
     referral_code: string
+    referral_user_id?: string | null
     national_code?: string | null
     location?: string | null
     userRoles?: user_roleCreateNestedManyWithoutUserInput
@@ -21466,6 +22884,7 @@ export namespace Prisma {
     password: string
     phone_number: string
     referral_code: string
+    referral_user_id?: string | null
     national_code?: string | null
     location?: string | null
     userRoles?: user_roleUncheckedCreateNestedManyWithoutUserInput
@@ -21498,6 +22917,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     referral_code?: StringFieldUpdateOperationsInput | string
+    referral_user_id?: NullableStringFieldUpdateOperationsInput | string | null
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     userRoles?: user_roleUpdateManyWithoutUserNestedInput
@@ -21514,6 +22934,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     referral_code?: StringFieldUpdateOperationsInput | string
+    referral_user_id?: NullableStringFieldUpdateOperationsInput | string | null
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     userRoles?: user_roleUncheckedUpdateManyWithoutUserNestedInput
@@ -21547,6 +22968,7 @@ export namespace Prisma {
     password: string
     phone_number: string
     referral_code: string
+    referral_user_id?: string | null
     national_code?: string | null
     location?: string | null
     userRoles?: user_roleCreateNestedManyWithoutUserInput
@@ -21563,6 +22985,7 @@ export namespace Prisma {
     password: string
     phone_number: string
     referral_code: string
+    referral_user_id?: string | null
     national_code?: string | null
     location?: string | null
     userRoles?: user_roleUncheckedCreateNestedManyWithoutUserInput
@@ -21734,6 +23157,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     referral_code?: StringFieldUpdateOperationsInput | string
+    referral_user_id?: NullableStringFieldUpdateOperationsInput | string | null
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     userRoles?: user_roleUpdateManyWithoutUserNestedInput
@@ -21750,6 +23174,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     referral_code?: StringFieldUpdateOperationsInput | string
+    referral_user_id?: NullableStringFieldUpdateOperationsInput | string | null
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     userRoles?: user_roleUncheckedUpdateManyWithoutUserNestedInput
@@ -21866,6 +23291,7 @@ export namespace Prisma {
     password: string
     phone_number: string
     referral_code: string
+    referral_user_id?: string | null
     national_code?: string | null
     location?: string | null
     userRoles?: user_roleCreateNestedManyWithoutUserInput
@@ -21882,6 +23308,7 @@ export namespace Prisma {
     password: string
     phone_number: string
     referral_code: string
+    referral_user_id?: string | null
     national_code?: string | null
     location?: string | null
     userRoles?: user_roleUncheckedCreateNestedManyWithoutUserInput
@@ -21959,6 +23386,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     referral_code?: StringFieldUpdateOperationsInput | string
+    referral_user_id?: NullableStringFieldUpdateOperationsInput | string | null
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     userRoles?: user_roleUpdateManyWithoutUserNestedInput
@@ -21975,6 +23403,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     referral_code?: StringFieldUpdateOperationsInput | string
+    referral_user_id?: NullableStringFieldUpdateOperationsInput | string | null
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     userRoles?: user_roleUncheckedUpdateManyWithoutUserNestedInput
@@ -22042,6 +23471,7 @@ export namespace Prisma {
     password: string
     phone_number: string
     referral_code: string
+    referral_user_id?: string | null
     national_code?: string | null
     location?: string | null
     userRoles?: user_roleCreateNestedManyWithoutUserInput
@@ -22058,6 +23488,7 @@ export namespace Prisma {
     password: string
     phone_number: string
     referral_code: string
+    referral_user_id?: string | null
     national_code?: string | null
     location?: string | null
     userRoles?: user_roleUncheckedCreateNestedManyWithoutUserInput
@@ -22135,6 +23566,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     referral_code?: StringFieldUpdateOperationsInput | string
+    referral_user_id?: NullableStringFieldUpdateOperationsInput | string | null
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     userRoles?: user_roleUpdateManyWithoutUserNestedInput
@@ -22151,6 +23583,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     referral_code?: StringFieldUpdateOperationsInput | string
+    referral_user_id?: NullableStringFieldUpdateOperationsInput | string | null
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     userRoles?: user_roleUncheckedUpdateManyWithoutUserNestedInput
@@ -22243,6 +23676,7 @@ export namespace Prisma {
     password: string
     phone_number: string
     referral_code: string
+    referral_user_id?: string | null
     national_code?: string | null
     location?: string | null
     userRoles?: user_roleCreateNestedManyWithoutUserInput
@@ -22259,6 +23693,7 @@ export namespace Prisma {
     password: string
     phone_number: string
     referral_code: string
+    referral_user_id?: string | null
     national_code?: string | null
     location?: string | null
     userRoles?: user_roleUncheckedCreateNestedManyWithoutUserInput
@@ -22397,6 +23832,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     referral_code?: StringFieldUpdateOperationsInput | string
+    referral_user_id?: NullableStringFieldUpdateOperationsInput | string | null
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     userRoles?: user_roleUpdateManyWithoutUserNestedInput
@@ -22413,6 +23849,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     referral_code?: StringFieldUpdateOperationsInput | string
+    referral_user_id?: NullableStringFieldUpdateOperationsInput | string | null
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     userRoles?: user_roleUncheckedUpdateManyWithoutUserNestedInput

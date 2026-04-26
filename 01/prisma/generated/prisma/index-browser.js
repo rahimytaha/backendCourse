@@ -127,6 +127,7 @@ exports.Prisma.UserScalarFieldEnum = {
   password: 'password',
   phone_number: 'phone_number',
   referral_code: 'referral_code',
+  referral_user_id: 'referral_user_id',
   national_code: 'national_code',
   location: 'location'
 };
@@ -224,6 +225,16 @@ exports.Prisma.Course_orderScalarFieldEnum = {
   id: 'id'
 };
 
+exports.Prisma.NewsScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  content: 'content',
+  author_id: 'author_id',
+  published: 'published',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -254,7 +265,8 @@ exports.Prisma.ModelName = {
   category: 'category',
   course_category: 'course_category',
   order: 'order',
-  course_order: 'course_order'
+  course_order: 'course_order',
+  News: 'News'
 };
 
 /**

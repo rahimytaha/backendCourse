@@ -270,7 +270,7 @@ authRouter.post(
   nameValidationChain(),
   passwordValidationChain(),
   expressValidator.body("phone_number").isMobilePhone("fa-IR").escape(),
-  expressValidator.body("referral_code").isString(),
+  expressValidator.body("referral_code").isString().optional(),
   catchAsync(async (req, res) => {
     errorResponseValidation(req, res);
     const { name, email, password, phone_number, referral_code } = req.body;
