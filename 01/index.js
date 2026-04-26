@@ -1,10 +1,12 @@
-const express = require("express");
-require("module-alias/register");
-require("dotenv").config();
-require("./config/component.swagger");
+const express = require('express');
+require('module-alias/register');
+require('dotenv').config();
+require('./config/component.swagger');
 
-const swaggerJsdocs = require("swagger-jsdoc");
-const swaggerUi = require("swagger-ui-express");
+const swaggerJsdocs = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+const morgan = require('morgan');
+const logger = require('./utils/logger');
 
 const swagger_option = {
   definition: {
@@ -50,6 +52,7 @@ const authRouter = require("./routes/auth/index.route");
 const userRouter = require("./routes/users/index.route");
 const courseRouter = require("./routes/courses/index.route");
 const newsRouter = require("./routes/news/index.route");
+const winston = require('winston');
 
 app.use("/public", express.static("public"));
 
@@ -62,8 +65,9 @@ app.get("/", (req, res, next) => {
   res.send("test");
 });
 
+app.use(morgan('combined', { stream: winston.stream.write }));
 app.use(errorHandler);
 
 app.listen(port, () => {
-  console.log("server started");
+  logger.info("Server started on port " + port);
 });
