@@ -302,7 +302,7 @@ authRouter.post(
   catchAsync(async (req, res) => {
     errorResponseValidation(req, res);
     const data = await forgotPassword(req.body.email);
-    res.status(200).send({status: 200, message: data});
+    res.status(200).send({status: 200, data});
   }),
 );
 
@@ -313,7 +313,7 @@ authRouter.post(
   catchAsync(async (req, res) => {
     errorResponseValidation(req, res);
     const data = await resetPassword(req.body.token, req.body.password);
-    res.status(200).send({status: 200, message: data});
+    res.status(200).send({status: 200, data});
   }),
 );
 
