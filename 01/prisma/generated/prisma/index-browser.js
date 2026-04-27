@@ -272,6 +272,18 @@ exports.Prisma.News_favoriteScalarFieldEnum = {
   news_id: 'news_id'
 };
 
+exports.Prisma.News_likeScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  news_id: 'news_id'
+};
+
+exports.Prisma.News_dislikeScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  news_id: 'news_id'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -308,7 +320,9 @@ exports.Prisma.ModelName = {
   news_comment_like: 'news_comment_like',
   news_comment_dislike: 'news_comment_dislike',
   news_rate: 'news_rate',
-  news_favorite: 'news_favorite'
+  news_favorite: 'news_favorite',
+  news_like: 'news_like',
+  news_dislike: 'news_dislike'
 };
 
 /**

@@ -97,7 +97,7 @@ const {
  * paths:
  *   /news/comments/{news_id}:
  *     post:
- *       tags: ["News comment"]
+ *       tags: ["News Comment"]
  *       summary: "Create a comment"
  *       description: "Create a comment on a news article."
  *       parameters:
@@ -161,7 +161,7 @@ const {
 newsRouter.post(
   "/:news_id",
   validAuth,
-  authorizePermissions(["comment:create"]),
+  authorizePermissions(["news:comment:create"]),
   expressValidator
     .param("news_id")
     .isInt()
@@ -203,7 +203,7 @@ newsRouter.post(
  * paths:
  *   /news/comments/{news_id}:
  *     get:
- *       tags: ["News comment"]
+ *       tags: ["News Comment"]
  *       summary: "Get all comments for a news"
  *       description: "Get all comments for a specific news article."
  *       parameters:
@@ -272,7 +272,7 @@ newsRouter.get(
  * paths:
  *   /news/comments/one/{id}:
  *     get:
- *       tags: ["News comment"]
+ *       tags: ["News Comment"]
  *       summary: "Get a comment by ID"
  *       description: "Get a specific comment by its ID."
  *       parameters:
@@ -338,7 +338,7 @@ newsRouter.get(
  * paths:
  *   /news/comments/{id}:
  *     put:
- *       tags: ["News comment"]
+ *       tags: ["News Comment"]
  *       summary: "Update a comment"
  *       description: "Update a comment based on its ID."
  *       parameters:
@@ -399,7 +399,7 @@ newsRouter.get(
 newsRouter.put(
   "/:id",
   validAuth,
-  authorizePermissions(["comment:update"]),
+  authorizePermissions(["news:comment:update"]),
   expressValidator.param("id").isString().withMessage("id must be valid"),
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
@@ -422,7 +422,7 @@ newsRouter.put(
  * paths:
  *   /news/comments/{id}:
  *     delete:
- *       tags: ["News comment"]
+ *       tags: ["News Comment"]
  *       summary: "Delete a comment"
  *       description: "Delete a comment based on its ID."
  *       parameters:
@@ -448,7 +448,7 @@ newsRouter.put(
 newsRouter.delete(
   "/:id",
   validAuth,
-  authorizePermissions(["comment:delete"]),
+  authorizePermissions(["news:comment:delete"]),
   expressValidator.param("id").isString().withMessage("id must be valid"),
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);

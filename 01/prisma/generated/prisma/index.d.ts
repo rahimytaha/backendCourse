@@ -113,6 +113,16 @@ export type news_rate = $Result.DefaultSelection<Prisma.$news_ratePayload>
  * 
  */
 export type news_favorite = $Result.DefaultSelection<Prisma.$news_favoritePayload>
+/**
+ * Model news_like
+ * 
+ */
+export type news_like = $Result.DefaultSelection<Prisma.$news_likePayload>
+/**
+ * Model news_dislike
+ * 
+ */
+export type news_dislike = $Result.DefaultSelection<Prisma.$news_dislikePayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -434,6 +444,26 @@ export class PrismaClient<
     * ```
     */
   get news_favorite(): Prisma.news_favoriteDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.news_like`: Exposes CRUD operations for the **news_like** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more News_likes
+    * const news_likes = await prisma.news_like.findMany()
+    * ```
+    */
+  get news_like(): Prisma.news_likeDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.news_dislike`: Exposes CRUD operations for the **news_dislike** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more News_dislikes
+    * const news_dislikes = await prisma.news_dislike.findMany()
+    * ```
+    */
+  get news_dislike(): Prisma.news_dislikeDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -887,7 +917,9 @@ export namespace Prisma {
     news_comment_like: 'news_comment_like',
     news_comment_dislike: 'news_comment_dislike',
     news_rate: 'news_rate',
-    news_favorite: 'news_favorite'
+    news_favorite: 'news_favorite',
+    news_like: 'news_like',
+    news_dislike: 'news_dislike'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -903,7 +935,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "user_role" | "role" | "login_transaction" | "course" | "course_rate" | "course_favorite" | "course_comment" | "course_session" | "course_type" | "category" | "course_category" | "order" | "course_order" | "news" | "news_comment" | "news_comment_like" | "news_comment_dislike" | "news_rate" | "news_favorite"
+      modelProps: "user" | "user_role" | "role" | "login_transaction" | "course" | "course_rate" | "course_favorite" | "course_comment" | "course_session" | "course_type" | "category" | "course_category" | "order" | "course_order" | "news" | "news_comment" | "news_comment_like" | "news_comment_dislike" | "news_rate" | "news_favorite" | "news_like" | "news_dislike"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2387,6 +2419,154 @@ export namespace Prisma {
           }
         }
       }
+      news_like: {
+        payload: Prisma.$news_likePayload<ExtArgs>
+        fields: Prisma.news_likeFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.news_likeFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_likePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.news_likeFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_likePayload>
+          }
+          findFirst: {
+            args: Prisma.news_likeFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_likePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.news_likeFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_likePayload>
+          }
+          findMany: {
+            args: Prisma.news_likeFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_likePayload>[]
+          }
+          create: {
+            args: Prisma.news_likeCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_likePayload>
+          }
+          createMany: {
+            args: Prisma.news_likeCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.news_likeCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_likePayload>[]
+          }
+          delete: {
+            args: Prisma.news_likeDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_likePayload>
+          }
+          update: {
+            args: Prisma.news_likeUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_likePayload>
+          }
+          deleteMany: {
+            args: Prisma.news_likeDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.news_likeUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.news_likeUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_likePayload>[]
+          }
+          upsert: {
+            args: Prisma.news_likeUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_likePayload>
+          }
+          aggregate: {
+            args: Prisma.News_likeAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateNews_like>
+          }
+          groupBy: {
+            args: Prisma.news_likeGroupByArgs<ExtArgs>
+            result: $Utils.Optional<News_likeGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.news_likeCountArgs<ExtArgs>
+            result: $Utils.Optional<News_likeCountAggregateOutputType> | number
+          }
+        }
+      }
+      news_dislike: {
+        payload: Prisma.$news_dislikePayload<ExtArgs>
+        fields: Prisma.news_dislikeFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.news_dislikeFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_dislikePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.news_dislikeFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_dislikePayload>
+          }
+          findFirst: {
+            args: Prisma.news_dislikeFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_dislikePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.news_dislikeFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_dislikePayload>
+          }
+          findMany: {
+            args: Prisma.news_dislikeFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_dislikePayload>[]
+          }
+          create: {
+            args: Prisma.news_dislikeCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_dislikePayload>
+          }
+          createMany: {
+            args: Prisma.news_dislikeCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.news_dislikeCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_dislikePayload>[]
+          }
+          delete: {
+            args: Prisma.news_dislikeDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_dislikePayload>
+          }
+          update: {
+            args: Prisma.news_dislikeUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_dislikePayload>
+          }
+          deleteMany: {
+            args: Prisma.news_dislikeDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.news_dislikeUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.news_dislikeUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_dislikePayload>[]
+          }
+          upsert: {
+            args: Prisma.news_dislikeUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_dislikePayload>
+          }
+          aggregate: {
+            args: Prisma.News_dislikeAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateNews_dislike>
+          }
+          groupBy: {
+            args: Prisma.news_dislikeGroupByArgs<ExtArgs>
+            result: $Utils.Optional<News_dislikeGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.news_dislikeCountArgs<ExtArgs>
+            result: $Utils.Optional<News_dislikeCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2515,6 +2695,8 @@ export namespace Prisma {
     news_comment_dislike?: news_comment_dislikeOmit
     news_rate?: news_rateOmit
     news_favorite?: news_favoriteOmit
+    news_like?: news_likeOmit
+    news_dislike?: news_dislikeOmit
   }
 
   /* Types for Logging */
@@ -2602,10 +2784,12 @@ export namespace Prisma {
     courseFavorites: number
     courseComments: number
     comments: number
-    likedComments: number
-    dislikedComments: number
     ratedNews: number
     favoriteNews: number
+    news_likes: number
+    news_dislikes: number
+    likedComments: number
+    dislikedComments: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2616,10 +2800,12 @@ export namespace Prisma {
     courseFavorites?: boolean | UserCountOutputTypeCountCourseFavoritesArgs
     courseComments?: boolean | UserCountOutputTypeCountCourseCommentsArgs
     comments?: boolean | UserCountOutputTypeCountCommentsArgs
-    likedComments?: boolean | UserCountOutputTypeCountLikedCommentsArgs
-    dislikedComments?: boolean | UserCountOutputTypeCountDislikedCommentsArgs
     ratedNews?: boolean | UserCountOutputTypeCountRatedNewsArgs
     favoriteNews?: boolean | UserCountOutputTypeCountFavoriteNewsArgs
+    news_likes?: boolean | UserCountOutputTypeCountNews_likesArgs
+    news_dislikes?: boolean | UserCountOutputTypeCountNews_dislikesArgs
+    likedComments?: boolean | UserCountOutputTypeCountLikedCommentsArgs
+    dislikedComments?: boolean | UserCountOutputTypeCountDislikedCommentsArgs
   }
 
   // Custom InputTypes
@@ -2685,20 +2871,6 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountLikedCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: news_comment_likeWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountDislikedCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: news_comment_dislikeWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
   export type UserCountOutputTypeCountRatedNewsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: news_rateWhereInput
   }
@@ -2708,6 +2880,34 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountFavoriteNewsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: news_favoriteWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountNews_likesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: news_likeWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountNews_dislikesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: news_dislikeWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountLikedCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: news_comment_likeWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountDislikedCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: news_comment_dislikeWhereInput
   }
 
 
@@ -2910,12 +3110,16 @@ export namespace Prisma {
     comments: number
     rates: number
     favorites: number
+    news_likes: number
+    news_dislikes: number
   }
 
   export type NewsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     comments?: boolean | NewsCountOutputTypeCountCommentsArgs
     rates?: boolean | NewsCountOutputTypeCountRatesArgs
     favorites?: boolean | NewsCountOutputTypeCountFavoritesArgs
+    news_likes?: boolean | NewsCountOutputTypeCountNews_likesArgs
+    news_dislikes?: boolean | NewsCountOutputTypeCountNews_dislikesArgs
   }
 
   // Custom InputTypes
@@ -2948,6 +3152,20 @@ export namespace Prisma {
    */
   export type NewsCountOutputTypeCountFavoritesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: news_favoriteWhereInput
+  }
+
+  /**
+   * NewsCountOutputType without action
+   */
+  export type NewsCountOutputTypeCountNews_likesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: news_likeWhereInput
+  }
+
+  /**
+   * NewsCountOutputType without action
+   */
+  export type NewsCountOutputTypeCountNews_dislikesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: news_dislikeWhereInput
   }
 
 
@@ -3207,10 +3425,12 @@ export namespace Prisma {
     courseFavorites?: boolean | user$courseFavoritesArgs<ExtArgs>
     courseComments?: boolean | user$courseCommentsArgs<ExtArgs>
     comments?: boolean | user$commentsArgs<ExtArgs>
-    likedComments?: boolean | user$likedCommentsArgs<ExtArgs>
-    dislikedComments?: boolean | user$dislikedCommentsArgs<ExtArgs>
     ratedNews?: boolean | user$ratedNewsArgs<ExtArgs>
     favoriteNews?: boolean | user$favoriteNewsArgs<ExtArgs>
+    news_likes?: boolean | user$news_likesArgs<ExtArgs>
+    news_dislikes?: boolean | user$news_dislikesArgs<ExtArgs>
+    likedComments?: boolean | user$likedCommentsArgs<ExtArgs>
+    dislikedComments?: boolean | user$dislikedCommentsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -3259,10 +3479,12 @@ export namespace Prisma {
     courseFavorites?: boolean | user$courseFavoritesArgs<ExtArgs>
     courseComments?: boolean | user$courseCommentsArgs<ExtArgs>
     comments?: boolean | user$commentsArgs<ExtArgs>
-    likedComments?: boolean | user$likedCommentsArgs<ExtArgs>
-    dislikedComments?: boolean | user$dislikedCommentsArgs<ExtArgs>
     ratedNews?: boolean | user$ratedNewsArgs<ExtArgs>
     favoriteNews?: boolean | user$favoriteNewsArgs<ExtArgs>
+    news_likes?: boolean | user$news_likesArgs<ExtArgs>
+    news_dislikes?: boolean | user$news_dislikesArgs<ExtArgs>
+    likedComments?: boolean | user$likedCommentsArgs<ExtArgs>
+    dislikedComments?: boolean | user$dislikedCommentsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type userIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3278,10 +3500,12 @@ export namespace Prisma {
       courseFavorites: Prisma.$course_favoritePayload<ExtArgs>[]
       courseComments: Prisma.$course_commentPayload<ExtArgs>[]
       comments: Prisma.$news_commentPayload<ExtArgs>[]
-      likedComments: Prisma.$news_comment_likePayload<ExtArgs>[]
-      dislikedComments: Prisma.$news_comment_dislikePayload<ExtArgs>[]
       ratedNews: Prisma.$news_ratePayload<ExtArgs>[]
       favoriteNews: Prisma.$news_favoritePayload<ExtArgs>[]
+      news_likes: Prisma.$news_likePayload<ExtArgs>[]
+      news_dislikes: Prisma.$news_dislikePayload<ExtArgs>[]
+      likedComments: Prisma.$news_comment_likePayload<ExtArgs>[]
+      dislikedComments: Prisma.$news_comment_dislikePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3694,10 +3918,12 @@ export namespace Prisma {
     courseFavorites<T extends user$courseFavoritesArgs<ExtArgs> = {}>(args?: Subset<T, user$courseFavoritesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$course_favoritePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     courseComments<T extends user$courseCommentsArgs<ExtArgs> = {}>(args?: Subset<T, user$courseCommentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$course_commentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     comments<T extends user$commentsArgs<ExtArgs> = {}>(args?: Subset<T, user$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_commentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    likedComments<T extends user$likedCommentsArgs<ExtArgs> = {}>(args?: Subset<T, user$likedCommentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_comment_likePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    dislikedComments<T extends user$dislikedCommentsArgs<ExtArgs> = {}>(args?: Subset<T, user$dislikedCommentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_comment_dislikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     ratedNews<T extends user$ratedNewsArgs<ExtArgs> = {}>(args?: Subset<T, user$ratedNewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_ratePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     favoriteNews<T extends user$favoriteNewsArgs<ExtArgs> = {}>(args?: Subset<T, user$favoriteNewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_favoritePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    news_likes<T extends user$news_likesArgs<ExtArgs> = {}>(args?: Subset<T, user$news_likesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_likePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    news_dislikes<T extends user$news_dislikesArgs<ExtArgs> = {}>(args?: Subset<T, user$news_dislikesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_dislikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    likedComments<T extends user$likedCommentsArgs<ExtArgs> = {}>(args?: Subset<T, user$likedCommentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_comment_likePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    dislikedComments<T extends user$dislikedCommentsArgs<ExtArgs> = {}>(args?: Subset<T, user$dislikedCommentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_comment_dislikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4297,54 +4523,6 @@ export namespace Prisma {
   }
 
   /**
-   * user.likedComments
-   */
-  export type user$likedCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the news_comment_like
-     */
-    select?: news_comment_likeSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the news_comment_like
-     */
-    omit?: news_comment_likeOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: news_comment_likeInclude<ExtArgs> | null
-    where?: news_comment_likeWhereInput
-    orderBy?: news_comment_likeOrderByWithRelationInput | news_comment_likeOrderByWithRelationInput[]
-    cursor?: news_comment_likeWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: News_comment_likeScalarFieldEnum | News_comment_likeScalarFieldEnum[]
-  }
-
-  /**
-   * user.dislikedComments
-   */
-  export type user$dislikedCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the news_comment_dislike
-     */
-    select?: news_comment_dislikeSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the news_comment_dislike
-     */
-    omit?: news_comment_dislikeOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: news_comment_dislikeInclude<ExtArgs> | null
-    where?: news_comment_dislikeWhereInput
-    orderBy?: news_comment_dislikeOrderByWithRelationInput | news_comment_dislikeOrderByWithRelationInput[]
-    cursor?: news_comment_dislikeWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: News_comment_dislikeScalarFieldEnum | News_comment_dislikeScalarFieldEnum[]
-  }
-
-  /**
    * user.ratedNews
    */
   export type user$ratedNewsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4390,6 +4568,102 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: News_favoriteScalarFieldEnum | News_favoriteScalarFieldEnum[]
+  }
+
+  /**
+   * user.news_likes
+   */
+  export type user$news_likesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_like
+     */
+    select?: news_likeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_like
+     */
+    omit?: news_likeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_likeInclude<ExtArgs> | null
+    where?: news_likeWhereInput
+    orderBy?: news_likeOrderByWithRelationInput | news_likeOrderByWithRelationInput[]
+    cursor?: news_likeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: News_likeScalarFieldEnum | News_likeScalarFieldEnum[]
+  }
+
+  /**
+   * user.news_dislikes
+   */
+  export type user$news_dislikesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_dislike
+     */
+    select?: news_dislikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_dislike
+     */
+    omit?: news_dislikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_dislikeInclude<ExtArgs> | null
+    where?: news_dislikeWhereInput
+    orderBy?: news_dislikeOrderByWithRelationInput | news_dislikeOrderByWithRelationInput[]
+    cursor?: news_dislikeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: News_dislikeScalarFieldEnum | News_dislikeScalarFieldEnum[]
+  }
+
+  /**
+   * user.likedComments
+   */
+  export type user$likedCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_comment_like
+     */
+    select?: news_comment_likeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_comment_like
+     */
+    omit?: news_comment_likeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_comment_likeInclude<ExtArgs> | null
+    where?: news_comment_likeWhereInput
+    orderBy?: news_comment_likeOrderByWithRelationInput | news_comment_likeOrderByWithRelationInput[]
+    cursor?: news_comment_likeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: News_comment_likeScalarFieldEnum | News_comment_likeScalarFieldEnum[]
+  }
+
+  /**
+   * user.dislikedComments
+   */
+  export type user$dislikedCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_comment_dislike
+     */
+    select?: news_comment_dislikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_comment_dislike
+     */
+    omit?: news_comment_dislikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_comment_dislikeInclude<ExtArgs> | null
+    where?: news_comment_dislikeWhereInput
+    orderBy?: news_comment_dislikeOrderByWithRelationInput | news_comment_dislikeOrderByWithRelationInput[]
+    cursor?: news_comment_dislikeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: News_comment_dislikeScalarFieldEnum | News_comment_dislikeScalarFieldEnum[]
   }
 
   /**
@@ -18533,6 +18807,8 @@ export namespace Prisma {
     comments?: boolean | news$commentsArgs<ExtArgs>
     rates?: boolean | news$ratesArgs<ExtArgs>
     favorites?: boolean | news$favoritesArgs<ExtArgs>
+    news_likes?: boolean | news$news_likesArgs<ExtArgs>
+    news_dislikes?: boolean | news$news_dislikesArgs<ExtArgs>
     _count?: boolean | NewsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["news"]>
 
@@ -18571,6 +18847,8 @@ export namespace Prisma {
     comments?: boolean | news$commentsArgs<ExtArgs>
     rates?: boolean | news$ratesArgs<ExtArgs>
     favorites?: boolean | news$favoritesArgs<ExtArgs>
+    news_likes?: boolean | news$news_likesArgs<ExtArgs>
+    news_dislikes?: boolean | news$news_dislikesArgs<ExtArgs>
     _count?: boolean | NewsCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type newsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -18582,6 +18860,8 @@ export namespace Prisma {
       comments: Prisma.$news_commentPayload<ExtArgs>[]
       rates: Prisma.$news_ratePayload<ExtArgs>[]
       favorites: Prisma.$news_favoritePayload<ExtArgs>[]
+      news_likes: Prisma.$news_likePayload<ExtArgs>[]
+      news_dislikes: Prisma.$news_dislikePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -18988,6 +19268,8 @@ export namespace Prisma {
     comments<T extends news$commentsArgs<ExtArgs> = {}>(args?: Subset<T, news$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_commentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     rates<T extends news$ratesArgs<ExtArgs> = {}>(args?: Subset<T, news$ratesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_ratePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     favorites<T extends news$favoritesArgs<ExtArgs> = {}>(args?: Subset<T, news$favoritesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_favoritePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    news_likes<T extends news$news_likesArgs<ExtArgs> = {}>(args?: Subset<T, news$news_likesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_likePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    news_dislikes<T extends news$news_dislikesArgs<ExtArgs> = {}>(args?: Subset<T, news$news_dislikesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_dislikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -19486,6 +19768,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: News_favoriteScalarFieldEnum | News_favoriteScalarFieldEnum[]
+  }
+
+  /**
+   * news.news_likes
+   */
+  export type news$news_likesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_like
+     */
+    select?: news_likeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_like
+     */
+    omit?: news_likeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_likeInclude<ExtArgs> | null
+    where?: news_likeWhereInput
+    orderBy?: news_likeOrderByWithRelationInput | news_likeOrderByWithRelationInput[]
+    cursor?: news_likeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: News_likeScalarFieldEnum | News_likeScalarFieldEnum[]
+  }
+
+  /**
+   * news.news_dislikes
+   */
+  export type news$news_dislikesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_dislike
+     */
+    select?: news_dislikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_dislike
+     */
+    omit?: news_dislikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_dislikeInclude<ExtArgs> | null
+    where?: news_dislikeWhereInput
+    orderBy?: news_dislikeOrderByWithRelationInput | news_dislikeOrderByWithRelationInput[]
+    cursor?: news_dislikeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: News_dislikeScalarFieldEnum | News_dislikeScalarFieldEnum[]
   }
 
   /**
@@ -25043,6 +25373,2164 @@ export namespace Prisma {
 
 
   /**
+   * Model news_like
+   */
+
+  export type AggregateNews_like = {
+    _count: News_likeCountAggregateOutputType | null
+    _avg: News_likeAvgAggregateOutputType | null
+    _sum: News_likeSumAggregateOutputType | null
+    _min: News_likeMinAggregateOutputType | null
+    _max: News_likeMaxAggregateOutputType | null
+  }
+
+  export type News_likeAvgAggregateOutputType = {
+    news_id: number | null
+  }
+
+  export type News_likeSumAggregateOutputType = {
+    news_id: number | null
+  }
+
+  export type News_likeMinAggregateOutputType = {
+    id: string | null
+    user_id: string | null
+    news_id: number | null
+  }
+
+  export type News_likeMaxAggregateOutputType = {
+    id: string | null
+    user_id: string | null
+    news_id: number | null
+  }
+
+  export type News_likeCountAggregateOutputType = {
+    id: number
+    user_id: number
+    news_id: number
+    _all: number
+  }
+
+
+  export type News_likeAvgAggregateInputType = {
+    news_id?: true
+  }
+
+  export type News_likeSumAggregateInputType = {
+    news_id?: true
+  }
+
+  export type News_likeMinAggregateInputType = {
+    id?: true
+    user_id?: true
+    news_id?: true
+  }
+
+  export type News_likeMaxAggregateInputType = {
+    id?: true
+    user_id?: true
+    news_id?: true
+  }
+
+  export type News_likeCountAggregateInputType = {
+    id?: true
+    user_id?: true
+    news_id?: true
+    _all?: true
+  }
+
+  export type News_likeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which news_like to aggregate.
+     */
+    where?: news_likeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of news_likes to fetch.
+     */
+    orderBy?: news_likeOrderByWithRelationInput | news_likeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: news_likeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` news_likes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` news_likes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned news_likes
+    **/
+    _count?: true | News_likeCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: News_likeAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: News_likeSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: News_likeMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: News_likeMaxAggregateInputType
+  }
+
+  export type GetNews_likeAggregateType<T extends News_likeAggregateArgs> = {
+        [P in keyof T & keyof AggregateNews_like]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateNews_like[P]>
+      : GetScalarType<T[P], AggregateNews_like[P]>
+  }
+
+
+
+
+  export type news_likeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: news_likeWhereInput
+    orderBy?: news_likeOrderByWithAggregationInput | news_likeOrderByWithAggregationInput[]
+    by: News_likeScalarFieldEnum[] | News_likeScalarFieldEnum
+    having?: news_likeScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: News_likeCountAggregateInputType | true
+    _avg?: News_likeAvgAggregateInputType
+    _sum?: News_likeSumAggregateInputType
+    _min?: News_likeMinAggregateInputType
+    _max?: News_likeMaxAggregateInputType
+  }
+
+  export type News_likeGroupByOutputType = {
+    id: string
+    user_id: string
+    news_id: number
+    _count: News_likeCountAggregateOutputType | null
+    _avg: News_likeAvgAggregateOutputType | null
+    _sum: News_likeSumAggregateOutputType | null
+    _min: News_likeMinAggregateOutputType | null
+    _max: News_likeMaxAggregateOutputType | null
+  }
+
+  type GetNews_likeGroupByPayload<T extends news_likeGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<News_likeGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof News_likeGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], News_likeGroupByOutputType[P]>
+            : GetScalarType<T[P], News_likeGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type news_likeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    news_id?: boolean
+    user?: boolean | userDefaultArgs<ExtArgs>
+    news?: boolean | newsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["news_like"]>
+
+  export type news_likeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    news_id?: boolean
+    user?: boolean | userDefaultArgs<ExtArgs>
+    news?: boolean | newsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["news_like"]>
+
+  export type news_likeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    news_id?: boolean
+    user?: boolean | userDefaultArgs<ExtArgs>
+    news?: boolean | newsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["news_like"]>
+
+  export type news_likeSelectScalar = {
+    id?: boolean
+    user_id?: boolean
+    news_id?: boolean
+  }
+
+  export type news_likeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "news_id", ExtArgs["result"]["news_like"]>
+  export type news_likeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | userDefaultArgs<ExtArgs>
+    news?: boolean | newsDefaultArgs<ExtArgs>
+  }
+  export type news_likeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | userDefaultArgs<ExtArgs>
+    news?: boolean | newsDefaultArgs<ExtArgs>
+  }
+  export type news_likeIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | userDefaultArgs<ExtArgs>
+    news?: boolean | newsDefaultArgs<ExtArgs>
+  }
+
+  export type $news_likePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "news_like"
+    objects: {
+      user: Prisma.$userPayload<ExtArgs>
+      news: Prisma.$newsPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      user_id: string
+      news_id: number
+    }, ExtArgs["result"]["news_like"]>
+    composites: {}
+  }
+
+  type news_likeGetPayload<S extends boolean | null | undefined | news_likeDefaultArgs> = $Result.GetResult<Prisma.$news_likePayload, S>
+
+  type news_likeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<news_likeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: News_likeCountAggregateInputType | true
+    }
+
+  export interface news_likeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['news_like'], meta: { name: 'news_like' } }
+    /**
+     * Find zero or one News_like that matches the filter.
+     * @param {news_likeFindUniqueArgs} args - Arguments to find a News_like
+     * @example
+     * // Get one News_like
+     * const news_like = await prisma.news_like.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends news_likeFindUniqueArgs>(args: SelectSubset<T, news_likeFindUniqueArgs<ExtArgs>>): Prisma__news_likeClient<$Result.GetResult<Prisma.$news_likePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one News_like that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {news_likeFindUniqueOrThrowArgs} args - Arguments to find a News_like
+     * @example
+     * // Get one News_like
+     * const news_like = await prisma.news_like.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends news_likeFindUniqueOrThrowArgs>(args: SelectSubset<T, news_likeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__news_likeClient<$Result.GetResult<Prisma.$news_likePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first News_like that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {news_likeFindFirstArgs} args - Arguments to find a News_like
+     * @example
+     * // Get one News_like
+     * const news_like = await prisma.news_like.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends news_likeFindFirstArgs>(args?: SelectSubset<T, news_likeFindFirstArgs<ExtArgs>>): Prisma__news_likeClient<$Result.GetResult<Prisma.$news_likePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first News_like that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {news_likeFindFirstOrThrowArgs} args - Arguments to find a News_like
+     * @example
+     * // Get one News_like
+     * const news_like = await prisma.news_like.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends news_likeFindFirstOrThrowArgs>(args?: SelectSubset<T, news_likeFindFirstOrThrowArgs<ExtArgs>>): Prisma__news_likeClient<$Result.GetResult<Prisma.$news_likePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more News_likes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {news_likeFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all News_likes
+     * const news_likes = await prisma.news_like.findMany()
+     * 
+     * // Get first 10 News_likes
+     * const news_likes = await prisma.news_like.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const news_likeWithIdOnly = await prisma.news_like.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends news_likeFindManyArgs>(args?: SelectSubset<T, news_likeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_likePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a News_like.
+     * @param {news_likeCreateArgs} args - Arguments to create a News_like.
+     * @example
+     * // Create one News_like
+     * const News_like = await prisma.news_like.create({
+     *   data: {
+     *     // ... data to create a News_like
+     *   }
+     * })
+     * 
+     */
+    create<T extends news_likeCreateArgs>(args: SelectSubset<T, news_likeCreateArgs<ExtArgs>>): Prisma__news_likeClient<$Result.GetResult<Prisma.$news_likePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many News_likes.
+     * @param {news_likeCreateManyArgs} args - Arguments to create many News_likes.
+     * @example
+     * // Create many News_likes
+     * const news_like = await prisma.news_like.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends news_likeCreateManyArgs>(args?: SelectSubset<T, news_likeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many News_likes and returns the data saved in the database.
+     * @param {news_likeCreateManyAndReturnArgs} args - Arguments to create many News_likes.
+     * @example
+     * // Create many News_likes
+     * const news_like = await prisma.news_like.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many News_likes and only return the `id`
+     * const news_likeWithIdOnly = await prisma.news_like.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends news_likeCreateManyAndReturnArgs>(args?: SelectSubset<T, news_likeCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_likePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a News_like.
+     * @param {news_likeDeleteArgs} args - Arguments to delete one News_like.
+     * @example
+     * // Delete one News_like
+     * const News_like = await prisma.news_like.delete({
+     *   where: {
+     *     // ... filter to delete one News_like
+     *   }
+     * })
+     * 
+     */
+    delete<T extends news_likeDeleteArgs>(args: SelectSubset<T, news_likeDeleteArgs<ExtArgs>>): Prisma__news_likeClient<$Result.GetResult<Prisma.$news_likePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one News_like.
+     * @param {news_likeUpdateArgs} args - Arguments to update one News_like.
+     * @example
+     * // Update one News_like
+     * const news_like = await prisma.news_like.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends news_likeUpdateArgs>(args: SelectSubset<T, news_likeUpdateArgs<ExtArgs>>): Prisma__news_likeClient<$Result.GetResult<Prisma.$news_likePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more News_likes.
+     * @param {news_likeDeleteManyArgs} args - Arguments to filter News_likes to delete.
+     * @example
+     * // Delete a few News_likes
+     * const { count } = await prisma.news_like.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends news_likeDeleteManyArgs>(args?: SelectSubset<T, news_likeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more News_likes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {news_likeUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many News_likes
+     * const news_like = await prisma.news_like.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends news_likeUpdateManyArgs>(args: SelectSubset<T, news_likeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more News_likes and returns the data updated in the database.
+     * @param {news_likeUpdateManyAndReturnArgs} args - Arguments to update many News_likes.
+     * @example
+     * // Update many News_likes
+     * const news_like = await prisma.news_like.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more News_likes and only return the `id`
+     * const news_likeWithIdOnly = await prisma.news_like.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends news_likeUpdateManyAndReturnArgs>(args: SelectSubset<T, news_likeUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_likePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one News_like.
+     * @param {news_likeUpsertArgs} args - Arguments to update or create a News_like.
+     * @example
+     * // Update or create a News_like
+     * const news_like = await prisma.news_like.upsert({
+     *   create: {
+     *     // ... data to create a News_like
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the News_like we want to update
+     *   }
+     * })
+     */
+    upsert<T extends news_likeUpsertArgs>(args: SelectSubset<T, news_likeUpsertArgs<ExtArgs>>): Prisma__news_likeClient<$Result.GetResult<Prisma.$news_likePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of News_likes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {news_likeCountArgs} args - Arguments to filter News_likes to count.
+     * @example
+     * // Count the number of News_likes
+     * const count = await prisma.news_like.count({
+     *   where: {
+     *     // ... the filter for the News_likes we want to count
+     *   }
+     * })
+    **/
+    count<T extends news_likeCountArgs>(
+      args?: Subset<T, news_likeCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], News_likeCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a News_like.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {News_likeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends News_likeAggregateArgs>(args: Subset<T, News_likeAggregateArgs>): Prisma.PrismaPromise<GetNews_likeAggregateType<T>>
+
+    /**
+     * Group by News_like.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {news_likeGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends news_likeGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: news_likeGroupByArgs['orderBy'] }
+        : { orderBy?: news_likeGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, news_likeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetNews_likeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the news_like model
+   */
+  readonly fields: news_likeFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for news_like.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__news_likeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends userDefaultArgs<ExtArgs> = {}>(args?: Subset<T, userDefaultArgs<ExtArgs>>): Prisma__userClient<$Result.GetResult<Prisma.$userPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    news<T extends newsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, newsDefaultArgs<ExtArgs>>): Prisma__newsClient<$Result.GetResult<Prisma.$newsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the news_like model
+   */
+  interface news_likeFieldRefs {
+    readonly id: FieldRef<"news_like", 'String'>
+    readonly user_id: FieldRef<"news_like", 'String'>
+    readonly news_id: FieldRef<"news_like", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * news_like findUnique
+   */
+  export type news_likeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_like
+     */
+    select?: news_likeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_like
+     */
+    omit?: news_likeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_likeInclude<ExtArgs> | null
+    /**
+     * Filter, which news_like to fetch.
+     */
+    where: news_likeWhereUniqueInput
+  }
+
+  /**
+   * news_like findUniqueOrThrow
+   */
+  export type news_likeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_like
+     */
+    select?: news_likeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_like
+     */
+    omit?: news_likeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_likeInclude<ExtArgs> | null
+    /**
+     * Filter, which news_like to fetch.
+     */
+    where: news_likeWhereUniqueInput
+  }
+
+  /**
+   * news_like findFirst
+   */
+  export type news_likeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_like
+     */
+    select?: news_likeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_like
+     */
+    omit?: news_likeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_likeInclude<ExtArgs> | null
+    /**
+     * Filter, which news_like to fetch.
+     */
+    where?: news_likeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of news_likes to fetch.
+     */
+    orderBy?: news_likeOrderByWithRelationInput | news_likeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for news_likes.
+     */
+    cursor?: news_likeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` news_likes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` news_likes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of news_likes.
+     */
+    distinct?: News_likeScalarFieldEnum | News_likeScalarFieldEnum[]
+  }
+
+  /**
+   * news_like findFirstOrThrow
+   */
+  export type news_likeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_like
+     */
+    select?: news_likeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_like
+     */
+    omit?: news_likeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_likeInclude<ExtArgs> | null
+    /**
+     * Filter, which news_like to fetch.
+     */
+    where?: news_likeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of news_likes to fetch.
+     */
+    orderBy?: news_likeOrderByWithRelationInput | news_likeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for news_likes.
+     */
+    cursor?: news_likeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` news_likes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` news_likes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of news_likes.
+     */
+    distinct?: News_likeScalarFieldEnum | News_likeScalarFieldEnum[]
+  }
+
+  /**
+   * news_like findMany
+   */
+  export type news_likeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_like
+     */
+    select?: news_likeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_like
+     */
+    omit?: news_likeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_likeInclude<ExtArgs> | null
+    /**
+     * Filter, which news_likes to fetch.
+     */
+    where?: news_likeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of news_likes to fetch.
+     */
+    orderBy?: news_likeOrderByWithRelationInput | news_likeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing news_likes.
+     */
+    cursor?: news_likeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` news_likes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` news_likes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of news_likes.
+     */
+    distinct?: News_likeScalarFieldEnum | News_likeScalarFieldEnum[]
+  }
+
+  /**
+   * news_like create
+   */
+  export type news_likeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_like
+     */
+    select?: news_likeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_like
+     */
+    omit?: news_likeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_likeInclude<ExtArgs> | null
+    /**
+     * The data needed to create a news_like.
+     */
+    data: XOR<news_likeCreateInput, news_likeUncheckedCreateInput>
+  }
+
+  /**
+   * news_like createMany
+   */
+  export type news_likeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many news_likes.
+     */
+    data: news_likeCreateManyInput | news_likeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * news_like createManyAndReturn
+   */
+  export type news_likeCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_like
+     */
+    select?: news_likeSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_like
+     */
+    omit?: news_likeOmit<ExtArgs> | null
+    /**
+     * The data used to create many news_likes.
+     */
+    data: news_likeCreateManyInput | news_likeCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_likeIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * news_like update
+   */
+  export type news_likeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_like
+     */
+    select?: news_likeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_like
+     */
+    omit?: news_likeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_likeInclude<ExtArgs> | null
+    /**
+     * The data needed to update a news_like.
+     */
+    data: XOR<news_likeUpdateInput, news_likeUncheckedUpdateInput>
+    /**
+     * Choose, which news_like to update.
+     */
+    where: news_likeWhereUniqueInput
+  }
+
+  /**
+   * news_like updateMany
+   */
+  export type news_likeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update news_likes.
+     */
+    data: XOR<news_likeUpdateManyMutationInput, news_likeUncheckedUpdateManyInput>
+    /**
+     * Filter which news_likes to update
+     */
+    where?: news_likeWhereInput
+    /**
+     * Limit how many news_likes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * news_like updateManyAndReturn
+   */
+  export type news_likeUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_like
+     */
+    select?: news_likeSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_like
+     */
+    omit?: news_likeOmit<ExtArgs> | null
+    /**
+     * The data used to update news_likes.
+     */
+    data: XOR<news_likeUpdateManyMutationInput, news_likeUncheckedUpdateManyInput>
+    /**
+     * Filter which news_likes to update
+     */
+    where?: news_likeWhereInput
+    /**
+     * Limit how many news_likes to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_likeIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * news_like upsert
+   */
+  export type news_likeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_like
+     */
+    select?: news_likeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_like
+     */
+    omit?: news_likeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_likeInclude<ExtArgs> | null
+    /**
+     * The filter to search for the news_like to update in case it exists.
+     */
+    where: news_likeWhereUniqueInput
+    /**
+     * In case the news_like found by the `where` argument doesn't exist, create a new news_like with this data.
+     */
+    create: XOR<news_likeCreateInput, news_likeUncheckedCreateInput>
+    /**
+     * In case the news_like was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<news_likeUpdateInput, news_likeUncheckedUpdateInput>
+  }
+
+  /**
+   * news_like delete
+   */
+  export type news_likeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_like
+     */
+    select?: news_likeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_like
+     */
+    omit?: news_likeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_likeInclude<ExtArgs> | null
+    /**
+     * Filter which news_like to delete.
+     */
+    where: news_likeWhereUniqueInput
+  }
+
+  /**
+   * news_like deleteMany
+   */
+  export type news_likeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which news_likes to delete
+     */
+    where?: news_likeWhereInput
+    /**
+     * Limit how many news_likes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * news_like without action
+   */
+  export type news_likeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_like
+     */
+    select?: news_likeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_like
+     */
+    omit?: news_likeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_likeInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model news_dislike
+   */
+
+  export type AggregateNews_dislike = {
+    _count: News_dislikeCountAggregateOutputType | null
+    _avg: News_dislikeAvgAggregateOutputType | null
+    _sum: News_dislikeSumAggregateOutputType | null
+    _min: News_dislikeMinAggregateOutputType | null
+    _max: News_dislikeMaxAggregateOutputType | null
+  }
+
+  export type News_dislikeAvgAggregateOutputType = {
+    news_id: number | null
+  }
+
+  export type News_dislikeSumAggregateOutputType = {
+    news_id: number | null
+  }
+
+  export type News_dislikeMinAggregateOutputType = {
+    id: string | null
+    user_id: string | null
+    news_id: number | null
+  }
+
+  export type News_dislikeMaxAggregateOutputType = {
+    id: string | null
+    user_id: string | null
+    news_id: number | null
+  }
+
+  export type News_dislikeCountAggregateOutputType = {
+    id: number
+    user_id: number
+    news_id: number
+    _all: number
+  }
+
+
+  export type News_dislikeAvgAggregateInputType = {
+    news_id?: true
+  }
+
+  export type News_dislikeSumAggregateInputType = {
+    news_id?: true
+  }
+
+  export type News_dislikeMinAggregateInputType = {
+    id?: true
+    user_id?: true
+    news_id?: true
+  }
+
+  export type News_dislikeMaxAggregateInputType = {
+    id?: true
+    user_id?: true
+    news_id?: true
+  }
+
+  export type News_dislikeCountAggregateInputType = {
+    id?: true
+    user_id?: true
+    news_id?: true
+    _all?: true
+  }
+
+  export type News_dislikeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which news_dislike to aggregate.
+     */
+    where?: news_dislikeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of news_dislikes to fetch.
+     */
+    orderBy?: news_dislikeOrderByWithRelationInput | news_dislikeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: news_dislikeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` news_dislikes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` news_dislikes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned news_dislikes
+    **/
+    _count?: true | News_dislikeCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: News_dislikeAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: News_dislikeSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: News_dislikeMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: News_dislikeMaxAggregateInputType
+  }
+
+  export type GetNews_dislikeAggregateType<T extends News_dislikeAggregateArgs> = {
+        [P in keyof T & keyof AggregateNews_dislike]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateNews_dislike[P]>
+      : GetScalarType<T[P], AggregateNews_dislike[P]>
+  }
+
+
+
+
+  export type news_dislikeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: news_dislikeWhereInput
+    orderBy?: news_dislikeOrderByWithAggregationInput | news_dislikeOrderByWithAggregationInput[]
+    by: News_dislikeScalarFieldEnum[] | News_dislikeScalarFieldEnum
+    having?: news_dislikeScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: News_dislikeCountAggregateInputType | true
+    _avg?: News_dislikeAvgAggregateInputType
+    _sum?: News_dislikeSumAggregateInputType
+    _min?: News_dislikeMinAggregateInputType
+    _max?: News_dislikeMaxAggregateInputType
+  }
+
+  export type News_dislikeGroupByOutputType = {
+    id: string
+    user_id: string
+    news_id: number
+    _count: News_dislikeCountAggregateOutputType | null
+    _avg: News_dislikeAvgAggregateOutputType | null
+    _sum: News_dislikeSumAggregateOutputType | null
+    _min: News_dislikeMinAggregateOutputType | null
+    _max: News_dislikeMaxAggregateOutputType | null
+  }
+
+  type GetNews_dislikeGroupByPayload<T extends news_dislikeGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<News_dislikeGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof News_dislikeGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], News_dislikeGroupByOutputType[P]>
+            : GetScalarType<T[P], News_dislikeGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type news_dislikeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    news_id?: boolean
+    user?: boolean | userDefaultArgs<ExtArgs>
+    news?: boolean | newsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["news_dislike"]>
+
+  export type news_dislikeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    news_id?: boolean
+    user?: boolean | userDefaultArgs<ExtArgs>
+    news?: boolean | newsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["news_dislike"]>
+
+  export type news_dislikeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    news_id?: boolean
+    user?: boolean | userDefaultArgs<ExtArgs>
+    news?: boolean | newsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["news_dislike"]>
+
+  export type news_dislikeSelectScalar = {
+    id?: boolean
+    user_id?: boolean
+    news_id?: boolean
+  }
+
+  export type news_dislikeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "news_id", ExtArgs["result"]["news_dislike"]>
+  export type news_dislikeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | userDefaultArgs<ExtArgs>
+    news?: boolean | newsDefaultArgs<ExtArgs>
+  }
+  export type news_dislikeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | userDefaultArgs<ExtArgs>
+    news?: boolean | newsDefaultArgs<ExtArgs>
+  }
+  export type news_dislikeIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | userDefaultArgs<ExtArgs>
+    news?: boolean | newsDefaultArgs<ExtArgs>
+  }
+
+  export type $news_dislikePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "news_dislike"
+    objects: {
+      user: Prisma.$userPayload<ExtArgs>
+      news: Prisma.$newsPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      user_id: string
+      news_id: number
+    }, ExtArgs["result"]["news_dislike"]>
+    composites: {}
+  }
+
+  type news_dislikeGetPayload<S extends boolean | null | undefined | news_dislikeDefaultArgs> = $Result.GetResult<Prisma.$news_dislikePayload, S>
+
+  type news_dislikeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<news_dislikeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: News_dislikeCountAggregateInputType | true
+    }
+
+  export interface news_dislikeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['news_dislike'], meta: { name: 'news_dislike' } }
+    /**
+     * Find zero or one News_dislike that matches the filter.
+     * @param {news_dislikeFindUniqueArgs} args - Arguments to find a News_dislike
+     * @example
+     * // Get one News_dislike
+     * const news_dislike = await prisma.news_dislike.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends news_dislikeFindUniqueArgs>(args: SelectSubset<T, news_dislikeFindUniqueArgs<ExtArgs>>): Prisma__news_dislikeClient<$Result.GetResult<Prisma.$news_dislikePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one News_dislike that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {news_dislikeFindUniqueOrThrowArgs} args - Arguments to find a News_dislike
+     * @example
+     * // Get one News_dislike
+     * const news_dislike = await prisma.news_dislike.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends news_dislikeFindUniqueOrThrowArgs>(args: SelectSubset<T, news_dislikeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__news_dislikeClient<$Result.GetResult<Prisma.$news_dislikePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first News_dislike that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {news_dislikeFindFirstArgs} args - Arguments to find a News_dislike
+     * @example
+     * // Get one News_dislike
+     * const news_dislike = await prisma.news_dislike.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends news_dislikeFindFirstArgs>(args?: SelectSubset<T, news_dislikeFindFirstArgs<ExtArgs>>): Prisma__news_dislikeClient<$Result.GetResult<Prisma.$news_dislikePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first News_dislike that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {news_dislikeFindFirstOrThrowArgs} args - Arguments to find a News_dislike
+     * @example
+     * // Get one News_dislike
+     * const news_dislike = await prisma.news_dislike.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends news_dislikeFindFirstOrThrowArgs>(args?: SelectSubset<T, news_dislikeFindFirstOrThrowArgs<ExtArgs>>): Prisma__news_dislikeClient<$Result.GetResult<Prisma.$news_dislikePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more News_dislikes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {news_dislikeFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all News_dislikes
+     * const news_dislikes = await prisma.news_dislike.findMany()
+     * 
+     * // Get first 10 News_dislikes
+     * const news_dislikes = await prisma.news_dislike.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const news_dislikeWithIdOnly = await prisma.news_dislike.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends news_dislikeFindManyArgs>(args?: SelectSubset<T, news_dislikeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_dislikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a News_dislike.
+     * @param {news_dislikeCreateArgs} args - Arguments to create a News_dislike.
+     * @example
+     * // Create one News_dislike
+     * const News_dislike = await prisma.news_dislike.create({
+     *   data: {
+     *     // ... data to create a News_dislike
+     *   }
+     * })
+     * 
+     */
+    create<T extends news_dislikeCreateArgs>(args: SelectSubset<T, news_dislikeCreateArgs<ExtArgs>>): Prisma__news_dislikeClient<$Result.GetResult<Prisma.$news_dislikePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many News_dislikes.
+     * @param {news_dislikeCreateManyArgs} args - Arguments to create many News_dislikes.
+     * @example
+     * // Create many News_dislikes
+     * const news_dislike = await prisma.news_dislike.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends news_dislikeCreateManyArgs>(args?: SelectSubset<T, news_dislikeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many News_dislikes and returns the data saved in the database.
+     * @param {news_dislikeCreateManyAndReturnArgs} args - Arguments to create many News_dislikes.
+     * @example
+     * // Create many News_dislikes
+     * const news_dislike = await prisma.news_dislike.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many News_dislikes and only return the `id`
+     * const news_dislikeWithIdOnly = await prisma.news_dislike.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends news_dislikeCreateManyAndReturnArgs>(args?: SelectSubset<T, news_dislikeCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_dislikePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a News_dislike.
+     * @param {news_dislikeDeleteArgs} args - Arguments to delete one News_dislike.
+     * @example
+     * // Delete one News_dislike
+     * const News_dislike = await prisma.news_dislike.delete({
+     *   where: {
+     *     // ... filter to delete one News_dislike
+     *   }
+     * })
+     * 
+     */
+    delete<T extends news_dislikeDeleteArgs>(args: SelectSubset<T, news_dislikeDeleteArgs<ExtArgs>>): Prisma__news_dislikeClient<$Result.GetResult<Prisma.$news_dislikePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one News_dislike.
+     * @param {news_dislikeUpdateArgs} args - Arguments to update one News_dislike.
+     * @example
+     * // Update one News_dislike
+     * const news_dislike = await prisma.news_dislike.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends news_dislikeUpdateArgs>(args: SelectSubset<T, news_dislikeUpdateArgs<ExtArgs>>): Prisma__news_dislikeClient<$Result.GetResult<Prisma.$news_dislikePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more News_dislikes.
+     * @param {news_dislikeDeleteManyArgs} args - Arguments to filter News_dislikes to delete.
+     * @example
+     * // Delete a few News_dislikes
+     * const { count } = await prisma.news_dislike.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends news_dislikeDeleteManyArgs>(args?: SelectSubset<T, news_dislikeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more News_dislikes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {news_dislikeUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many News_dislikes
+     * const news_dislike = await prisma.news_dislike.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends news_dislikeUpdateManyArgs>(args: SelectSubset<T, news_dislikeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more News_dislikes and returns the data updated in the database.
+     * @param {news_dislikeUpdateManyAndReturnArgs} args - Arguments to update many News_dislikes.
+     * @example
+     * // Update many News_dislikes
+     * const news_dislike = await prisma.news_dislike.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more News_dislikes and only return the `id`
+     * const news_dislikeWithIdOnly = await prisma.news_dislike.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends news_dislikeUpdateManyAndReturnArgs>(args: SelectSubset<T, news_dislikeUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_dislikePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one News_dislike.
+     * @param {news_dislikeUpsertArgs} args - Arguments to update or create a News_dislike.
+     * @example
+     * // Update or create a News_dislike
+     * const news_dislike = await prisma.news_dislike.upsert({
+     *   create: {
+     *     // ... data to create a News_dislike
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the News_dislike we want to update
+     *   }
+     * })
+     */
+    upsert<T extends news_dislikeUpsertArgs>(args: SelectSubset<T, news_dislikeUpsertArgs<ExtArgs>>): Prisma__news_dislikeClient<$Result.GetResult<Prisma.$news_dislikePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of News_dislikes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {news_dislikeCountArgs} args - Arguments to filter News_dislikes to count.
+     * @example
+     * // Count the number of News_dislikes
+     * const count = await prisma.news_dislike.count({
+     *   where: {
+     *     // ... the filter for the News_dislikes we want to count
+     *   }
+     * })
+    **/
+    count<T extends news_dislikeCountArgs>(
+      args?: Subset<T, news_dislikeCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], News_dislikeCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a News_dislike.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {News_dislikeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends News_dislikeAggregateArgs>(args: Subset<T, News_dislikeAggregateArgs>): Prisma.PrismaPromise<GetNews_dislikeAggregateType<T>>
+
+    /**
+     * Group by News_dislike.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {news_dislikeGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends news_dislikeGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: news_dislikeGroupByArgs['orderBy'] }
+        : { orderBy?: news_dislikeGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, news_dislikeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetNews_dislikeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the news_dislike model
+   */
+  readonly fields: news_dislikeFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for news_dislike.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__news_dislikeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends userDefaultArgs<ExtArgs> = {}>(args?: Subset<T, userDefaultArgs<ExtArgs>>): Prisma__userClient<$Result.GetResult<Prisma.$userPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    news<T extends newsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, newsDefaultArgs<ExtArgs>>): Prisma__newsClient<$Result.GetResult<Prisma.$newsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the news_dislike model
+   */
+  interface news_dislikeFieldRefs {
+    readonly id: FieldRef<"news_dislike", 'String'>
+    readonly user_id: FieldRef<"news_dislike", 'String'>
+    readonly news_id: FieldRef<"news_dislike", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * news_dislike findUnique
+   */
+  export type news_dislikeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_dislike
+     */
+    select?: news_dislikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_dislike
+     */
+    omit?: news_dislikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_dislikeInclude<ExtArgs> | null
+    /**
+     * Filter, which news_dislike to fetch.
+     */
+    where: news_dislikeWhereUniqueInput
+  }
+
+  /**
+   * news_dislike findUniqueOrThrow
+   */
+  export type news_dislikeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_dislike
+     */
+    select?: news_dislikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_dislike
+     */
+    omit?: news_dislikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_dislikeInclude<ExtArgs> | null
+    /**
+     * Filter, which news_dislike to fetch.
+     */
+    where: news_dislikeWhereUniqueInput
+  }
+
+  /**
+   * news_dislike findFirst
+   */
+  export type news_dislikeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_dislike
+     */
+    select?: news_dislikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_dislike
+     */
+    omit?: news_dislikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_dislikeInclude<ExtArgs> | null
+    /**
+     * Filter, which news_dislike to fetch.
+     */
+    where?: news_dislikeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of news_dislikes to fetch.
+     */
+    orderBy?: news_dislikeOrderByWithRelationInput | news_dislikeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for news_dislikes.
+     */
+    cursor?: news_dislikeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` news_dislikes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` news_dislikes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of news_dislikes.
+     */
+    distinct?: News_dislikeScalarFieldEnum | News_dislikeScalarFieldEnum[]
+  }
+
+  /**
+   * news_dislike findFirstOrThrow
+   */
+  export type news_dislikeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_dislike
+     */
+    select?: news_dislikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_dislike
+     */
+    omit?: news_dislikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_dislikeInclude<ExtArgs> | null
+    /**
+     * Filter, which news_dislike to fetch.
+     */
+    where?: news_dislikeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of news_dislikes to fetch.
+     */
+    orderBy?: news_dislikeOrderByWithRelationInput | news_dislikeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for news_dislikes.
+     */
+    cursor?: news_dislikeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` news_dislikes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` news_dislikes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of news_dislikes.
+     */
+    distinct?: News_dislikeScalarFieldEnum | News_dislikeScalarFieldEnum[]
+  }
+
+  /**
+   * news_dislike findMany
+   */
+  export type news_dislikeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_dislike
+     */
+    select?: news_dislikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_dislike
+     */
+    omit?: news_dislikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_dislikeInclude<ExtArgs> | null
+    /**
+     * Filter, which news_dislikes to fetch.
+     */
+    where?: news_dislikeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of news_dislikes to fetch.
+     */
+    orderBy?: news_dislikeOrderByWithRelationInput | news_dislikeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing news_dislikes.
+     */
+    cursor?: news_dislikeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` news_dislikes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` news_dislikes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of news_dislikes.
+     */
+    distinct?: News_dislikeScalarFieldEnum | News_dislikeScalarFieldEnum[]
+  }
+
+  /**
+   * news_dislike create
+   */
+  export type news_dislikeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_dislike
+     */
+    select?: news_dislikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_dislike
+     */
+    omit?: news_dislikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_dislikeInclude<ExtArgs> | null
+    /**
+     * The data needed to create a news_dislike.
+     */
+    data: XOR<news_dislikeCreateInput, news_dislikeUncheckedCreateInput>
+  }
+
+  /**
+   * news_dislike createMany
+   */
+  export type news_dislikeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many news_dislikes.
+     */
+    data: news_dislikeCreateManyInput | news_dislikeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * news_dislike createManyAndReturn
+   */
+  export type news_dislikeCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_dislike
+     */
+    select?: news_dislikeSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_dislike
+     */
+    omit?: news_dislikeOmit<ExtArgs> | null
+    /**
+     * The data used to create many news_dislikes.
+     */
+    data: news_dislikeCreateManyInput | news_dislikeCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_dislikeIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * news_dislike update
+   */
+  export type news_dislikeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_dislike
+     */
+    select?: news_dislikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_dislike
+     */
+    omit?: news_dislikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_dislikeInclude<ExtArgs> | null
+    /**
+     * The data needed to update a news_dislike.
+     */
+    data: XOR<news_dislikeUpdateInput, news_dislikeUncheckedUpdateInput>
+    /**
+     * Choose, which news_dislike to update.
+     */
+    where: news_dislikeWhereUniqueInput
+  }
+
+  /**
+   * news_dislike updateMany
+   */
+  export type news_dislikeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update news_dislikes.
+     */
+    data: XOR<news_dislikeUpdateManyMutationInput, news_dislikeUncheckedUpdateManyInput>
+    /**
+     * Filter which news_dislikes to update
+     */
+    where?: news_dislikeWhereInput
+    /**
+     * Limit how many news_dislikes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * news_dislike updateManyAndReturn
+   */
+  export type news_dislikeUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_dislike
+     */
+    select?: news_dislikeSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_dislike
+     */
+    omit?: news_dislikeOmit<ExtArgs> | null
+    /**
+     * The data used to update news_dislikes.
+     */
+    data: XOR<news_dislikeUpdateManyMutationInput, news_dislikeUncheckedUpdateManyInput>
+    /**
+     * Filter which news_dislikes to update
+     */
+    where?: news_dislikeWhereInput
+    /**
+     * Limit how many news_dislikes to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_dislikeIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * news_dislike upsert
+   */
+  export type news_dislikeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_dislike
+     */
+    select?: news_dislikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_dislike
+     */
+    omit?: news_dislikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_dislikeInclude<ExtArgs> | null
+    /**
+     * The filter to search for the news_dislike to update in case it exists.
+     */
+    where: news_dislikeWhereUniqueInput
+    /**
+     * In case the news_dislike found by the `where` argument doesn't exist, create a new news_dislike with this data.
+     */
+    create: XOR<news_dislikeCreateInput, news_dislikeUncheckedCreateInput>
+    /**
+     * In case the news_dislike was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<news_dislikeUpdateInput, news_dislikeUncheckedUpdateInput>
+  }
+
+  /**
+   * news_dislike delete
+   */
+  export type news_dislikeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_dislike
+     */
+    select?: news_dislikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_dislike
+     */
+    omit?: news_dislikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_dislikeInclude<ExtArgs> | null
+    /**
+     * Filter which news_dislike to delete.
+     */
+    where: news_dislikeWhereUniqueInput
+  }
+
+  /**
+   * news_dislike deleteMany
+   */
+  export type news_dislikeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which news_dislikes to delete
+     */
+    where?: news_dislikeWhereInput
+    /**
+     * Limit how many news_dislikes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * news_dislike without action
+   */
+  export type news_dislikeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_dislike
+     */
+    select?: news_dislikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_dislike
+     */
+    omit?: news_dislikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_dislikeInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -25268,6 +27756,24 @@ export namespace Prisma {
   export type News_favoriteScalarFieldEnum = (typeof News_favoriteScalarFieldEnum)[keyof typeof News_favoriteScalarFieldEnum]
 
 
+  export const News_likeScalarFieldEnum: {
+    id: 'id',
+    user_id: 'user_id',
+    news_id: 'news_id'
+  };
+
+  export type News_likeScalarFieldEnum = (typeof News_likeScalarFieldEnum)[keyof typeof News_likeScalarFieldEnum]
+
+
+  export const News_dislikeScalarFieldEnum: {
+    id: 'id',
+    user_id: 'user_id',
+    news_id: 'news_id'
+  };
+
+  export type News_dislikeScalarFieldEnum = (typeof News_dislikeScalarFieldEnum)[keyof typeof News_dislikeScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -25397,10 +27903,12 @@ export namespace Prisma {
     courseFavorites?: Course_favoriteListRelationFilter
     courseComments?: Course_commentListRelationFilter
     comments?: News_commentListRelationFilter
-    likedComments?: News_comment_likeListRelationFilter
-    dislikedComments?: News_comment_dislikeListRelationFilter
     ratedNews?: News_rateListRelationFilter
     favoriteNews?: News_favoriteListRelationFilter
+    news_likes?: News_likeListRelationFilter
+    news_dislikes?: News_dislikeListRelationFilter
+    likedComments?: News_comment_likeListRelationFilter
+    dislikedComments?: News_comment_dislikeListRelationFilter
   }
 
   export type userOrderByWithRelationInput = {
@@ -25420,10 +27928,12 @@ export namespace Prisma {
     courseFavorites?: course_favoriteOrderByRelationAggregateInput
     courseComments?: course_commentOrderByRelationAggregateInput
     comments?: news_commentOrderByRelationAggregateInput
-    likedComments?: news_comment_likeOrderByRelationAggregateInput
-    dislikedComments?: news_comment_dislikeOrderByRelationAggregateInput
     ratedNews?: news_rateOrderByRelationAggregateInput
     favoriteNews?: news_favoriteOrderByRelationAggregateInput
+    news_likes?: news_likeOrderByRelationAggregateInput
+    news_dislikes?: news_dislikeOrderByRelationAggregateInput
+    likedComments?: news_comment_likeOrderByRelationAggregateInput
+    dislikedComments?: news_comment_dislikeOrderByRelationAggregateInput
   }
 
   export type userWhereUniqueInput = Prisma.AtLeast<{
@@ -25446,10 +27956,12 @@ export namespace Prisma {
     courseFavorites?: Course_favoriteListRelationFilter
     courseComments?: Course_commentListRelationFilter
     comments?: News_commentListRelationFilter
-    likedComments?: News_comment_likeListRelationFilter
-    dislikedComments?: News_comment_dislikeListRelationFilter
     ratedNews?: News_rateListRelationFilter
     favoriteNews?: News_favoriteListRelationFilter
+    news_likes?: News_likeListRelationFilter
+    news_dislikes?: News_dislikeListRelationFilter
+    likedComments?: News_comment_likeListRelationFilter
+    dislikedComments?: News_comment_dislikeListRelationFilter
   }, "id" | "email" | "referral_code">
 
   export type userOrderByWithAggregationInput = {
@@ -26193,6 +28705,8 @@ export namespace Prisma {
     comments?: News_commentListRelationFilter
     rates?: News_rateListRelationFilter
     favorites?: News_favoriteListRelationFilter
+    news_likes?: News_likeListRelationFilter
+    news_dislikes?: News_dislikeListRelationFilter
   }
 
   export type newsOrderByWithRelationInput = {
@@ -26206,6 +28720,8 @@ export namespace Prisma {
     comments?: news_commentOrderByRelationAggregateInput
     rates?: news_rateOrderByRelationAggregateInput
     favorites?: news_favoriteOrderByRelationAggregateInput
+    news_likes?: news_likeOrderByRelationAggregateInput
+    news_dislikes?: news_dislikeOrderByRelationAggregateInput
   }
 
   export type newsWhereUniqueInput = Prisma.AtLeast<{
@@ -26222,6 +28738,8 @@ export namespace Prisma {
     comments?: News_commentListRelationFilter
     rates?: News_rateListRelationFilter
     favorites?: News_favoriteListRelationFilter
+    news_likes?: News_likeListRelationFilter
+    news_dislikes?: News_dislikeListRelationFilter
   }, "id">
 
   export type newsOrderByWithAggregationInput = {
@@ -26545,6 +29063,106 @@ export namespace Prisma {
     news_id?: IntWithAggregatesFilter<"news_favorite"> | number
   }
 
+  export type news_likeWhereInput = {
+    AND?: news_likeWhereInput | news_likeWhereInput[]
+    OR?: news_likeWhereInput[]
+    NOT?: news_likeWhereInput | news_likeWhereInput[]
+    id?: StringFilter<"news_like"> | string
+    user_id?: StringFilter<"news_like"> | string
+    news_id?: IntFilter<"news_like"> | number
+    user?: XOR<UserScalarRelationFilter, userWhereInput>
+    news?: XOR<NewsScalarRelationFilter, newsWhereInput>
+  }
+
+  export type news_likeOrderByWithRelationInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    news_id?: SortOrder
+    user?: userOrderByWithRelationInput
+    news?: newsOrderByWithRelationInput
+  }
+
+  export type news_likeWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: news_likeWhereInput | news_likeWhereInput[]
+    OR?: news_likeWhereInput[]
+    NOT?: news_likeWhereInput | news_likeWhereInput[]
+    user_id?: StringFilter<"news_like"> | string
+    news_id?: IntFilter<"news_like"> | number
+    user?: XOR<UserScalarRelationFilter, userWhereInput>
+    news?: XOR<NewsScalarRelationFilter, newsWhereInput>
+  }, "id">
+
+  export type news_likeOrderByWithAggregationInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    news_id?: SortOrder
+    _count?: news_likeCountOrderByAggregateInput
+    _avg?: news_likeAvgOrderByAggregateInput
+    _max?: news_likeMaxOrderByAggregateInput
+    _min?: news_likeMinOrderByAggregateInput
+    _sum?: news_likeSumOrderByAggregateInput
+  }
+
+  export type news_likeScalarWhereWithAggregatesInput = {
+    AND?: news_likeScalarWhereWithAggregatesInput | news_likeScalarWhereWithAggregatesInput[]
+    OR?: news_likeScalarWhereWithAggregatesInput[]
+    NOT?: news_likeScalarWhereWithAggregatesInput | news_likeScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"news_like"> | string
+    user_id?: StringWithAggregatesFilter<"news_like"> | string
+    news_id?: IntWithAggregatesFilter<"news_like"> | number
+  }
+
+  export type news_dislikeWhereInput = {
+    AND?: news_dislikeWhereInput | news_dislikeWhereInput[]
+    OR?: news_dislikeWhereInput[]
+    NOT?: news_dislikeWhereInput | news_dislikeWhereInput[]
+    id?: StringFilter<"news_dislike"> | string
+    user_id?: StringFilter<"news_dislike"> | string
+    news_id?: IntFilter<"news_dislike"> | number
+    user?: XOR<UserScalarRelationFilter, userWhereInput>
+    news?: XOR<NewsScalarRelationFilter, newsWhereInput>
+  }
+
+  export type news_dislikeOrderByWithRelationInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    news_id?: SortOrder
+    user?: userOrderByWithRelationInput
+    news?: newsOrderByWithRelationInput
+  }
+
+  export type news_dislikeWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: news_dislikeWhereInput | news_dislikeWhereInput[]
+    OR?: news_dislikeWhereInput[]
+    NOT?: news_dislikeWhereInput | news_dislikeWhereInput[]
+    user_id?: StringFilter<"news_dislike"> | string
+    news_id?: IntFilter<"news_dislike"> | number
+    user?: XOR<UserScalarRelationFilter, userWhereInput>
+    news?: XOR<NewsScalarRelationFilter, newsWhereInput>
+  }, "id">
+
+  export type news_dislikeOrderByWithAggregationInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    news_id?: SortOrder
+    _count?: news_dislikeCountOrderByAggregateInput
+    _avg?: news_dislikeAvgOrderByAggregateInput
+    _max?: news_dislikeMaxOrderByAggregateInput
+    _min?: news_dislikeMinOrderByAggregateInput
+    _sum?: news_dislikeSumOrderByAggregateInput
+  }
+
+  export type news_dislikeScalarWhereWithAggregatesInput = {
+    AND?: news_dislikeScalarWhereWithAggregatesInput | news_dislikeScalarWhereWithAggregatesInput[]
+    OR?: news_dislikeScalarWhereWithAggregatesInput[]
+    NOT?: news_dislikeScalarWhereWithAggregatesInput | news_dislikeScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"news_dislike"> | string
+    user_id?: StringWithAggregatesFilter<"news_dislike"> | string
+    news_id?: IntWithAggregatesFilter<"news_dislike"> | number
+  }
+
   export type userCreateInput = {
     id?: string
     name: string
@@ -26562,10 +29180,12 @@ export namespace Prisma {
     courseFavorites?: course_favoriteCreateNestedManyWithoutUserInput
     courseComments?: course_commentCreateNestedManyWithoutUserInput
     comments?: news_commentCreateNestedManyWithoutUserInput
-    likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
-    dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
     ratedNews?: news_rateCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteCreateNestedManyWithoutUserInput
+    news_likes?: news_likeCreateNestedManyWithoutUserInput
+    news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
+    likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
+    dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
   }
 
   export type userUncheckedCreateInput = {
@@ -26585,10 +29205,12 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutUserInput
     courseComments?: course_commentUncheckedCreateNestedManyWithoutUserInput
     comments?: news_commentUncheckedCreateNestedManyWithoutUserInput
-    likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
-    dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
     ratedNews?: news_rateUncheckedCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteUncheckedCreateNestedManyWithoutUserInput
+    news_likes?: news_likeUncheckedCreateNestedManyWithoutUserInput
+    news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
+    likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
+    dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type userUpdateInput = {
@@ -26608,10 +29230,12 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUpdateManyWithoutUserNestedInput
     comments?: news_commentUpdateManyWithoutUserNestedInput
-    likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
-    dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
     ratedNews?: news_rateUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUpdateManyWithoutUserNestedInput
+    news_likes?: news_likeUpdateManyWithoutUserNestedInput
+    news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
+    likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
+    dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
   }
 
   export type userUncheckedUpdateInput = {
@@ -26631,10 +29255,12 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUncheckedUpdateManyWithoutUserNestedInput
     comments?: news_commentUncheckedUpdateManyWithoutUserNestedInput
-    likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
-    dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
     ratedNews?: news_rateUncheckedUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUncheckedUpdateManyWithoutUserNestedInput
+    news_likes?: news_likeUncheckedUpdateManyWithoutUserNestedInput
+    news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
+    likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
+    dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type userCreateManyInput = {
@@ -27355,6 +29981,8 @@ export namespace Prisma {
     comments?: news_commentCreateNestedManyWithoutNewsInput
     rates?: news_rateCreateNestedManyWithoutNewsInput
     favorites?: news_favoriteCreateNestedManyWithoutNewsInput
+    news_likes?: news_likeCreateNestedManyWithoutNewsInput
+    news_dislikes?: news_dislikeCreateNestedManyWithoutNewsInput
   }
 
   export type newsUncheckedCreateInput = {
@@ -27368,6 +29996,8 @@ export namespace Prisma {
     comments?: news_commentUncheckedCreateNestedManyWithoutNewsInput
     rates?: news_rateUncheckedCreateNestedManyWithoutNewsInput
     favorites?: news_favoriteUncheckedCreateNestedManyWithoutNewsInput
+    news_likes?: news_likeUncheckedCreateNestedManyWithoutNewsInput
+    news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutNewsInput
   }
 
   export type newsUpdateInput = {
@@ -27380,6 +30010,8 @@ export namespace Prisma {
     comments?: news_commentUpdateManyWithoutNewsNestedInput
     rates?: news_rateUpdateManyWithoutNewsNestedInput
     favorites?: news_favoriteUpdateManyWithoutNewsNestedInput
+    news_likes?: news_likeUpdateManyWithoutNewsNestedInput
+    news_dislikes?: news_dislikeUpdateManyWithoutNewsNestedInput
   }
 
   export type newsUncheckedUpdateInput = {
@@ -27393,6 +30025,8 @@ export namespace Prisma {
     comments?: news_commentUncheckedUpdateManyWithoutNewsNestedInput
     rates?: news_rateUncheckedUpdateManyWithoutNewsNestedInput
     favorites?: news_favoriteUncheckedUpdateManyWithoutNewsNestedInput
+    news_likes?: news_likeUncheckedUpdateManyWithoutNewsNestedInput
+    news_dislikes?: news_dislikeUncheckedUpdateManyWithoutNewsNestedInput
   }
 
   export type newsCreateManyInput = {
@@ -27684,6 +30318,86 @@ export namespace Prisma {
     news_id?: IntFieldUpdateOperationsInput | number
   }
 
+  export type news_likeCreateInput = {
+    id?: string
+    user: userCreateNestedOneWithoutNews_likesInput
+    news: newsCreateNestedOneWithoutNews_likesInput
+  }
+
+  export type news_likeUncheckedCreateInput = {
+    id?: string
+    user_id: string
+    news_id: number
+  }
+
+  export type news_likeUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user?: userUpdateOneRequiredWithoutNews_likesNestedInput
+    news?: newsUpdateOneRequiredWithoutNews_likesNestedInput
+  }
+
+  export type news_likeUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    news_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type news_likeCreateManyInput = {
+    id?: string
+    user_id: string
+    news_id: number
+  }
+
+  export type news_likeUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type news_likeUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    news_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type news_dislikeCreateInput = {
+    id?: string
+    user: userCreateNestedOneWithoutNews_dislikesInput
+    news: newsCreateNestedOneWithoutNews_dislikesInput
+  }
+
+  export type news_dislikeUncheckedCreateInput = {
+    id?: string
+    user_id: string
+    news_id: number
+  }
+
+  export type news_dislikeUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user?: userUpdateOneRequiredWithoutNews_dislikesNestedInput
+    news?: newsUpdateOneRequiredWithoutNews_dislikesNestedInput
+  }
+
+  export type news_dislikeUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    news_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type news_dislikeCreateManyInput = {
+    id?: string
+    user_id: string
+    news_id: number
+  }
+
+  export type news_dislikeUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type news_dislikeUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    news_id?: IntFieldUpdateOperationsInput | number
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -27756,18 +30470,6 @@ export namespace Prisma {
     none?: news_commentWhereInput
   }
 
-  export type News_comment_likeListRelationFilter = {
-    every?: news_comment_likeWhereInput
-    some?: news_comment_likeWhereInput
-    none?: news_comment_likeWhereInput
-  }
-
-  export type News_comment_dislikeListRelationFilter = {
-    every?: news_comment_dislikeWhereInput
-    some?: news_comment_dislikeWhereInput
-    none?: news_comment_dislikeWhereInput
-  }
-
   export type News_rateListRelationFilter = {
     every?: news_rateWhereInput
     some?: news_rateWhereInput
@@ -27778,6 +30480,30 @@ export namespace Prisma {
     every?: news_favoriteWhereInput
     some?: news_favoriteWhereInput
     none?: news_favoriteWhereInput
+  }
+
+  export type News_likeListRelationFilter = {
+    every?: news_likeWhereInput
+    some?: news_likeWhereInput
+    none?: news_likeWhereInput
+  }
+
+  export type News_dislikeListRelationFilter = {
+    every?: news_dislikeWhereInput
+    some?: news_dislikeWhereInput
+    none?: news_dislikeWhereInput
+  }
+
+  export type News_comment_likeListRelationFilter = {
+    every?: news_comment_likeWhereInput
+    some?: news_comment_likeWhereInput
+    none?: news_comment_likeWhereInput
+  }
+
+  export type News_comment_dislikeListRelationFilter = {
+    every?: news_comment_dislikeWhereInput
+    some?: news_comment_dislikeWhereInput
+    none?: news_comment_dislikeWhereInput
   }
 
   export type SortOrderInput = {
@@ -27813,19 +30539,27 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type news_comment_likeOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type news_comment_dislikeOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type news_rateOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type news_favoriteOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type news_likeOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type news_dislikeOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type news_comment_likeOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type news_comment_dislikeOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -28557,6 +31291,58 @@ export namespace Prisma {
     news_id?: SortOrder
   }
 
+  export type news_likeCountOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    news_id?: SortOrder
+  }
+
+  export type news_likeAvgOrderByAggregateInput = {
+    news_id?: SortOrder
+  }
+
+  export type news_likeMaxOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    news_id?: SortOrder
+  }
+
+  export type news_likeMinOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    news_id?: SortOrder
+  }
+
+  export type news_likeSumOrderByAggregateInput = {
+    news_id?: SortOrder
+  }
+
+  export type news_dislikeCountOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    news_id?: SortOrder
+  }
+
+  export type news_dislikeAvgOrderByAggregateInput = {
+    news_id?: SortOrder
+  }
+
+  export type news_dislikeMaxOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    news_id?: SortOrder
+  }
+
+  export type news_dislikeMinOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    news_id?: SortOrder
+  }
+
+  export type news_dislikeSumOrderByAggregateInput = {
+    news_id?: SortOrder
+  }
+
   export type user_roleCreateNestedManyWithoutUserInput = {
     create?: XOR<user_roleCreateWithoutUserInput, user_roleUncheckedCreateWithoutUserInput> | user_roleCreateWithoutUserInput[] | user_roleUncheckedCreateWithoutUserInput[]
     connectOrCreate?: user_roleCreateOrConnectWithoutUserInput | user_roleCreateOrConnectWithoutUserInput[]
@@ -28606,20 +31392,6 @@ export namespace Prisma {
     connect?: news_commentWhereUniqueInput | news_commentWhereUniqueInput[]
   }
 
-  export type news_comment_likeCreateNestedManyWithoutUserInput = {
-    create?: XOR<news_comment_likeCreateWithoutUserInput, news_comment_likeUncheckedCreateWithoutUserInput> | news_comment_likeCreateWithoutUserInput[] | news_comment_likeUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: news_comment_likeCreateOrConnectWithoutUserInput | news_comment_likeCreateOrConnectWithoutUserInput[]
-    createMany?: news_comment_likeCreateManyUserInputEnvelope
-    connect?: news_comment_likeWhereUniqueInput | news_comment_likeWhereUniqueInput[]
-  }
-
-  export type news_comment_dislikeCreateNestedManyWithoutUserInput = {
-    create?: XOR<news_comment_dislikeCreateWithoutUserInput, news_comment_dislikeUncheckedCreateWithoutUserInput> | news_comment_dislikeCreateWithoutUserInput[] | news_comment_dislikeUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: news_comment_dislikeCreateOrConnectWithoutUserInput | news_comment_dislikeCreateOrConnectWithoutUserInput[]
-    createMany?: news_comment_dislikeCreateManyUserInputEnvelope
-    connect?: news_comment_dislikeWhereUniqueInput | news_comment_dislikeWhereUniqueInput[]
-  }
-
   export type news_rateCreateNestedManyWithoutUserInput = {
     create?: XOR<news_rateCreateWithoutUserInput, news_rateUncheckedCreateWithoutUserInput> | news_rateCreateWithoutUserInput[] | news_rateUncheckedCreateWithoutUserInput[]
     connectOrCreate?: news_rateCreateOrConnectWithoutUserInput | news_rateCreateOrConnectWithoutUserInput[]
@@ -28632,6 +31404,34 @@ export namespace Prisma {
     connectOrCreate?: news_favoriteCreateOrConnectWithoutUserInput | news_favoriteCreateOrConnectWithoutUserInput[]
     createMany?: news_favoriteCreateManyUserInputEnvelope
     connect?: news_favoriteWhereUniqueInput | news_favoriteWhereUniqueInput[]
+  }
+
+  export type news_likeCreateNestedManyWithoutUserInput = {
+    create?: XOR<news_likeCreateWithoutUserInput, news_likeUncheckedCreateWithoutUserInput> | news_likeCreateWithoutUserInput[] | news_likeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: news_likeCreateOrConnectWithoutUserInput | news_likeCreateOrConnectWithoutUserInput[]
+    createMany?: news_likeCreateManyUserInputEnvelope
+    connect?: news_likeWhereUniqueInput | news_likeWhereUniqueInput[]
+  }
+
+  export type news_dislikeCreateNestedManyWithoutUserInput = {
+    create?: XOR<news_dislikeCreateWithoutUserInput, news_dislikeUncheckedCreateWithoutUserInput> | news_dislikeCreateWithoutUserInput[] | news_dislikeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: news_dislikeCreateOrConnectWithoutUserInput | news_dislikeCreateOrConnectWithoutUserInput[]
+    createMany?: news_dislikeCreateManyUserInputEnvelope
+    connect?: news_dislikeWhereUniqueInput | news_dislikeWhereUniqueInput[]
+  }
+
+  export type news_comment_likeCreateNestedManyWithoutUserInput = {
+    create?: XOR<news_comment_likeCreateWithoutUserInput, news_comment_likeUncheckedCreateWithoutUserInput> | news_comment_likeCreateWithoutUserInput[] | news_comment_likeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: news_comment_likeCreateOrConnectWithoutUserInput | news_comment_likeCreateOrConnectWithoutUserInput[]
+    createMany?: news_comment_likeCreateManyUserInputEnvelope
+    connect?: news_comment_likeWhereUniqueInput | news_comment_likeWhereUniqueInput[]
+  }
+
+  export type news_comment_dislikeCreateNestedManyWithoutUserInput = {
+    create?: XOR<news_comment_dislikeCreateWithoutUserInput, news_comment_dislikeUncheckedCreateWithoutUserInput> | news_comment_dislikeCreateWithoutUserInput[] | news_comment_dislikeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: news_comment_dislikeCreateOrConnectWithoutUserInput | news_comment_dislikeCreateOrConnectWithoutUserInput[]
+    createMany?: news_comment_dislikeCreateManyUserInputEnvelope
+    connect?: news_comment_dislikeWhereUniqueInput | news_comment_dislikeWhereUniqueInput[]
   }
 
   export type user_roleUncheckedCreateNestedManyWithoutUserInput = {
@@ -28683,20 +31483,6 @@ export namespace Prisma {
     connect?: news_commentWhereUniqueInput | news_commentWhereUniqueInput[]
   }
 
-  export type news_comment_likeUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<news_comment_likeCreateWithoutUserInput, news_comment_likeUncheckedCreateWithoutUserInput> | news_comment_likeCreateWithoutUserInput[] | news_comment_likeUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: news_comment_likeCreateOrConnectWithoutUserInput | news_comment_likeCreateOrConnectWithoutUserInput[]
-    createMany?: news_comment_likeCreateManyUserInputEnvelope
-    connect?: news_comment_likeWhereUniqueInput | news_comment_likeWhereUniqueInput[]
-  }
-
-  export type news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<news_comment_dislikeCreateWithoutUserInput, news_comment_dislikeUncheckedCreateWithoutUserInput> | news_comment_dislikeCreateWithoutUserInput[] | news_comment_dislikeUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: news_comment_dislikeCreateOrConnectWithoutUserInput | news_comment_dislikeCreateOrConnectWithoutUserInput[]
-    createMany?: news_comment_dislikeCreateManyUserInputEnvelope
-    connect?: news_comment_dislikeWhereUniqueInput | news_comment_dislikeWhereUniqueInput[]
-  }
-
   export type news_rateUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<news_rateCreateWithoutUserInput, news_rateUncheckedCreateWithoutUserInput> | news_rateCreateWithoutUserInput[] | news_rateUncheckedCreateWithoutUserInput[]
     connectOrCreate?: news_rateCreateOrConnectWithoutUserInput | news_rateCreateOrConnectWithoutUserInput[]
@@ -28709,6 +31495,34 @@ export namespace Prisma {
     connectOrCreate?: news_favoriteCreateOrConnectWithoutUserInput | news_favoriteCreateOrConnectWithoutUserInput[]
     createMany?: news_favoriteCreateManyUserInputEnvelope
     connect?: news_favoriteWhereUniqueInput | news_favoriteWhereUniqueInput[]
+  }
+
+  export type news_likeUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<news_likeCreateWithoutUserInput, news_likeUncheckedCreateWithoutUserInput> | news_likeCreateWithoutUserInput[] | news_likeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: news_likeCreateOrConnectWithoutUserInput | news_likeCreateOrConnectWithoutUserInput[]
+    createMany?: news_likeCreateManyUserInputEnvelope
+    connect?: news_likeWhereUniqueInput | news_likeWhereUniqueInput[]
+  }
+
+  export type news_dislikeUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<news_dislikeCreateWithoutUserInput, news_dislikeUncheckedCreateWithoutUserInput> | news_dislikeCreateWithoutUserInput[] | news_dislikeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: news_dislikeCreateOrConnectWithoutUserInput | news_dislikeCreateOrConnectWithoutUserInput[]
+    createMany?: news_dislikeCreateManyUserInputEnvelope
+    connect?: news_dislikeWhereUniqueInput | news_dislikeWhereUniqueInput[]
+  }
+
+  export type news_comment_likeUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<news_comment_likeCreateWithoutUserInput, news_comment_likeUncheckedCreateWithoutUserInput> | news_comment_likeCreateWithoutUserInput[] | news_comment_likeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: news_comment_likeCreateOrConnectWithoutUserInput | news_comment_likeCreateOrConnectWithoutUserInput[]
+    createMany?: news_comment_likeCreateManyUserInputEnvelope
+    connect?: news_comment_likeWhereUniqueInput | news_comment_likeWhereUniqueInput[]
+  }
+
+  export type news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<news_comment_dislikeCreateWithoutUserInput, news_comment_dislikeUncheckedCreateWithoutUserInput> | news_comment_dislikeCreateWithoutUserInput[] | news_comment_dislikeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: news_comment_dislikeCreateOrConnectWithoutUserInput | news_comment_dislikeCreateOrConnectWithoutUserInput[]
+    createMany?: news_comment_dislikeCreateManyUserInputEnvelope
+    connect?: news_comment_dislikeWhereUniqueInput | news_comment_dislikeWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -28817,34 +31631,6 @@ export namespace Prisma {
     deleteMany?: news_commentScalarWhereInput | news_commentScalarWhereInput[]
   }
 
-  export type news_comment_likeUpdateManyWithoutUserNestedInput = {
-    create?: XOR<news_comment_likeCreateWithoutUserInput, news_comment_likeUncheckedCreateWithoutUserInput> | news_comment_likeCreateWithoutUserInput[] | news_comment_likeUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: news_comment_likeCreateOrConnectWithoutUserInput | news_comment_likeCreateOrConnectWithoutUserInput[]
-    upsert?: news_comment_likeUpsertWithWhereUniqueWithoutUserInput | news_comment_likeUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: news_comment_likeCreateManyUserInputEnvelope
-    set?: news_comment_likeWhereUniqueInput | news_comment_likeWhereUniqueInput[]
-    disconnect?: news_comment_likeWhereUniqueInput | news_comment_likeWhereUniqueInput[]
-    delete?: news_comment_likeWhereUniqueInput | news_comment_likeWhereUniqueInput[]
-    connect?: news_comment_likeWhereUniqueInput | news_comment_likeWhereUniqueInput[]
-    update?: news_comment_likeUpdateWithWhereUniqueWithoutUserInput | news_comment_likeUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: news_comment_likeUpdateManyWithWhereWithoutUserInput | news_comment_likeUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: news_comment_likeScalarWhereInput | news_comment_likeScalarWhereInput[]
-  }
-
-  export type news_comment_dislikeUpdateManyWithoutUserNestedInput = {
-    create?: XOR<news_comment_dislikeCreateWithoutUserInput, news_comment_dislikeUncheckedCreateWithoutUserInput> | news_comment_dislikeCreateWithoutUserInput[] | news_comment_dislikeUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: news_comment_dislikeCreateOrConnectWithoutUserInput | news_comment_dislikeCreateOrConnectWithoutUserInput[]
-    upsert?: news_comment_dislikeUpsertWithWhereUniqueWithoutUserInput | news_comment_dislikeUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: news_comment_dislikeCreateManyUserInputEnvelope
-    set?: news_comment_dislikeWhereUniqueInput | news_comment_dislikeWhereUniqueInput[]
-    disconnect?: news_comment_dislikeWhereUniqueInput | news_comment_dislikeWhereUniqueInput[]
-    delete?: news_comment_dislikeWhereUniqueInput | news_comment_dislikeWhereUniqueInput[]
-    connect?: news_comment_dislikeWhereUniqueInput | news_comment_dislikeWhereUniqueInput[]
-    update?: news_comment_dislikeUpdateWithWhereUniqueWithoutUserInput | news_comment_dislikeUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: news_comment_dislikeUpdateManyWithWhereWithoutUserInput | news_comment_dislikeUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: news_comment_dislikeScalarWhereInput | news_comment_dislikeScalarWhereInput[]
-  }
-
   export type news_rateUpdateManyWithoutUserNestedInput = {
     create?: XOR<news_rateCreateWithoutUserInput, news_rateUncheckedCreateWithoutUserInput> | news_rateCreateWithoutUserInput[] | news_rateUncheckedCreateWithoutUserInput[]
     connectOrCreate?: news_rateCreateOrConnectWithoutUserInput | news_rateCreateOrConnectWithoutUserInput[]
@@ -28871,6 +31657,62 @@ export namespace Prisma {
     update?: news_favoriteUpdateWithWhereUniqueWithoutUserInput | news_favoriteUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: news_favoriteUpdateManyWithWhereWithoutUserInput | news_favoriteUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: news_favoriteScalarWhereInput | news_favoriteScalarWhereInput[]
+  }
+
+  export type news_likeUpdateManyWithoutUserNestedInput = {
+    create?: XOR<news_likeCreateWithoutUserInput, news_likeUncheckedCreateWithoutUserInput> | news_likeCreateWithoutUserInput[] | news_likeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: news_likeCreateOrConnectWithoutUserInput | news_likeCreateOrConnectWithoutUserInput[]
+    upsert?: news_likeUpsertWithWhereUniqueWithoutUserInput | news_likeUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: news_likeCreateManyUserInputEnvelope
+    set?: news_likeWhereUniqueInput | news_likeWhereUniqueInput[]
+    disconnect?: news_likeWhereUniqueInput | news_likeWhereUniqueInput[]
+    delete?: news_likeWhereUniqueInput | news_likeWhereUniqueInput[]
+    connect?: news_likeWhereUniqueInput | news_likeWhereUniqueInput[]
+    update?: news_likeUpdateWithWhereUniqueWithoutUserInput | news_likeUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: news_likeUpdateManyWithWhereWithoutUserInput | news_likeUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: news_likeScalarWhereInput | news_likeScalarWhereInput[]
+  }
+
+  export type news_dislikeUpdateManyWithoutUserNestedInput = {
+    create?: XOR<news_dislikeCreateWithoutUserInput, news_dislikeUncheckedCreateWithoutUserInput> | news_dislikeCreateWithoutUserInput[] | news_dislikeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: news_dislikeCreateOrConnectWithoutUserInput | news_dislikeCreateOrConnectWithoutUserInput[]
+    upsert?: news_dislikeUpsertWithWhereUniqueWithoutUserInput | news_dislikeUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: news_dislikeCreateManyUserInputEnvelope
+    set?: news_dislikeWhereUniqueInput | news_dislikeWhereUniqueInput[]
+    disconnect?: news_dislikeWhereUniqueInput | news_dislikeWhereUniqueInput[]
+    delete?: news_dislikeWhereUniqueInput | news_dislikeWhereUniqueInput[]
+    connect?: news_dislikeWhereUniqueInput | news_dislikeWhereUniqueInput[]
+    update?: news_dislikeUpdateWithWhereUniqueWithoutUserInput | news_dislikeUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: news_dislikeUpdateManyWithWhereWithoutUserInput | news_dislikeUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: news_dislikeScalarWhereInput | news_dislikeScalarWhereInput[]
+  }
+
+  export type news_comment_likeUpdateManyWithoutUserNestedInput = {
+    create?: XOR<news_comment_likeCreateWithoutUserInput, news_comment_likeUncheckedCreateWithoutUserInput> | news_comment_likeCreateWithoutUserInput[] | news_comment_likeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: news_comment_likeCreateOrConnectWithoutUserInput | news_comment_likeCreateOrConnectWithoutUserInput[]
+    upsert?: news_comment_likeUpsertWithWhereUniqueWithoutUserInput | news_comment_likeUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: news_comment_likeCreateManyUserInputEnvelope
+    set?: news_comment_likeWhereUniqueInput | news_comment_likeWhereUniqueInput[]
+    disconnect?: news_comment_likeWhereUniqueInput | news_comment_likeWhereUniqueInput[]
+    delete?: news_comment_likeWhereUniqueInput | news_comment_likeWhereUniqueInput[]
+    connect?: news_comment_likeWhereUniqueInput | news_comment_likeWhereUniqueInput[]
+    update?: news_comment_likeUpdateWithWhereUniqueWithoutUserInput | news_comment_likeUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: news_comment_likeUpdateManyWithWhereWithoutUserInput | news_comment_likeUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: news_comment_likeScalarWhereInput | news_comment_likeScalarWhereInput[]
+  }
+
+  export type news_comment_dislikeUpdateManyWithoutUserNestedInput = {
+    create?: XOR<news_comment_dislikeCreateWithoutUserInput, news_comment_dislikeUncheckedCreateWithoutUserInput> | news_comment_dislikeCreateWithoutUserInput[] | news_comment_dislikeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: news_comment_dislikeCreateOrConnectWithoutUserInput | news_comment_dislikeCreateOrConnectWithoutUserInput[]
+    upsert?: news_comment_dislikeUpsertWithWhereUniqueWithoutUserInput | news_comment_dislikeUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: news_comment_dislikeCreateManyUserInputEnvelope
+    set?: news_comment_dislikeWhereUniqueInput | news_comment_dislikeWhereUniqueInput[]
+    disconnect?: news_comment_dislikeWhereUniqueInput | news_comment_dislikeWhereUniqueInput[]
+    delete?: news_comment_dislikeWhereUniqueInput | news_comment_dislikeWhereUniqueInput[]
+    connect?: news_comment_dislikeWhereUniqueInput | news_comment_dislikeWhereUniqueInput[]
+    update?: news_comment_dislikeUpdateWithWhereUniqueWithoutUserInput | news_comment_dislikeUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: news_comment_dislikeUpdateManyWithWhereWithoutUserInput | news_comment_dislikeUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: news_comment_dislikeScalarWhereInput | news_comment_dislikeScalarWhereInput[]
   }
 
   export type user_roleUncheckedUpdateManyWithoutUserNestedInput = {
@@ -28971,34 +31813,6 @@ export namespace Prisma {
     deleteMany?: news_commentScalarWhereInput | news_commentScalarWhereInput[]
   }
 
-  export type news_comment_likeUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<news_comment_likeCreateWithoutUserInput, news_comment_likeUncheckedCreateWithoutUserInput> | news_comment_likeCreateWithoutUserInput[] | news_comment_likeUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: news_comment_likeCreateOrConnectWithoutUserInput | news_comment_likeCreateOrConnectWithoutUserInput[]
-    upsert?: news_comment_likeUpsertWithWhereUniqueWithoutUserInput | news_comment_likeUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: news_comment_likeCreateManyUserInputEnvelope
-    set?: news_comment_likeWhereUniqueInput | news_comment_likeWhereUniqueInput[]
-    disconnect?: news_comment_likeWhereUniqueInput | news_comment_likeWhereUniqueInput[]
-    delete?: news_comment_likeWhereUniqueInput | news_comment_likeWhereUniqueInput[]
-    connect?: news_comment_likeWhereUniqueInput | news_comment_likeWhereUniqueInput[]
-    update?: news_comment_likeUpdateWithWhereUniqueWithoutUserInput | news_comment_likeUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: news_comment_likeUpdateManyWithWhereWithoutUserInput | news_comment_likeUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: news_comment_likeScalarWhereInput | news_comment_likeScalarWhereInput[]
-  }
-
-  export type news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<news_comment_dislikeCreateWithoutUserInput, news_comment_dislikeUncheckedCreateWithoutUserInput> | news_comment_dislikeCreateWithoutUserInput[] | news_comment_dislikeUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: news_comment_dislikeCreateOrConnectWithoutUserInput | news_comment_dislikeCreateOrConnectWithoutUserInput[]
-    upsert?: news_comment_dislikeUpsertWithWhereUniqueWithoutUserInput | news_comment_dislikeUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: news_comment_dislikeCreateManyUserInputEnvelope
-    set?: news_comment_dislikeWhereUniqueInput | news_comment_dislikeWhereUniqueInput[]
-    disconnect?: news_comment_dislikeWhereUniqueInput | news_comment_dislikeWhereUniqueInput[]
-    delete?: news_comment_dislikeWhereUniqueInput | news_comment_dislikeWhereUniqueInput[]
-    connect?: news_comment_dislikeWhereUniqueInput | news_comment_dislikeWhereUniqueInput[]
-    update?: news_comment_dislikeUpdateWithWhereUniqueWithoutUserInput | news_comment_dislikeUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: news_comment_dislikeUpdateManyWithWhereWithoutUserInput | news_comment_dislikeUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: news_comment_dislikeScalarWhereInput | news_comment_dislikeScalarWhereInput[]
-  }
-
   export type news_rateUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<news_rateCreateWithoutUserInput, news_rateUncheckedCreateWithoutUserInput> | news_rateCreateWithoutUserInput[] | news_rateUncheckedCreateWithoutUserInput[]
     connectOrCreate?: news_rateCreateOrConnectWithoutUserInput | news_rateCreateOrConnectWithoutUserInput[]
@@ -29025,6 +31839,62 @@ export namespace Prisma {
     update?: news_favoriteUpdateWithWhereUniqueWithoutUserInput | news_favoriteUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: news_favoriteUpdateManyWithWhereWithoutUserInput | news_favoriteUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: news_favoriteScalarWhereInput | news_favoriteScalarWhereInput[]
+  }
+
+  export type news_likeUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<news_likeCreateWithoutUserInput, news_likeUncheckedCreateWithoutUserInput> | news_likeCreateWithoutUserInput[] | news_likeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: news_likeCreateOrConnectWithoutUserInput | news_likeCreateOrConnectWithoutUserInput[]
+    upsert?: news_likeUpsertWithWhereUniqueWithoutUserInput | news_likeUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: news_likeCreateManyUserInputEnvelope
+    set?: news_likeWhereUniqueInput | news_likeWhereUniqueInput[]
+    disconnect?: news_likeWhereUniqueInput | news_likeWhereUniqueInput[]
+    delete?: news_likeWhereUniqueInput | news_likeWhereUniqueInput[]
+    connect?: news_likeWhereUniqueInput | news_likeWhereUniqueInput[]
+    update?: news_likeUpdateWithWhereUniqueWithoutUserInput | news_likeUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: news_likeUpdateManyWithWhereWithoutUserInput | news_likeUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: news_likeScalarWhereInput | news_likeScalarWhereInput[]
+  }
+
+  export type news_dislikeUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<news_dislikeCreateWithoutUserInput, news_dislikeUncheckedCreateWithoutUserInput> | news_dislikeCreateWithoutUserInput[] | news_dislikeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: news_dislikeCreateOrConnectWithoutUserInput | news_dislikeCreateOrConnectWithoutUserInput[]
+    upsert?: news_dislikeUpsertWithWhereUniqueWithoutUserInput | news_dislikeUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: news_dislikeCreateManyUserInputEnvelope
+    set?: news_dislikeWhereUniqueInput | news_dislikeWhereUniqueInput[]
+    disconnect?: news_dislikeWhereUniqueInput | news_dislikeWhereUniqueInput[]
+    delete?: news_dislikeWhereUniqueInput | news_dislikeWhereUniqueInput[]
+    connect?: news_dislikeWhereUniqueInput | news_dislikeWhereUniqueInput[]
+    update?: news_dislikeUpdateWithWhereUniqueWithoutUserInput | news_dislikeUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: news_dislikeUpdateManyWithWhereWithoutUserInput | news_dislikeUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: news_dislikeScalarWhereInput | news_dislikeScalarWhereInput[]
+  }
+
+  export type news_comment_likeUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<news_comment_likeCreateWithoutUserInput, news_comment_likeUncheckedCreateWithoutUserInput> | news_comment_likeCreateWithoutUserInput[] | news_comment_likeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: news_comment_likeCreateOrConnectWithoutUserInput | news_comment_likeCreateOrConnectWithoutUserInput[]
+    upsert?: news_comment_likeUpsertWithWhereUniqueWithoutUserInput | news_comment_likeUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: news_comment_likeCreateManyUserInputEnvelope
+    set?: news_comment_likeWhereUniqueInput | news_comment_likeWhereUniqueInput[]
+    disconnect?: news_comment_likeWhereUniqueInput | news_comment_likeWhereUniqueInput[]
+    delete?: news_comment_likeWhereUniqueInput | news_comment_likeWhereUniqueInput[]
+    connect?: news_comment_likeWhereUniqueInput | news_comment_likeWhereUniqueInput[]
+    update?: news_comment_likeUpdateWithWhereUniqueWithoutUserInput | news_comment_likeUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: news_comment_likeUpdateManyWithWhereWithoutUserInput | news_comment_likeUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: news_comment_likeScalarWhereInput | news_comment_likeScalarWhereInput[]
+  }
+
+  export type news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<news_comment_dislikeCreateWithoutUserInput, news_comment_dislikeUncheckedCreateWithoutUserInput> | news_comment_dislikeCreateWithoutUserInput[] | news_comment_dislikeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: news_comment_dislikeCreateOrConnectWithoutUserInput | news_comment_dislikeCreateOrConnectWithoutUserInput[]
+    upsert?: news_comment_dislikeUpsertWithWhereUniqueWithoutUserInput | news_comment_dislikeUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: news_comment_dislikeCreateManyUserInputEnvelope
+    set?: news_comment_dislikeWhereUniqueInput | news_comment_dislikeWhereUniqueInput[]
+    disconnect?: news_comment_dislikeWhereUniqueInput | news_comment_dislikeWhereUniqueInput[]
+    delete?: news_comment_dislikeWhereUniqueInput | news_comment_dislikeWhereUniqueInput[]
+    connect?: news_comment_dislikeWhereUniqueInput | news_comment_dislikeWhereUniqueInput[]
+    update?: news_comment_dislikeUpdateWithWhereUniqueWithoutUserInput | news_comment_dislikeUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: news_comment_dislikeUpdateManyWithWhereWithoutUserInput | news_comment_dislikeUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: news_comment_dislikeScalarWhereInput | news_comment_dislikeScalarWhereInput[]
   }
 
   export type roleCreateNestedOneWithoutUserRolesInput = {
@@ -29662,6 +32532,20 @@ export namespace Prisma {
     connect?: news_favoriteWhereUniqueInput | news_favoriteWhereUniqueInput[]
   }
 
+  export type news_likeCreateNestedManyWithoutNewsInput = {
+    create?: XOR<news_likeCreateWithoutNewsInput, news_likeUncheckedCreateWithoutNewsInput> | news_likeCreateWithoutNewsInput[] | news_likeUncheckedCreateWithoutNewsInput[]
+    connectOrCreate?: news_likeCreateOrConnectWithoutNewsInput | news_likeCreateOrConnectWithoutNewsInput[]
+    createMany?: news_likeCreateManyNewsInputEnvelope
+    connect?: news_likeWhereUniqueInput | news_likeWhereUniqueInput[]
+  }
+
+  export type news_dislikeCreateNestedManyWithoutNewsInput = {
+    create?: XOR<news_dislikeCreateWithoutNewsInput, news_dislikeUncheckedCreateWithoutNewsInput> | news_dislikeCreateWithoutNewsInput[] | news_dislikeUncheckedCreateWithoutNewsInput[]
+    connectOrCreate?: news_dislikeCreateOrConnectWithoutNewsInput | news_dislikeCreateOrConnectWithoutNewsInput[]
+    createMany?: news_dislikeCreateManyNewsInputEnvelope
+    connect?: news_dislikeWhereUniqueInput | news_dislikeWhereUniqueInput[]
+  }
+
   export type news_commentUncheckedCreateNestedManyWithoutNewsInput = {
     create?: XOR<news_commentCreateWithoutNewsInput, news_commentUncheckedCreateWithoutNewsInput> | news_commentCreateWithoutNewsInput[] | news_commentUncheckedCreateWithoutNewsInput[]
     connectOrCreate?: news_commentCreateOrConnectWithoutNewsInput | news_commentCreateOrConnectWithoutNewsInput[]
@@ -29681,6 +32565,20 @@ export namespace Prisma {
     connectOrCreate?: news_favoriteCreateOrConnectWithoutNewsInput | news_favoriteCreateOrConnectWithoutNewsInput[]
     createMany?: news_favoriteCreateManyNewsInputEnvelope
     connect?: news_favoriteWhereUniqueInput | news_favoriteWhereUniqueInput[]
+  }
+
+  export type news_likeUncheckedCreateNestedManyWithoutNewsInput = {
+    create?: XOR<news_likeCreateWithoutNewsInput, news_likeUncheckedCreateWithoutNewsInput> | news_likeCreateWithoutNewsInput[] | news_likeUncheckedCreateWithoutNewsInput[]
+    connectOrCreate?: news_likeCreateOrConnectWithoutNewsInput | news_likeCreateOrConnectWithoutNewsInput[]
+    createMany?: news_likeCreateManyNewsInputEnvelope
+    connect?: news_likeWhereUniqueInput | news_likeWhereUniqueInput[]
+  }
+
+  export type news_dislikeUncheckedCreateNestedManyWithoutNewsInput = {
+    create?: XOR<news_dislikeCreateWithoutNewsInput, news_dislikeUncheckedCreateWithoutNewsInput> | news_dislikeCreateWithoutNewsInput[] | news_dislikeUncheckedCreateWithoutNewsInput[]
+    connectOrCreate?: news_dislikeCreateOrConnectWithoutNewsInput | news_dislikeCreateOrConnectWithoutNewsInput[]
+    createMany?: news_dislikeCreateManyNewsInputEnvelope
+    connect?: news_dislikeWhereUniqueInput | news_dislikeWhereUniqueInput[]
   }
 
   export type news_commentUpdateManyWithoutNewsNestedInput = {
@@ -29723,6 +32621,34 @@ export namespace Prisma {
     update?: news_favoriteUpdateWithWhereUniqueWithoutNewsInput | news_favoriteUpdateWithWhereUniqueWithoutNewsInput[]
     updateMany?: news_favoriteUpdateManyWithWhereWithoutNewsInput | news_favoriteUpdateManyWithWhereWithoutNewsInput[]
     deleteMany?: news_favoriteScalarWhereInput | news_favoriteScalarWhereInput[]
+  }
+
+  export type news_likeUpdateManyWithoutNewsNestedInput = {
+    create?: XOR<news_likeCreateWithoutNewsInput, news_likeUncheckedCreateWithoutNewsInput> | news_likeCreateWithoutNewsInput[] | news_likeUncheckedCreateWithoutNewsInput[]
+    connectOrCreate?: news_likeCreateOrConnectWithoutNewsInput | news_likeCreateOrConnectWithoutNewsInput[]
+    upsert?: news_likeUpsertWithWhereUniqueWithoutNewsInput | news_likeUpsertWithWhereUniqueWithoutNewsInput[]
+    createMany?: news_likeCreateManyNewsInputEnvelope
+    set?: news_likeWhereUniqueInput | news_likeWhereUniqueInput[]
+    disconnect?: news_likeWhereUniqueInput | news_likeWhereUniqueInput[]
+    delete?: news_likeWhereUniqueInput | news_likeWhereUniqueInput[]
+    connect?: news_likeWhereUniqueInput | news_likeWhereUniqueInput[]
+    update?: news_likeUpdateWithWhereUniqueWithoutNewsInput | news_likeUpdateWithWhereUniqueWithoutNewsInput[]
+    updateMany?: news_likeUpdateManyWithWhereWithoutNewsInput | news_likeUpdateManyWithWhereWithoutNewsInput[]
+    deleteMany?: news_likeScalarWhereInput | news_likeScalarWhereInput[]
+  }
+
+  export type news_dislikeUpdateManyWithoutNewsNestedInput = {
+    create?: XOR<news_dislikeCreateWithoutNewsInput, news_dislikeUncheckedCreateWithoutNewsInput> | news_dislikeCreateWithoutNewsInput[] | news_dislikeUncheckedCreateWithoutNewsInput[]
+    connectOrCreate?: news_dislikeCreateOrConnectWithoutNewsInput | news_dislikeCreateOrConnectWithoutNewsInput[]
+    upsert?: news_dislikeUpsertWithWhereUniqueWithoutNewsInput | news_dislikeUpsertWithWhereUniqueWithoutNewsInput[]
+    createMany?: news_dislikeCreateManyNewsInputEnvelope
+    set?: news_dislikeWhereUniqueInput | news_dislikeWhereUniqueInput[]
+    disconnect?: news_dislikeWhereUniqueInput | news_dislikeWhereUniqueInput[]
+    delete?: news_dislikeWhereUniqueInput | news_dislikeWhereUniqueInput[]
+    connect?: news_dislikeWhereUniqueInput | news_dislikeWhereUniqueInput[]
+    update?: news_dislikeUpdateWithWhereUniqueWithoutNewsInput | news_dislikeUpdateWithWhereUniqueWithoutNewsInput[]
+    updateMany?: news_dislikeUpdateManyWithWhereWithoutNewsInput | news_dislikeUpdateManyWithWhereWithoutNewsInput[]
+    deleteMany?: news_dislikeScalarWhereInput | news_dislikeScalarWhereInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -29773,6 +32699,34 @@ export namespace Prisma {
     update?: news_favoriteUpdateWithWhereUniqueWithoutNewsInput | news_favoriteUpdateWithWhereUniqueWithoutNewsInput[]
     updateMany?: news_favoriteUpdateManyWithWhereWithoutNewsInput | news_favoriteUpdateManyWithWhereWithoutNewsInput[]
     deleteMany?: news_favoriteScalarWhereInput | news_favoriteScalarWhereInput[]
+  }
+
+  export type news_likeUncheckedUpdateManyWithoutNewsNestedInput = {
+    create?: XOR<news_likeCreateWithoutNewsInput, news_likeUncheckedCreateWithoutNewsInput> | news_likeCreateWithoutNewsInput[] | news_likeUncheckedCreateWithoutNewsInput[]
+    connectOrCreate?: news_likeCreateOrConnectWithoutNewsInput | news_likeCreateOrConnectWithoutNewsInput[]
+    upsert?: news_likeUpsertWithWhereUniqueWithoutNewsInput | news_likeUpsertWithWhereUniqueWithoutNewsInput[]
+    createMany?: news_likeCreateManyNewsInputEnvelope
+    set?: news_likeWhereUniqueInput | news_likeWhereUniqueInput[]
+    disconnect?: news_likeWhereUniqueInput | news_likeWhereUniqueInput[]
+    delete?: news_likeWhereUniqueInput | news_likeWhereUniqueInput[]
+    connect?: news_likeWhereUniqueInput | news_likeWhereUniqueInput[]
+    update?: news_likeUpdateWithWhereUniqueWithoutNewsInput | news_likeUpdateWithWhereUniqueWithoutNewsInput[]
+    updateMany?: news_likeUpdateManyWithWhereWithoutNewsInput | news_likeUpdateManyWithWhereWithoutNewsInput[]
+    deleteMany?: news_likeScalarWhereInput | news_likeScalarWhereInput[]
+  }
+
+  export type news_dislikeUncheckedUpdateManyWithoutNewsNestedInput = {
+    create?: XOR<news_dislikeCreateWithoutNewsInput, news_dislikeUncheckedCreateWithoutNewsInput> | news_dislikeCreateWithoutNewsInput[] | news_dislikeUncheckedCreateWithoutNewsInput[]
+    connectOrCreate?: news_dislikeCreateOrConnectWithoutNewsInput | news_dislikeCreateOrConnectWithoutNewsInput[]
+    upsert?: news_dislikeUpsertWithWhereUniqueWithoutNewsInput | news_dislikeUpsertWithWhereUniqueWithoutNewsInput[]
+    createMany?: news_dislikeCreateManyNewsInputEnvelope
+    set?: news_dislikeWhereUniqueInput | news_dislikeWhereUniqueInput[]
+    disconnect?: news_dislikeWhereUniqueInput | news_dislikeWhereUniqueInput[]
+    delete?: news_dislikeWhereUniqueInput | news_dislikeWhereUniqueInput[]
+    connect?: news_dislikeWhereUniqueInput | news_dislikeWhereUniqueInput[]
+    update?: news_dislikeUpdateWithWhereUniqueWithoutNewsInput | news_dislikeUpdateWithWhereUniqueWithoutNewsInput[]
+    updateMany?: news_dislikeUpdateManyWithWhereWithoutNewsInput | news_dislikeUpdateManyWithWhereWithoutNewsInput[]
+    deleteMany?: news_dislikeScalarWhereInput | news_dislikeScalarWhereInput[]
   }
 
   export type news_commentCreateNestedOneWithoutRepliesInput = {
@@ -30055,6 +33009,62 @@ export namespace Prisma {
     upsert?: newsUpsertWithoutFavoritesInput
     connect?: newsWhereUniqueInput
     update?: XOR<XOR<newsUpdateToOneWithWhereWithoutFavoritesInput, newsUpdateWithoutFavoritesInput>, newsUncheckedUpdateWithoutFavoritesInput>
+  }
+
+  export type userCreateNestedOneWithoutNews_likesInput = {
+    create?: XOR<userCreateWithoutNews_likesInput, userUncheckedCreateWithoutNews_likesInput>
+    connectOrCreate?: userCreateOrConnectWithoutNews_likesInput
+    connect?: userWhereUniqueInput
+  }
+
+  export type newsCreateNestedOneWithoutNews_likesInput = {
+    create?: XOR<newsCreateWithoutNews_likesInput, newsUncheckedCreateWithoutNews_likesInput>
+    connectOrCreate?: newsCreateOrConnectWithoutNews_likesInput
+    connect?: newsWhereUniqueInput
+  }
+
+  export type userUpdateOneRequiredWithoutNews_likesNestedInput = {
+    create?: XOR<userCreateWithoutNews_likesInput, userUncheckedCreateWithoutNews_likesInput>
+    connectOrCreate?: userCreateOrConnectWithoutNews_likesInput
+    upsert?: userUpsertWithoutNews_likesInput
+    connect?: userWhereUniqueInput
+    update?: XOR<XOR<userUpdateToOneWithWhereWithoutNews_likesInput, userUpdateWithoutNews_likesInput>, userUncheckedUpdateWithoutNews_likesInput>
+  }
+
+  export type newsUpdateOneRequiredWithoutNews_likesNestedInput = {
+    create?: XOR<newsCreateWithoutNews_likesInput, newsUncheckedCreateWithoutNews_likesInput>
+    connectOrCreate?: newsCreateOrConnectWithoutNews_likesInput
+    upsert?: newsUpsertWithoutNews_likesInput
+    connect?: newsWhereUniqueInput
+    update?: XOR<XOR<newsUpdateToOneWithWhereWithoutNews_likesInput, newsUpdateWithoutNews_likesInput>, newsUncheckedUpdateWithoutNews_likesInput>
+  }
+
+  export type userCreateNestedOneWithoutNews_dislikesInput = {
+    create?: XOR<userCreateWithoutNews_dislikesInput, userUncheckedCreateWithoutNews_dislikesInput>
+    connectOrCreate?: userCreateOrConnectWithoutNews_dislikesInput
+    connect?: userWhereUniqueInput
+  }
+
+  export type newsCreateNestedOneWithoutNews_dislikesInput = {
+    create?: XOR<newsCreateWithoutNews_dislikesInput, newsUncheckedCreateWithoutNews_dislikesInput>
+    connectOrCreate?: newsCreateOrConnectWithoutNews_dislikesInput
+    connect?: newsWhereUniqueInput
+  }
+
+  export type userUpdateOneRequiredWithoutNews_dislikesNestedInput = {
+    create?: XOR<userCreateWithoutNews_dislikesInput, userUncheckedCreateWithoutNews_dislikesInput>
+    connectOrCreate?: userCreateOrConnectWithoutNews_dislikesInput
+    upsert?: userUpsertWithoutNews_dislikesInput
+    connect?: userWhereUniqueInput
+    update?: XOR<XOR<userUpdateToOneWithWhereWithoutNews_dislikesInput, userUpdateWithoutNews_dislikesInput>, userUncheckedUpdateWithoutNews_dislikesInput>
+  }
+
+  export type newsUpdateOneRequiredWithoutNews_dislikesNestedInput = {
+    create?: XOR<newsCreateWithoutNews_dislikesInput, newsUncheckedCreateWithoutNews_dislikesInput>
+    connectOrCreate?: newsCreateOrConnectWithoutNews_dislikesInput
+    upsert?: newsUpsertWithoutNews_dislikesInput
+    connect?: newsWhereUniqueInput
+    update?: XOR<XOR<newsUpdateToOneWithWhereWithoutNews_dislikesInput, newsUpdateWithoutNews_dislikesInput>, newsUncheckedUpdateWithoutNews_dislikesInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -30453,46 +33463,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type news_comment_likeCreateWithoutUserInput = {
-    id?: string
-    newsComment: news_commentCreateNestedOneWithoutLikesInput
-  }
-
-  export type news_comment_likeUncheckedCreateWithoutUserInput = {
-    id?: string
-    comment_id: string
-  }
-
-  export type news_comment_likeCreateOrConnectWithoutUserInput = {
-    where: news_comment_likeWhereUniqueInput
-    create: XOR<news_comment_likeCreateWithoutUserInput, news_comment_likeUncheckedCreateWithoutUserInput>
-  }
-
-  export type news_comment_likeCreateManyUserInputEnvelope = {
-    data: news_comment_likeCreateManyUserInput | news_comment_likeCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type news_comment_dislikeCreateWithoutUserInput = {
-    id?: string
-    newsComment: news_commentCreateNestedOneWithoutDislikesInput
-  }
-
-  export type news_comment_dislikeUncheckedCreateWithoutUserInput = {
-    id?: string
-    comment_id: string
-  }
-
-  export type news_comment_dislikeCreateOrConnectWithoutUserInput = {
-    where: news_comment_dislikeWhereUniqueInput
-    create: XOR<news_comment_dislikeCreateWithoutUserInput, news_comment_dislikeUncheckedCreateWithoutUserInput>
-  }
-
-  export type news_comment_dislikeCreateManyUserInputEnvelope = {
-    data: news_comment_dislikeCreateManyUserInput | news_comment_dislikeCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
   export type news_rateCreateWithoutUserInput = {
     id?: string
     rate: number
@@ -30534,6 +33504,86 @@ export namespace Prisma {
 
   export type news_favoriteCreateManyUserInputEnvelope = {
     data: news_favoriteCreateManyUserInput | news_favoriteCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type news_likeCreateWithoutUserInput = {
+    id?: string
+    news: newsCreateNestedOneWithoutNews_likesInput
+  }
+
+  export type news_likeUncheckedCreateWithoutUserInput = {
+    id?: string
+    news_id: number
+  }
+
+  export type news_likeCreateOrConnectWithoutUserInput = {
+    where: news_likeWhereUniqueInput
+    create: XOR<news_likeCreateWithoutUserInput, news_likeUncheckedCreateWithoutUserInput>
+  }
+
+  export type news_likeCreateManyUserInputEnvelope = {
+    data: news_likeCreateManyUserInput | news_likeCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type news_dislikeCreateWithoutUserInput = {
+    id?: string
+    news: newsCreateNestedOneWithoutNews_dislikesInput
+  }
+
+  export type news_dislikeUncheckedCreateWithoutUserInput = {
+    id?: string
+    news_id: number
+  }
+
+  export type news_dislikeCreateOrConnectWithoutUserInput = {
+    where: news_dislikeWhereUniqueInput
+    create: XOR<news_dislikeCreateWithoutUserInput, news_dislikeUncheckedCreateWithoutUserInput>
+  }
+
+  export type news_dislikeCreateManyUserInputEnvelope = {
+    data: news_dislikeCreateManyUserInput | news_dislikeCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type news_comment_likeCreateWithoutUserInput = {
+    id?: string
+    newsComment: news_commentCreateNestedOneWithoutLikesInput
+  }
+
+  export type news_comment_likeUncheckedCreateWithoutUserInput = {
+    id?: string
+    comment_id: string
+  }
+
+  export type news_comment_likeCreateOrConnectWithoutUserInput = {
+    where: news_comment_likeWhereUniqueInput
+    create: XOR<news_comment_likeCreateWithoutUserInput, news_comment_likeUncheckedCreateWithoutUserInput>
+  }
+
+  export type news_comment_likeCreateManyUserInputEnvelope = {
+    data: news_comment_likeCreateManyUserInput | news_comment_likeCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type news_comment_dislikeCreateWithoutUserInput = {
+    id?: string
+    newsComment: news_commentCreateNestedOneWithoutDislikesInput
+  }
+
+  export type news_comment_dislikeUncheckedCreateWithoutUserInput = {
+    id?: string
+    comment_id: string
+  }
+
+  export type news_comment_dislikeCreateOrConnectWithoutUserInput = {
+    where: news_comment_dislikeWhereUniqueInput
+    create: XOR<news_comment_dislikeCreateWithoutUserInput, news_comment_dislikeUncheckedCreateWithoutUserInput>
+  }
+
+  export type news_comment_dislikeCreateManyUserInputEnvelope = {
+    data: news_comment_dislikeCreateManyUserInput | news_comment_dislikeCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -30735,56 +33785,6 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"news_comment"> | Date | string
   }
 
-  export type news_comment_likeUpsertWithWhereUniqueWithoutUserInput = {
-    where: news_comment_likeWhereUniqueInput
-    update: XOR<news_comment_likeUpdateWithoutUserInput, news_comment_likeUncheckedUpdateWithoutUserInput>
-    create: XOR<news_comment_likeCreateWithoutUserInput, news_comment_likeUncheckedCreateWithoutUserInput>
-  }
-
-  export type news_comment_likeUpdateWithWhereUniqueWithoutUserInput = {
-    where: news_comment_likeWhereUniqueInput
-    data: XOR<news_comment_likeUpdateWithoutUserInput, news_comment_likeUncheckedUpdateWithoutUserInput>
-  }
-
-  export type news_comment_likeUpdateManyWithWhereWithoutUserInput = {
-    where: news_comment_likeScalarWhereInput
-    data: XOR<news_comment_likeUpdateManyMutationInput, news_comment_likeUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type news_comment_likeScalarWhereInput = {
-    AND?: news_comment_likeScalarWhereInput | news_comment_likeScalarWhereInput[]
-    OR?: news_comment_likeScalarWhereInput[]
-    NOT?: news_comment_likeScalarWhereInput | news_comment_likeScalarWhereInput[]
-    id?: StringFilter<"news_comment_like"> | string
-    user_id?: StringFilter<"news_comment_like"> | string
-    comment_id?: StringFilter<"news_comment_like"> | string
-  }
-
-  export type news_comment_dislikeUpsertWithWhereUniqueWithoutUserInput = {
-    where: news_comment_dislikeWhereUniqueInput
-    update: XOR<news_comment_dislikeUpdateWithoutUserInput, news_comment_dislikeUncheckedUpdateWithoutUserInput>
-    create: XOR<news_comment_dislikeCreateWithoutUserInput, news_comment_dislikeUncheckedCreateWithoutUserInput>
-  }
-
-  export type news_comment_dislikeUpdateWithWhereUniqueWithoutUserInput = {
-    where: news_comment_dislikeWhereUniqueInput
-    data: XOR<news_comment_dislikeUpdateWithoutUserInput, news_comment_dislikeUncheckedUpdateWithoutUserInput>
-  }
-
-  export type news_comment_dislikeUpdateManyWithWhereWithoutUserInput = {
-    where: news_comment_dislikeScalarWhereInput
-    data: XOR<news_comment_dislikeUpdateManyMutationInput, news_comment_dislikeUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type news_comment_dislikeScalarWhereInput = {
-    AND?: news_comment_dislikeScalarWhereInput | news_comment_dislikeScalarWhereInput[]
-    OR?: news_comment_dislikeScalarWhereInput[]
-    NOT?: news_comment_dislikeScalarWhereInput | news_comment_dislikeScalarWhereInput[]
-    id?: StringFilter<"news_comment_dislike"> | string
-    user_id?: StringFilter<"news_comment_dislike"> | string
-    comment_id?: StringFilter<"news_comment_dislike"> | string
-  }
-
   export type news_rateUpsertWithWhereUniqueWithoutUserInput = {
     where: news_rateWhereUniqueInput
     update: XOR<news_rateUpdateWithoutUserInput, news_rateUncheckedUpdateWithoutUserInput>
@@ -30837,6 +33837,106 @@ export namespace Prisma {
     news_id?: IntFilter<"news_favorite"> | number
   }
 
+  export type news_likeUpsertWithWhereUniqueWithoutUserInput = {
+    where: news_likeWhereUniqueInput
+    update: XOR<news_likeUpdateWithoutUserInput, news_likeUncheckedUpdateWithoutUserInput>
+    create: XOR<news_likeCreateWithoutUserInput, news_likeUncheckedCreateWithoutUserInput>
+  }
+
+  export type news_likeUpdateWithWhereUniqueWithoutUserInput = {
+    where: news_likeWhereUniqueInput
+    data: XOR<news_likeUpdateWithoutUserInput, news_likeUncheckedUpdateWithoutUserInput>
+  }
+
+  export type news_likeUpdateManyWithWhereWithoutUserInput = {
+    where: news_likeScalarWhereInput
+    data: XOR<news_likeUpdateManyMutationInput, news_likeUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type news_likeScalarWhereInput = {
+    AND?: news_likeScalarWhereInput | news_likeScalarWhereInput[]
+    OR?: news_likeScalarWhereInput[]
+    NOT?: news_likeScalarWhereInput | news_likeScalarWhereInput[]
+    id?: StringFilter<"news_like"> | string
+    user_id?: StringFilter<"news_like"> | string
+    news_id?: IntFilter<"news_like"> | number
+  }
+
+  export type news_dislikeUpsertWithWhereUniqueWithoutUserInput = {
+    where: news_dislikeWhereUniqueInput
+    update: XOR<news_dislikeUpdateWithoutUserInput, news_dislikeUncheckedUpdateWithoutUserInput>
+    create: XOR<news_dislikeCreateWithoutUserInput, news_dislikeUncheckedCreateWithoutUserInput>
+  }
+
+  export type news_dislikeUpdateWithWhereUniqueWithoutUserInput = {
+    where: news_dislikeWhereUniqueInput
+    data: XOR<news_dislikeUpdateWithoutUserInput, news_dislikeUncheckedUpdateWithoutUserInput>
+  }
+
+  export type news_dislikeUpdateManyWithWhereWithoutUserInput = {
+    where: news_dislikeScalarWhereInput
+    data: XOR<news_dislikeUpdateManyMutationInput, news_dislikeUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type news_dislikeScalarWhereInput = {
+    AND?: news_dislikeScalarWhereInput | news_dislikeScalarWhereInput[]
+    OR?: news_dislikeScalarWhereInput[]
+    NOT?: news_dislikeScalarWhereInput | news_dislikeScalarWhereInput[]
+    id?: StringFilter<"news_dislike"> | string
+    user_id?: StringFilter<"news_dislike"> | string
+    news_id?: IntFilter<"news_dislike"> | number
+  }
+
+  export type news_comment_likeUpsertWithWhereUniqueWithoutUserInput = {
+    where: news_comment_likeWhereUniqueInput
+    update: XOR<news_comment_likeUpdateWithoutUserInput, news_comment_likeUncheckedUpdateWithoutUserInput>
+    create: XOR<news_comment_likeCreateWithoutUserInput, news_comment_likeUncheckedCreateWithoutUserInput>
+  }
+
+  export type news_comment_likeUpdateWithWhereUniqueWithoutUserInput = {
+    where: news_comment_likeWhereUniqueInput
+    data: XOR<news_comment_likeUpdateWithoutUserInput, news_comment_likeUncheckedUpdateWithoutUserInput>
+  }
+
+  export type news_comment_likeUpdateManyWithWhereWithoutUserInput = {
+    where: news_comment_likeScalarWhereInput
+    data: XOR<news_comment_likeUpdateManyMutationInput, news_comment_likeUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type news_comment_likeScalarWhereInput = {
+    AND?: news_comment_likeScalarWhereInput | news_comment_likeScalarWhereInput[]
+    OR?: news_comment_likeScalarWhereInput[]
+    NOT?: news_comment_likeScalarWhereInput | news_comment_likeScalarWhereInput[]
+    id?: StringFilter<"news_comment_like"> | string
+    user_id?: StringFilter<"news_comment_like"> | string
+    comment_id?: StringFilter<"news_comment_like"> | string
+  }
+
+  export type news_comment_dislikeUpsertWithWhereUniqueWithoutUserInput = {
+    where: news_comment_dislikeWhereUniqueInput
+    update: XOR<news_comment_dislikeUpdateWithoutUserInput, news_comment_dislikeUncheckedUpdateWithoutUserInput>
+    create: XOR<news_comment_dislikeCreateWithoutUserInput, news_comment_dislikeUncheckedCreateWithoutUserInput>
+  }
+
+  export type news_comment_dislikeUpdateWithWhereUniqueWithoutUserInput = {
+    where: news_comment_dislikeWhereUniqueInput
+    data: XOR<news_comment_dislikeUpdateWithoutUserInput, news_comment_dislikeUncheckedUpdateWithoutUserInput>
+  }
+
+  export type news_comment_dislikeUpdateManyWithWhereWithoutUserInput = {
+    where: news_comment_dislikeScalarWhereInput
+    data: XOR<news_comment_dislikeUpdateManyMutationInput, news_comment_dislikeUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type news_comment_dislikeScalarWhereInput = {
+    AND?: news_comment_dislikeScalarWhereInput | news_comment_dislikeScalarWhereInput[]
+    OR?: news_comment_dislikeScalarWhereInput[]
+    NOT?: news_comment_dislikeScalarWhereInput | news_comment_dislikeScalarWhereInput[]
+    id?: StringFilter<"news_comment_dislike"> | string
+    user_id?: StringFilter<"news_comment_dislike"> | string
+    comment_id?: StringFilter<"news_comment_dislike"> | string
+  }
+
   export type roleCreateWithoutUserRolesInput = {
     id?: string
     name: string
@@ -30868,10 +33968,12 @@ export namespace Prisma {
     courseFavorites?: course_favoriteCreateNestedManyWithoutUserInput
     courseComments?: course_commentCreateNestedManyWithoutUserInput
     comments?: news_commentCreateNestedManyWithoutUserInput
-    likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
-    dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
     ratedNews?: news_rateCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteCreateNestedManyWithoutUserInput
+    news_likes?: news_likeCreateNestedManyWithoutUserInput
+    news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
+    likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
+    dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
   }
 
   export type userUncheckedCreateWithoutUserRolesInput = {
@@ -30890,10 +33992,12 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutUserInput
     courseComments?: course_commentUncheckedCreateNestedManyWithoutUserInput
     comments?: news_commentUncheckedCreateNestedManyWithoutUserInput
-    likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
-    dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
     ratedNews?: news_rateUncheckedCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteUncheckedCreateNestedManyWithoutUserInput
+    news_likes?: news_likeUncheckedCreateNestedManyWithoutUserInput
+    news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
+    likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
+    dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type userCreateOrConnectWithoutUserRolesInput = {
@@ -30949,10 +34053,12 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUpdateManyWithoutUserNestedInput
     comments?: news_commentUpdateManyWithoutUserNestedInput
-    likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
-    dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
     ratedNews?: news_rateUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUpdateManyWithoutUserNestedInput
+    news_likes?: news_likeUpdateManyWithoutUserNestedInput
+    news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
+    likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
+    dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
   }
 
   export type userUncheckedUpdateWithoutUserRolesInput = {
@@ -30971,10 +34077,12 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUncheckedUpdateManyWithoutUserNestedInput
     comments?: news_commentUncheckedUpdateManyWithoutUserNestedInput
-    likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
-    dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
     ratedNews?: news_rateUncheckedUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUncheckedUpdateManyWithoutUserNestedInput
+    news_likes?: news_likeUncheckedUpdateManyWithoutUserNestedInput
+    news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
+    likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
+    dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type user_roleCreateWithoutRoleInput = {
@@ -31033,10 +34141,12 @@ export namespace Prisma {
     courseFavorites?: course_favoriteCreateNestedManyWithoutUserInput
     courseComments?: course_commentCreateNestedManyWithoutUserInput
     comments?: news_commentCreateNestedManyWithoutUserInput
-    likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
-    dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
     ratedNews?: news_rateCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteCreateNestedManyWithoutUserInput
+    news_likes?: news_likeCreateNestedManyWithoutUserInput
+    news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
+    likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
+    dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
   }
 
   export type userUncheckedCreateWithoutLoginTransactionsInput = {
@@ -31055,10 +34165,12 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutUserInput
     courseComments?: course_commentUncheckedCreateNestedManyWithoutUserInput
     comments?: news_commentUncheckedCreateNestedManyWithoutUserInput
-    likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
-    dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
     ratedNews?: news_rateUncheckedCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteUncheckedCreateNestedManyWithoutUserInput
+    news_likes?: news_likeUncheckedCreateNestedManyWithoutUserInput
+    news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
+    likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
+    dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type userCreateOrConnectWithoutLoginTransactionsInput = {
@@ -31093,10 +34205,12 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUpdateManyWithoutUserNestedInput
     comments?: news_commentUpdateManyWithoutUserNestedInput
-    likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
-    dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
     ratedNews?: news_rateUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUpdateManyWithoutUserNestedInput
+    news_likes?: news_likeUpdateManyWithoutUserNestedInput
+    news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
+    likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
+    dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
   }
 
   export type userUncheckedUpdateWithoutLoginTransactionsInput = {
@@ -31115,10 +34229,12 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUncheckedUpdateManyWithoutUserNestedInput
     comments?: news_commentUncheckedUpdateManyWithoutUserNestedInput
-    likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
-    dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
     ratedNews?: news_rateUncheckedUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUncheckedUpdateManyWithoutUserNestedInput
+    news_likes?: news_likeUncheckedUpdateManyWithoutUserNestedInput
+    news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
+    likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
+    dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type course_typeCreateWithoutCoursesInput = {
@@ -31154,10 +34270,12 @@ export namespace Prisma {
     courseFavorites?: course_favoriteCreateNestedManyWithoutUserInput
     courseComments?: course_commentCreateNestedManyWithoutUserInput
     comments?: news_commentCreateNestedManyWithoutUserInput
-    likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
-    dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
     ratedNews?: news_rateCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteCreateNestedManyWithoutUserInput
+    news_likes?: news_likeCreateNestedManyWithoutUserInput
+    news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
+    likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
+    dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
   }
 
   export type userUncheckedCreateWithoutCoursesInput = {
@@ -31176,10 +34294,12 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutUserInput
     courseComments?: course_commentUncheckedCreateNestedManyWithoutUserInput
     comments?: news_commentUncheckedCreateNestedManyWithoutUserInput
-    likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
-    dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
     ratedNews?: news_rateUncheckedCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteUncheckedCreateNestedManyWithoutUserInput
+    news_likes?: news_likeUncheckedCreateNestedManyWithoutUserInput
+    news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
+    likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
+    dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type userCreateOrConnectWithoutCoursesInput = {
@@ -31353,10 +34473,12 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUpdateManyWithoutUserNestedInput
     comments?: news_commentUpdateManyWithoutUserNestedInput
-    likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
-    dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
     ratedNews?: news_rateUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUpdateManyWithoutUserNestedInput
+    news_likes?: news_likeUpdateManyWithoutUserNestedInput
+    news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
+    likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
+    dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
   }
 
   export type userUncheckedUpdateWithoutCoursesInput = {
@@ -31375,10 +34497,12 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUncheckedUpdateManyWithoutUserNestedInput
     comments?: news_commentUncheckedUpdateManyWithoutUserNestedInput
-    likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
-    dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
     ratedNews?: news_rateUncheckedUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUncheckedUpdateManyWithoutUserNestedInput
+    news_likes?: news_likeUncheckedUpdateManyWithoutUserNestedInput
+    news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
+    likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
+    dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type course_rateUpsertWithWhereUniqueWithoutCourseInput = {
@@ -31497,10 +34621,12 @@ export namespace Prisma {
     courseFavorites?: course_favoriteCreateNestedManyWithoutUserInput
     courseComments?: course_commentCreateNestedManyWithoutUserInput
     comments?: news_commentCreateNestedManyWithoutUserInput
-    likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
-    dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
     ratedNews?: news_rateCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteCreateNestedManyWithoutUserInput
+    news_likes?: news_likeCreateNestedManyWithoutUserInput
+    news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
+    likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
+    dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
   }
 
   export type userUncheckedCreateWithoutCourseRatesInput = {
@@ -31519,10 +34645,12 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutUserInput
     courseComments?: course_commentUncheckedCreateNestedManyWithoutUserInput
     comments?: news_commentUncheckedCreateNestedManyWithoutUserInput
-    likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
-    dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
     ratedNews?: news_rateUncheckedCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteUncheckedCreateNestedManyWithoutUserInput
+    news_likes?: news_likeUncheckedCreateNestedManyWithoutUserInput
+    news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
+    likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
+    dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type userCreateOrConnectWithoutCourseRatesInput = {
@@ -31602,10 +34730,12 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUpdateManyWithoutUserNestedInput
     comments?: news_commentUpdateManyWithoutUserNestedInput
-    likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
-    dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
     ratedNews?: news_rateUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUpdateManyWithoutUserNestedInput
+    news_likes?: news_likeUpdateManyWithoutUserNestedInput
+    news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
+    likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
+    dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
   }
 
   export type userUncheckedUpdateWithoutCourseRatesInput = {
@@ -31624,10 +34754,12 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUncheckedUpdateManyWithoutUserNestedInput
     comments?: news_commentUncheckedUpdateManyWithoutUserNestedInput
-    likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
-    dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
     ratedNews?: news_rateUncheckedUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUncheckedUpdateManyWithoutUserNestedInput
+    news_likes?: news_likeUncheckedUpdateManyWithoutUserNestedInput
+    news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
+    likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
+    dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type courseUpsertWithoutCourseRatesInput = {
@@ -31697,10 +34829,12 @@ export namespace Prisma {
     courseRates?: course_rateCreateNestedManyWithoutUserInput
     courseComments?: course_commentCreateNestedManyWithoutUserInput
     comments?: news_commentCreateNestedManyWithoutUserInput
-    likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
-    dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
     ratedNews?: news_rateCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteCreateNestedManyWithoutUserInput
+    news_likes?: news_likeCreateNestedManyWithoutUserInput
+    news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
+    likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
+    dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
   }
 
   export type userUncheckedCreateWithoutCourseFavoritesInput = {
@@ -31719,10 +34853,12 @@ export namespace Prisma {
     courseRates?: course_rateUncheckedCreateNestedManyWithoutUserInput
     courseComments?: course_commentUncheckedCreateNestedManyWithoutUserInput
     comments?: news_commentUncheckedCreateNestedManyWithoutUserInput
-    likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
-    dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
     ratedNews?: news_rateUncheckedCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteUncheckedCreateNestedManyWithoutUserInput
+    news_likes?: news_likeUncheckedCreateNestedManyWithoutUserInput
+    news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
+    likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
+    dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type userCreateOrConnectWithoutCourseFavoritesInput = {
@@ -31802,10 +34938,12 @@ export namespace Prisma {
     courseRates?: course_rateUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUpdateManyWithoutUserNestedInput
     comments?: news_commentUpdateManyWithoutUserNestedInput
-    likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
-    dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
     ratedNews?: news_rateUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUpdateManyWithoutUserNestedInput
+    news_likes?: news_likeUpdateManyWithoutUserNestedInput
+    news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
+    likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
+    dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
   }
 
   export type userUncheckedUpdateWithoutCourseFavoritesInput = {
@@ -31824,10 +34962,12 @@ export namespace Prisma {
     courseRates?: course_rateUncheckedUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUncheckedUpdateManyWithoutUserNestedInput
     comments?: news_commentUncheckedUpdateManyWithoutUserNestedInput
-    likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
-    dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
     ratedNews?: news_rateUncheckedUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUncheckedUpdateManyWithoutUserNestedInput
+    news_likes?: news_likeUncheckedUpdateManyWithoutUserNestedInput
+    news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
+    likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
+    dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type courseUpsertWithoutCourseFavoritesInput = {
@@ -31922,10 +35062,12 @@ export namespace Prisma {
     courseRates?: course_rateCreateNestedManyWithoutUserInput
     courseFavorites?: course_favoriteCreateNestedManyWithoutUserInput
     comments?: news_commentCreateNestedManyWithoutUserInput
-    likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
-    dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
     ratedNews?: news_rateCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteCreateNestedManyWithoutUserInput
+    news_likes?: news_likeCreateNestedManyWithoutUserInput
+    news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
+    likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
+    dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
   }
 
   export type userUncheckedCreateWithoutCourseCommentsInput = {
@@ -31944,10 +35086,12 @@ export namespace Prisma {
     courseRates?: course_rateUncheckedCreateNestedManyWithoutUserInput
     courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutUserInput
     comments?: news_commentUncheckedCreateNestedManyWithoutUserInput
-    likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
-    dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
     ratedNews?: news_rateUncheckedCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteUncheckedCreateNestedManyWithoutUserInput
+    news_likes?: news_likeUncheckedCreateNestedManyWithoutUserInput
+    news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
+    likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
+    dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type userCreateOrConnectWithoutCourseCommentsInput = {
@@ -32088,10 +35232,12 @@ export namespace Prisma {
     courseRates?: course_rateUpdateManyWithoutUserNestedInput
     courseFavorites?: course_favoriteUpdateManyWithoutUserNestedInput
     comments?: news_commentUpdateManyWithoutUserNestedInput
-    likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
-    dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
     ratedNews?: news_rateUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUpdateManyWithoutUserNestedInput
+    news_likes?: news_likeUpdateManyWithoutUserNestedInput
+    news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
+    likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
+    dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
   }
 
   export type userUncheckedUpdateWithoutCourseCommentsInput = {
@@ -32110,10 +35256,12 @@ export namespace Prisma {
     courseRates?: course_rateUncheckedUpdateManyWithoutUserNestedInput
     courseFavorites?: course_favoriteUncheckedUpdateManyWithoutUserNestedInput
     comments?: news_commentUncheckedUpdateManyWithoutUserNestedInput
-    likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
-    dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
     ratedNews?: news_rateUncheckedUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUncheckedUpdateManyWithoutUserNestedInput
+    news_likes?: news_likeUncheckedUpdateManyWithoutUserNestedInput
+    news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
+    likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
+    dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type course_commentUpsertWithWhereUniqueWithoutParentInput = {
@@ -32597,6 +35745,46 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type news_likeCreateWithoutNewsInput = {
+    id?: string
+    user: userCreateNestedOneWithoutNews_likesInput
+  }
+
+  export type news_likeUncheckedCreateWithoutNewsInput = {
+    id?: string
+    user_id: string
+  }
+
+  export type news_likeCreateOrConnectWithoutNewsInput = {
+    where: news_likeWhereUniqueInput
+    create: XOR<news_likeCreateWithoutNewsInput, news_likeUncheckedCreateWithoutNewsInput>
+  }
+
+  export type news_likeCreateManyNewsInputEnvelope = {
+    data: news_likeCreateManyNewsInput | news_likeCreateManyNewsInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type news_dislikeCreateWithoutNewsInput = {
+    id?: string
+    user: userCreateNestedOneWithoutNews_dislikesInput
+  }
+
+  export type news_dislikeUncheckedCreateWithoutNewsInput = {
+    id?: string
+    user_id: string
+  }
+
+  export type news_dislikeCreateOrConnectWithoutNewsInput = {
+    where: news_dislikeWhereUniqueInput
+    create: XOR<news_dislikeCreateWithoutNewsInput, news_dislikeUncheckedCreateWithoutNewsInput>
+  }
+
+  export type news_dislikeCreateManyNewsInputEnvelope = {
+    data: news_dislikeCreateManyNewsInput | news_dislikeCreateManyNewsInput[]
+    skipDuplicates?: boolean
+  }
+
   export type news_commentUpsertWithWhereUniqueWithoutNewsInput = {
     where: news_commentWhereUniqueInput
     update: XOR<news_commentUpdateWithoutNewsInput, news_commentUncheckedUpdateWithoutNewsInput>
@@ -32643,6 +35831,38 @@ export namespace Prisma {
   export type news_favoriteUpdateManyWithWhereWithoutNewsInput = {
     where: news_favoriteScalarWhereInput
     data: XOR<news_favoriteUpdateManyMutationInput, news_favoriteUncheckedUpdateManyWithoutNewsInput>
+  }
+
+  export type news_likeUpsertWithWhereUniqueWithoutNewsInput = {
+    where: news_likeWhereUniqueInput
+    update: XOR<news_likeUpdateWithoutNewsInput, news_likeUncheckedUpdateWithoutNewsInput>
+    create: XOR<news_likeCreateWithoutNewsInput, news_likeUncheckedCreateWithoutNewsInput>
+  }
+
+  export type news_likeUpdateWithWhereUniqueWithoutNewsInput = {
+    where: news_likeWhereUniqueInput
+    data: XOR<news_likeUpdateWithoutNewsInput, news_likeUncheckedUpdateWithoutNewsInput>
+  }
+
+  export type news_likeUpdateManyWithWhereWithoutNewsInput = {
+    where: news_likeScalarWhereInput
+    data: XOR<news_likeUpdateManyMutationInput, news_likeUncheckedUpdateManyWithoutNewsInput>
+  }
+
+  export type news_dislikeUpsertWithWhereUniqueWithoutNewsInput = {
+    where: news_dislikeWhereUniqueInput
+    update: XOR<news_dislikeUpdateWithoutNewsInput, news_dislikeUncheckedUpdateWithoutNewsInput>
+    create: XOR<news_dislikeCreateWithoutNewsInput, news_dislikeUncheckedCreateWithoutNewsInput>
+  }
+
+  export type news_dislikeUpdateWithWhereUniqueWithoutNewsInput = {
+    where: news_dislikeWhereUniqueInput
+    data: XOR<news_dislikeUpdateWithoutNewsInput, news_dislikeUncheckedUpdateWithoutNewsInput>
+  }
+
+  export type news_dislikeUpdateManyWithWhereWithoutNewsInput = {
+    where: news_dislikeScalarWhereInput
+    data: XOR<news_dislikeUpdateManyMutationInput, news_dislikeUncheckedUpdateManyWithoutNewsInput>
   }
 
   export type news_commentCreateWithoutRepliesInput = {
@@ -32728,10 +35948,12 @@ export namespace Prisma {
     courseRates?: course_rateCreateNestedManyWithoutUserInput
     courseFavorites?: course_favoriteCreateNestedManyWithoutUserInput
     courseComments?: course_commentCreateNestedManyWithoutUserInput
-    likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
-    dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
     ratedNews?: news_rateCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteCreateNestedManyWithoutUserInput
+    news_likes?: news_likeCreateNestedManyWithoutUserInput
+    news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
+    likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
+    dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
   }
 
   export type userUncheckedCreateWithoutCommentsInput = {
@@ -32750,10 +35972,12 @@ export namespace Prisma {
     courseRates?: course_rateUncheckedCreateNestedManyWithoutUserInput
     courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutUserInput
     courseComments?: course_commentUncheckedCreateNestedManyWithoutUserInput
-    likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
-    dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
     ratedNews?: news_rateUncheckedCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteUncheckedCreateNestedManyWithoutUserInput
+    news_likes?: news_likeUncheckedCreateNestedManyWithoutUserInput
+    news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
+    likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
+    dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type userCreateOrConnectWithoutCommentsInput = {
@@ -32770,6 +35994,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     rates?: news_rateCreateNestedManyWithoutNewsInput
     favorites?: news_favoriteCreateNestedManyWithoutNewsInput
+    news_likes?: news_likeCreateNestedManyWithoutNewsInput
+    news_dislikes?: news_dislikeCreateNestedManyWithoutNewsInput
   }
 
   export type newsUncheckedCreateWithoutCommentsInput = {
@@ -32782,6 +36008,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     rates?: news_rateUncheckedCreateNestedManyWithoutNewsInput
     favorites?: news_favoriteUncheckedCreateNestedManyWithoutNewsInput
+    news_likes?: news_likeUncheckedCreateNestedManyWithoutNewsInput
+    news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutNewsInput
   }
 
   export type newsCreateOrConnectWithoutCommentsInput = {
@@ -32909,10 +36137,12 @@ export namespace Prisma {
     courseRates?: course_rateUpdateManyWithoutUserNestedInput
     courseFavorites?: course_favoriteUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUpdateManyWithoutUserNestedInput
-    likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
-    dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
     ratedNews?: news_rateUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUpdateManyWithoutUserNestedInput
+    news_likes?: news_likeUpdateManyWithoutUserNestedInput
+    news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
+    likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
+    dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
   }
 
   export type userUncheckedUpdateWithoutCommentsInput = {
@@ -32931,10 +36161,12 @@ export namespace Prisma {
     courseRates?: course_rateUncheckedUpdateManyWithoutUserNestedInput
     courseFavorites?: course_favoriteUncheckedUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUncheckedUpdateManyWithoutUserNestedInput
-    likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
-    dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
     ratedNews?: news_rateUncheckedUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUncheckedUpdateManyWithoutUserNestedInput
+    news_likes?: news_likeUncheckedUpdateManyWithoutUserNestedInput
+    news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
+    likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
+    dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type newsUpsertWithoutCommentsInput = {
@@ -32957,6 +36189,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     rates?: news_rateUpdateManyWithoutNewsNestedInput
     favorites?: news_favoriteUpdateManyWithoutNewsNestedInput
+    news_likes?: news_likeUpdateManyWithoutNewsNestedInput
+    news_dislikes?: news_dislikeUpdateManyWithoutNewsNestedInput
   }
 
   export type newsUncheckedUpdateWithoutCommentsInput = {
@@ -32969,6 +36203,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     rates?: news_rateUncheckedUpdateManyWithoutNewsNestedInput
     favorites?: news_favoriteUncheckedUpdateManyWithoutNewsNestedInput
+    news_likes?: news_likeUncheckedUpdateManyWithoutNewsNestedInput
+    news_dislikes?: news_dislikeUncheckedUpdateManyWithoutNewsNestedInput
   }
 
   export type news_comment_likeUpsertWithWhereUniqueWithoutNewsCommentInput = {
@@ -33020,9 +36256,11 @@ export namespace Prisma {
     courseFavorites?: course_favoriteCreateNestedManyWithoutUserInput
     courseComments?: course_commentCreateNestedManyWithoutUserInput
     comments?: news_commentCreateNestedManyWithoutUserInput
-    dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
     ratedNews?: news_rateCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteCreateNestedManyWithoutUserInput
+    news_likes?: news_likeCreateNestedManyWithoutUserInput
+    news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
+    dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
   }
 
   export type userUncheckedCreateWithoutLikedCommentsInput = {
@@ -33042,9 +36280,11 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutUserInput
     courseComments?: course_commentUncheckedCreateNestedManyWithoutUserInput
     comments?: news_commentUncheckedCreateNestedManyWithoutUserInput
-    dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
     ratedNews?: news_rateUncheckedCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteUncheckedCreateNestedManyWithoutUserInput
+    news_likes?: news_likeUncheckedCreateNestedManyWithoutUserInput
+    news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
+    dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type userCreateOrConnectWithoutLikedCommentsInput = {
@@ -33111,9 +36351,11 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUpdateManyWithoutUserNestedInput
     comments?: news_commentUpdateManyWithoutUserNestedInput
-    dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
     ratedNews?: news_rateUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUpdateManyWithoutUserNestedInput
+    news_likes?: news_likeUpdateManyWithoutUserNestedInput
+    news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
+    dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
   }
 
   export type userUncheckedUpdateWithoutLikedCommentsInput = {
@@ -33133,9 +36375,11 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUncheckedUpdateManyWithoutUserNestedInput
     comments?: news_commentUncheckedUpdateManyWithoutUserNestedInput
-    dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
     ratedNews?: news_rateUncheckedUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUncheckedUpdateManyWithoutUserNestedInput
+    news_likes?: news_likeUncheckedUpdateManyWithoutUserNestedInput
+    news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
+    dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type news_commentUpsertWithoutLikesInput = {
@@ -33192,9 +36436,11 @@ export namespace Prisma {
     courseFavorites?: course_favoriteCreateNestedManyWithoutUserInput
     courseComments?: course_commentCreateNestedManyWithoutUserInput
     comments?: news_commentCreateNestedManyWithoutUserInput
-    likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
     ratedNews?: news_rateCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteCreateNestedManyWithoutUserInput
+    news_likes?: news_likeCreateNestedManyWithoutUserInput
+    news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
+    likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
   }
 
   export type userUncheckedCreateWithoutDislikedCommentsInput = {
@@ -33214,9 +36460,11 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutUserInput
     courseComments?: course_commentUncheckedCreateNestedManyWithoutUserInput
     comments?: news_commentUncheckedCreateNestedManyWithoutUserInput
-    likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
     ratedNews?: news_rateUncheckedCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteUncheckedCreateNestedManyWithoutUserInput
+    news_likes?: news_likeUncheckedCreateNestedManyWithoutUserInput
+    news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
+    likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type userCreateOrConnectWithoutDislikedCommentsInput = {
@@ -33283,9 +36531,11 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUpdateManyWithoutUserNestedInput
     comments?: news_commentUpdateManyWithoutUserNestedInput
-    likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
     ratedNews?: news_rateUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUpdateManyWithoutUserNestedInput
+    news_likes?: news_likeUpdateManyWithoutUserNestedInput
+    news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
+    likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
   }
 
   export type userUncheckedUpdateWithoutDislikedCommentsInput = {
@@ -33305,9 +36555,11 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUncheckedUpdateManyWithoutUserNestedInput
     comments?: news_commentUncheckedUpdateManyWithoutUserNestedInput
-    likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
     ratedNews?: news_rateUncheckedUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUncheckedUpdateManyWithoutUserNestedInput
+    news_likes?: news_likeUncheckedUpdateManyWithoutUserNestedInput
+    news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
+    likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type news_commentUpsertWithoutDislikesInput = {
@@ -33364,9 +36616,11 @@ export namespace Prisma {
     courseFavorites?: course_favoriteCreateNestedManyWithoutUserInput
     courseComments?: course_commentCreateNestedManyWithoutUserInput
     comments?: news_commentCreateNestedManyWithoutUserInput
+    favoriteNews?: news_favoriteCreateNestedManyWithoutUserInput
+    news_likes?: news_likeCreateNestedManyWithoutUserInput
+    news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
     dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
-    favoriteNews?: news_favoriteCreateNestedManyWithoutUserInput
   }
 
   export type userUncheckedCreateWithoutRatedNewsInput = {
@@ -33386,9 +36640,11 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutUserInput
     courseComments?: course_commentUncheckedCreateNestedManyWithoutUserInput
     comments?: news_commentUncheckedCreateNestedManyWithoutUserInput
+    favoriteNews?: news_favoriteUncheckedCreateNestedManyWithoutUserInput
+    news_likes?: news_likeUncheckedCreateNestedManyWithoutUserInput
+    news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
     dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
-    favoriteNews?: news_favoriteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type userCreateOrConnectWithoutRatedNewsInput = {
@@ -33405,6 +36661,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     comments?: news_commentCreateNestedManyWithoutNewsInput
     favorites?: news_favoriteCreateNestedManyWithoutNewsInput
+    news_likes?: news_likeCreateNestedManyWithoutNewsInput
+    news_dislikes?: news_dislikeCreateNestedManyWithoutNewsInput
   }
 
   export type newsUncheckedCreateWithoutRatesInput = {
@@ -33417,6 +36675,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     comments?: news_commentUncheckedCreateNestedManyWithoutNewsInput
     favorites?: news_favoriteUncheckedCreateNestedManyWithoutNewsInput
+    news_likes?: news_likeUncheckedCreateNestedManyWithoutNewsInput
+    news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutNewsInput
   }
 
   export type newsCreateOrConnectWithoutRatesInput = {
@@ -33452,9 +36712,11 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUpdateManyWithoutUserNestedInput
     comments?: news_commentUpdateManyWithoutUserNestedInput
+    favoriteNews?: news_favoriteUpdateManyWithoutUserNestedInput
+    news_likes?: news_likeUpdateManyWithoutUserNestedInput
+    news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
     dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
-    favoriteNews?: news_favoriteUpdateManyWithoutUserNestedInput
   }
 
   export type userUncheckedUpdateWithoutRatedNewsInput = {
@@ -33474,9 +36736,11 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUncheckedUpdateManyWithoutUserNestedInput
     comments?: news_commentUncheckedUpdateManyWithoutUserNestedInput
+    favoriteNews?: news_favoriteUncheckedUpdateManyWithoutUserNestedInput
+    news_likes?: news_likeUncheckedUpdateManyWithoutUserNestedInput
+    news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
     dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
-    favoriteNews?: news_favoriteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type newsUpsertWithoutRatesInput = {
@@ -33499,6 +36763,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     comments?: news_commentUpdateManyWithoutNewsNestedInput
     favorites?: news_favoriteUpdateManyWithoutNewsNestedInput
+    news_likes?: news_likeUpdateManyWithoutNewsNestedInput
+    news_dislikes?: news_dislikeUpdateManyWithoutNewsNestedInput
   }
 
   export type newsUncheckedUpdateWithoutRatesInput = {
@@ -33511,6 +36777,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     comments?: news_commentUncheckedUpdateManyWithoutNewsNestedInput
     favorites?: news_favoriteUncheckedUpdateManyWithoutNewsNestedInput
+    news_likes?: news_likeUncheckedUpdateManyWithoutNewsNestedInput
+    news_dislikes?: news_dislikeUncheckedUpdateManyWithoutNewsNestedInput
   }
 
   export type userCreateWithoutFavoriteNewsInput = {
@@ -33530,9 +36798,11 @@ export namespace Prisma {
     courseFavorites?: course_favoriteCreateNestedManyWithoutUserInput
     courseComments?: course_commentCreateNestedManyWithoutUserInput
     comments?: news_commentCreateNestedManyWithoutUserInput
+    ratedNews?: news_rateCreateNestedManyWithoutUserInput
+    news_likes?: news_likeCreateNestedManyWithoutUserInput
+    news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
     dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
-    ratedNews?: news_rateCreateNestedManyWithoutUserInput
   }
 
   export type userUncheckedCreateWithoutFavoriteNewsInput = {
@@ -33552,9 +36822,11 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutUserInput
     courseComments?: course_commentUncheckedCreateNestedManyWithoutUserInput
     comments?: news_commentUncheckedCreateNestedManyWithoutUserInput
+    ratedNews?: news_rateUncheckedCreateNestedManyWithoutUserInput
+    news_likes?: news_likeUncheckedCreateNestedManyWithoutUserInput
+    news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
     dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
-    ratedNews?: news_rateUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type userCreateOrConnectWithoutFavoriteNewsInput = {
@@ -33571,6 +36843,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     comments?: news_commentCreateNestedManyWithoutNewsInput
     rates?: news_rateCreateNestedManyWithoutNewsInput
+    news_likes?: news_likeCreateNestedManyWithoutNewsInput
+    news_dislikes?: news_dislikeCreateNestedManyWithoutNewsInput
   }
 
   export type newsUncheckedCreateWithoutFavoritesInput = {
@@ -33583,6 +36857,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     comments?: news_commentUncheckedCreateNestedManyWithoutNewsInput
     rates?: news_rateUncheckedCreateNestedManyWithoutNewsInput
+    news_likes?: news_likeUncheckedCreateNestedManyWithoutNewsInput
+    news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutNewsInput
   }
 
   export type newsCreateOrConnectWithoutFavoritesInput = {
@@ -33618,9 +36894,11 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUpdateManyWithoutUserNestedInput
     comments?: news_commentUpdateManyWithoutUserNestedInput
+    ratedNews?: news_rateUpdateManyWithoutUserNestedInput
+    news_likes?: news_likeUpdateManyWithoutUserNestedInput
+    news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
     dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
-    ratedNews?: news_rateUpdateManyWithoutUserNestedInput
   }
 
   export type userUncheckedUpdateWithoutFavoriteNewsInput = {
@@ -33640,9 +36918,11 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUncheckedUpdateManyWithoutUserNestedInput
     comments?: news_commentUncheckedUpdateManyWithoutUserNestedInput
+    ratedNews?: news_rateUncheckedUpdateManyWithoutUserNestedInput
+    news_likes?: news_likeUncheckedUpdateManyWithoutUserNestedInput
+    news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
     dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
-    ratedNews?: news_rateUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type newsUpsertWithoutFavoritesInput = {
@@ -33665,6 +36945,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     comments?: news_commentUpdateManyWithoutNewsNestedInput
     rates?: news_rateUpdateManyWithoutNewsNestedInput
+    news_likes?: news_likeUpdateManyWithoutNewsNestedInput
+    news_dislikes?: news_dislikeUpdateManyWithoutNewsNestedInput
   }
 
   export type newsUncheckedUpdateWithoutFavoritesInput = {
@@ -33677,6 +36959,372 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     comments?: news_commentUncheckedUpdateManyWithoutNewsNestedInput
     rates?: news_rateUncheckedUpdateManyWithoutNewsNestedInput
+    news_likes?: news_likeUncheckedUpdateManyWithoutNewsNestedInput
+    news_dislikes?: news_dislikeUncheckedUpdateManyWithoutNewsNestedInput
+  }
+
+  export type userCreateWithoutNews_likesInput = {
+    id?: string
+    name: string
+    email: string
+    password: string
+    phone_number: string
+    referral_code: string
+    referral_user_id?: string | null
+    national_code?: string | null
+    location?: string | null
+    userRoles?: user_roleCreateNestedManyWithoutUserInput
+    loginTransactions?: login_transactionCreateNestedManyWithoutUserInput
+    courses?: courseCreateNestedManyWithoutTeacherInput
+    courseRates?: course_rateCreateNestedManyWithoutUserInput
+    courseFavorites?: course_favoriteCreateNestedManyWithoutUserInput
+    courseComments?: course_commentCreateNestedManyWithoutUserInput
+    comments?: news_commentCreateNestedManyWithoutUserInput
+    ratedNews?: news_rateCreateNestedManyWithoutUserInput
+    favoriteNews?: news_favoriteCreateNestedManyWithoutUserInput
+    news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
+    likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
+    dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
+  }
+
+  export type userUncheckedCreateWithoutNews_likesInput = {
+    id?: string
+    name: string
+    email: string
+    password: string
+    phone_number: string
+    referral_code: string
+    referral_user_id?: string | null
+    national_code?: string | null
+    location?: string | null
+    userRoles?: user_roleUncheckedCreateNestedManyWithoutUserInput
+    loginTransactions?: login_transactionUncheckedCreateNestedManyWithoutUserInput
+    courses?: courseUncheckedCreateNestedManyWithoutTeacherInput
+    courseRates?: course_rateUncheckedCreateNestedManyWithoutUserInput
+    courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutUserInput
+    courseComments?: course_commentUncheckedCreateNestedManyWithoutUserInput
+    comments?: news_commentUncheckedCreateNestedManyWithoutUserInput
+    ratedNews?: news_rateUncheckedCreateNestedManyWithoutUserInput
+    favoriteNews?: news_favoriteUncheckedCreateNestedManyWithoutUserInput
+    news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
+    likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
+    dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type userCreateOrConnectWithoutNews_likesInput = {
+    where: userWhereUniqueInput
+    create: XOR<userCreateWithoutNews_likesInput, userUncheckedCreateWithoutNews_likesInput>
+  }
+
+  export type newsCreateWithoutNews_likesInput = {
+    title: string
+    content: string
+    author_id: string
+    published?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    comments?: news_commentCreateNestedManyWithoutNewsInput
+    rates?: news_rateCreateNestedManyWithoutNewsInput
+    favorites?: news_favoriteCreateNestedManyWithoutNewsInput
+    news_dislikes?: news_dislikeCreateNestedManyWithoutNewsInput
+  }
+
+  export type newsUncheckedCreateWithoutNews_likesInput = {
+    id?: number
+    title: string
+    content: string
+    author_id: string
+    published?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    comments?: news_commentUncheckedCreateNestedManyWithoutNewsInput
+    rates?: news_rateUncheckedCreateNestedManyWithoutNewsInput
+    favorites?: news_favoriteUncheckedCreateNestedManyWithoutNewsInput
+    news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutNewsInput
+  }
+
+  export type newsCreateOrConnectWithoutNews_likesInput = {
+    where: newsWhereUniqueInput
+    create: XOR<newsCreateWithoutNews_likesInput, newsUncheckedCreateWithoutNews_likesInput>
+  }
+
+  export type userUpsertWithoutNews_likesInput = {
+    update: XOR<userUpdateWithoutNews_likesInput, userUncheckedUpdateWithoutNews_likesInput>
+    create: XOR<userCreateWithoutNews_likesInput, userUncheckedCreateWithoutNews_likesInput>
+    where?: userWhereInput
+  }
+
+  export type userUpdateToOneWithWhereWithoutNews_likesInput = {
+    where?: userWhereInput
+    data: XOR<userUpdateWithoutNews_likesInput, userUncheckedUpdateWithoutNews_likesInput>
+  }
+
+  export type userUpdateWithoutNews_likesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    phone_number?: StringFieldUpdateOperationsInput | string
+    referral_code?: StringFieldUpdateOperationsInput | string
+    referral_user_id?: NullableStringFieldUpdateOperationsInput | string | null
+    national_code?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    userRoles?: user_roleUpdateManyWithoutUserNestedInput
+    loginTransactions?: login_transactionUpdateManyWithoutUserNestedInput
+    courses?: courseUpdateManyWithoutTeacherNestedInput
+    courseRates?: course_rateUpdateManyWithoutUserNestedInput
+    courseFavorites?: course_favoriteUpdateManyWithoutUserNestedInput
+    courseComments?: course_commentUpdateManyWithoutUserNestedInput
+    comments?: news_commentUpdateManyWithoutUserNestedInput
+    ratedNews?: news_rateUpdateManyWithoutUserNestedInput
+    favoriteNews?: news_favoriteUpdateManyWithoutUserNestedInput
+    news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
+    likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
+    dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
+  }
+
+  export type userUncheckedUpdateWithoutNews_likesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    phone_number?: StringFieldUpdateOperationsInput | string
+    referral_code?: StringFieldUpdateOperationsInput | string
+    referral_user_id?: NullableStringFieldUpdateOperationsInput | string | null
+    national_code?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    userRoles?: user_roleUncheckedUpdateManyWithoutUserNestedInput
+    loginTransactions?: login_transactionUncheckedUpdateManyWithoutUserNestedInput
+    courses?: courseUncheckedUpdateManyWithoutTeacherNestedInput
+    courseRates?: course_rateUncheckedUpdateManyWithoutUserNestedInput
+    courseFavorites?: course_favoriteUncheckedUpdateManyWithoutUserNestedInput
+    courseComments?: course_commentUncheckedUpdateManyWithoutUserNestedInput
+    comments?: news_commentUncheckedUpdateManyWithoutUserNestedInput
+    ratedNews?: news_rateUncheckedUpdateManyWithoutUserNestedInput
+    favoriteNews?: news_favoriteUncheckedUpdateManyWithoutUserNestedInput
+    news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
+    likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
+    dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type newsUpsertWithoutNews_likesInput = {
+    update: XOR<newsUpdateWithoutNews_likesInput, newsUncheckedUpdateWithoutNews_likesInput>
+    create: XOR<newsCreateWithoutNews_likesInput, newsUncheckedCreateWithoutNews_likesInput>
+    where?: newsWhereInput
+  }
+
+  export type newsUpdateToOneWithWhereWithoutNews_likesInput = {
+    where?: newsWhereInput
+    data: XOR<newsUpdateWithoutNews_likesInput, newsUncheckedUpdateWithoutNews_likesInput>
+  }
+
+  export type newsUpdateWithoutNews_likesInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    author_id?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comments?: news_commentUpdateManyWithoutNewsNestedInput
+    rates?: news_rateUpdateManyWithoutNewsNestedInput
+    favorites?: news_favoriteUpdateManyWithoutNewsNestedInput
+    news_dislikes?: news_dislikeUpdateManyWithoutNewsNestedInput
+  }
+
+  export type newsUncheckedUpdateWithoutNews_likesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    author_id?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comments?: news_commentUncheckedUpdateManyWithoutNewsNestedInput
+    rates?: news_rateUncheckedUpdateManyWithoutNewsNestedInput
+    favorites?: news_favoriteUncheckedUpdateManyWithoutNewsNestedInput
+    news_dislikes?: news_dislikeUncheckedUpdateManyWithoutNewsNestedInput
+  }
+
+  export type userCreateWithoutNews_dislikesInput = {
+    id?: string
+    name: string
+    email: string
+    password: string
+    phone_number: string
+    referral_code: string
+    referral_user_id?: string | null
+    national_code?: string | null
+    location?: string | null
+    userRoles?: user_roleCreateNestedManyWithoutUserInput
+    loginTransactions?: login_transactionCreateNestedManyWithoutUserInput
+    courses?: courseCreateNestedManyWithoutTeacherInput
+    courseRates?: course_rateCreateNestedManyWithoutUserInput
+    courseFavorites?: course_favoriteCreateNestedManyWithoutUserInput
+    courseComments?: course_commentCreateNestedManyWithoutUserInput
+    comments?: news_commentCreateNestedManyWithoutUserInput
+    ratedNews?: news_rateCreateNestedManyWithoutUserInput
+    favoriteNews?: news_favoriteCreateNestedManyWithoutUserInput
+    news_likes?: news_likeCreateNestedManyWithoutUserInput
+    likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
+    dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
+  }
+
+  export type userUncheckedCreateWithoutNews_dislikesInput = {
+    id?: string
+    name: string
+    email: string
+    password: string
+    phone_number: string
+    referral_code: string
+    referral_user_id?: string | null
+    national_code?: string | null
+    location?: string | null
+    userRoles?: user_roleUncheckedCreateNestedManyWithoutUserInput
+    loginTransactions?: login_transactionUncheckedCreateNestedManyWithoutUserInput
+    courses?: courseUncheckedCreateNestedManyWithoutTeacherInput
+    courseRates?: course_rateUncheckedCreateNestedManyWithoutUserInput
+    courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutUserInput
+    courseComments?: course_commentUncheckedCreateNestedManyWithoutUserInput
+    comments?: news_commentUncheckedCreateNestedManyWithoutUserInput
+    ratedNews?: news_rateUncheckedCreateNestedManyWithoutUserInput
+    favoriteNews?: news_favoriteUncheckedCreateNestedManyWithoutUserInput
+    news_likes?: news_likeUncheckedCreateNestedManyWithoutUserInput
+    likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
+    dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type userCreateOrConnectWithoutNews_dislikesInput = {
+    where: userWhereUniqueInput
+    create: XOR<userCreateWithoutNews_dislikesInput, userUncheckedCreateWithoutNews_dislikesInput>
+  }
+
+  export type newsCreateWithoutNews_dislikesInput = {
+    title: string
+    content: string
+    author_id: string
+    published?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    comments?: news_commentCreateNestedManyWithoutNewsInput
+    rates?: news_rateCreateNestedManyWithoutNewsInput
+    favorites?: news_favoriteCreateNestedManyWithoutNewsInput
+    news_likes?: news_likeCreateNestedManyWithoutNewsInput
+  }
+
+  export type newsUncheckedCreateWithoutNews_dislikesInput = {
+    id?: number
+    title: string
+    content: string
+    author_id: string
+    published?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    comments?: news_commentUncheckedCreateNestedManyWithoutNewsInput
+    rates?: news_rateUncheckedCreateNestedManyWithoutNewsInput
+    favorites?: news_favoriteUncheckedCreateNestedManyWithoutNewsInput
+    news_likes?: news_likeUncheckedCreateNestedManyWithoutNewsInput
+  }
+
+  export type newsCreateOrConnectWithoutNews_dislikesInput = {
+    where: newsWhereUniqueInput
+    create: XOR<newsCreateWithoutNews_dislikesInput, newsUncheckedCreateWithoutNews_dislikesInput>
+  }
+
+  export type userUpsertWithoutNews_dislikesInput = {
+    update: XOR<userUpdateWithoutNews_dislikesInput, userUncheckedUpdateWithoutNews_dislikesInput>
+    create: XOR<userCreateWithoutNews_dislikesInput, userUncheckedCreateWithoutNews_dislikesInput>
+    where?: userWhereInput
+  }
+
+  export type userUpdateToOneWithWhereWithoutNews_dislikesInput = {
+    where?: userWhereInput
+    data: XOR<userUpdateWithoutNews_dislikesInput, userUncheckedUpdateWithoutNews_dislikesInput>
+  }
+
+  export type userUpdateWithoutNews_dislikesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    phone_number?: StringFieldUpdateOperationsInput | string
+    referral_code?: StringFieldUpdateOperationsInput | string
+    referral_user_id?: NullableStringFieldUpdateOperationsInput | string | null
+    national_code?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    userRoles?: user_roleUpdateManyWithoutUserNestedInput
+    loginTransactions?: login_transactionUpdateManyWithoutUserNestedInput
+    courses?: courseUpdateManyWithoutTeacherNestedInput
+    courseRates?: course_rateUpdateManyWithoutUserNestedInput
+    courseFavorites?: course_favoriteUpdateManyWithoutUserNestedInput
+    courseComments?: course_commentUpdateManyWithoutUserNestedInput
+    comments?: news_commentUpdateManyWithoutUserNestedInput
+    ratedNews?: news_rateUpdateManyWithoutUserNestedInput
+    favoriteNews?: news_favoriteUpdateManyWithoutUserNestedInput
+    news_likes?: news_likeUpdateManyWithoutUserNestedInput
+    likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
+    dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
+  }
+
+  export type userUncheckedUpdateWithoutNews_dislikesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    phone_number?: StringFieldUpdateOperationsInput | string
+    referral_code?: StringFieldUpdateOperationsInput | string
+    referral_user_id?: NullableStringFieldUpdateOperationsInput | string | null
+    national_code?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    userRoles?: user_roleUncheckedUpdateManyWithoutUserNestedInput
+    loginTransactions?: login_transactionUncheckedUpdateManyWithoutUserNestedInput
+    courses?: courseUncheckedUpdateManyWithoutTeacherNestedInput
+    courseRates?: course_rateUncheckedUpdateManyWithoutUserNestedInput
+    courseFavorites?: course_favoriteUncheckedUpdateManyWithoutUserNestedInput
+    courseComments?: course_commentUncheckedUpdateManyWithoutUserNestedInput
+    comments?: news_commentUncheckedUpdateManyWithoutUserNestedInput
+    ratedNews?: news_rateUncheckedUpdateManyWithoutUserNestedInput
+    favoriteNews?: news_favoriteUncheckedUpdateManyWithoutUserNestedInput
+    news_likes?: news_likeUncheckedUpdateManyWithoutUserNestedInput
+    likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
+    dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type newsUpsertWithoutNews_dislikesInput = {
+    update: XOR<newsUpdateWithoutNews_dislikesInput, newsUncheckedUpdateWithoutNews_dislikesInput>
+    create: XOR<newsCreateWithoutNews_dislikesInput, newsUncheckedCreateWithoutNews_dislikesInput>
+    where?: newsWhereInput
+  }
+
+  export type newsUpdateToOneWithWhereWithoutNews_dislikesInput = {
+    where?: newsWhereInput
+    data: XOR<newsUpdateWithoutNews_dislikesInput, newsUncheckedUpdateWithoutNews_dislikesInput>
+  }
+
+  export type newsUpdateWithoutNews_dislikesInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    author_id?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comments?: news_commentUpdateManyWithoutNewsNestedInput
+    rates?: news_rateUpdateManyWithoutNewsNestedInput
+    favorites?: news_favoriteUpdateManyWithoutNewsNestedInput
+    news_likes?: news_likeUpdateManyWithoutNewsNestedInput
+  }
+
+  export type newsUncheckedUpdateWithoutNews_dislikesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    author_id?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comments?: news_commentUncheckedUpdateManyWithoutNewsNestedInput
+    rates?: news_rateUncheckedUpdateManyWithoutNewsNestedInput
+    favorites?: news_favoriteUncheckedUpdateManyWithoutNewsNestedInput
+    news_likes?: news_likeUncheckedUpdateManyWithoutNewsNestedInput
   }
 
   export type user_roleCreateManyUserInput = {
@@ -33737,16 +37385,6 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
-  export type news_comment_likeCreateManyUserInput = {
-    id?: string
-    comment_id: string
-  }
-
-  export type news_comment_dislikeCreateManyUserInput = {
-    id?: string
-    comment_id: string
-  }
-
   export type news_rateCreateManyUserInput = {
     id?: string
     rate: number
@@ -33757,6 +37395,26 @@ export namespace Prisma {
   export type news_favoriteCreateManyUserInput = {
     id?: string
     news_id: number
+  }
+
+  export type news_likeCreateManyUserInput = {
+    id?: string
+    news_id: number
+  }
+
+  export type news_dislikeCreateManyUserInput = {
+    id?: string
+    news_id: number
+  }
+
+  export type news_comment_likeCreateManyUserInput = {
+    id?: string
+    comment_id: string
+  }
+
+  export type news_comment_dislikeCreateManyUserInput = {
+    id?: string
+    comment_id: string
   }
 
   export type user_roleUpdateWithoutUserInput = {
@@ -33951,36 +37609,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type news_comment_likeUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    newsComment?: news_commentUpdateOneRequiredWithoutLikesNestedInput
-  }
-
-  export type news_comment_likeUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    comment_id?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type news_comment_likeUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    comment_id?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type news_comment_dislikeUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    newsComment?: news_commentUpdateOneRequiredWithoutDislikesNestedInput
-  }
-
-  export type news_comment_dislikeUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    comment_id?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type news_comment_dislikeUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    comment_id?: StringFieldUpdateOperationsInput | string
-  }
-
   export type news_rateUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     rate?: FloatFieldUpdateOperationsInput | number
@@ -34015,6 +37643,66 @@ export namespace Prisma {
   export type news_favoriteUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     news_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type news_likeUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    news?: newsUpdateOneRequiredWithoutNews_likesNestedInput
+  }
+
+  export type news_likeUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    news_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type news_likeUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    news_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type news_dislikeUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    news?: newsUpdateOneRequiredWithoutNews_dislikesNestedInput
+  }
+
+  export type news_dislikeUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    news_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type news_dislikeUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    news_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type news_comment_likeUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    newsComment?: news_commentUpdateOneRequiredWithoutLikesNestedInput
+  }
+
+  export type news_comment_likeUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    comment_id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type news_comment_likeUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    comment_id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type news_comment_dislikeUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    newsComment?: news_commentUpdateOneRequiredWithoutDislikesNestedInput
+  }
+
+  export type news_comment_dislikeUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    comment_id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type news_comment_dislikeUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    comment_id?: StringFieldUpdateOperationsInput | string
   }
 
   export type user_roleCreateManyRoleInput = {
@@ -34325,6 +38013,16 @@ export namespace Prisma {
     user_id: string
   }
 
+  export type news_likeCreateManyNewsInput = {
+    id?: string
+    user_id: string
+  }
+
+  export type news_dislikeCreateManyNewsInput = {
+    id?: string
+    user_id: string
+  }
+
   export type news_commentUpdateWithoutNewsInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
@@ -34393,6 +38091,36 @@ export namespace Prisma {
   }
 
   export type news_favoriteUncheckedUpdateManyWithoutNewsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type news_likeUpdateWithoutNewsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user?: userUpdateOneRequiredWithoutNews_likesNestedInput
+  }
+
+  export type news_likeUncheckedUpdateWithoutNewsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type news_likeUncheckedUpdateManyWithoutNewsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type news_dislikeUpdateWithoutNewsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user?: userUpdateOneRequiredWithoutNews_dislikesNestedInput
+  }
+
+  export type news_dislikeUncheckedUpdateWithoutNewsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type news_dislikeUncheckedUpdateManyWithoutNewsInput = {
     id?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
   }
