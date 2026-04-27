@@ -60,4 +60,5 @@ module.exports = {
   listCategory,
   addCourseCategory,
   deleteCourseCategory,
+  detailCategory,
 };
