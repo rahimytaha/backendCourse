@@ -104,11 +104,6 @@ export type news_comment_like = $Result.DefaultSelection<Prisma.$news_comment_li
  */
 export type news_comment_dislike = $Result.DefaultSelection<Prisma.$news_comment_dislikePayload>
 /**
- * Model news_rate
- * 
- */
-export type news_rate = $Result.DefaultSelection<Prisma.$news_ratePayload>
-/**
  * Model news_favorite
  * 
  */
@@ -424,16 +419,6 @@ export class PrismaClient<
     * ```
     */
   get news_comment_dislike(): Prisma.news_comment_dislikeDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.news_rate`: Exposes CRUD operations for the **news_rate** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more News_rates
-    * const news_rates = await prisma.news_rate.findMany()
-    * ```
-    */
-  get news_rate(): Prisma.news_rateDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.news_favorite`: Exposes CRUD operations for the **news_favorite** model.
@@ -916,7 +901,6 @@ export namespace Prisma {
     news_comment: 'news_comment',
     news_comment_like: 'news_comment_like',
     news_comment_dislike: 'news_comment_dislike',
-    news_rate: 'news_rate',
     news_favorite: 'news_favorite',
     news_like: 'news_like',
     news_dislike: 'news_dislike'
@@ -935,7 +919,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "user_role" | "role" | "login_transaction" | "course" | "course_rate" | "course_favorite" | "course_comment" | "course_session" | "course_type" | "category" | "course_category" | "order" | "course_order" | "news" | "news_comment" | "news_comment_like" | "news_comment_dislike" | "news_rate" | "news_favorite" | "news_like" | "news_dislike"
+      modelProps: "user" | "user_role" | "role" | "login_transaction" | "course" | "course_rate" | "course_favorite" | "course_comment" | "course_session" | "course_type" | "category" | "course_category" | "order" | "course_order" | "news" | "news_comment" | "news_comment_like" | "news_comment_dislike" | "news_favorite" | "news_like" | "news_dislike"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2271,80 +2255,6 @@ export namespace Prisma {
           }
         }
       }
-      news_rate: {
-        payload: Prisma.$news_ratePayload<ExtArgs>
-        fields: Prisma.news_rateFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.news_rateFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$news_ratePayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.news_rateFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$news_ratePayload>
-          }
-          findFirst: {
-            args: Prisma.news_rateFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$news_ratePayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.news_rateFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$news_ratePayload>
-          }
-          findMany: {
-            args: Prisma.news_rateFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$news_ratePayload>[]
-          }
-          create: {
-            args: Prisma.news_rateCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$news_ratePayload>
-          }
-          createMany: {
-            args: Prisma.news_rateCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.news_rateCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$news_ratePayload>[]
-          }
-          delete: {
-            args: Prisma.news_rateDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$news_ratePayload>
-          }
-          update: {
-            args: Prisma.news_rateUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$news_ratePayload>
-          }
-          deleteMany: {
-            args: Prisma.news_rateDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.news_rateUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.news_rateUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$news_ratePayload>[]
-          }
-          upsert: {
-            args: Prisma.news_rateUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$news_ratePayload>
-          }
-          aggregate: {
-            args: Prisma.News_rateAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateNews_rate>
-          }
-          groupBy: {
-            args: Prisma.news_rateGroupByArgs<ExtArgs>
-            result: $Utils.Optional<News_rateGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.news_rateCountArgs<ExtArgs>
-            result: $Utils.Optional<News_rateCountAggregateOutputType> | number
-          }
-        }
-      }
       news_favorite: {
         payload: Prisma.$news_favoritePayload<ExtArgs>
         fields: Prisma.news_favoriteFieldRefs
@@ -2693,7 +2603,6 @@ export namespace Prisma {
     news_comment?: news_commentOmit
     news_comment_like?: news_comment_likeOmit
     news_comment_dislike?: news_comment_dislikeOmit
-    news_rate?: news_rateOmit
     news_favorite?: news_favoriteOmit
     news_like?: news_likeOmit
     news_dislike?: news_dislikeOmit
@@ -2784,7 +2693,6 @@ export namespace Prisma {
     courseFavorites: number
     courseComments: number
     comments: number
-    ratedNews: number
     favoriteNews: number
     news_likes: number
     news_dislikes: number
@@ -2800,7 +2708,6 @@ export namespace Prisma {
     courseFavorites?: boolean | UserCountOutputTypeCountCourseFavoritesArgs
     courseComments?: boolean | UserCountOutputTypeCountCourseCommentsArgs
     comments?: boolean | UserCountOutputTypeCountCommentsArgs
-    ratedNews?: boolean | UserCountOutputTypeCountRatedNewsArgs
     favoriteNews?: boolean | UserCountOutputTypeCountFavoriteNewsArgs
     news_likes?: boolean | UserCountOutputTypeCountNews_likesArgs
     news_dislikes?: boolean | UserCountOutputTypeCountNews_dislikesArgs
@@ -2866,13 +2773,6 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: news_commentWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountRatedNewsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: news_rateWhereInput
   }
 
   /**
@@ -3108,7 +3008,6 @@ export namespace Prisma {
 
   export type NewsCountOutputType = {
     comments: number
-    rates: number
     favorites: number
     news_likes: number
     news_dislikes: number
@@ -3116,7 +3015,6 @@ export namespace Prisma {
 
   export type NewsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     comments?: boolean | NewsCountOutputTypeCountCommentsArgs
-    rates?: boolean | NewsCountOutputTypeCountRatesArgs
     favorites?: boolean | NewsCountOutputTypeCountFavoritesArgs
     news_likes?: boolean | NewsCountOutputTypeCountNews_likesArgs
     news_dislikes?: boolean | NewsCountOutputTypeCountNews_dislikesArgs
@@ -3138,13 +3036,6 @@ export namespace Prisma {
    */
   export type NewsCountOutputTypeCountCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: news_commentWhereInput
-  }
-
-  /**
-   * NewsCountOutputType without action
-   */
-  export type NewsCountOutputTypeCountRatesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: news_rateWhereInput
   }
 
   /**
@@ -3425,7 +3316,6 @@ export namespace Prisma {
     courseFavorites?: boolean | user$courseFavoritesArgs<ExtArgs>
     courseComments?: boolean | user$courseCommentsArgs<ExtArgs>
     comments?: boolean | user$commentsArgs<ExtArgs>
-    ratedNews?: boolean | user$ratedNewsArgs<ExtArgs>
     favoriteNews?: boolean | user$favoriteNewsArgs<ExtArgs>
     news_likes?: boolean | user$news_likesArgs<ExtArgs>
     news_dislikes?: boolean | user$news_dislikesArgs<ExtArgs>
@@ -3479,7 +3369,6 @@ export namespace Prisma {
     courseFavorites?: boolean | user$courseFavoritesArgs<ExtArgs>
     courseComments?: boolean | user$courseCommentsArgs<ExtArgs>
     comments?: boolean | user$commentsArgs<ExtArgs>
-    ratedNews?: boolean | user$ratedNewsArgs<ExtArgs>
     favoriteNews?: boolean | user$favoriteNewsArgs<ExtArgs>
     news_likes?: boolean | user$news_likesArgs<ExtArgs>
     news_dislikes?: boolean | user$news_dislikesArgs<ExtArgs>
@@ -3500,7 +3389,6 @@ export namespace Prisma {
       courseFavorites: Prisma.$course_favoritePayload<ExtArgs>[]
       courseComments: Prisma.$course_commentPayload<ExtArgs>[]
       comments: Prisma.$news_commentPayload<ExtArgs>[]
-      ratedNews: Prisma.$news_ratePayload<ExtArgs>[]
       favoriteNews: Prisma.$news_favoritePayload<ExtArgs>[]
       news_likes: Prisma.$news_likePayload<ExtArgs>[]
       news_dislikes: Prisma.$news_dislikePayload<ExtArgs>[]
@@ -3918,7 +3806,6 @@ export namespace Prisma {
     courseFavorites<T extends user$courseFavoritesArgs<ExtArgs> = {}>(args?: Subset<T, user$courseFavoritesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$course_favoritePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     courseComments<T extends user$courseCommentsArgs<ExtArgs> = {}>(args?: Subset<T, user$courseCommentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$course_commentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     comments<T extends user$commentsArgs<ExtArgs> = {}>(args?: Subset<T, user$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_commentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    ratedNews<T extends user$ratedNewsArgs<ExtArgs> = {}>(args?: Subset<T, user$ratedNewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_ratePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     favoriteNews<T extends user$favoriteNewsArgs<ExtArgs> = {}>(args?: Subset<T, user$favoriteNewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_favoritePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     news_likes<T extends user$news_likesArgs<ExtArgs> = {}>(args?: Subset<T, user$news_likesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_likePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     news_dislikes<T extends user$news_dislikesArgs<ExtArgs> = {}>(args?: Subset<T, user$news_dislikesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_dislikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -4520,30 +4407,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: News_commentScalarFieldEnum | News_commentScalarFieldEnum[]
-  }
-
-  /**
-   * user.ratedNews
-   */
-  export type user$ratedNewsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the news_rate
-     */
-    select?: news_rateSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the news_rate
-     */
-    omit?: news_rateOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: news_rateInclude<ExtArgs> | null
-    where?: news_rateWhereInput
-    orderBy?: news_rateOrderByWithRelationInput | news_rateOrderByWithRelationInput[]
-    cursor?: news_rateWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: News_rateScalarFieldEnum | News_rateScalarFieldEnum[]
   }
 
   /**
@@ -18805,7 +18668,6 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     comments?: boolean | news$commentsArgs<ExtArgs>
-    rates?: boolean | news$ratesArgs<ExtArgs>
     favorites?: boolean | news$favoritesArgs<ExtArgs>
     news_likes?: boolean | news$news_likesArgs<ExtArgs>
     news_dislikes?: boolean | news$news_dislikesArgs<ExtArgs>
@@ -18845,7 +18707,6 @@ export namespace Prisma {
   export type newsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "content" | "author_id" | "published" | "createdAt" | "updatedAt", ExtArgs["result"]["news"]>
   export type newsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     comments?: boolean | news$commentsArgs<ExtArgs>
-    rates?: boolean | news$ratesArgs<ExtArgs>
     favorites?: boolean | news$favoritesArgs<ExtArgs>
     news_likes?: boolean | news$news_likesArgs<ExtArgs>
     news_dislikes?: boolean | news$news_dislikesArgs<ExtArgs>
@@ -18858,7 +18719,6 @@ export namespace Prisma {
     name: "news"
     objects: {
       comments: Prisma.$news_commentPayload<ExtArgs>[]
-      rates: Prisma.$news_ratePayload<ExtArgs>[]
       favorites: Prisma.$news_favoritePayload<ExtArgs>[]
       news_likes: Prisma.$news_likePayload<ExtArgs>[]
       news_dislikes: Prisma.$news_dislikePayload<ExtArgs>[]
@@ -19266,7 +19126,6 @@ export namespace Prisma {
   export interface Prisma__newsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     comments<T extends news$commentsArgs<ExtArgs> = {}>(args?: Subset<T, news$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_commentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    rates<T extends news$ratesArgs<ExtArgs> = {}>(args?: Subset<T, news$ratesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_ratePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     favorites<T extends news$favoritesArgs<ExtArgs> = {}>(args?: Subset<T, news$favoritesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_favoritePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     news_likes<T extends news$news_likesArgs<ExtArgs> = {}>(args?: Subset<T, news$news_likesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_likePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     news_dislikes<T extends news$news_dislikesArgs<ExtArgs> = {}>(args?: Subset<T, news$news_dislikesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_dislikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -19723,30 +19582,6 @@ export namespace Prisma {
   }
 
   /**
-   * news.rates
-   */
-  export type news$ratesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the news_rate
-     */
-    select?: news_rateSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the news_rate
-     */
-    omit?: news_rateOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: news_rateInclude<ExtArgs> | null
-    where?: news_rateWhereInput
-    orderBy?: news_rateOrderByWithRelationInput | news_rateOrderByWithRelationInput[]
-    cursor?: news_rateWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: News_rateScalarFieldEnum | News_rateScalarFieldEnum[]
-  }
-
-  /**
    * news.favorites
    */
   export type news$favoritesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -19850,10 +19685,12 @@ export namespace Prisma {
   }
 
   export type News_commentAvgAggregateOutputType = {
+    rate: number | null
     news_id: number | null
   }
 
   export type News_commentSumAggregateOutputType = {
+    rate: number | null
     news_id: number | null
   }
 
@@ -19861,6 +19698,7 @@ export namespace Prisma {
     id: string | null
     title: string | null
     content: string | null
+    rate: number | null
     user_id: string | null
     news_id: number | null
     parent_id: string | null
@@ -19872,6 +19710,7 @@ export namespace Prisma {
     id: string | null
     title: string | null
     content: string | null
+    rate: number | null
     user_id: string | null
     news_id: number | null
     parent_id: string | null
@@ -19883,6 +19722,7 @@ export namespace Prisma {
     id: number
     title: number
     content: number
+    rate: number
     user_id: number
     news_id: number
     parent_id: number
@@ -19893,10 +19733,12 @@ export namespace Prisma {
 
 
   export type News_commentAvgAggregateInputType = {
+    rate?: true
     news_id?: true
   }
 
   export type News_commentSumAggregateInputType = {
+    rate?: true
     news_id?: true
   }
 
@@ -19904,6 +19746,7 @@ export namespace Prisma {
     id?: true
     title?: true
     content?: true
+    rate?: true
     user_id?: true
     news_id?: true
     parent_id?: true
@@ -19915,6 +19758,7 @@ export namespace Prisma {
     id?: true
     title?: true
     content?: true
+    rate?: true
     user_id?: true
     news_id?: true
     parent_id?: true
@@ -19926,6 +19770,7 @@ export namespace Prisma {
     id?: true
     title?: true
     content?: true
+    rate?: true
     user_id?: true
     news_id?: true
     parent_id?: true
@@ -20024,6 +19869,7 @@ export namespace Prisma {
     id: string
     title: string
     content: string
+    rate: number
     user_id: string
     news_id: number
     parent_id: string | null
@@ -20054,6 +19900,7 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     content?: boolean
+    rate?: boolean
     user_id?: boolean
     news_id?: boolean
     parent_id?: boolean
@@ -20072,6 +19919,7 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     content?: boolean
+    rate?: boolean
     user_id?: boolean
     news_id?: boolean
     parent_id?: boolean
@@ -20086,6 +19934,7 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     content?: boolean
+    rate?: boolean
     user_id?: boolean
     news_id?: boolean
     parent_id?: boolean
@@ -20100,6 +19949,7 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     content?: boolean
+    rate?: boolean
     user_id?: boolean
     news_id?: boolean
     parent_id?: boolean
@@ -20107,7 +19957,7 @@ export namespace Prisma {
     createdAt?: boolean
   }
 
-  export type news_commentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "content" | "user_id" | "news_id" | "parent_id" | "isActive" | "createdAt", ExtArgs["result"]["news_comment"]>
+  export type news_commentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "content" | "rate" | "user_id" | "news_id" | "parent_id" | "isActive" | "createdAt", ExtArgs["result"]["news_comment"]>
   export type news_commentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     parent?: boolean | news_comment$parentArgs<ExtArgs>
     replies?: boolean | news_comment$repliesArgs<ExtArgs>
@@ -20142,6 +19992,7 @@ export namespace Prisma {
       id: string
       title: string
       content: string
+      rate: number
       user_id: string
       news_id: number
       parent_id: string | null
@@ -20579,6 +20430,7 @@ export namespace Prisma {
     readonly id: FieldRef<"news_comment", 'String'>
     readonly title: FieldRef<"news_comment", 'String'>
     readonly content: FieldRef<"news_comment", 'String'>
+    readonly rate: FieldRef<"news_comment", 'Int'>
     readonly user_id: FieldRef<"news_comment", 'String'>
     readonly news_id: FieldRef<"news_comment", 'Int'>
     readonly parent_id: FieldRef<"news_comment", 'String'>
@@ -23181,1115 +23033,6 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: news_comment_dislikeInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model news_rate
-   */
-
-  export type AggregateNews_rate = {
-    _count: News_rateCountAggregateOutputType | null
-    _avg: News_rateAvgAggregateOutputType | null
-    _sum: News_rateSumAggregateOutputType | null
-    _min: News_rateMinAggregateOutputType | null
-    _max: News_rateMaxAggregateOutputType | null
-  }
-
-  export type News_rateAvgAggregateOutputType = {
-    rate: number | null
-    news_id: number | null
-  }
-
-  export type News_rateSumAggregateOutputType = {
-    rate: number | null
-    news_id: number | null
-  }
-
-  export type News_rateMinAggregateOutputType = {
-    id: string | null
-    rate: number | null
-    review: string | null
-    news_id: number | null
-    user_id: string | null
-  }
-
-  export type News_rateMaxAggregateOutputType = {
-    id: string | null
-    rate: number | null
-    review: string | null
-    news_id: number | null
-    user_id: string | null
-  }
-
-  export type News_rateCountAggregateOutputType = {
-    id: number
-    rate: number
-    review: number
-    news_id: number
-    user_id: number
-    _all: number
-  }
-
-
-  export type News_rateAvgAggregateInputType = {
-    rate?: true
-    news_id?: true
-  }
-
-  export type News_rateSumAggregateInputType = {
-    rate?: true
-    news_id?: true
-  }
-
-  export type News_rateMinAggregateInputType = {
-    id?: true
-    rate?: true
-    review?: true
-    news_id?: true
-    user_id?: true
-  }
-
-  export type News_rateMaxAggregateInputType = {
-    id?: true
-    rate?: true
-    review?: true
-    news_id?: true
-    user_id?: true
-  }
-
-  export type News_rateCountAggregateInputType = {
-    id?: true
-    rate?: true
-    review?: true
-    news_id?: true
-    user_id?: true
-    _all?: true
-  }
-
-  export type News_rateAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which news_rate to aggregate.
-     */
-    where?: news_rateWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of news_rates to fetch.
-     */
-    orderBy?: news_rateOrderByWithRelationInput | news_rateOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: news_rateWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` news_rates from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` news_rates.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned news_rates
-    **/
-    _count?: true | News_rateCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: News_rateAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: News_rateSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: News_rateMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: News_rateMaxAggregateInputType
-  }
-
-  export type GetNews_rateAggregateType<T extends News_rateAggregateArgs> = {
-        [P in keyof T & keyof AggregateNews_rate]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateNews_rate[P]>
-      : GetScalarType<T[P], AggregateNews_rate[P]>
-  }
-
-
-
-
-  export type news_rateGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: news_rateWhereInput
-    orderBy?: news_rateOrderByWithAggregationInput | news_rateOrderByWithAggregationInput[]
-    by: News_rateScalarFieldEnum[] | News_rateScalarFieldEnum
-    having?: news_rateScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: News_rateCountAggregateInputType | true
-    _avg?: News_rateAvgAggregateInputType
-    _sum?: News_rateSumAggregateInputType
-    _min?: News_rateMinAggregateInputType
-    _max?: News_rateMaxAggregateInputType
-  }
-
-  export type News_rateGroupByOutputType = {
-    id: string
-    rate: number
-    review: string | null
-    news_id: number
-    user_id: string
-    _count: News_rateCountAggregateOutputType | null
-    _avg: News_rateAvgAggregateOutputType | null
-    _sum: News_rateSumAggregateOutputType | null
-    _min: News_rateMinAggregateOutputType | null
-    _max: News_rateMaxAggregateOutputType | null
-  }
-
-  type GetNews_rateGroupByPayload<T extends news_rateGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<News_rateGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof News_rateGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], News_rateGroupByOutputType[P]>
-            : GetScalarType<T[P], News_rateGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type news_rateSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    rate?: boolean
-    review?: boolean
-    news_id?: boolean
-    user_id?: boolean
-    user?: boolean | userDefaultArgs<ExtArgs>
-    news?: boolean | newsDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["news_rate"]>
-
-  export type news_rateSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    rate?: boolean
-    review?: boolean
-    news_id?: boolean
-    user_id?: boolean
-    user?: boolean | userDefaultArgs<ExtArgs>
-    news?: boolean | newsDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["news_rate"]>
-
-  export type news_rateSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    rate?: boolean
-    review?: boolean
-    news_id?: boolean
-    user_id?: boolean
-    user?: boolean | userDefaultArgs<ExtArgs>
-    news?: boolean | newsDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["news_rate"]>
-
-  export type news_rateSelectScalar = {
-    id?: boolean
-    rate?: boolean
-    review?: boolean
-    news_id?: boolean
-    user_id?: boolean
-  }
-
-  export type news_rateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "rate" | "review" | "news_id" | "user_id", ExtArgs["result"]["news_rate"]>
-  export type news_rateInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | userDefaultArgs<ExtArgs>
-    news?: boolean | newsDefaultArgs<ExtArgs>
-  }
-  export type news_rateIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | userDefaultArgs<ExtArgs>
-    news?: boolean | newsDefaultArgs<ExtArgs>
-  }
-  export type news_rateIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | userDefaultArgs<ExtArgs>
-    news?: boolean | newsDefaultArgs<ExtArgs>
-  }
-
-  export type $news_ratePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "news_rate"
-    objects: {
-      user: Prisma.$userPayload<ExtArgs>
-      news: Prisma.$newsPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      rate: number
-      review: string | null
-      news_id: number
-      user_id: string
-    }, ExtArgs["result"]["news_rate"]>
-    composites: {}
-  }
-
-  type news_rateGetPayload<S extends boolean | null | undefined | news_rateDefaultArgs> = $Result.GetResult<Prisma.$news_ratePayload, S>
-
-  type news_rateCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<news_rateFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: News_rateCountAggregateInputType | true
-    }
-
-  export interface news_rateDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['news_rate'], meta: { name: 'news_rate' } }
-    /**
-     * Find zero or one News_rate that matches the filter.
-     * @param {news_rateFindUniqueArgs} args - Arguments to find a News_rate
-     * @example
-     * // Get one News_rate
-     * const news_rate = await prisma.news_rate.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends news_rateFindUniqueArgs>(args: SelectSubset<T, news_rateFindUniqueArgs<ExtArgs>>): Prisma__news_rateClient<$Result.GetResult<Prisma.$news_ratePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one News_rate that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {news_rateFindUniqueOrThrowArgs} args - Arguments to find a News_rate
-     * @example
-     * // Get one News_rate
-     * const news_rate = await prisma.news_rate.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends news_rateFindUniqueOrThrowArgs>(args: SelectSubset<T, news_rateFindUniqueOrThrowArgs<ExtArgs>>): Prisma__news_rateClient<$Result.GetResult<Prisma.$news_ratePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first News_rate that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {news_rateFindFirstArgs} args - Arguments to find a News_rate
-     * @example
-     * // Get one News_rate
-     * const news_rate = await prisma.news_rate.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends news_rateFindFirstArgs>(args?: SelectSubset<T, news_rateFindFirstArgs<ExtArgs>>): Prisma__news_rateClient<$Result.GetResult<Prisma.$news_ratePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first News_rate that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {news_rateFindFirstOrThrowArgs} args - Arguments to find a News_rate
-     * @example
-     * // Get one News_rate
-     * const news_rate = await prisma.news_rate.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends news_rateFindFirstOrThrowArgs>(args?: SelectSubset<T, news_rateFindFirstOrThrowArgs<ExtArgs>>): Prisma__news_rateClient<$Result.GetResult<Prisma.$news_ratePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more News_rates that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {news_rateFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all News_rates
-     * const news_rates = await prisma.news_rate.findMany()
-     * 
-     * // Get first 10 News_rates
-     * const news_rates = await prisma.news_rate.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const news_rateWithIdOnly = await prisma.news_rate.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends news_rateFindManyArgs>(args?: SelectSubset<T, news_rateFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_ratePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a News_rate.
-     * @param {news_rateCreateArgs} args - Arguments to create a News_rate.
-     * @example
-     * // Create one News_rate
-     * const News_rate = await prisma.news_rate.create({
-     *   data: {
-     *     // ... data to create a News_rate
-     *   }
-     * })
-     * 
-     */
-    create<T extends news_rateCreateArgs>(args: SelectSubset<T, news_rateCreateArgs<ExtArgs>>): Prisma__news_rateClient<$Result.GetResult<Prisma.$news_ratePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many News_rates.
-     * @param {news_rateCreateManyArgs} args - Arguments to create many News_rates.
-     * @example
-     * // Create many News_rates
-     * const news_rate = await prisma.news_rate.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends news_rateCreateManyArgs>(args?: SelectSubset<T, news_rateCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many News_rates and returns the data saved in the database.
-     * @param {news_rateCreateManyAndReturnArgs} args - Arguments to create many News_rates.
-     * @example
-     * // Create many News_rates
-     * const news_rate = await prisma.news_rate.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many News_rates and only return the `id`
-     * const news_rateWithIdOnly = await prisma.news_rate.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends news_rateCreateManyAndReturnArgs>(args?: SelectSubset<T, news_rateCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_ratePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a News_rate.
-     * @param {news_rateDeleteArgs} args - Arguments to delete one News_rate.
-     * @example
-     * // Delete one News_rate
-     * const News_rate = await prisma.news_rate.delete({
-     *   where: {
-     *     // ... filter to delete one News_rate
-     *   }
-     * })
-     * 
-     */
-    delete<T extends news_rateDeleteArgs>(args: SelectSubset<T, news_rateDeleteArgs<ExtArgs>>): Prisma__news_rateClient<$Result.GetResult<Prisma.$news_ratePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one News_rate.
-     * @param {news_rateUpdateArgs} args - Arguments to update one News_rate.
-     * @example
-     * // Update one News_rate
-     * const news_rate = await prisma.news_rate.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends news_rateUpdateArgs>(args: SelectSubset<T, news_rateUpdateArgs<ExtArgs>>): Prisma__news_rateClient<$Result.GetResult<Prisma.$news_ratePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more News_rates.
-     * @param {news_rateDeleteManyArgs} args - Arguments to filter News_rates to delete.
-     * @example
-     * // Delete a few News_rates
-     * const { count } = await prisma.news_rate.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends news_rateDeleteManyArgs>(args?: SelectSubset<T, news_rateDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more News_rates.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {news_rateUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many News_rates
-     * const news_rate = await prisma.news_rate.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends news_rateUpdateManyArgs>(args: SelectSubset<T, news_rateUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more News_rates and returns the data updated in the database.
-     * @param {news_rateUpdateManyAndReturnArgs} args - Arguments to update many News_rates.
-     * @example
-     * // Update many News_rates
-     * const news_rate = await prisma.news_rate.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more News_rates and only return the `id`
-     * const news_rateWithIdOnly = await prisma.news_rate.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends news_rateUpdateManyAndReturnArgs>(args: SelectSubset<T, news_rateUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_ratePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one News_rate.
-     * @param {news_rateUpsertArgs} args - Arguments to update or create a News_rate.
-     * @example
-     * // Update or create a News_rate
-     * const news_rate = await prisma.news_rate.upsert({
-     *   create: {
-     *     // ... data to create a News_rate
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the News_rate we want to update
-     *   }
-     * })
-     */
-    upsert<T extends news_rateUpsertArgs>(args: SelectSubset<T, news_rateUpsertArgs<ExtArgs>>): Prisma__news_rateClient<$Result.GetResult<Prisma.$news_ratePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of News_rates.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {news_rateCountArgs} args - Arguments to filter News_rates to count.
-     * @example
-     * // Count the number of News_rates
-     * const count = await prisma.news_rate.count({
-     *   where: {
-     *     // ... the filter for the News_rates we want to count
-     *   }
-     * })
-    **/
-    count<T extends news_rateCountArgs>(
-      args?: Subset<T, news_rateCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], News_rateCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a News_rate.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {News_rateAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends News_rateAggregateArgs>(args: Subset<T, News_rateAggregateArgs>): Prisma.PrismaPromise<GetNews_rateAggregateType<T>>
-
-    /**
-     * Group by News_rate.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {news_rateGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends news_rateGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: news_rateGroupByArgs['orderBy'] }
-        : { orderBy?: news_rateGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, news_rateGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetNews_rateGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the news_rate model
-   */
-  readonly fields: news_rateFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for news_rate.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__news_rateClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends userDefaultArgs<ExtArgs> = {}>(args?: Subset<T, userDefaultArgs<ExtArgs>>): Prisma__userClient<$Result.GetResult<Prisma.$userPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    news<T extends newsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, newsDefaultArgs<ExtArgs>>): Prisma__newsClient<$Result.GetResult<Prisma.$newsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the news_rate model
-   */
-  interface news_rateFieldRefs {
-    readonly id: FieldRef<"news_rate", 'String'>
-    readonly rate: FieldRef<"news_rate", 'Float'>
-    readonly review: FieldRef<"news_rate", 'String'>
-    readonly news_id: FieldRef<"news_rate", 'Int'>
-    readonly user_id: FieldRef<"news_rate", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * news_rate findUnique
-   */
-  export type news_rateFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the news_rate
-     */
-    select?: news_rateSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the news_rate
-     */
-    omit?: news_rateOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: news_rateInclude<ExtArgs> | null
-    /**
-     * Filter, which news_rate to fetch.
-     */
-    where: news_rateWhereUniqueInput
-  }
-
-  /**
-   * news_rate findUniqueOrThrow
-   */
-  export type news_rateFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the news_rate
-     */
-    select?: news_rateSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the news_rate
-     */
-    omit?: news_rateOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: news_rateInclude<ExtArgs> | null
-    /**
-     * Filter, which news_rate to fetch.
-     */
-    where: news_rateWhereUniqueInput
-  }
-
-  /**
-   * news_rate findFirst
-   */
-  export type news_rateFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the news_rate
-     */
-    select?: news_rateSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the news_rate
-     */
-    omit?: news_rateOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: news_rateInclude<ExtArgs> | null
-    /**
-     * Filter, which news_rate to fetch.
-     */
-    where?: news_rateWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of news_rates to fetch.
-     */
-    orderBy?: news_rateOrderByWithRelationInput | news_rateOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for news_rates.
-     */
-    cursor?: news_rateWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` news_rates from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` news_rates.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of news_rates.
-     */
-    distinct?: News_rateScalarFieldEnum | News_rateScalarFieldEnum[]
-  }
-
-  /**
-   * news_rate findFirstOrThrow
-   */
-  export type news_rateFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the news_rate
-     */
-    select?: news_rateSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the news_rate
-     */
-    omit?: news_rateOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: news_rateInclude<ExtArgs> | null
-    /**
-     * Filter, which news_rate to fetch.
-     */
-    where?: news_rateWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of news_rates to fetch.
-     */
-    orderBy?: news_rateOrderByWithRelationInput | news_rateOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for news_rates.
-     */
-    cursor?: news_rateWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` news_rates from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` news_rates.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of news_rates.
-     */
-    distinct?: News_rateScalarFieldEnum | News_rateScalarFieldEnum[]
-  }
-
-  /**
-   * news_rate findMany
-   */
-  export type news_rateFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the news_rate
-     */
-    select?: news_rateSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the news_rate
-     */
-    omit?: news_rateOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: news_rateInclude<ExtArgs> | null
-    /**
-     * Filter, which news_rates to fetch.
-     */
-    where?: news_rateWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of news_rates to fetch.
-     */
-    orderBy?: news_rateOrderByWithRelationInput | news_rateOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing news_rates.
-     */
-    cursor?: news_rateWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` news_rates from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` news_rates.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of news_rates.
-     */
-    distinct?: News_rateScalarFieldEnum | News_rateScalarFieldEnum[]
-  }
-
-  /**
-   * news_rate create
-   */
-  export type news_rateCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the news_rate
-     */
-    select?: news_rateSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the news_rate
-     */
-    omit?: news_rateOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: news_rateInclude<ExtArgs> | null
-    /**
-     * The data needed to create a news_rate.
-     */
-    data: XOR<news_rateCreateInput, news_rateUncheckedCreateInput>
-  }
-
-  /**
-   * news_rate createMany
-   */
-  export type news_rateCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many news_rates.
-     */
-    data: news_rateCreateManyInput | news_rateCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * news_rate createManyAndReturn
-   */
-  export type news_rateCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the news_rate
-     */
-    select?: news_rateSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the news_rate
-     */
-    omit?: news_rateOmit<ExtArgs> | null
-    /**
-     * The data used to create many news_rates.
-     */
-    data: news_rateCreateManyInput | news_rateCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: news_rateIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * news_rate update
-   */
-  export type news_rateUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the news_rate
-     */
-    select?: news_rateSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the news_rate
-     */
-    omit?: news_rateOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: news_rateInclude<ExtArgs> | null
-    /**
-     * The data needed to update a news_rate.
-     */
-    data: XOR<news_rateUpdateInput, news_rateUncheckedUpdateInput>
-    /**
-     * Choose, which news_rate to update.
-     */
-    where: news_rateWhereUniqueInput
-  }
-
-  /**
-   * news_rate updateMany
-   */
-  export type news_rateUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update news_rates.
-     */
-    data: XOR<news_rateUpdateManyMutationInput, news_rateUncheckedUpdateManyInput>
-    /**
-     * Filter which news_rates to update
-     */
-    where?: news_rateWhereInput
-    /**
-     * Limit how many news_rates to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * news_rate updateManyAndReturn
-   */
-  export type news_rateUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the news_rate
-     */
-    select?: news_rateSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the news_rate
-     */
-    omit?: news_rateOmit<ExtArgs> | null
-    /**
-     * The data used to update news_rates.
-     */
-    data: XOR<news_rateUpdateManyMutationInput, news_rateUncheckedUpdateManyInput>
-    /**
-     * Filter which news_rates to update
-     */
-    where?: news_rateWhereInput
-    /**
-     * Limit how many news_rates to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: news_rateIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * news_rate upsert
-   */
-  export type news_rateUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the news_rate
-     */
-    select?: news_rateSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the news_rate
-     */
-    omit?: news_rateOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: news_rateInclude<ExtArgs> | null
-    /**
-     * The filter to search for the news_rate to update in case it exists.
-     */
-    where: news_rateWhereUniqueInput
-    /**
-     * In case the news_rate found by the `where` argument doesn't exist, create a new news_rate with this data.
-     */
-    create: XOR<news_rateCreateInput, news_rateUncheckedCreateInput>
-    /**
-     * In case the news_rate was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<news_rateUpdateInput, news_rateUncheckedUpdateInput>
-  }
-
-  /**
-   * news_rate delete
-   */
-  export type news_rateDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the news_rate
-     */
-    select?: news_rateSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the news_rate
-     */
-    omit?: news_rateOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: news_rateInclude<ExtArgs> | null
-    /**
-     * Filter which news_rate to delete.
-     */
-    where: news_rateWhereUniqueInput
-  }
-
-  /**
-   * news_rate deleteMany
-   */
-  export type news_rateDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which news_rates to delete
-     */
-    where?: news_rateWhereInput
-    /**
-     * Limit how many news_rates to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * news_rate without action
-   */
-  export type news_rateDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the news_rate
-     */
-    select?: news_rateSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the news_rate
-     */
-    omit?: news_rateOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: news_rateInclude<ExtArgs> | null
   }
 
 
@@ -27708,6 +26451,7 @@ export namespace Prisma {
     id: 'id',
     title: 'title',
     content: 'content',
+    rate: 'rate',
     user_id: 'user_id',
     news_id: 'news_id',
     parent_id: 'parent_id',
@@ -27734,17 +26478,6 @@ export namespace Prisma {
   };
 
   export type News_comment_dislikeScalarFieldEnum = (typeof News_comment_dislikeScalarFieldEnum)[keyof typeof News_comment_dislikeScalarFieldEnum]
-
-
-  export const News_rateScalarFieldEnum: {
-    id: 'id',
-    rate: 'rate',
-    review: 'review',
-    news_id: 'news_id',
-    user_id: 'user_id'
-  };
-
-  export type News_rateScalarFieldEnum = (typeof News_rateScalarFieldEnum)[keyof typeof News_rateScalarFieldEnum]
 
 
   export const News_favoriteScalarFieldEnum: {
@@ -27903,7 +26636,6 @@ export namespace Prisma {
     courseFavorites?: Course_favoriteListRelationFilter
     courseComments?: Course_commentListRelationFilter
     comments?: News_commentListRelationFilter
-    ratedNews?: News_rateListRelationFilter
     favoriteNews?: News_favoriteListRelationFilter
     news_likes?: News_likeListRelationFilter
     news_dislikes?: News_dislikeListRelationFilter
@@ -27928,7 +26660,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteOrderByRelationAggregateInput
     courseComments?: course_commentOrderByRelationAggregateInput
     comments?: news_commentOrderByRelationAggregateInput
-    ratedNews?: news_rateOrderByRelationAggregateInput
     favoriteNews?: news_favoriteOrderByRelationAggregateInput
     news_likes?: news_likeOrderByRelationAggregateInput
     news_dislikes?: news_dislikeOrderByRelationAggregateInput
@@ -27956,7 +26687,6 @@ export namespace Prisma {
     courseFavorites?: Course_favoriteListRelationFilter
     courseComments?: Course_commentListRelationFilter
     comments?: News_commentListRelationFilter
-    ratedNews?: News_rateListRelationFilter
     favoriteNews?: News_favoriteListRelationFilter
     news_likes?: News_likeListRelationFilter
     news_dislikes?: News_dislikeListRelationFilter
@@ -28703,7 +27433,6 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"news"> | Date | string
     updatedAt?: DateTimeFilter<"news"> | Date | string
     comments?: News_commentListRelationFilter
-    rates?: News_rateListRelationFilter
     favorites?: News_favoriteListRelationFilter
     news_likes?: News_likeListRelationFilter
     news_dislikes?: News_dislikeListRelationFilter
@@ -28718,7 +27447,6 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     comments?: news_commentOrderByRelationAggregateInput
-    rates?: news_rateOrderByRelationAggregateInput
     favorites?: news_favoriteOrderByRelationAggregateInput
     news_likes?: news_likeOrderByRelationAggregateInput
     news_dislikes?: news_dislikeOrderByRelationAggregateInput
@@ -28736,7 +27464,6 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"news"> | Date | string
     updatedAt?: DateTimeFilter<"news"> | Date | string
     comments?: News_commentListRelationFilter
-    rates?: News_rateListRelationFilter
     favorites?: News_favoriteListRelationFilter
     news_likes?: News_likeListRelationFilter
     news_dislikes?: News_dislikeListRelationFilter
@@ -28777,6 +27504,7 @@ export namespace Prisma {
     id?: StringFilter<"news_comment"> | string
     title?: StringFilter<"news_comment"> | string
     content?: StringFilter<"news_comment"> | string
+    rate?: IntFilter<"news_comment"> | number
     user_id?: StringFilter<"news_comment"> | string
     news_id?: IntFilter<"news_comment"> | number
     parent_id?: StringNullableFilter<"news_comment"> | string | null
@@ -28794,6 +27522,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     content?: SortOrder
+    rate?: SortOrder
     user_id?: SortOrder
     news_id?: SortOrder
     parent_id?: SortOrderInput | SortOrder
@@ -28814,6 +27543,7 @@ export namespace Prisma {
     NOT?: news_commentWhereInput | news_commentWhereInput[]
     title?: StringFilter<"news_comment"> | string
     content?: StringFilter<"news_comment"> | string
+    rate?: IntFilter<"news_comment"> | number
     user_id?: StringFilter<"news_comment"> | string
     news_id?: IntFilter<"news_comment"> | number
     parent_id?: StringNullableFilter<"news_comment"> | string | null
@@ -28831,6 +27561,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     content?: SortOrder
+    rate?: SortOrder
     user_id?: SortOrder
     news_id?: SortOrder
     parent_id?: SortOrderInput | SortOrder
@@ -28850,6 +27581,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"news_comment"> | string
     title?: StringWithAggregatesFilter<"news_comment"> | string
     content?: StringWithAggregatesFilter<"news_comment"> | string
+    rate?: IntWithAggregatesFilter<"news_comment"> | number
     user_id?: StringWithAggregatesFilter<"news_comment"> | string
     news_id?: IntWithAggregatesFilter<"news_comment"> | number
     parent_id?: StringNullableWithAggregatesFilter<"news_comment"> | string | null
@@ -28951,66 +27683,6 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"news_comment_dislike"> | string
     user_id?: StringWithAggregatesFilter<"news_comment_dislike"> | string
     comment_id?: StringWithAggregatesFilter<"news_comment_dislike"> | string
-  }
-
-  export type news_rateWhereInput = {
-    AND?: news_rateWhereInput | news_rateWhereInput[]
-    OR?: news_rateWhereInput[]
-    NOT?: news_rateWhereInput | news_rateWhereInput[]
-    id?: StringFilter<"news_rate"> | string
-    rate?: FloatFilter<"news_rate"> | number
-    review?: StringNullableFilter<"news_rate"> | string | null
-    news_id?: IntFilter<"news_rate"> | number
-    user_id?: StringFilter<"news_rate"> | string
-    user?: XOR<UserScalarRelationFilter, userWhereInput>
-    news?: XOR<NewsScalarRelationFilter, newsWhereInput>
-  }
-
-  export type news_rateOrderByWithRelationInput = {
-    id?: SortOrder
-    rate?: SortOrder
-    review?: SortOrderInput | SortOrder
-    news_id?: SortOrder
-    user_id?: SortOrder
-    user?: userOrderByWithRelationInput
-    news?: newsOrderByWithRelationInput
-  }
-
-  export type news_rateWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: news_rateWhereInput | news_rateWhereInput[]
-    OR?: news_rateWhereInput[]
-    NOT?: news_rateWhereInput | news_rateWhereInput[]
-    rate?: FloatFilter<"news_rate"> | number
-    review?: StringNullableFilter<"news_rate"> | string | null
-    news_id?: IntFilter<"news_rate"> | number
-    user_id?: StringFilter<"news_rate"> | string
-    user?: XOR<UserScalarRelationFilter, userWhereInput>
-    news?: XOR<NewsScalarRelationFilter, newsWhereInput>
-  }, "id">
-
-  export type news_rateOrderByWithAggregationInput = {
-    id?: SortOrder
-    rate?: SortOrder
-    review?: SortOrderInput | SortOrder
-    news_id?: SortOrder
-    user_id?: SortOrder
-    _count?: news_rateCountOrderByAggregateInput
-    _avg?: news_rateAvgOrderByAggregateInput
-    _max?: news_rateMaxOrderByAggregateInput
-    _min?: news_rateMinOrderByAggregateInput
-    _sum?: news_rateSumOrderByAggregateInput
-  }
-
-  export type news_rateScalarWhereWithAggregatesInput = {
-    AND?: news_rateScalarWhereWithAggregatesInput | news_rateScalarWhereWithAggregatesInput[]
-    OR?: news_rateScalarWhereWithAggregatesInput[]
-    NOT?: news_rateScalarWhereWithAggregatesInput | news_rateScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"news_rate"> | string
-    rate?: FloatWithAggregatesFilter<"news_rate"> | number
-    review?: StringNullableWithAggregatesFilter<"news_rate"> | string | null
-    news_id?: IntWithAggregatesFilter<"news_rate"> | number
-    user_id?: StringWithAggregatesFilter<"news_rate"> | string
   }
 
   export type news_favoriteWhereInput = {
@@ -29180,7 +27852,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteCreateNestedManyWithoutUserInput
     courseComments?: course_commentCreateNestedManyWithoutUserInput
     comments?: news_commentCreateNestedManyWithoutUserInput
-    ratedNews?: news_rateCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteCreateNestedManyWithoutUserInput
     news_likes?: news_likeCreateNestedManyWithoutUserInput
     news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
@@ -29205,7 +27876,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutUserInput
     courseComments?: course_commentUncheckedCreateNestedManyWithoutUserInput
     comments?: news_commentUncheckedCreateNestedManyWithoutUserInput
-    ratedNews?: news_rateUncheckedCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteUncheckedCreateNestedManyWithoutUserInput
     news_likes?: news_likeUncheckedCreateNestedManyWithoutUserInput
     news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
@@ -29230,7 +27900,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUpdateManyWithoutUserNestedInput
     comments?: news_commentUpdateManyWithoutUserNestedInput
-    ratedNews?: news_rateUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUpdateManyWithoutUserNestedInput
     news_likes?: news_likeUpdateManyWithoutUserNestedInput
     news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
@@ -29255,7 +27924,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUncheckedUpdateManyWithoutUserNestedInput
     comments?: news_commentUncheckedUpdateManyWithoutUserNestedInput
-    ratedNews?: news_rateUncheckedUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUncheckedUpdateManyWithoutUserNestedInput
     news_likes?: news_likeUncheckedUpdateManyWithoutUserNestedInput
     news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
@@ -29979,7 +28647,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     comments?: news_commentCreateNestedManyWithoutNewsInput
-    rates?: news_rateCreateNestedManyWithoutNewsInput
     favorites?: news_favoriteCreateNestedManyWithoutNewsInput
     news_likes?: news_likeCreateNestedManyWithoutNewsInput
     news_dislikes?: news_dislikeCreateNestedManyWithoutNewsInput
@@ -29994,7 +28661,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     comments?: news_commentUncheckedCreateNestedManyWithoutNewsInput
-    rates?: news_rateUncheckedCreateNestedManyWithoutNewsInput
     favorites?: news_favoriteUncheckedCreateNestedManyWithoutNewsInput
     news_likes?: news_likeUncheckedCreateNestedManyWithoutNewsInput
     news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutNewsInput
@@ -30008,7 +28674,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     comments?: news_commentUpdateManyWithoutNewsNestedInput
-    rates?: news_rateUpdateManyWithoutNewsNestedInput
     favorites?: news_favoriteUpdateManyWithoutNewsNestedInput
     news_likes?: news_likeUpdateManyWithoutNewsNestedInput
     news_dislikes?: news_dislikeUpdateManyWithoutNewsNestedInput
@@ -30023,7 +28688,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     comments?: news_commentUncheckedUpdateManyWithoutNewsNestedInput
-    rates?: news_rateUncheckedUpdateManyWithoutNewsNestedInput
     favorites?: news_favoriteUncheckedUpdateManyWithoutNewsNestedInput
     news_likes?: news_likeUncheckedUpdateManyWithoutNewsNestedInput
     news_dislikes?: news_dislikeUncheckedUpdateManyWithoutNewsNestedInput
@@ -30062,6 +28726,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
+    rate: number
     isActive?: boolean
     createdAt?: Date | string
     parent?: news_commentCreateNestedOneWithoutRepliesInput
@@ -30076,6 +28741,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
+    rate: number
     user_id: string
     news_id: number
     parent_id?: string | null
@@ -30090,6 +28756,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    rate?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parent?: news_commentUpdateOneWithoutRepliesNestedInput
@@ -30104,6 +28771,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    rate?: IntFieldUpdateOperationsInput | number
     user_id?: StringFieldUpdateOperationsInput | string
     news_id?: IntFieldUpdateOperationsInput | number
     parent_id?: NullableStringFieldUpdateOperationsInput | string | null
@@ -30118,6 +28786,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
+    rate: number
     user_id: string
     news_id: number
     parent_id?: string | null
@@ -30129,6 +28798,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    rate?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -30137,6 +28807,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    rate?: IntFieldUpdateOperationsInput | number
     user_id?: StringFieldUpdateOperationsInput | string
     news_id?: IntFieldUpdateOperationsInput | number
     parent_id?: NullableStringFieldUpdateOperationsInput | string | null
@@ -30222,60 +28893,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
     comment_id?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type news_rateCreateInput = {
-    id?: string
-    rate: number
-    review?: string | null
-    user: userCreateNestedOneWithoutRatedNewsInput
-    news: newsCreateNestedOneWithoutRatesInput
-  }
-
-  export type news_rateUncheckedCreateInput = {
-    id?: string
-    rate: number
-    review?: string | null
-    news_id: number
-    user_id: string
-  }
-
-  export type news_rateUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    rate?: FloatFieldUpdateOperationsInput | number
-    review?: NullableStringFieldUpdateOperationsInput | string | null
-    user?: userUpdateOneRequiredWithoutRatedNewsNestedInput
-    news?: newsUpdateOneRequiredWithoutRatesNestedInput
-  }
-
-  export type news_rateUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    rate?: FloatFieldUpdateOperationsInput | number
-    review?: NullableStringFieldUpdateOperationsInput | string | null
-    news_id?: IntFieldUpdateOperationsInput | number
-    user_id?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type news_rateCreateManyInput = {
-    id?: string
-    rate: number
-    review?: string | null
-    news_id: number
-    user_id: string
-  }
-
-  export type news_rateUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    rate?: FloatFieldUpdateOperationsInput | number
-    review?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type news_rateUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    rate?: FloatFieldUpdateOperationsInput | number
-    review?: NullableStringFieldUpdateOperationsInput | string | null
-    news_id?: IntFieldUpdateOperationsInput | number
-    user_id?: StringFieldUpdateOperationsInput | string
   }
 
   export type news_favoriteCreateInput = {
@@ -30470,12 +29087,6 @@ export namespace Prisma {
     none?: news_commentWhereInput
   }
 
-  export type News_rateListRelationFilter = {
-    every?: news_rateWhereInput
-    some?: news_rateWhereInput
-    none?: news_rateWhereInput
-  }
-
   export type News_favoriteListRelationFilter = {
     every?: news_favoriteWhereInput
     some?: news_favoriteWhereInput
@@ -30536,10 +29147,6 @@ export namespace Prisma {
   }
 
   export type news_commentOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type news_rateOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -31153,6 +29760,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     content?: SortOrder
+    rate?: SortOrder
     user_id?: SortOrder
     news_id?: SortOrder
     parent_id?: SortOrder
@@ -31161,6 +29769,7 @@ export namespace Prisma {
   }
 
   export type news_commentAvgOrderByAggregateInput = {
+    rate?: SortOrder
     news_id?: SortOrder
   }
 
@@ -31168,6 +29777,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     content?: SortOrder
+    rate?: SortOrder
     user_id?: SortOrder
     news_id?: SortOrder
     parent_id?: SortOrder
@@ -31179,6 +29789,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     content?: SortOrder
+    rate?: SortOrder
     user_id?: SortOrder
     news_id?: SortOrder
     parent_id?: SortOrder
@@ -31187,6 +29798,7 @@ export namespace Prisma {
   }
 
   export type news_commentSumOrderByAggregateInput = {
+    rate?: SortOrder
     news_id?: SortOrder
   }
 
@@ -31229,40 +29841,6 @@ export namespace Prisma {
     id?: SortOrder
     user_id?: SortOrder
     comment_id?: SortOrder
-  }
-
-  export type news_rateCountOrderByAggregateInput = {
-    id?: SortOrder
-    rate?: SortOrder
-    review?: SortOrder
-    news_id?: SortOrder
-    user_id?: SortOrder
-  }
-
-  export type news_rateAvgOrderByAggregateInput = {
-    rate?: SortOrder
-    news_id?: SortOrder
-  }
-
-  export type news_rateMaxOrderByAggregateInput = {
-    id?: SortOrder
-    rate?: SortOrder
-    review?: SortOrder
-    news_id?: SortOrder
-    user_id?: SortOrder
-  }
-
-  export type news_rateMinOrderByAggregateInput = {
-    id?: SortOrder
-    rate?: SortOrder
-    review?: SortOrder
-    news_id?: SortOrder
-    user_id?: SortOrder
-  }
-
-  export type news_rateSumOrderByAggregateInput = {
-    rate?: SortOrder
-    news_id?: SortOrder
   }
 
   export type news_favoriteCountOrderByAggregateInput = {
@@ -31392,13 +29970,6 @@ export namespace Prisma {
     connect?: news_commentWhereUniqueInput | news_commentWhereUniqueInput[]
   }
 
-  export type news_rateCreateNestedManyWithoutUserInput = {
-    create?: XOR<news_rateCreateWithoutUserInput, news_rateUncheckedCreateWithoutUserInput> | news_rateCreateWithoutUserInput[] | news_rateUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: news_rateCreateOrConnectWithoutUserInput | news_rateCreateOrConnectWithoutUserInput[]
-    createMany?: news_rateCreateManyUserInputEnvelope
-    connect?: news_rateWhereUniqueInput | news_rateWhereUniqueInput[]
-  }
-
   export type news_favoriteCreateNestedManyWithoutUserInput = {
     create?: XOR<news_favoriteCreateWithoutUserInput, news_favoriteUncheckedCreateWithoutUserInput> | news_favoriteCreateWithoutUserInput[] | news_favoriteUncheckedCreateWithoutUserInput[]
     connectOrCreate?: news_favoriteCreateOrConnectWithoutUserInput | news_favoriteCreateOrConnectWithoutUserInput[]
@@ -31481,13 +30052,6 @@ export namespace Prisma {
     connectOrCreate?: news_commentCreateOrConnectWithoutUserInput | news_commentCreateOrConnectWithoutUserInput[]
     createMany?: news_commentCreateManyUserInputEnvelope
     connect?: news_commentWhereUniqueInput | news_commentWhereUniqueInput[]
-  }
-
-  export type news_rateUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<news_rateCreateWithoutUserInput, news_rateUncheckedCreateWithoutUserInput> | news_rateCreateWithoutUserInput[] | news_rateUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: news_rateCreateOrConnectWithoutUserInput | news_rateCreateOrConnectWithoutUserInput[]
-    createMany?: news_rateCreateManyUserInputEnvelope
-    connect?: news_rateWhereUniqueInput | news_rateWhereUniqueInput[]
   }
 
   export type news_favoriteUncheckedCreateNestedManyWithoutUserInput = {
@@ -31629,20 +30193,6 @@ export namespace Prisma {
     update?: news_commentUpdateWithWhereUniqueWithoutUserInput | news_commentUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: news_commentUpdateManyWithWhereWithoutUserInput | news_commentUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: news_commentScalarWhereInput | news_commentScalarWhereInput[]
-  }
-
-  export type news_rateUpdateManyWithoutUserNestedInput = {
-    create?: XOR<news_rateCreateWithoutUserInput, news_rateUncheckedCreateWithoutUserInput> | news_rateCreateWithoutUserInput[] | news_rateUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: news_rateCreateOrConnectWithoutUserInput | news_rateCreateOrConnectWithoutUserInput[]
-    upsert?: news_rateUpsertWithWhereUniqueWithoutUserInput | news_rateUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: news_rateCreateManyUserInputEnvelope
-    set?: news_rateWhereUniqueInput | news_rateWhereUniqueInput[]
-    disconnect?: news_rateWhereUniqueInput | news_rateWhereUniqueInput[]
-    delete?: news_rateWhereUniqueInput | news_rateWhereUniqueInput[]
-    connect?: news_rateWhereUniqueInput | news_rateWhereUniqueInput[]
-    update?: news_rateUpdateWithWhereUniqueWithoutUserInput | news_rateUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: news_rateUpdateManyWithWhereWithoutUserInput | news_rateUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: news_rateScalarWhereInput | news_rateScalarWhereInput[]
   }
 
   export type news_favoriteUpdateManyWithoutUserNestedInput = {
@@ -31811,20 +30361,6 @@ export namespace Prisma {
     update?: news_commentUpdateWithWhereUniqueWithoutUserInput | news_commentUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: news_commentUpdateManyWithWhereWithoutUserInput | news_commentUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: news_commentScalarWhereInput | news_commentScalarWhereInput[]
-  }
-
-  export type news_rateUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<news_rateCreateWithoutUserInput, news_rateUncheckedCreateWithoutUserInput> | news_rateCreateWithoutUserInput[] | news_rateUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: news_rateCreateOrConnectWithoutUserInput | news_rateCreateOrConnectWithoutUserInput[]
-    upsert?: news_rateUpsertWithWhereUniqueWithoutUserInput | news_rateUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: news_rateCreateManyUserInputEnvelope
-    set?: news_rateWhereUniqueInput | news_rateWhereUniqueInput[]
-    disconnect?: news_rateWhereUniqueInput | news_rateWhereUniqueInput[]
-    delete?: news_rateWhereUniqueInput | news_rateWhereUniqueInput[]
-    connect?: news_rateWhereUniqueInput | news_rateWhereUniqueInput[]
-    update?: news_rateUpdateWithWhereUniqueWithoutUserInput | news_rateUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: news_rateUpdateManyWithWhereWithoutUserInput | news_rateUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: news_rateScalarWhereInput | news_rateScalarWhereInput[]
   }
 
   export type news_favoriteUncheckedUpdateManyWithoutUserNestedInput = {
@@ -32518,13 +31054,6 @@ export namespace Prisma {
     connect?: news_commentWhereUniqueInput | news_commentWhereUniqueInput[]
   }
 
-  export type news_rateCreateNestedManyWithoutNewsInput = {
-    create?: XOR<news_rateCreateWithoutNewsInput, news_rateUncheckedCreateWithoutNewsInput> | news_rateCreateWithoutNewsInput[] | news_rateUncheckedCreateWithoutNewsInput[]
-    connectOrCreate?: news_rateCreateOrConnectWithoutNewsInput | news_rateCreateOrConnectWithoutNewsInput[]
-    createMany?: news_rateCreateManyNewsInputEnvelope
-    connect?: news_rateWhereUniqueInput | news_rateWhereUniqueInput[]
-  }
-
   export type news_favoriteCreateNestedManyWithoutNewsInput = {
     create?: XOR<news_favoriteCreateWithoutNewsInput, news_favoriteUncheckedCreateWithoutNewsInput> | news_favoriteCreateWithoutNewsInput[] | news_favoriteUncheckedCreateWithoutNewsInput[]
     connectOrCreate?: news_favoriteCreateOrConnectWithoutNewsInput | news_favoriteCreateOrConnectWithoutNewsInput[]
@@ -32551,13 +31080,6 @@ export namespace Prisma {
     connectOrCreate?: news_commentCreateOrConnectWithoutNewsInput | news_commentCreateOrConnectWithoutNewsInput[]
     createMany?: news_commentCreateManyNewsInputEnvelope
     connect?: news_commentWhereUniqueInput | news_commentWhereUniqueInput[]
-  }
-
-  export type news_rateUncheckedCreateNestedManyWithoutNewsInput = {
-    create?: XOR<news_rateCreateWithoutNewsInput, news_rateUncheckedCreateWithoutNewsInput> | news_rateCreateWithoutNewsInput[] | news_rateUncheckedCreateWithoutNewsInput[]
-    connectOrCreate?: news_rateCreateOrConnectWithoutNewsInput | news_rateCreateOrConnectWithoutNewsInput[]
-    createMany?: news_rateCreateManyNewsInputEnvelope
-    connect?: news_rateWhereUniqueInput | news_rateWhereUniqueInput[]
   }
 
   export type news_favoriteUncheckedCreateNestedManyWithoutNewsInput = {
@@ -32593,20 +31115,6 @@ export namespace Prisma {
     update?: news_commentUpdateWithWhereUniqueWithoutNewsInput | news_commentUpdateWithWhereUniqueWithoutNewsInput[]
     updateMany?: news_commentUpdateManyWithWhereWithoutNewsInput | news_commentUpdateManyWithWhereWithoutNewsInput[]
     deleteMany?: news_commentScalarWhereInput | news_commentScalarWhereInput[]
-  }
-
-  export type news_rateUpdateManyWithoutNewsNestedInput = {
-    create?: XOR<news_rateCreateWithoutNewsInput, news_rateUncheckedCreateWithoutNewsInput> | news_rateCreateWithoutNewsInput[] | news_rateUncheckedCreateWithoutNewsInput[]
-    connectOrCreate?: news_rateCreateOrConnectWithoutNewsInput | news_rateCreateOrConnectWithoutNewsInput[]
-    upsert?: news_rateUpsertWithWhereUniqueWithoutNewsInput | news_rateUpsertWithWhereUniqueWithoutNewsInput[]
-    createMany?: news_rateCreateManyNewsInputEnvelope
-    set?: news_rateWhereUniqueInput | news_rateWhereUniqueInput[]
-    disconnect?: news_rateWhereUniqueInput | news_rateWhereUniqueInput[]
-    delete?: news_rateWhereUniqueInput | news_rateWhereUniqueInput[]
-    connect?: news_rateWhereUniqueInput | news_rateWhereUniqueInput[]
-    update?: news_rateUpdateWithWhereUniqueWithoutNewsInput | news_rateUpdateWithWhereUniqueWithoutNewsInput[]
-    updateMany?: news_rateUpdateManyWithWhereWithoutNewsInput | news_rateUpdateManyWithWhereWithoutNewsInput[]
-    deleteMany?: news_rateScalarWhereInput | news_rateScalarWhereInput[]
   }
 
   export type news_favoriteUpdateManyWithoutNewsNestedInput = {
@@ -32671,20 +31179,6 @@ export namespace Prisma {
     update?: news_commentUpdateWithWhereUniqueWithoutNewsInput | news_commentUpdateWithWhereUniqueWithoutNewsInput[]
     updateMany?: news_commentUpdateManyWithWhereWithoutNewsInput | news_commentUpdateManyWithWhereWithoutNewsInput[]
     deleteMany?: news_commentScalarWhereInput | news_commentScalarWhereInput[]
-  }
-
-  export type news_rateUncheckedUpdateManyWithoutNewsNestedInput = {
-    create?: XOR<news_rateCreateWithoutNewsInput, news_rateUncheckedCreateWithoutNewsInput> | news_rateCreateWithoutNewsInput[] | news_rateUncheckedCreateWithoutNewsInput[]
-    connectOrCreate?: news_rateCreateOrConnectWithoutNewsInput | news_rateCreateOrConnectWithoutNewsInput[]
-    upsert?: news_rateUpsertWithWhereUniqueWithoutNewsInput | news_rateUpsertWithWhereUniqueWithoutNewsInput[]
-    createMany?: news_rateCreateManyNewsInputEnvelope
-    set?: news_rateWhereUniqueInput | news_rateWhereUniqueInput[]
-    disconnect?: news_rateWhereUniqueInput | news_rateWhereUniqueInput[]
-    delete?: news_rateWhereUniqueInput | news_rateWhereUniqueInput[]
-    connect?: news_rateWhereUniqueInput | news_rateWhereUniqueInput[]
-    update?: news_rateUpdateWithWhereUniqueWithoutNewsInput | news_rateUpdateWithWhereUniqueWithoutNewsInput[]
-    updateMany?: news_rateUpdateManyWithWhereWithoutNewsInput | news_rateUpdateManyWithWhereWithoutNewsInput[]
-    deleteMany?: news_rateScalarWhereInput | news_rateScalarWhereInput[]
   }
 
   export type news_favoriteUncheckedUpdateManyWithoutNewsNestedInput = {
@@ -32953,34 +31447,6 @@ export namespace Prisma {
     upsert?: news_commentUpsertWithoutDislikesInput
     connect?: news_commentWhereUniqueInput
     update?: XOR<XOR<news_commentUpdateToOneWithWhereWithoutDislikesInput, news_commentUpdateWithoutDislikesInput>, news_commentUncheckedUpdateWithoutDislikesInput>
-  }
-
-  export type userCreateNestedOneWithoutRatedNewsInput = {
-    create?: XOR<userCreateWithoutRatedNewsInput, userUncheckedCreateWithoutRatedNewsInput>
-    connectOrCreate?: userCreateOrConnectWithoutRatedNewsInput
-    connect?: userWhereUniqueInput
-  }
-
-  export type newsCreateNestedOneWithoutRatesInput = {
-    create?: XOR<newsCreateWithoutRatesInput, newsUncheckedCreateWithoutRatesInput>
-    connectOrCreate?: newsCreateOrConnectWithoutRatesInput
-    connect?: newsWhereUniqueInput
-  }
-
-  export type userUpdateOneRequiredWithoutRatedNewsNestedInput = {
-    create?: XOR<userCreateWithoutRatedNewsInput, userUncheckedCreateWithoutRatedNewsInput>
-    connectOrCreate?: userCreateOrConnectWithoutRatedNewsInput
-    upsert?: userUpsertWithoutRatedNewsInput
-    connect?: userWhereUniqueInput
-    update?: XOR<XOR<userUpdateToOneWithWhereWithoutRatedNewsInput, userUpdateWithoutRatedNewsInput>, userUncheckedUpdateWithoutRatedNewsInput>
-  }
-
-  export type newsUpdateOneRequiredWithoutRatesNestedInput = {
-    create?: XOR<newsCreateWithoutRatesInput, newsUncheckedCreateWithoutRatesInput>
-    connectOrCreate?: newsCreateOrConnectWithoutRatesInput
-    upsert?: newsUpsertWithoutRatesInput
-    connect?: newsWhereUniqueInput
-    update?: XOR<XOR<newsUpdateToOneWithWhereWithoutRatesInput, newsUpdateWithoutRatesInput>, newsUncheckedUpdateWithoutRatesInput>
   }
 
   export type userCreateNestedOneWithoutFavoriteNewsInput = {
@@ -33431,6 +31897,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
+    rate: number
     isActive?: boolean
     createdAt?: Date | string
     parent?: news_commentCreateNestedOneWithoutRepliesInput
@@ -33444,6 +31911,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
+    rate: number
     news_id: number
     parent_id?: string | null
     isActive?: boolean
@@ -33460,30 +31928,6 @@ export namespace Prisma {
 
   export type news_commentCreateManyUserInputEnvelope = {
     data: news_commentCreateManyUserInput | news_commentCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type news_rateCreateWithoutUserInput = {
-    id?: string
-    rate: number
-    review?: string | null
-    news: newsCreateNestedOneWithoutRatesInput
-  }
-
-  export type news_rateUncheckedCreateWithoutUserInput = {
-    id?: string
-    rate: number
-    review?: string | null
-    news_id: number
-  }
-
-  export type news_rateCreateOrConnectWithoutUserInput = {
-    where: news_rateWhereUniqueInput
-    create: XOR<news_rateCreateWithoutUserInput, news_rateUncheckedCreateWithoutUserInput>
-  }
-
-  export type news_rateCreateManyUserInputEnvelope = {
-    data: news_rateCreateManyUserInput | news_rateCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -33778,38 +32222,12 @@ export namespace Prisma {
     id?: StringFilter<"news_comment"> | string
     title?: StringFilter<"news_comment"> | string
     content?: StringFilter<"news_comment"> | string
+    rate?: IntFilter<"news_comment"> | number
     user_id?: StringFilter<"news_comment"> | string
     news_id?: IntFilter<"news_comment"> | number
     parent_id?: StringNullableFilter<"news_comment"> | string | null
     isActive?: BoolFilter<"news_comment"> | boolean
     createdAt?: DateTimeFilter<"news_comment"> | Date | string
-  }
-
-  export type news_rateUpsertWithWhereUniqueWithoutUserInput = {
-    where: news_rateWhereUniqueInput
-    update: XOR<news_rateUpdateWithoutUserInput, news_rateUncheckedUpdateWithoutUserInput>
-    create: XOR<news_rateCreateWithoutUserInput, news_rateUncheckedCreateWithoutUserInput>
-  }
-
-  export type news_rateUpdateWithWhereUniqueWithoutUserInput = {
-    where: news_rateWhereUniqueInput
-    data: XOR<news_rateUpdateWithoutUserInput, news_rateUncheckedUpdateWithoutUserInput>
-  }
-
-  export type news_rateUpdateManyWithWhereWithoutUserInput = {
-    where: news_rateScalarWhereInput
-    data: XOR<news_rateUpdateManyMutationInput, news_rateUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type news_rateScalarWhereInput = {
-    AND?: news_rateScalarWhereInput | news_rateScalarWhereInput[]
-    OR?: news_rateScalarWhereInput[]
-    NOT?: news_rateScalarWhereInput | news_rateScalarWhereInput[]
-    id?: StringFilter<"news_rate"> | string
-    rate?: FloatFilter<"news_rate"> | number
-    review?: StringNullableFilter<"news_rate"> | string | null
-    news_id?: IntFilter<"news_rate"> | number
-    user_id?: StringFilter<"news_rate"> | string
   }
 
   export type news_favoriteUpsertWithWhereUniqueWithoutUserInput = {
@@ -33968,7 +32386,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteCreateNestedManyWithoutUserInput
     courseComments?: course_commentCreateNestedManyWithoutUserInput
     comments?: news_commentCreateNestedManyWithoutUserInput
-    ratedNews?: news_rateCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteCreateNestedManyWithoutUserInput
     news_likes?: news_likeCreateNestedManyWithoutUserInput
     news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
@@ -33992,7 +32409,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutUserInput
     courseComments?: course_commentUncheckedCreateNestedManyWithoutUserInput
     comments?: news_commentUncheckedCreateNestedManyWithoutUserInput
-    ratedNews?: news_rateUncheckedCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteUncheckedCreateNestedManyWithoutUserInput
     news_likes?: news_likeUncheckedCreateNestedManyWithoutUserInput
     news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
@@ -34053,7 +32469,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUpdateManyWithoutUserNestedInput
     comments?: news_commentUpdateManyWithoutUserNestedInput
-    ratedNews?: news_rateUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUpdateManyWithoutUserNestedInput
     news_likes?: news_likeUpdateManyWithoutUserNestedInput
     news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
@@ -34077,7 +32492,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUncheckedUpdateManyWithoutUserNestedInput
     comments?: news_commentUncheckedUpdateManyWithoutUserNestedInput
-    ratedNews?: news_rateUncheckedUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUncheckedUpdateManyWithoutUserNestedInput
     news_likes?: news_likeUncheckedUpdateManyWithoutUserNestedInput
     news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
@@ -34141,7 +32555,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteCreateNestedManyWithoutUserInput
     courseComments?: course_commentCreateNestedManyWithoutUserInput
     comments?: news_commentCreateNestedManyWithoutUserInput
-    ratedNews?: news_rateCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteCreateNestedManyWithoutUserInput
     news_likes?: news_likeCreateNestedManyWithoutUserInput
     news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
@@ -34165,7 +32578,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutUserInput
     courseComments?: course_commentUncheckedCreateNestedManyWithoutUserInput
     comments?: news_commentUncheckedCreateNestedManyWithoutUserInput
-    ratedNews?: news_rateUncheckedCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteUncheckedCreateNestedManyWithoutUserInput
     news_likes?: news_likeUncheckedCreateNestedManyWithoutUserInput
     news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
@@ -34205,7 +32617,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUpdateManyWithoutUserNestedInput
     comments?: news_commentUpdateManyWithoutUserNestedInput
-    ratedNews?: news_rateUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUpdateManyWithoutUserNestedInput
     news_likes?: news_likeUpdateManyWithoutUserNestedInput
     news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
@@ -34229,7 +32640,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUncheckedUpdateManyWithoutUserNestedInput
     comments?: news_commentUncheckedUpdateManyWithoutUserNestedInput
-    ratedNews?: news_rateUncheckedUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUncheckedUpdateManyWithoutUserNestedInput
     news_likes?: news_likeUncheckedUpdateManyWithoutUserNestedInput
     news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
@@ -34270,7 +32680,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteCreateNestedManyWithoutUserInput
     courseComments?: course_commentCreateNestedManyWithoutUserInput
     comments?: news_commentCreateNestedManyWithoutUserInput
-    ratedNews?: news_rateCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteCreateNestedManyWithoutUserInput
     news_likes?: news_likeCreateNestedManyWithoutUserInput
     news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
@@ -34294,7 +32703,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutUserInput
     courseComments?: course_commentUncheckedCreateNestedManyWithoutUserInput
     comments?: news_commentUncheckedCreateNestedManyWithoutUserInput
-    ratedNews?: news_rateUncheckedCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteUncheckedCreateNestedManyWithoutUserInput
     news_likes?: news_likeUncheckedCreateNestedManyWithoutUserInput
     news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
@@ -34473,7 +32881,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUpdateManyWithoutUserNestedInput
     comments?: news_commentUpdateManyWithoutUserNestedInput
-    ratedNews?: news_rateUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUpdateManyWithoutUserNestedInput
     news_likes?: news_likeUpdateManyWithoutUserNestedInput
     news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
@@ -34497,7 +32904,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUncheckedUpdateManyWithoutUserNestedInput
     comments?: news_commentUncheckedUpdateManyWithoutUserNestedInput
-    ratedNews?: news_rateUncheckedUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUncheckedUpdateManyWithoutUserNestedInput
     news_likes?: news_likeUncheckedUpdateManyWithoutUserNestedInput
     news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
@@ -34621,7 +33027,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteCreateNestedManyWithoutUserInput
     courseComments?: course_commentCreateNestedManyWithoutUserInput
     comments?: news_commentCreateNestedManyWithoutUserInput
-    ratedNews?: news_rateCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteCreateNestedManyWithoutUserInput
     news_likes?: news_likeCreateNestedManyWithoutUserInput
     news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
@@ -34645,7 +33050,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutUserInput
     courseComments?: course_commentUncheckedCreateNestedManyWithoutUserInput
     comments?: news_commentUncheckedCreateNestedManyWithoutUserInput
-    ratedNews?: news_rateUncheckedCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteUncheckedCreateNestedManyWithoutUserInput
     news_likes?: news_likeUncheckedCreateNestedManyWithoutUserInput
     news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
@@ -34730,7 +33134,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUpdateManyWithoutUserNestedInput
     comments?: news_commentUpdateManyWithoutUserNestedInput
-    ratedNews?: news_rateUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUpdateManyWithoutUserNestedInput
     news_likes?: news_likeUpdateManyWithoutUserNestedInput
     news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
@@ -34754,7 +33157,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUncheckedUpdateManyWithoutUserNestedInput
     comments?: news_commentUncheckedUpdateManyWithoutUserNestedInput
-    ratedNews?: news_rateUncheckedUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUncheckedUpdateManyWithoutUserNestedInput
     news_likes?: news_likeUncheckedUpdateManyWithoutUserNestedInput
     news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
@@ -34829,7 +33231,6 @@ export namespace Prisma {
     courseRates?: course_rateCreateNestedManyWithoutUserInput
     courseComments?: course_commentCreateNestedManyWithoutUserInput
     comments?: news_commentCreateNestedManyWithoutUserInput
-    ratedNews?: news_rateCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteCreateNestedManyWithoutUserInput
     news_likes?: news_likeCreateNestedManyWithoutUserInput
     news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
@@ -34853,7 +33254,6 @@ export namespace Prisma {
     courseRates?: course_rateUncheckedCreateNestedManyWithoutUserInput
     courseComments?: course_commentUncheckedCreateNestedManyWithoutUserInput
     comments?: news_commentUncheckedCreateNestedManyWithoutUserInput
-    ratedNews?: news_rateUncheckedCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteUncheckedCreateNestedManyWithoutUserInput
     news_likes?: news_likeUncheckedCreateNestedManyWithoutUserInput
     news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
@@ -34938,7 +33338,6 @@ export namespace Prisma {
     courseRates?: course_rateUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUpdateManyWithoutUserNestedInput
     comments?: news_commentUpdateManyWithoutUserNestedInput
-    ratedNews?: news_rateUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUpdateManyWithoutUserNestedInput
     news_likes?: news_likeUpdateManyWithoutUserNestedInput
     news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
@@ -34962,7 +33361,6 @@ export namespace Prisma {
     courseRates?: course_rateUncheckedUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUncheckedUpdateManyWithoutUserNestedInput
     comments?: news_commentUncheckedUpdateManyWithoutUserNestedInput
-    ratedNews?: news_rateUncheckedUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUncheckedUpdateManyWithoutUserNestedInput
     news_likes?: news_likeUncheckedUpdateManyWithoutUserNestedInput
     news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
@@ -35062,7 +33460,6 @@ export namespace Prisma {
     courseRates?: course_rateCreateNestedManyWithoutUserInput
     courseFavorites?: course_favoriteCreateNestedManyWithoutUserInput
     comments?: news_commentCreateNestedManyWithoutUserInput
-    ratedNews?: news_rateCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteCreateNestedManyWithoutUserInput
     news_likes?: news_likeCreateNestedManyWithoutUserInput
     news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
@@ -35086,7 +33483,6 @@ export namespace Prisma {
     courseRates?: course_rateUncheckedCreateNestedManyWithoutUserInput
     courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutUserInput
     comments?: news_commentUncheckedCreateNestedManyWithoutUserInput
-    ratedNews?: news_rateUncheckedCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteUncheckedCreateNestedManyWithoutUserInput
     news_likes?: news_likeUncheckedCreateNestedManyWithoutUserInput
     news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
@@ -35232,7 +33628,6 @@ export namespace Prisma {
     courseRates?: course_rateUpdateManyWithoutUserNestedInput
     courseFavorites?: course_favoriteUpdateManyWithoutUserNestedInput
     comments?: news_commentUpdateManyWithoutUserNestedInput
-    ratedNews?: news_rateUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUpdateManyWithoutUserNestedInput
     news_likes?: news_likeUpdateManyWithoutUserNestedInput
     news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
@@ -35256,7 +33651,6 @@ export namespace Prisma {
     courseRates?: course_rateUncheckedUpdateManyWithoutUserNestedInput
     courseFavorites?: course_favoriteUncheckedUpdateManyWithoutUserNestedInput
     comments?: news_commentUncheckedUpdateManyWithoutUserNestedInput
-    ratedNews?: news_rateUncheckedUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUncheckedUpdateManyWithoutUserNestedInput
     news_likes?: news_likeUncheckedUpdateManyWithoutUserNestedInput
     news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
@@ -35669,6 +34063,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
+    rate: number
     isActive?: boolean
     createdAt?: Date | string
     parent?: news_commentCreateNestedOneWithoutRepliesInput
@@ -35682,6 +34077,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
+    rate: number
     user_id: string
     parent_id?: string | null
     isActive?: boolean
@@ -35698,30 +34094,6 @@ export namespace Prisma {
 
   export type news_commentCreateManyNewsInputEnvelope = {
     data: news_commentCreateManyNewsInput | news_commentCreateManyNewsInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type news_rateCreateWithoutNewsInput = {
-    id?: string
-    rate: number
-    review?: string | null
-    user: userCreateNestedOneWithoutRatedNewsInput
-  }
-
-  export type news_rateUncheckedCreateWithoutNewsInput = {
-    id?: string
-    rate: number
-    review?: string | null
-    user_id: string
-  }
-
-  export type news_rateCreateOrConnectWithoutNewsInput = {
-    where: news_rateWhereUniqueInput
-    create: XOR<news_rateCreateWithoutNewsInput, news_rateUncheckedCreateWithoutNewsInput>
-  }
-
-  export type news_rateCreateManyNewsInputEnvelope = {
-    data: news_rateCreateManyNewsInput | news_rateCreateManyNewsInput[]
     skipDuplicates?: boolean
   }
 
@@ -35801,22 +34173,6 @@ export namespace Prisma {
     data: XOR<news_commentUpdateManyMutationInput, news_commentUncheckedUpdateManyWithoutNewsInput>
   }
 
-  export type news_rateUpsertWithWhereUniqueWithoutNewsInput = {
-    where: news_rateWhereUniqueInput
-    update: XOR<news_rateUpdateWithoutNewsInput, news_rateUncheckedUpdateWithoutNewsInput>
-    create: XOR<news_rateCreateWithoutNewsInput, news_rateUncheckedCreateWithoutNewsInput>
-  }
-
-  export type news_rateUpdateWithWhereUniqueWithoutNewsInput = {
-    where: news_rateWhereUniqueInput
-    data: XOR<news_rateUpdateWithoutNewsInput, news_rateUncheckedUpdateWithoutNewsInput>
-  }
-
-  export type news_rateUpdateManyWithWhereWithoutNewsInput = {
-    where: news_rateScalarWhereInput
-    data: XOR<news_rateUpdateManyMutationInput, news_rateUncheckedUpdateManyWithoutNewsInput>
-  }
-
   export type news_favoriteUpsertWithWhereUniqueWithoutNewsInput = {
     where: news_favoriteWhereUniqueInput
     update: XOR<news_favoriteUpdateWithoutNewsInput, news_favoriteUncheckedUpdateWithoutNewsInput>
@@ -35869,6 +34225,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
+    rate: number
     isActive?: boolean
     createdAt?: Date | string
     parent?: news_commentCreateNestedOneWithoutRepliesInput
@@ -35882,6 +34239,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
+    rate: number
     user_id: string
     news_id: number
     parent_id?: string | null
@@ -35900,6 +34258,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
+    rate: number
     isActive?: boolean
     createdAt?: Date | string
     replies?: news_commentCreateNestedManyWithoutParentInput
@@ -35913,6 +34272,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
+    rate: number
     user_id: string
     news_id: number
     isActive?: boolean
@@ -35948,7 +34308,6 @@ export namespace Prisma {
     courseRates?: course_rateCreateNestedManyWithoutUserInput
     courseFavorites?: course_favoriteCreateNestedManyWithoutUserInput
     courseComments?: course_commentCreateNestedManyWithoutUserInput
-    ratedNews?: news_rateCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteCreateNestedManyWithoutUserInput
     news_likes?: news_likeCreateNestedManyWithoutUserInput
     news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
@@ -35972,7 +34331,6 @@ export namespace Prisma {
     courseRates?: course_rateUncheckedCreateNestedManyWithoutUserInput
     courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutUserInput
     courseComments?: course_commentUncheckedCreateNestedManyWithoutUserInput
-    ratedNews?: news_rateUncheckedCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteUncheckedCreateNestedManyWithoutUserInput
     news_likes?: news_likeUncheckedCreateNestedManyWithoutUserInput
     news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
@@ -35992,7 +34350,6 @@ export namespace Prisma {
     published?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    rates?: news_rateCreateNestedManyWithoutNewsInput
     favorites?: news_favoriteCreateNestedManyWithoutNewsInput
     news_likes?: news_likeCreateNestedManyWithoutNewsInput
     news_dislikes?: news_dislikeCreateNestedManyWithoutNewsInput
@@ -36006,7 +34363,6 @@ export namespace Prisma {
     published?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    rates?: news_rateUncheckedCreateNestedManyWithoutNewsInput
     favorites?: news_favoriteUncheckedCreateNestedManyWithoutNewsInput
     news_likes?: news_likeUncheckedCreateNestedManyWithoutNewsInput
     news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutNewsInput
@@ -36072,6 +34428,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    rate?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parent?: news_commentUpdateOneWithoutRepliesNestedInput
@@ -36085,6 +34442,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    rate?: IntFieldUpdateOperationsInput | number
     user_id?: StringFieldUpdateOperationsInput | string
     news_id?: IntFieldUpdateOperationsInput | number
     parent_id?: NullableStringFieldUpdateOperationsInput | string | null
@@ -36137,7 +34495,6 @@ export namespace Prisma {
     courseRates?: course_rateUpdateManyWithoutUserNestedInput
     courseFavorites?: course_favoriteUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUpdateManyWithoutUserNestedInput
-    ratedNews?: news_rateUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUpdateManyWithoutUserNestedInput
     news_likes?: news_likeUpdateManyWithoutUserNestedInput
     news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
@@ -36161,7 +34518,6 @@ export namespace Prisma {
     courseRates?: course_rateUncheckedUpdateManyWithoutUserNestedInput
     courseFavorites?: course_favoriteUncheckedUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUncheckedUpdateManyWithoutUserNestedInput
-    ratedNews?: news_rateUncheckedUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUncheckedUpdateManyWithoutUserNestedInput
     news_likes?: news_likeUncheckedUpdateManyWithoutUserNestedInput
     news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
@@ -36187,7 +34543,6 @@ export namespace Prisma {
     published?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    rates?: news_rateUpdateManyWithoutNewsNestedInput
     favorites?: news_favoriteUpdateManyWithoutNewsNestedInput
     news_likes?: news_likeUpdateManyWithoutNewsNestedInput
     news_dislikes?: news_dislikeUpdateManyWithoutNewsNestedInput
@@ -36201,7 +34556,6 @@ export namespace Prisma {
     published?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    rates?: news_rateUncheckedUpdateManyWithoutNewsNestedInput
     favorites?: news_favoriteUncheckedUpdateManyWithoutNewsNestedInput
     news_likes?: news_likeUncheckedUpdateManyWithoutNewsNestedInput
     news_dislikes?: news_dislikeUncheckedUpdateManyWithoutNewsNestedInput
@@ -36256,7 +34610,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteCreateNestedManyWithoutUserInput
     courseComments?: course_commentCreateNestedManyWithoutUserInput
     comments?: news_commentCreateNestedManyWithoutUserInput
-    ratedNews?: news_rateCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteCreateNestedManyWithoutUserInput
     news_likes?: news_likeCreateNestedManyWithoutUserInput
     news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
@@ -36280,7 +34633,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutUserInput
     courseComments?: course_commentUncheckedCreateNestedManyWithoutUserInput
     comments?: news_commentUncheckedCreateNestedManyWithoutUserInput
-    ratedNews?: news_rateUncheckedCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteUncheckedCreateNestedManyWithoutUserInput
     news_likes?: news_likeUncheckedCreateNestedManyWithoutUserInput
     news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
@@ -36296,6 +34648,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
+    rate: number
     isActive?: boolean
     createdAt?: Date | string
     parent?: news_commentCreateNestedOneWithoutRepliesInput
@@ -36309,6 +34662,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
+    rate: number
     user_id: string
     news_id: number
     parent_id?: string | null
@@ -36351,7 +34705,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUpdateManyWithoutUserNestedInput
     comments?: news_commentUpdateManyWithoutUserNestedInput
-    ratedNews?: news_rateUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUpdateManyWithoutUserNestedInput
     news_likes?: news_likeUpdateManyWithoutUserNestedInput
     news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
@@ -36375,7 +34728,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUncheckedUpdateManyWithoutUserNestedInput
     comments?: news_commentUncheckedUpdateManyWithoutUserNestedInput
-    ratedNews?: news_rateUncheckedUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUncheckedUpdateManyWithoutUserNestedInput
     news_likes?: news_likeUncheckedUpdateManyWithoutUserNestedInput
     news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
@@ -36397,6 +34749,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    rate?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parent?: news_commentUpdateOneWithoutRepliesNestedInput
@@ -36410,6 +34763,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    rate?: IntFieldUpdateOperationsInput | number
     user_id?: StringFieldUpdateOperationsInput | string
     news_id?: IntFieldUpdateOperationsInput | number
     parent_id?: NullableStringFieldUpdateOperationsInput | string | null
@@ -36436,7 +34790,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteCreateNestedManyWithoutUserInput
     courseComments?: course_commentCreateNestedManyWithoutUserInput
     comments?: news_commentCreateNestedManyWithoutUserInput
-    ratedNews?: news_rateCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteCreateNestedManyWithoutUserInput
     news_likes?: news_likeCreateNestedManyWithoutUserInput
     news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
@@ -36460,7 +34813,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutUserInput
     courseComments?: course_commentUncheckedCreateNestedManyWithoutUserInput
     comments?: news_commentUncheckedCreateNestedManyWithoutUserInput
-    ratedNews?: news_rateUncheckedCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteUncheckedCreateNestedManyWithoutUserInput
     news_likes?: news_likeUncheckedCreateNestedManyWithoutUserInput
     news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
@@ -36476,6 +34828,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
+    rate: number
     isActive?: boolean
     createdAt?: Date | string
     parent?: news_commentCreateNestedOneWithoutRepliesInput
@@ -36489,6 +34842,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
+    rate: number
     user_id: string
     news_id: number
     parent_id?: string | null
@@ -36531,7 +34885,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUpdateManyWithoutUserNestedInput
     comments?: news_commentUpdateManyWithoutUserNestedInput
-    ratedNews?: news_rateUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUpdateManyWithoutUserNestedInput
     news_likes?: news_likeUpdateManyWithoutUserNestedInput
     news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
@@ -36555,7 +34908,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUncheckedUpdateManyWithoutUserNestedInput
     comments?: news_commentUncheckedUpdateManyWithoutUserNestedInput
-    ratedNews?: news_rateUncheckedUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUncheckedUpdateManyWithoutUserNestedInput
     news_likes?: news_likeUncheckedUpdateManyWithoutUserNestedInput
     news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
@@ -36577,6 +34929,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    rate?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parent?: news_commentUpdateOneWithoutRepliesNestedInput
@@ -36590,6 +34943,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    rate?: IntFieldUpdateOperationsInput | number
     user_id?: StringFieldUpdateOperationsInput | string
     news_id?: IntFieldUpdateOperationsInput | number
     parent_id?: NullableStringFieldUpdateOperationsInput | string | null
@@ -36597,188 +34951,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     replies?: news_commentUncheckedUpdateManyWithoutParentNestedInput
     likes?: news_comment_likeUncheckedUpdateManyWithoutNewsCommentNestedInput
-  }
-
-  export type userCreateWithoutRatedNewsInput = {
-    id?: string
-    name: string
-    email: string
-    password: string
-    phone_number: string
-    referral_code: string
-    referral_user_id?: string | null
-    national_code?: string | null
-    location?: string | null
-    userRoles?: user_roleCreateNestedManyWithoutUserInput
-    loginTransactions?: login_transactionCreateNestedManyWithoutUserInput
-    courses?: courseCreateNestedManyWithoutTeacherInput
-    courseRates?: course_rateCreateNestedManyWithoutUserInput
-    courseFavorites?: course_favoriteCreateNestedManyWithoutUserInput
-    courseComments?: course_commentCreateNestedManyWithoutUserInput
-    comments?: news_commentCreateNestedManyWithoutUserInput
-    favoriteNews?: news_favoriteCreateNestedManyWithoutUserInput
-    news_likes?: news_likeCreateNestedManyWithoutUserInput
-    news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
-    likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
-    dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
-  }
-
-  export type userUncheckedCreateWithoutRatedNewsInput = {
-    id?: string
-    name: string
-    email: string
-    password: string
-    phone_number: string
-    referral_code: string
-    referral_user_id?: string | null
-    national_code?: string | null
-    location?: string | null
-    userRoles?: user_roleUncheckedCreateNestedManyWithoutUserInput
-    loginTransactions?: login_transactionUncheckedCreateNestedManyWithoutUserInput
-    courses?: courseUncheckedCreateNestedManyWithoutTeacherInput
-    courseRates?: course_rateUncheckedCreateNestedManyWithoutUserInput
-    courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutUserInput
-    courseComments?: course_commentUncheckedCreateNestedManyWithoutUserInput
-    comments?: news_commentUncheckedCreateNestedManyWithoutUserInput
-    favoriteNews?: news_favoriteUncheckedCreateNestedManyWithoutUserInput
-    news_likes?: news_likeUncheckedCreateNestedManyWithoutUserInput
-    news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
-    likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
-    dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type userCreateOrConnectWithoutRatedNewsInput = {
-    where: userWhereUniqueInput
-    create: XOR<userCreateWithoutRatedNewsInput, userUncheckedCreateWithoutRatedNewsInput>
-  }
-
-  export type newsCreateWithoutRatesInput = {
-    title: string
-    content: string
-    author_id: string
-    published?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    comments?: news_commentCreateNestedManyWithoutNewsInput
-    favorites?: news_favoriteCreateNestedManyWithoutNewsInput
-    news_likes?: news_likeCreateNestedManyWithoutNewsInput
-    news_dislikes?: news_dislikeCreateNestedManyWithoutNewsInput
-  }
-
-  export type newsUncheckedCreateWithoutRatesInput = {
-    id?: number
-    title: string
-    content: string
-    author_id: string
-    published?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    comments?: news_commentUncheckedCreateNestedManyWithoutNewsInput
-    favorites?: news_favoriteUncheckedCreateNestedManyWithoutNewsInput
-    news_likes?: news_likeUncheckedCreateNestedManyWithoutNewsInput
-    news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutNewsInput
-  }
-
-  export type newsCreateOrConnectWithoutRatesInput = {
-    where: newsWhereUniqueInput
-    create: XOR<newsCreateWithoutRatesInput, newsUncheckedCreateWithoutRatesInput>
-  }
-
-  export type userUpsertWithoutRatedNewsInput = {
-    update: XOR<userUpdateWithoutRatedNewsInput, userUncheckedUpdateWithoutRatedNewsInput>
-    create: XOR<userCreateWithoutRatedNewsInput, userUncheckedCreateWithoutRatedNewsInput>
-    where?: userWhereInput
-  }
-
-  export type userUpdateToOneWithWhereWithoutRatedNewsInput = {
-    where?: userWhereInput
-    data: XOR<userUpdateWithoutRatedNewsInput, userUncheckedUpdateWithoutRatedNewsInput>
-  }
-
-  export type userUpdateWithoutRatedNewsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    phone_number?: StringFieldUpdateOperationsInput | string
-    referral_code?: StringFieldUpdateOperationsInput | string
-    referral_user_id?: NullableStringFieldUpdateOperationsInput | string | null
-    national_code?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
-    userRoles?: user_roleUpdateManyWithoutUserNestedInput
-    loginTransactions?: login_transactionUpdateManyWithoutUserNestedInput
-    courses?: courseUpdateManyWithoutTeacherNestedInput
-    courseRates?: course_rateUpdateManyWithoutUserNestedInput
-    courseFavorites?: course_favoriteUpdateManyWithoutUserNestedInput
-    courseComments?: course_commentUpdateManyWithoutUserNestedInput
-    comments?: news_commentUpdateManyWithoutUserNestedInput
-    favoriteNews?: news_favoriteUpdateManyWithoutUserNestedInput
-    news_likes?: news_likeUpdateManyWithoutUserNestedInput
-    news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
-    likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
-    dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
-  }
-
-  export type userUncheckedUpdateWithoutRatedNewsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    phone_number?: StringFieldUpdateOperationsInput | string
-    referral_code?: StringFieldUpdateOperationsInput | string
-    referral_user_id?: NullableStringFieldUpdateOperationsInput | string | null
-    national_code?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
-    userRoles?: user_roleUncheckedUpdateManyWithoutUserNestedInput
-    loginTransactions?: login_transactionUncheckedUpdateManyWithoutUserNestedInput
-    courses?: courseUncheckedUpdateManyWithoutTeacherNestedInput
-    courseRates?: course_rateUncheckedUpdateManyWithoutUserNestedInput
-    courseFavorites?: course_favoriteUncheckedUpdateManyWithoutUserNestedInput
-    courseComments?: course_commentUncheckedUpdateManyWithoutUserNestedInput
-    comments?: news_commentUncheckedUpdateManyWithoutUserNestedInput
-    favoriteNews?: news_favoriteUncheckedUpdateManyWithoutUserNestedInput
-    news_likes?: news_likeUncheckedUpdateManyWithoutUserNestedInput
-    news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
-    likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
-    dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type newsUpsertWithoutRatesInput = {
-    update: XOR<newsUpdateWithoutRatesInput, newsUncheckedUpdateWithoutRatesInput>
-    create: XOR<newsCreateWithoutRatesInput, newsUncheckedCreateWithoutRatesInput>
-    where?: newsWhereInput
-  }
-
-  export type newsUpdateToOneWithWhereWithoutRatesInput = {
-    where?: newsWhereInput
-    data: XOR<newsUpdateWithoutRatesInput, newsUncheckedUpdateWithoutRatesInput>
-  }
-
-  export type newsUpdateWithoutRatesInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    content?: StringFieldUpdateOperationsInput | string
-    author_id?: StringFieldUpdateOperationsInput | string
-    published?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    comments?: news_commentUpdateManyWithoutNewsNestedInput
-    favorites?: news_favoriteUpdateManyWithoutNewsNestedInput
-    news_likes?: news_likeUpdateManyWithoutNewsNestedInput
-    news_dislikes?: news_dislikeUpdateManyWithoutNewsNestedInput
-  }
-
-  export type newsUncheckedUpdateWithoutRatesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    content?: StringFieldUpdateOperationsInput | string
-    author_id?: StringFieldUpdateOperationsInput | string
-    published?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    comments?: news_commentUncheckedUpdateManyWithoutNewsNestedInput
-    favorites?: news_favoriteUncheckedUpdateManyWithoutNewsNestedInput
-    news_likes?: news_likeUncheckedUpdateManyWithoutNewsNestedInput
-    news_dislikes?: news_dislikeUncheckedUpdateManyWithoutNewsNestedInput
   }
 
   export type userCreateWithoutFavoriteNewsInput = {
@@ -36798,7 +34970,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteCreateNestedManyWithoutUserInput
     courseComments?: course_commentCreateNestedManyWithoutUserInput
     comments?: news_commentCreateNestedManyWithoutUserInput
-    ratedNews?: news_rateCreateNestedManyWithoutUserInput
     news_likes?: news_likeCreateNestedManyWithoutUserInput
     news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
@@ -36822,7 +34993,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutUserInput
     courseComments?: course_commentUncheckedCreateNestedManyWithoutUserInput
     comments?: news_commentUncheckedCreateNestedManyWithoutUserInput
-    ratedNews?: news_rateUncheckedCreateNestedManyWithoutUserInput
     news_likes?: news_likeUncheckedCreateNestedManyWithoutUserInput
     news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
@@ -36842,7 +35012,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     comments?: news_commentCreateNestedManyWithoutNewsInput
-    rates?: news_rateCreateNestedManyWithoutNewsInput
     news_likes?: news_likeCreateNestedManyWithoutNewsInput
     news_dislikes?: news_dislikeCreateNestedManyWithoutNewsInput
   }
@@ -36856,7 +35025,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     comments?: news_commentUncheckedCreateNestedManyWithoutNewsInput
-    rates?: news_rateUncheckedCreateNestedManyWithoutNewsInput
     news_likes?: news_likeUncheckedCreateNestedManyWithoutNewsInput
     news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutNewsInput
   }
@@ -36894,7 +35062,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUpdateManyWithoutUserNestedInput
     comments?: news_commentUpdateManyWithoutUserNestedInput
-    ratedNews?: news_rateUpdateManyWithoutUserNestedInput
     news_likes?: news_likeUpdateManyWithoutUserNestedInput
     news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
@@ -36918,7 +35085,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUncheckedUpdateManyWithoutUserNestedInput
     comments?: news_commentUncheckedUpdateManyWithoutUserNestedInput
-    ratedNews?: news_rateUncheckedUpdateManyWithoutUserNestedInput
     news_likes?: news_likeUncheckedUpdateManyWithoutUserNestedInput
     news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
@@ -36944,7 +35110,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     comments?: news_commentUpdateManyWithoutNewsNestedInput
-    rates?: news_rateUpdateManyWithoutNewsNestedInput
     news_likes?: news_likeUpdateManyWithoutNewsNestedInput
     news_dislikes?: news_dislikeUpdateManyWithoutNewsNestedInput
   }
@@ -36958,7 +35123,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     comments?: news_commentUncheckedUpdateManyWithoutNewsNestedInput
-    rates?: news_rateUncheckedUpdateManyWithoutNewsNestedInput
     news_likes?: news_likeUncheckedUpdateManyWithoutNewsNestedInput
     news_dislikes?: news_dislikeUncheckedUpdateManyWithoutNewsNestedInput
   }
@@ -36980,7 +35144,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteCreateNestedManyWithoutUserInput
     courseComments?: course_commentCreateNestedManyWithoutUserInput
     comments?: news_commentCreateNestedManyWithoutUserInput
-    ratedNews?: news_rateCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteCreateNestedManyWithoutUserInput
     news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
@@ -37004,7 +35167,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutUserInput
     courseComments?: course_commentUncheckedCreateNestedManyWithoutUserInput
     comments?: news_commentUncheckedCreateNestedManyWithoutUserInput
-    ratedNews?: news_rateUncheckedCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteUncheckedCreateNestedManyWithoutUserInput
     news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
@@ -37024,7 +35186,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     comments?: news_commentCreateNestedManyWithoutNewsInput
-    rates?: news_rateCreateNestedManyWithoutNewsInput
     favorites?: news_favoriteCreateNestedManyWithoutNewsInput
     news_dislikes?: news_dislikeCreateNestedManyWithoutNewsInput
   }
@@ -37038,7 +35199,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     comments?: news_commentUncheckedCreateNestedManyWithoutNewsInput
-    rates?: news_rateUncheckedCreateNestedManyWithoutNewsInput
     favorites?: news_favoriteUncheckedCreateNestedManyWithoutNewsInput
     news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutNewsInput
   }
@@ -37076,7 +35236,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUpdateManyWithoutUserNestedInput
     comments?: news_commentUpdateManyWithoutUserNestedInput
-    ratedNews?: news_rateUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUpdateManyWithoutUserNestedInput
     news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
@@ -37100,7 +35259,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUncheckedUpdateManyWithoutUserNestedInput
     comments?: news_commentUncheckedUpdateManyWithoutUserNestedInput
-    ratedNews?: news_rateUncheckedUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUncheckedUpdateManyWithoutUserNestedInput
     news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
@@ -37126,7 +35284,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     comments?: news_commentUpdateManyWithoutNewsNestedInput
-    rates?: news_rateUpdateManyWithoutNewsNestedInput
     favorites?: news_favoriteUpdateManyWithoutNewsNestedInput
     news_dislikes?: news_dislikeUpdateManyWithoutNewsNestedInput
   }
@@ -37140,7 +35297,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     comments?: news_commentUncheckedUpdateManyWithoutNewsNestedInput
-    rates?: news_rateUncheckedUpdateManyWithoutNewsNestedInput
     favorites?: news_favoriteUncheckedUpdateManyWithoutNewsNestedInput
     news_dislikes?: news_dislikeUncheckedUpdateManyWithoutNewsNestedInput
   }
@@ -37162,7 +35318,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteCreateNestedManyWithoutUserInput
     courseComments?: course_commentCreateNestedManyWithoutUserInput
     comments?: news_commentCreateNestedManyWithoutUserInput
-    ratedNews?: news_rateCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteCreateNestedManyWithoutUserInput
     news_likes?: news_likeCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
@@ -37186,7 +35341,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutUserInput
     courseComments?: course_commentUncheckedCreateNestedManyWithoutUserInput
     comments?: news_commentUncheckedCreateNestedManyWithoutUserInput
-    ratedNews?: news_rateUncheckedCreateNestedManyWithoutUserInput
     favoriteNews?: news_favoriteUncheckedCreateNestedManyWithoutUserInput
     news_likes?: news_likeUncheckedCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
@@ -37206,7 +35360,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     comments?: news_commentCreateNestedManyWithoutNewsInput
-    rates?: news_rateCreateNestedManyWithoutNewsInput
     favorites?: news_favoriteCreateNestedManyWithoutNewsInput
     news_likes?: news_likeCreateNestedManyWithoutNewsInput
   }
@@ -37220,7 +35373,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     comments?: news_commentUncheckedCreateNestedManyWithoutNewsInput
-    rates?: news_rateUncheckedCreateNestedManyWithoutNewsInput
     favorites?: news_favoriteUncheckedCreateNestedManyWithoutNewsInput
     news_likes?: news_likeUncheckedCreateNestedManyWithoutNewsInput
   }
@@ -37258,7 +35410,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUpdateManyWithoutUserNestedInput
     comments?: news_commentUpdateManyWithoutUserNestedInput
-    ratedNews?: news_rateUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUpdateManyWithoutUserNestedInput
     news_likes?: news_likeUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
@@ -37282,7 +35433,6 @@ export namespace Prisma {
     courseFavorites?: course_favoriteUncheckedUpdateManyWithoutUserNestedInput
     courseComments?: course_commentUncheckedUpdateManyWithoutUserNestedInput
     comments?: news_commentUncheckedUpdateManyWithoutUserNestedInput
-    ratedNews?: news_rateUncheckedUpdateManyWithoutUserNestedInput
     favoriteNews?: news_favoriteUncheckedUpdateManyWithoutUserNestedInput
     news_likes?: news_likeUncheckedUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
@@ -37308,7 +35458,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     comments?: news_commentUpdateManyWithoutNewsNestedInput
-    rates?: news_rateUpdateManyWithoutNewsNestedInput
     favorites?: news_favoriteUpdateManyWithoutNewsNestedInput
     news_likes?: news_likeUpdateManyWithoutNewsNestedInput
   }
@@ -37322,7 +35471,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     comments?: news_commentUncheckedUpdateManyWithoutNewsNestedInput
-    rates?: news_rateUncheckedUpdateManyWithoutNewsNestedInput
     favorites?: news_favoriteUncheckedUpdateManyWithoutNewsNestedInput
     news_likes?: news_likeUncheckedUpdateManyWithoutNewsNestedInput
   }
@@ -37379,17 +35527,11 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
+    rate: number
     news_id: number
     parent_id?: string | null
     isActive?: boolean
     createdAt?: Date | string
-  }
-
-  export type news_rateCreateManyUserInput = {
-    id?: string
-    rate: number
-    review?: string | null
-    news_id: number
   }
 
   export type news_favoriteCreateManyUserInput = {
@@ -37577,6 +35719,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    rate?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parent?: news_commentUpdateOneWithoutRepliesNestedInput
@@ -37590,6 +35733,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    rate?: IntFieldUpdateOperationsInput | number
     news_id?: IntFieldUpdateOperationsInput | number
     parent_id?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
@@ -37603,31 +35747,11 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    rate?: IntFieldUpdateOperationsInput | number
     news_id?: IntFieldUpdateOperationsInput | number
     parent_id?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type news_rateUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    rate?: FloatFieldUpdateOperationsInput | number
-    review?: NullableStringFieldUpdateOperationsInput | string | null
-    news?: newsUpdateOneRequiredWithoutRatesNestedInput
-  }
-
-  export type news_rateUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    rate?: FloatFieldUpdateOperationsInput | number
-    review?: NullableStringFieldUpdateOperationsInput | string | null
-    news_id?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type news_rateUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    rate?: FloatFieldUpdateOperationsInput | number
-    review?: NullableStringFieldUpdateOperationsInput | string | null
-    news_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type news_favoriteUpdateWithoutUserInput = {
@@ -37995,17 +36119,11 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
+    rate: number
     user_id: string
     parent_id?: string | null
     isActive?: boolean
     createdAt?: Date | string
-  }
-
-  export type news_rateCreateManyNewsInput = {
-    id?: string
-    rate: number
-    review?: string | null
-    user_id: string
   }
 
   export type news_favoriteCreateManyNewsInput = {
@@ -38027,6 +36145,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    rate?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parent?: news_commentUpdateOneWithoutRepliesNestedInput
@@ -38040,6 +36159,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    rate?: IntFieldUpdateOperationsInput | number
     user_id?: StringFieldUpdateOperationsInput | string
     parent_id?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
@@ -38053,31 +36173,11 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    rate?: IntFieldUpdateOperationsInput | number
     user_id?: StringFieldUpdateOperationsInput | string
     parent_id?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type news_rateUpdateWithoutNewsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    rate?: FloatFieldUpdateOperationsInput | number
-    review?: NullableStringFieldUpdateOperationsInput | string | null
-    user?: userUpdateOneRequiredWithoutRatedNewsNestedInput
-  }
-
-  export type news_rateUncheckedUpdateWithoutNewsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    rate?: FloatFieldUpdateOperationsInput | number
-    review?: NullableStringFieldUpdateOperationsInput | string | null
-    user_id?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type news_rateUncheckedUpdateManyWithoutNewsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    rate?: FloatFieldUpdateOperationsInput | number
-    review?: NullableStringFieldUpdateOperationsInput | string | null
-    user_id?: StringFieldUpdateOperationsInput | string
   }
 
   export type news_favoriteUpdateWithoutNewsInput = {
@@ -38129,6 +36229,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
+    rate: number
     user_id: string
     news_id: number
     isActive?: boolean
@@ -38149,6 +36250,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    rate?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     replies?: news_commentUpdateManyWithoutParentNestedInput
@@ -38162,6 +36264,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    rate?: IntFieldUpdateOperationsInput | number
     user_id?: StringFieldUpdateOperationsInput | string
     news_id?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
@@ -38175,6 +36278,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    rate?: IntFieldUpdateOperationsInput | number
     user_id?: StringFieldUpdateOperationsInput | string
     news_id?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean

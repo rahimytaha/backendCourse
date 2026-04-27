@@ -15,7 +15,7 @@ const {
  * @swagger
  * /news/reaction/{id}/like:
  *   post:
- *     tags: ["News Reaction"]
+ *     tags: ["News"]
  *     summary: Like a news
  *     security:
  *       - bearerAuth: []
@@ -34,7 +34,7 @@ const {
  * @swagger
  * /news/reaction/{id}/dislike:
  *   post:
- *     tags: ["News Reaction"]
+ *     tags: ["News"]
  *     summary: Dislike a news
  *     security:
  *       - bearerAuth: []

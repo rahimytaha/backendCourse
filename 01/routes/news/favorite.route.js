@@ -32,7 +32,7 @@ const {
 
 /**
  * @swagger
- * /news/favorite:
+ * /news/favorite/all:
  *   get:
  *     tags: ["News"]
  *     summary: Get user favorite news
@@ -61,7 +61,7 @@ newsFavoriteRouter.post(
 );
 
 newsFavoriteRouter.get(
-  "/",
+  "/all",
   validAuth,
   authorizePermissions('news:favorite'),
   catchAsync(async (req, res) => {

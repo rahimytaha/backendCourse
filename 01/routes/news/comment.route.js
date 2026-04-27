@@ -120,6 +120,9 @@ const {
  *                 content:
  *                   type: string
  *                   example: "I really enjoyed reading this article."
+ *                 rate:
+ *                   type: integer
+ *                   example: 2
  *                 parent_id:
  *                   type: string
  *                   example: "optional" # for replies to other comments
@@ -177,6 +180,12 @@ newsRouter.post(
     .isString()
     .notEmpty()
     .withMessage("content is required"),
+      expressValidator
+    .body("rate")
+    .isInt()
+    .toInt()
+    .notEmpty()
+    .withMessage("rate must be between 1 to 5"),
   expressValidator
     .body("parent_id")
     .isString()
@@ -184,12 +193,12 @@ newsRouter.post(
     .withMessage("parent_id must be an integer"),
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
-    const { title, content, parent_id } = req.body;
+    const { title, content, rate, parent_id } = req.body;
     logger.info(`Creating comment for news with news_id: ${req.params.news_id}`);
     const data = await createComment(
       req.params.news_id,
       req.user.id,
-      { title, content },
+      { title, content, rate },
       parent_id,
     );
     res

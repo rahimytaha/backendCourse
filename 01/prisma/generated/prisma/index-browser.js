@@ -239,6 +239,7 @@ exports.Prisma.News_commentScalarFieldEnum = {
   id: 'id',
   title: 'title',
   content: 'content',
+  rate: 'rate',
   user_id: 'user_id',
   news_id: 'news_id',
   parent_id: 'parent_id',
@@ -256,14 +257,6 @@ exports.Prisma.News_comment_dislikeScalarFieldEnum = {
   id: 'id',
   user_id: 'user_id',
   comment_id: 'comment_id'
-};
-
-exports.Prisma.News_rateScalarFieldEnum = {
-  id: 'id',
-  rate: 'rate',
-  review: 'review',
-  news_id: 'news_id',
-  user_id: 'user_id'
 };
 
 exports.Prisma.News_favoriteScalarFieldEnum = {
@@ -319,7 +312,6 @@ exports.Prisma.ModelName = {
   news_comment: 'news_comment',
   news_comment_like: 'news_comment_like',
   news_comment_dislike: 'news_comment_dislike',
-  news_rate: 'news_rate',
   news_favorite: 'news_favorite',
   news_like: 'news_like',
   news_dislike: 'news_dislike'
