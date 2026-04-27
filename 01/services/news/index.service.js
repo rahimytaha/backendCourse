@@ -1,3 +1,4 @@
+const { toRoleNames } = require("../../utils/auth.util");
 const prisma = require("../../utils/client.util");
 
 const createNews = async (data, author_id) => {
@@ -44,9 +45,10 @@ const updateNews = async (id, data, userId) => {
   if (!news) throw new Error("news not found");
 
   const user = await prisma.user.findUnique({ where: { id: userId } });
+  const userRoles = toRoleNames(user.userRoles)
   if (
-    user.role !== "admin" &&
-    user.role !== "owner" &&
+    !userRoles.includes("admin") &&
+    !userRoles.includes("owner") &&
     news.author_id !== userId
   ) {
     throw new Error("you are not allowed to update this news");
@@ -60,9 +62,10 @@ const deleteNews = async (id, userId) => {
   if (!news) throw new Error("news not found");
 
   const user = await prisma.user.findUnique({ where: { id: userId } });
+  const userRoles = toRoleNames(user.userRoles)
   if (
-    user.role !== "admin" &&
-    user.role !== "owner" &&
+    !userRoles.includes("admin") &&
+    !userRoles.includes("owner") &&
     news.author_id !== userId
   ) {
     throw new Error("you are not allowed to delete this news");
@@ -76,9 +79,10 @@ const publishNews = async (id, published, userId) => {
   if (!news) throw new Error("news not found");
 
   const user = await prisma.user.findUnique({ where: { id: userId } });
+  const userRoles = toRoleNames(user.userRoles)
   if (
-    user.role !== "admin" &&
-    user.role !== "owner" &&
+    !userRoles.includes("admin") &&
+    !userRoles.includes("owner") &&
     news.author_id !== userId
   ) {
     throw new Error("you are not allowed to publish or unpublish this news");

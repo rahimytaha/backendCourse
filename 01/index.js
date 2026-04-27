@@ -52,6 +52,7 @@ const authRouter = require("./routes/auth/index.route");
 const userRouter = require("./routes/users/index.route");
 const courseRouter = require("./routes/courses/index.route");
 const newsRouter = require("./routes/news/index.route");
+const commentNewsRouter = require("./routes/news/comment.route");
 const winston = require('winston');
 
 app.use("/public", express.static("public"));
@@ -60,6 +61,7 @@ app.use("/auth", authRouter);
 app.use("/users", userRouter);
 app.use("/course", courseRouter);
 app.use("/news", newsRouter);
+app.use("/news/comments", commentNewsRouter)
 
 app.get("/", (req, res, next) => {
   res.send("test");

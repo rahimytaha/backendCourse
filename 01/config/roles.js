@@ -12,11 +12,14 @@ const ROLE_PERMISSIONS = {
     "course:read:own",
     "user:read:own",
     "user:update:own",
+    "comment:create",
   ],
   author: [
     "news:update",
     "news:delete",
     "news:create",
+    "comment:update",
+    "comment:delete",
   ],
 };
 

@@ -28,6 +28,12 @@ model user {
   courseRates       course_rate[]
   courseFavorites   course_favorite[]
   courseComments    course_comment[]
+
+  comments          news_comment[]
+  likedComments     news_comment_like[]
+  dislikedComments  news_comment_dislike[]
+  ratedNews         news_rate[]
+  favoriteNews      news_favorite[]
 }
 
 model user_role {
@@ -148,7 +154,7 @@ model course_order {
   id String @id @default(uuid())
 }
 
-model News {
+model news {
   id        Int      @id @default(autoincrement())
   title     String
   content   String
@@ -156,4 +162,61 @@ model News {
   published Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  comments  news_comment[]
+  rates     news_rate[]
+  favorites news_favorite[]
+}
+
+model news_comment {
+  id          String          @id @default(uuid())
+  title       String
+  content     String
+  user_id     String
+  news_id     Int
+  parent_id   String?
+  isActive    Boolean         @default(true)
+  createdAt   DateTime        @default(now())
+  
+  parent      news_comment?   @relation("news_comment_parent", fields: [parent_id], references: [id], onDelete: Cascade)
+  replies     news_comment[]  @relation("news_comment_parent")
+  user        user            @relation(fields: [user_id], references: [id])
+  news        news            @relation(fields: [news_id], references: [id])
+  
+  likes       news_comment_like[]
+  dislikes    news_comment_dislike[]
+}
+
+model news_comment_like {
+  id          String        @id @default(uuid())
+  user_id     String
+  comment_id  String
+  user        user          @relation(fields: [user_id], references: [id])
+  newsComment news_comment  @relation(fields: [comment_id], references: [id])
+}
+
+model news_comment_dislike {
+  id          String        @id @default(uuid())
+  user_id     String
+  comment_id  String
+  user        user          @relation(fields: [user_id], references: [id])
+  newsComment news_comment  @relation(fields: [comment_id], references: [id])
+}
+
+model news_rate {
+  id        String  @id @default(uuid())
+  rate      Float
+  review    String?
+  news_id   Int
+  user_id   String
+  user      user    @relation(fields: [user_id], references: [id])
+  news      news    @relation(fields: [news_id], references: [id])
+}
+
+model news_favorite {
+  id        String  @id @default(uuid())
+  user_id   String
+  news_id   Int
+  user      user    @relation(fields: [user_id], references: [id])
+  news      news    @relation(fields: [news_id], references: [id])
 }

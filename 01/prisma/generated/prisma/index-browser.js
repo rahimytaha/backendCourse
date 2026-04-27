@@ -235,6 +235,43 @@ exports.Prisma.NewsScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.News_commentScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  content: 'content',
+  user_id: 'user_id',
+  news_id: 'news_id',
+  parent_id: 'parent_id',
+  isActive: 'isActive',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.News_comment_likeScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  comment_id: 'comment_id'
+};
+
+exports.Prisma.News_comment_dislikeScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  comment_id: 'comment_id'
+};
+
+exports.Prisma.News_rateScalarFieldEnum = {
+  id: 'id',
+  rate: 'rate',
+  review: 'review',
+  news_id: 'news_id',
+  user_id: 'user_id'
+};
+
+exports.Prisma.News_favoriteScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  news_id: 'news_id'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -266,7 +303,12 @@ exports.Prisma.ModelName = {
   course_category: 'course_category',
   order: 'order',
   course_order: 'course_order',
-  News: 'News'
+  news: 'news',
+  news_comment: 'news_comment',
+  news_comment_like: 'news_comment_like',
+  news_comment_dislike: 'news_comment_dislike',
+  news_rate: 'news_rate',
+  news_favorite: 'news_favorite'
 };
 
 /**
