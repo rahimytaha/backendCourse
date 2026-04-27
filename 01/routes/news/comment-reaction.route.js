@@ -2,7 +2,6 @@ const express = require("express");
 const commentReactionRouter = express.Router();
 
 const expressValidator = require("express-validator");
-const catchAsync = require("../../utils/catchAsync.util");
 const { validAuth, authorizePermissions } = require("../../utils/auth.util");
 const logger = require("../../utils/logger");
 
@@ -10,6 +9,7 @@ const {
   likeComment,
   dislikeComment,
 } = require("../../services/news/comment-reaction.service");
+const catchAsysnc = require("../../utils/catchAsync.util");
 
 /**
  * @swagger
@@ -54,7 +54,7 @@ commentReactionRouter.post(
   validAuth,
   authorizePermissions("news:comments:react"),
   expressValidator.param("id").isString(),
-  catchAsync(async (req, res) => {
+  catchAsysnc(async (req, res) => {
     logger.info(`Like comment ${req.params.id}`);
     const result = await likeComment(req.params.id, req.user.id);
 
@@ -70,7 +70,7 @@ commentReactionRouter.post(
   validAuth,
   authorizePermissions("news:comments:react"),
   expressValidator.param("id").isString(),
-  catchAsync(async (req, res) => {
+  catchAsysnc(async (req, res) => {
     logger.info(`Dislike comment ${req.params.id}`);
     const result = await dislikeComment(req.params.id, req.user.id);
 

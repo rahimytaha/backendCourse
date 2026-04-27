@@ -52,11 +52,11 @@ const authRouter = require("./routes/auth/index.route");
 const userRouter = require("./routes/users/index.route");
 const courseRouter = require("./routes/courses/index.route");
 const newsRouter = require("./routes/news/index.route");
-const commentNewsRouter = require("./routes/news/comment.route");
 const winston = require('winston');
 const newsReactionRouter = require('./routes/news/news-reaction.route');
 const commentReactionRouter = require('./routes/news/comment-reaction.route');
 const newsFavoriteRouter = require('./routes/news/favorite.route');
+const newsCommentRouter = require('./routes/news/comment.route');
 
 app.use("/public", express.static("public"));
 
@@ -66,7 +66,7 @@ app.use("/course", courseRouter);
 app.use("/news", newsRouter);
 app.use("/news/reaction", newsReactionRouter)
 app.use("/news/favorite", newsFavoriteRouter)
-app.use("/news/comments", commentNewsRouter)
+app.use("/news/comments", newsCommentRouter)
 app.use("/news/comments/reaction", commentReactionRouter)
 
 app.get("/", (req, res, next) => {

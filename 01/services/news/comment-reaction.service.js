@@ -64,7 +64,27 @@ const dislikeComment = async (comment_id, user_id) => {
   return { message: "Comment disliked" };
 };
 
+const statusComment = async (commentId, userId) => {
+  const comment = await prisma.news_comment.findUnique({
+    where: { id: commentId },
+    include: {
+      likes: {
+        where: { user_id: userId },
+      },
+      dislikes: {
+        where: { user_id: userId },
+      },
+    },
+  });
+
+  return {
+    isLike: comment.likes.length > 0,
+    isDislike: comment.dislikes.length > 0,
+  };
+}
+
 module.exports = {
   likeComment,
   dislikeComment,
+  statusComment,
 };

@@ -2,7 +2,6 @@ const express = require("express");
 const newsFavoriteRouter = express.Router();
 
 const expressValidator = require("express-validator");
-const catchAsync = require("../../utils/catchAsync.util");
 const { validAuth, authorizePermissions } = require("../../utils/auth.util");
 const logger = require("../../utils/logger");
 
@@ -10,6 +9,7 @@ const {
   toggleFavoriteNews,
   getUserFavorites,
 } = require("../../services/news/favorite.service");
+const catchAsysnc = require("../../utils/catchAsync.util");
 
 /**
  * @swagger
@@ -48,7 +48,7 @@ newsFavoriteRouter.post(
   validAuth,
   authorizePermissions('news:favorite'),
   expressValidator.param("id").isInt(),
-  catchAsync(async (req, res) => {
+  catchAsysnc(async (req, res) => {
     const result = await toggleFavoriteNews(Number(req.params.id), req.user.id);
 
     logger.info(`Toggle favorite news ${req.params.id}`);
@@ -64,7 +64,7 @@ newsFavoriteRouter.get(
   "/all",
   validAuth,
   authorizePermissions('news:favorite'),
-  catchAsync(async (req, res) => {
+  catchAsysnc(async (req, res) => {
     const data = await getUserFavorites(req.user.id);
 
     res.status(200).json({

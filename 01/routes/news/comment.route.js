@@ -1,7 +1,7 @@
 const express = require("express");
 const { errorResponseValidation } = require("../../utils/validation.util");
 const catchAsysnc = require("../../utils/catchAsync.util");
-const newsRouter = express.Router();
+const newsCommentRouter = express.Router();
 const expressValidator = require("express-validator");
 const { authorizePermissions, validAuth } = require("../../utils/auth.util");
 const logger = require("../../utils/logger");
@@ -12,6 +12,7 @@ const {
   updateComment,
   deleteComment,
 } = require("../../services/news/comment.service");
+const { statusComment } = require("../../services/news/comment-reaction.service");
 
 /**
  * @swagger
@@ -161,7 +162,7 @@ const {
  *                         example: "2023-10-28T15:30:00Z"
  */
 
-newsRouter.post(
+newsCommentRouter.post(
   "/:news_id",
   validAuth,
   authorizePermissions(["news:comment:create"]),
@@ -256,7 +257,7 @@ newsRouter.post(
  *                           format: date-time
  */
 
-newsRouter.get(
+newsCommentRouter.get(
   "/:news_id",
   expressValidator
     .param("news_id")
@@ -326,7 +327,7 @@ newsRouter.get(
  *                         example: "2023-10-28T15:30:00Z"
  */
 
-newsRouter.get(
+newsCommentRouter.get(
   "/one/:id",
   expressValidator
     .param("id")
@@ -405,7 +406,7 @@ newsRouter.get(
  *                         example: "2023-10-28T15:30:00Z"
  */
 
-newsRouter.put(
+newsCommentRouter.put(
   "/:id",
   validAuth,
   authorizePermissions(["news:comment:update"]),
@@ -454,7 +455,7 @@ newsRouter.put(
  *                     example: "Comment deleted successfully"
  */
 
-newsRouter.delete(
+newsCommentRouter.delete(
   "/:id",
   validAuth,
   authorizePermissions(["news:comment:delete"]),
@@ -469,4 +470,59 @@ newsRouter.delete(
   }),
 );
 
-module.exports = newsRouter;
+/**
+ * @swagger
+ * paths:
+ *   /news/comments/{id}/status:
+ *     get:
+ *       tags: ["News Comment"]
+ *       summary: Get comment status (isLike, isDislike)
+ *       description: Get the status of a specific comment (whether it's liked or disliked by the user).
+ *       parameters:
+ *         - name: id
+ *           in: path
+ *           required: true
+ *           description: The comment ID to check the status for.
+ *           schema:
+ *             type: string
+ *       responses:
+ *         200:
+ *           description: Success
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 type: object
+ *                 properties:
+ *                   status:
+ *                     type: integer
+ *                     example: 200
+ *                   message:
+ *                     type: string
+ *                     example: "Comment status fetched successfully!"
+ *                   data:
+ *                     type: object
+ *                     properties:
+ *                       isLike:
+ *                         type: boolean
+ *                         example: true
+ *                       isDislike:
+ *                         type: boolean
+ *                         example: false
+ */
+
+newsCommentRouter.get(
+  "/:id/status",
+  validAuth,
+  expressValidator.param("id").isString(),
+  catchAsysnc(async (req, res) => {
+    const result = await statusComment(req.params.id, req.user.id);
+
+    res.status(200).json({
+      status: 200,
+      message: "Comment status fetched successfully!",
+      data: result,
+    });
+  }),
+);
+
+module.exports = newsCommentRouter;

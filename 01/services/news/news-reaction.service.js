@@ -56,7 +56,36 @@ const dislikeNews = async (news_id, user_id) => {
   return { message: "News disliked" };
 };
 
+const statusNews = async (newsId, userId) => {
+  const news = await prisma.news.findUnique({
+    where: { id: newsId },
+    include: {
+      news_likes: {
+        where: { user_id: userId },
+      },
+      news_dislikes: {
+        where: { user_id: userId },
+      },
+      favorites: {
+        where: { user_id: userId },
+      },
+    },
+  });
+
+  const isLike = Array.isArray(news.news_likes) && news.news_likes.length > 0;
+  const isDislike =
+    Array.isArray(news.news_dislikes) && news.news_dislikes.length > 0;
+  const isFavorite = Array.isArray(news.favorites) && news.favorites.length > 0;
+
+  return {
+    isLike,
+    isDislike,
+    isFavorite,
+  };
+};
+
 module.exports = {
   likeNews,
   dislikeNews,
+  statusNews,
 };
