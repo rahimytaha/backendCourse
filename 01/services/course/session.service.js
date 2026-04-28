@@ -1,10 +1,14 @@
 const prisma = require("../../utils/client.util");
 
-const addCourseSession = async (title, text, file) => {
-  await prisma.course_session.create({ data: { text, title, file } });
+const addCourseSession = async (title, text, file, courseId) => {
+  await prisma.course_session.create({
+    data: { text, title, file, course_id: courseId },
+  });
 };
-const getCourseSessions = async () => {
-  const data = await prisma.course_session.findMany();
+const getCourseSessions = async (courseId) => {
+  const data = await prisma.course_session.findMany({
+    where: { course_id: courseId },
+  });
   return data;
 };
 const deleteCourseSessions = async (id) => {
