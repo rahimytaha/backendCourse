@@ -15,9 +15,9 @@ const addFavorite = async (userId, courseId) => {
     data: { user_id: userId, course_id: courseId },
   });
 };
-const deleteFavorite = async (favId) => {
+const deleteFavorite = async (favId, userId) => {
   const checkFavorite = await prisma.course_favorite.findUnique({
-    where: { id: favId },
+    where: { id: favId, user_id: userId },
   });
   if (!checkFavorite)
     throw Error({ message: "could not found this favorite record" });
