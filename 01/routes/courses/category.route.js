@@ -94,6 +94,8 @@ courseCategoryRouter.post(
  */
 courseCategoryRouter.get(
   "/",
+  validAuth,
+  authorizePermissions(["courseCategory:read:any"]),
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
 
@@ -337,6 +339,8 @@ courseCategoryRouter.put(
  */
 courseCategoryRouter.get(
   "/:catId",
+  validAuth,
+  authorizePermissions(["courseCategory:read:any"]),
   validation.param("catId").notEmpty().escape().isUUID(),
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
