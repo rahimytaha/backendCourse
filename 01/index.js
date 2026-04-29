@@ -56,6 +56,9 @@ const winston = require("winston");
 const { courseCategoryRouter } = require("./routes/courses/category.route");
 const { courseCommmentRouter } = require("./routes/courses/comment.route");
 const { courseFavoriteRoute } = require("./routes/courses/favorite.route");
+const { courseRateRoute } = require("./routes/courses/rate.route");
+const { courseSessionRoute } = require("./routes/courses/session.route");
+const { courseTypeRoute } = require("./routes/courses/type.route");
 
 app.use("/public", express.static("public"));
 
@@ -65,6 +68,9 @@ app.use("/course", courseRouter);
 app.use("/courseCategory", courseCategoryRouter);
 app.use("/courseComment", courseCommmentRouter);
 app.use("/courseFavorite", courseFavoriteRoute);
+app.use("/courseRate", courseRateRoute);
+app.use("/courseSession", courseSessionRoute);
+app.use("/courseType", courseTypeRoute);
 app.use("/news", newsRouter);
 
 app.get("/", (req, res, next) => {
