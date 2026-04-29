@@ -6,6 +6,11 @@ const ROLE_PERMISSIONS = {
     "course:read:own",
     "course:create",
     "course:update:own",
+
+    
+    "courseCategory:create",
+    "courseCategoryRelation:create",
+    "courseCategoryRelation:delete"
   ],
   student: [
     "course:read:any",
@@ -17,6 +22,7 @@ const ROLE_PERMISSIONS = {
     "news:update",
     "news:delete",
     "news:create",
+    
   ],
 };
 
