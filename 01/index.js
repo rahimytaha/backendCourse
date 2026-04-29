@@ -54,6 +54,7 @@ const courseRouter = require("./routes/courses/index.route");
 const newsRouter = require("./routes/news/index.route");
 const winston = require("winston");
 const { courseCategoryRouter } = require("./routes/courses/category.route");
+const { courseCommmentRouter } = require("./routes/courses/comment.route");
 
 app.use("/public", express.static("public"));
 
@@ -61,6 +62,7 @@ app.use("/auth", authRouter);
 app.use("/users", userRouter);
 app.use("/course", courseRouter);
 app.use("/courseCategory", courseCategoryRouter);
+app.use("/courseComment", courseCommmentRouter);
 app.use("/news", newsRouter);
 
 app.get("/", (req, res, next) => {
