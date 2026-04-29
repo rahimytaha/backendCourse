@@ -1,12 +1,12 @@
-const express = require('express');
-require('module-alias/register');
-require('dotenv').config();
-require('./config/component.swagger');
+const express = require("express");
+require("module-alias/register");
+require("dotenv").config();
+require("./config/component.swagger");
 
-const swaggerJsdocs = require('swagger-jsdoc');
-const swaggerUi = require('swagger-ui-express');
-const morgan = require('morgan');
-const logger = require('./utils/logger');
+const swaggerJsdocs = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
+const morgan = require("morgan");
+const logger = require("./utils/logger");
 
 const swagger_option = {
   definition: {
@@ -39,7 +39,7 @@ const app = express();
 app.use(
   "/doc",
   swaggerUi.serve,
-  swaggerUi.setup(swaggerJsdocs(swagger_option))
+  swaggerUi.setup(swaggerJsdocs(swagger_option)),
 );
 
 const errorHandler = require("./utils/errorHandler.util");
@@ -52,20 +52,22 @@ const authRouter = require("./routes/auth/index.route");
 const userRouter = require("./routes/users/index.route");
 const courseRouter = require("./routes/courses/index.route");
 const newsRouter = require("./routes/news/index.route");
-const winston = require('winston');
+const winston = require("winston");
+const { courseCategoryRouter } = require("./routes/courses/category.route");
 
 app.use("/public", express.static("public"));
 
 app.use("/auth", authRouter);
 app.use("/users", userRouter);
 app.use("/course", courseRouter);
+app.use("/courseCategory", courseCategoryRouter);
 app.use("/news", newsRouter);
 
 app.get("/", (req, res, next) => {
   res.send("test");
 });
 
-app.use(morgan('combined', { stream: winston.stream.write }));
+// app.use(morgan("combined", { stream: winston.stream.write }));
 app.use(errorHandler);
 
 app.listen(port, () => {

@@ -1,8 +1,8 @@
 const prisma = require("../../utils/client.util");
 const courseService = require("./index.service");
 const addCategory = async (title, file = undefined) => {
-  await courseService.detailCourse(courseId);
-  await prisma.category.create({ data: { title, file } });
+  // await courseService.detailCourse(courseId);
+  return await prisma.category.create({ data: { title, file } });
 };
 const deleteCategory = async (categoryId) => {
   await detailCategory(categoryId);

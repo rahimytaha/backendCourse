@@ -16,7 +16,7 @@ const { validAuth, authorizePermissions } = require("../../utils/auth.util");
 
 /**
  * @swagger
- * /course-category:
+ * /courseCategory:
  *   post:
  *     summary: Create a new course category
  *     tags: [Course Categories]
@@ -72,7 +72,7 @@ courseCategoryRouter.post(
 
 /**
  * @swagger
- * /course-category:
+ * /courseCategory:
  *   get:
  *     summary: Get list of all course categories
  *     tags: [Course Categories]
@@ -105,7 +105,7 @@ courseCategoryRouter.get(
 
 /**
  * @swagger
- * /course-category/{catId}/{courseId}:
+ * /courseCategory/{catId}/{courseId}:
  *   patch:
  *     summary: Add a course to a category (many-to-many relation)
  *     tags: [Course Categories]
@@ -159,7 +159,7 @@ courseCategoryRouter.patch(
 
 /**
  * @swagger
- * /course-category/course/{courseCatId}:
+ * /courseCategory/course/{courseCatId}:
  *   delete:
  *     summary: Remove a course from a category (delete many-to-many relation)
  *     tags: [Course Categories]
@@ -204,7 +204,7 @@ courseCategoryRouter.delete(
 
 /**
  * @swagger
- * /course-category/{catId}:
+ * /courseCategory/{catId}:
  *   delete:
  *     summary: Delete a course category by ID
  *     tags: [Course Categories]
@@ -249,7 +249,7 @@ courseCategoryRouter.delete(
 
 /**
  * @swagger
- * /course-category/{catId}:
+ * /courseCategory/{catId}:
  *   put:
  *     summary: Fully update a course category
  *     tags: [Course Categories]
@@ -305,7 +305,7 @@ courseCategoryRouter.put(
 
 /**
  * @swagger
- * /course-category/{catId}:
+ * /courseCategory/{catId}:
  *   get:
  *     summary: Get a course category by ID
  *     tags: [Course Categories]
