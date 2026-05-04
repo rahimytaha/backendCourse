@@ -10,45 +10,47 @@ datasource db {
 }
 
 model user {
-  id               String         @id @default(uuid())
+  id               String  @id @default(uuid())
   name             String
-  email            String         @unique
+  email            String  @unique
   password         String
   phone_number     String
-  referral_code    String         @unique
+  referral_code    String  @unique
   referral_user_id String?
   national_code    String?
   location         String?
 
-  userRoles       user_role[]
+  userRoles         user_role[]
   loginTransactions login_transaction[]
-  courses         course[]
-  courseRates     course_rate[]
-  courseFavorites course_favorite[]
-  courseComments  course_comment[]
-  comments        news_comment[]
-  favoriteNews    news_favorite[]
-  news_likes      news_like[]
-  news_dislikes   news_dislike[]
-  likedComments   news_comment_like[]    @relation("UserLikedComments")
-  dislikedComments news_comment_dislike[] @relation("UserDislikedComments")
-  notifications   notification[]
-  twoFactorAuth   two_factor_auth?
-  accounts        user_account[]
+  courses           course[]
+  courseRates       course_rate[]
+  courseFavorites   course_favorite[]
+  courseComments    course_comment[]
+  comments          news_comment[]
+  favoriteNews      news_favorite[]
+  news_likes        news_like[]
+  news_dislikes     news_dislike[]
+  likedComments     news_comment_like[]    @relation("UserLikedComments")
+  dislikedComments  news_comment_dislike[] @relation("UserDislikedComments")
+  notifications     notification[]
+  twoFactorAuth     two_factor_auth?
+  accounts          user_account[]
+  tickets           ticket[]
+  ticketMessages    ticket_message[]
 }
 
 model two_factor_auth {
-  id             String    @id @default(uuid())
-  user_id        String    @unique
-  is_enabled     Boolean   @default(false)
+  id         String  @id @default(uuid())
+  user_id    String  @unique
+  is_enabled Boolean @default(false)
 
   otp            String?
   otp_expires_at DateTime?
 
-  created_at     DateTime  @default(now())
-  updated_at     DateTime  @updatedAt
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 
-  user           user      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user user @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }
 
 model user_account {
@@ -59,7 +61,7 @@ model user_account {
   email       String?
   created_at  DateTime @default(now())
 
-  user        user     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user user @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@unique([provider, provider_id])
 }
@@ -71,8 +73,8 @@ model user_role {
   isActive   Boolean  @default(true)
   created_at DateTime @default(now())
 
-  role       role     @relation(fields: [role_id], references: [id], onDelete: NoAction)
-  user       user     @relation(fields: [user_id], references: [id], onDelete: NoAction)
+  role role @relation(fields: [role_id], references: [id], onDelete: NoAction)
+  user user @relation(fields: [user_id], references: [id], onDelete: NoAction)
 }
 
 model role {
@@ -90,19 +92,19 @@ model login_transaction {
 }
 
 model course {
-  id                 String            @id @default(uuid())
+  id                 String   @id @default(uuid())
   title              String
   description        String
   mini_description   String
-  isActive           Boolean           @default(false)
+  isActive           Boolean  @default(false)
   picture            String
   price              Decimal
-  discount           Decimal           @default(0)
+  discount           Decimal  @default(0)
   google_title       String
   google_description String
   created_by         String
   type_id            String
-  created_at         DateTime          @default(now())
+  created_at         DateTime @default(now())
 
   type             course_type       @relation(fields: [type_id], references: [id], onDelete: NoAction)
   teacher          user              @relation(fields: [created_by], references: [id])
@@ -131,11 +133,11 @@ model course_favorite {
 }
 
 model course_comment {
-  id        String          @id @default(uuid())
+  id        String  @id @default(uuid())
   title     String
   text      String
   user_id   String
-  isActive  Boolean         @default(false)
+  isActive  Boolean @default(false)
   parent_id String?
   course_id String
 
@@ -218,17 +220,17 @@ model news_comment {
 }
 
 model news_comment_like {
-  id         String       @id @default(uuid())
-  user_id    String
-  comment_id String
+  id          String       @id @default(uuid())
+  user_id     String
+  comment_id  String
   user        user         @relation("UserLikedComments", fields: [user_id], references: [id])
   newsComment news_comment @relation(fields: [comment_id], references: [id])
 }
 
 model news_comment_dislike {
-  id         String       @id @default(uuid())
-  user_id    String
-  comment_id String
+  id          String       @id @default(uuid())
+  user_id     String
+  comment_id  String
   user        user         @relation("UserDislikedComments", fields: [user_id], references: [id])
   newsComment news_comment @relation(fields: [comment_id], references: [id])
 }
@@ -266,4 +268,44 @@ model notification {
   is_read   Boolean  @default(false)
   createdAt DateTime @default(now())
   user      user     @relation(fields: [user_id], references: [id])
+}
+
+model ticket {
+  id          String  @id @default(uuid())
+  title       String
+  status      String  @default("open")
+  priority    String  @default("low")
+  user_id     String
+  assigned_to String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user     user             @relation(fields: [user_id], references: [id])
+  messages ticket_message[]
+}
+
+model ticket_message {
+  id        String   @id @default(uuid())
+  ticket_id String
+  user_id   String
+  message   String
+  createdAt DateTime @default(now())
+
+  ticket ticket @relation(fields: [ticket_id], references: [id], onDelete: Cascade)
+  user   user   @relation(fields: [user_id], references: [id])
+}
+
+enum ticket_status {
+  open
+  in_progress
+  resolved
+  closed
+}
+
+enum ticket_priority {
+  low
+  medium
+  high
+  urgent
 }

@@ -18,7 +18,6 @@ const { validAuth, authorizePermissions } = require("../../utils/auth.util");
  * @swagger
  * tags:
  *   name: Course Comments
- *   description: Course comments management (user and admin)
  */
 
 /**
