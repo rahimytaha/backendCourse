@@ -21,11 +21,7 @@ const createNotification = async ({
 
   // async email (non-blocking)
   if (sendEmailFlag && emailData) {
-    sendEmail(emailData).then((result) => {
-      if (!result.success) {
-        console.error("Failed to send email:", result.error);
-      }
-    });
+    sendEmail(emailData);
   }
 
   return notification;

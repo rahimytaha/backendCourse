@@ -14,6 +14,31 @@ CREATE TABLE "user" (
 );
 
 -- CreateTable
+CREATE TABLE "two_factor_auth" (
+    "id" TEXT NOT NULL,
+    "user_id" TEXT NOT NULL,
+    "is_enabled" BOOLEAN NOT NULL DEFAULT false,
+    "otp" TEXT,
+    "otp_expires_at" TIMESTAMP(3),
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "two_factor_auth_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "user_account" (
+    "id" TEXT NOT NULL,
+    "user_id" TEXT NOT NULL,
+    "provider" TEXT NOT NULL,
+    "provider_id" TEXT NOT NULL,
+    "email" TEXT,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "user_account_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "user_role" (
     "id" TEXT NOT NULL,
     "user_id" TEXT NOT NULL,
@@ -236,6 +261,18 @@ CREATE UNIQUE INDEX "user_email_key" ON "user"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "user_referral_code_key" ON "user"("referral_code");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "two_factor_auth_user_id_key" ON "two_factor_auth"("user_id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "user_account_provider_provider_id_key" ON "user_account"("provider", "provider_id");
+
+-- AddForeignKey
+ALTER TABLE "two_factor_auth" ADD CONSTRAINT "two_factor_auth_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "user_account" ADD CONSTRAINT "user_account_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "user_role" ADD CONSTRAINT "user_role_role_id_fkey" FOREIGN KEY ("role_id") REFERENCES "role"("id") ON DELETE NO ACTION ON UPDATE CASCADE;

@@ -132,6 +132,25 @@ exports.Prisma.UserScalarFieldEnum = {
   location: 'location'
 };
 
+exports.Prisma.Two_factor_authScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  is_enabled: 'is_enabled',
+  otp: 'otp',
+  otp_expires_at: 'otp_expires_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.User_accountScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  provider: 'provider',
+  provider_id: 'provider_id',
+  email: 'email',
+  created_at: 'created_at'
+};
+
 exports.Prisma.User_roleScalarFieldEnum = {
   id: 'id',
   user_id: 'user_id',
@@ -305,6 +324,8 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   user: 'user',
+  two_factor_auth: 'two_factor_auth',
+  user_account: 'user_account',
   user_role: 'user_role',
   role: 'role',
   login_transaction: 'login_transaction',
