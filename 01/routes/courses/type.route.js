@@ -11,7 +11,6 @@ const { validAuth, authorizePermissions } = require("../../utils/auth.util");
  * @swagger
  * tags:
  *   name: Course Types
- *   description: Course types management
  */
 
 /**

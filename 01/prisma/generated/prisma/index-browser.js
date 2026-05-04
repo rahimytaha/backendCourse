@@ -306,6 +306,25 @@ exports.Prisma.NotificationScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.TicketScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  status: 'status',
+  priority: 'priority',
+  user_id: 'user_id',
+  assigned_to: 'assigned_to',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.Ticket_messageScalarFieldEnum = {
+  id: 'id',
+  ticket_id: 'ticket_id',
+  user_id: 'user_id',
+  message: 'message',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -346,7 +365,9 @@ exports.Prisma.ModelName = {
   news_favorite: 'news_favorite',
   news_like: 'news_like',
   news_dislike: 'news_dislike',
-  notification: 'notification'
+  notification: 'notification',
+  ticket: 'ticket',
+  ticket_message: 'ticket_message'
 };
 
 /**

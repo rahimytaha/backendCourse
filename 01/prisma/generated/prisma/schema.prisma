@@ -35,6 +35,8 @@ model user {
   notifications     notification[]
   twoFactorAuth     two_factor_auth?
   accounts          user_account[]
+  tickets           ticket[]
+  ticketMessages    ticket_message[]
 }
 
 model two_factor_auth {
@@ -266,4 +268,44 @@ model notification {
   is_read   Boolean  @default(false)
   createdAt DateTime @default(now())
   user      user     @relation(fields: [user_id], references: [id])
+}
+
+model ticket {
+  id          String  @id @default(uuid())
+  title       String
+  status      String  @default("open")
+  priority    String  @default("low")
+  user_id     String
+  assigned_to String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user     user             @relation(fields: [user_id], references: [id])
+  messages ticket_message[]
+}
+
+model ticket_message {
+  id        String   @id @default(uuid())
+  ticket_id String
+  user_id   String
+  message   String
+  createdAt DateTime @default(now())
+
+  ticket ticket @relation(fields: [ticket_id], references: [id], onDelete: Cascade)
+  user   user   @relation(fields: [user_id], references: [id])
+}
+
+enum ticket_status {
+  open
+  in_progress
+  resolved
+  closed
+}
+
+enum ticket_priority {
+  low
+  medium
+  high
+  urgent
 }

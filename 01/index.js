@@ -63,6 +63,7 @@ const newsReactionRouter = require('./routes/news/news-reaction.route');
 const commentReactionRouter = require('./routes/news/comment-reaction.route');
 const newsFavoriteRouter = require('./routes/news/favorite.route');
 const newsCommentRouter = require('./routes/news/comment.route');
+const ticketRouter = require("./routes/tickets/index.route");
 
 app.use("/public", express.static("public"));
 
@@ -80,9 +81,10 @@ app.use("/news/reaction", newsReactionRouter)
 app.use("/news/favorite", newsFavoriteRouter)
 app.use("/news/comments", newsCommentRouter)
 app.use("/news/comments/reaction", commentReactionRouter)
+app.use("/tickets", ticketRouter)
 
 app.get("/", (req, res, next) => {
-  res.send("test");
+  res.send("server is successfully running...");
 });
 
 // app.use(morgan("combined", { stream: winston.stream.write }));
