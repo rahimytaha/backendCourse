@@ -10,13 +10,20 @@ const ROLE_PERMISSIONS = {
     
     "courseCategory:create",
     "courseCategoryRelation:create",
-    "courseCategoryRelation:delete"
+    "courseCategoryRelation:delete",
+    "courseCategory:delete",
+    "courseCategory:update",
+    
   ],
   student: [
     "course:read:any",
     "course:read:own",
     "user:read:own",
     "user:update:own",
+    
+
+
+    
   ],
   author: [
     "news:update",
