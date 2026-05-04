@@ -5,6 +5,7 @@ const catchAsysnc = require("../../utils/catchAsync.util");
 const { errorResponseValidation } = require("../../utils/validation.util");
 const validator = require("express-validator");
 const logger = require("../../utils/logger");
+const { validAuth, authorizePermissions } = require("../../utils/auth.util");
 
 /**
  * @swagger
@@ -44,11 +45,13 @@ const logger = require("../../utils/logger");
  */
 courseFavoriteRoute.post(
   "/:courseId",
+  validAuth,
+  authorizePermissions(["courseFavorite:create"]),
   validator.param("courseId").notEmpty().isUUID(),
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
     const courseId = req.params.courseId;
-    const userId = "xx";
+    const userId = req.user.id;
     await courseFavoriteService.addFavorite(userId, courseId);
     logger.info(`Add Course Favorite by user ${userId} for course ${courseId}`);
     res.send(true);
@@ -88,9 +91,11 @@ courseFavoriteRoute.post(
  */
 courseFavoriteRoute.get(
   "/",
+  validAuth,
+  authorizePermissions(["courseFavorite:read"]),
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
-    const userId = "xx";
+    const userId = req.user.id;
     const data = await courseFavoriteService.getFavoriteList(userId);
     logger.info(`Fetching user course favorites list with user id ${userId}`);
     res.send(data);
@@ -128,12 +133,15 @@ courseFavoriteRoute.get(
  */
 courseFavoriteRoute.delete(
   "/:favoriteId",
+  validAuth,
+  authorizePermissions(["courseFavorite:delete"]),
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
-    const userId = "xx";
+    const userId = req.user.id;
     const favoriteId = req.params.favoriteId;
-    await courseFavoriteService.deleteFavorite(favoriteId);
-    logger.info(`Deleting course favorite by id ${favoriteId}`);
+    // userId برای بررسی مالکیت به سرویس ارسال می‌شود
+    await courseFavoriteService.deleteFavorite(favoriteId, userId);
+    logger.info(`Deleting course favorite by id ${favoriteId} for user ${userId}`);
     res.send(true);
   }),
 );

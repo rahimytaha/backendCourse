@@ -5,6 +5,7 @@ const catchAsysnc = require("../../utils/catchAsync.util");
 const { errorResponseValidation } = require("../../utils/validation.util");
 const validator = require("express-validator");
 const logger = require("../../utils/logger");
+const { validAuth, authorizePermissions } = require("../../utils/auth.util");
 
 /**
  * @swagger
@@ -87,12 +88,16 @@ courseTypeRoute.get(
  */
 courseTypeRoute.post(
   "/",
+  validAuth,
+  authorizePermissions(["courseType:create"]),
   validator.body("title").notEmpty().isString().escape(),
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
     const title = req.body.title;
+    const userId = req.user.id;
+    // parentId پارامتر دوم fixed undefined بود، در صورت نیاز می‌توانید تغییر دهید
     const data = await courseTypeService.createType(title, undefined);
-    logger.info(`Creating Course Type with id ${data.id}`);
+    logger.info(`Creating Course Type with id ${data.id} by user ${userId}`);
     res.send(data);
   }),
 );
@@ -127,12 +132,15 @@ courseTypeRoute.post(
  */
 courseTypeRoute.delete(
   "/:id",
+  validAuth,
+  authorizePermissions(["courseType:delete"]),
   validator.param("id").notEmpty().isUUID(),
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
     const id = req.params.id;
+    const userId = req.user.id;
     const data = await courseTypeService.deleteType(id);
-    logger.info(`Deleting Course Type with id ${id}`);
+    logger.info(`Deleting Course Type with id ${id} by user ${userId}`);
     res.send(data);
   }),
 );

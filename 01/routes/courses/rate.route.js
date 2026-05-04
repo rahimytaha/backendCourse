@@ -5,6 +5,7 @@ const catchAsysnc = require("../../utils/catchAsync.util");
 const { errorResponseValidation } = require("../../utils/validation.util");
 const validator = require("express-validator");
 const logger = require("../../utils/logger");
+const { validAuth, authorizePermissions } = require("../../utils/auth.util");
 
 /**
  * @swagger
@@ -52,15 +53,21 @@ const logger = require("../../utils/logger");
  */
 courseRateRoute.post(
   "/:courseId/:rate",
+  validAuth,
+  authorizePermissions(["courseRate:create"]),
   validator.param("courseId").notEmpty().isUUID(),
-  validator.param("rate").notEmpty().toFloat(),
+  validator
+    .param("rate")
+    .notEmpty()
+    .isFloat({ min: 0, max: 5 })
+    .withMessage("Rate must be a number between 0 and 5"),
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
     const courseId = req.params.courseId;
-    const rate = req.params.rate;
-    const userId = "xx";
+    const rate = parseFloat(req.params.rate);
+    const userId = req.user.id;
     await courseRateService.addRate(courseId, userId, rate);
-    logger.info(`Add Course Rate by user ${userId} for course ${courseId}`);
+    logger.info(`Add Course Rate by user ${userId} for course ${courseId} with rate ${rate}`);
     res.send(true);
   }),
 );

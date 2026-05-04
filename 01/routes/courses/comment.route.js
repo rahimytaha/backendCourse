@@ -11,7 +11,8 @@ const courseCommmentRouter = express.Router();
 const courseCommentService = require("../../services/course/comment.service");
 const validator = require("express-validator");
 const logger = require("../../utils/logger");
-const catchAsysnc = require("../../utils/catchAsync.util"); // Added missing import
+const catchAsysnc = require("../../utils/catchAsync.util");
+const { validAuth, authorizePermissions } = require("../../utils/auth.util");
 
 /**
  * @swagger
@@ -59,12 +60,14 @@ const catchAsysnc = require("../../utils/catchAsync.util"); // Added missing imp
  */
 courseCommmentRouter.post(
   "/",
+  validAuth,
+  authorizePermissions(["courseComment:create"]),
   validator.body("title").notEmpty().escape().isString(),
   validator.body("text").notEmpty().escape().isString(),
   validator.body("course_id").notEmpty().escape().isString(),
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
-    const userId = "1";
+    const userId = req.user.id;
     const newComment = await courseCommentService.createComment(
       req.body,
       undefined,
@@ -121,20 +124,23 @@ courseCommmentRouter.post(
  */
 courseCommmentRouter.post(
   "/child/:parentId",
+  validAuth,
+  authorizePermissions(["courseComment:create"]),
   validator.body("title").notEmpty().escape().isString(),
   validator.body("text").notEmpty().escape().isString(),
   validator.param("parentId").notEmpty().escape().isUUID(),
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
-    const userId = "1";
+    const userId = req.user.id;
     const parentId = req.params.parentId;
+    // توجه: احتمالاً باید parentId را به سرویس ارسال کنید، کد قبلی userId را به اشتباه به عنوان parentId فرستاده بود
     const newComment = await courseCommentService.createComment(
       req.body,
-      userId,
+      parentId,   // اصلاح ارسال parentId
       userId,
     );
     logger.info(
-      `Adding a course comment replay with id ${newComment.id} by user with id ${userId}`,
+      `Adding a course comment reply with id ${newComment.id} by user with id ${userId}`,
     );
     res.send(newComment);
   }),
@@ -144,7 +150,7 @@ courseCommmentRouter.post(
  * @swagger
  * /courseComment/{id}:
  *   delete:
- *     summary: Delete a course comment by ID
+ *     summary: Delete a course comment by ID (owner or admin)
  *     tags: [Course Comments]
  *     security:
  *       - bearerAuth: []
@@ -170,13 +176,15 @@ courseCommmentRouter.post(
  */
 courseCommmentRouter.delete(
   "/:id",
+  validAuth,
+  authorizePermissions(["courseComment:delete:own", "courseComment:delete:any"]),
   validator.param("id").notEmpty().escape().isUUID(),
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
     const { id } = req.params;
-    const data = await courseCommentService.deleteComment(id);
+    const data = await courseCommentService.deleteComment(id, req.user.id);
     logger.info(
-      `Deleting a course comment with id ${id} by user with id ${"xx"}`,
+      `Deleting a course comment with id ${id} by user with id ${req.user.id}`,
     );
     res.send(data);
   }),
@@ -239,6 +247,8 @@ courseCommmentRouter.delete(
  */
 courseCommmentRouter.get(
   "/",
+  validAuth,
+  authorizePermissions(["courseComment:read", "courseComment:list:any"]),
   pageChain(),
   perPageChain(),
   queryChain(),
@@ -268,7 +278,7 @@ courseCommmentRouter.get(
  * @swagger
  * /courseComment/{courseId}:
  *   get:
- *     summary: Get comments for a specific course (user view)
+ *     summary: Get comments for a specific course (public)
  *     tags: [Course Comments]
  *     parameters:
  *       - in: path
@@ -309,6 +319,7 @@ courseCommmentRouter.get(
  *             schema:
  *               type: object
  */
+// این مسیر عمومی است و نیازی به احراز هویت ندارد
 courseCommmentRouter.get(
   "/:courseId",
   pageChain(),
@@ -377,6 +388,8 @@ courseCommmentRouter.get(
  */
 courseCommmentRouter.put(
   "/admin/:commentId",
+  validAuth,
+  authorizePermissions(["courseComment:update:any"]),
   validator.param("commentId").notEmpty().escape().isUUID(),
   validator.body("title").optional().notEmpty().escape().isString(),
   validator.body("text").optional().notEmpty().escape().isString(),
@@ -385,7 +398,7 @@ courseCommmentRouter.put(
     const { commentId } = req.params;
     const { title = undefined, text = undefined } = req.body;
     await courseCommentService.updateComment(commentId, { title, text });
-    logger.info(`Update Comment With id ${commentId} by admin id ${"xx"}`);
+    logger.info(`Update Comment With id ${commentId} by admin id ${req.user.id}`);
     res.send(true);
   }),
 );
@@ -432,6 +445,8 @@ courseCommmentRouter.put(
  */
 courseCommmentRouter.put(
   "/user/:commentId",
+  validAuth,
+  authorizePermissions(["courseComment:update:own"]),
   validator.param("commentId").notEmpty().escape().isUUID(),
   validator.body("title").optional().notEmpty().escape().isString(),
   validator.body("text").optional().notEmpty().escape().isString(),
@@ -439,13 +454,13 @@ courseCommmentRouter.put(
     errorResponseValidation(req, res);
     const { commentId } = req.params;
     const { title = undefined, text = undefined } = req.body;
-    const userId = "xx";
+    const userId = req.user.id;
     await courseCommentService.updateComment(
       commentId,
       { title, text },
       userId,
     );
-    logger.info(`Update Comment With id ${commentId} by user id ${"xx"}`);
+    logger.info(`Update Comment With id ${commentId} by user id ${userId}`);
     res.send(true);
   }),
 );
@@ -454,7 +469,7 @@ courseCommmentRouter.put(
  * @swagger
  * /courseComment/{commentId}:
  *   patch:
- *     summary: Activate a comment (set isActive to true)
+ *     summary: Activate a comment (set isActive to true) - admin only
  *     tags: [Course Comments]
  *     security:
  *       - bearerAuth: []
@@ -481,12 +496,14 @@ courseCommmentRouter.put(
  */
 courseCommmentRouter.patch(
   "/:commentId",
+  validAuth,
+  authorizePermissions(["courseComment:update:any", "courseComment:activate"]),
   validator.param("commentId").notEmpty().escape().isUUID(),
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
     const { commentId } = req.params;
     await courseCommentService.updateComment(commentId, { isActive: true });
-    logger.info(`Activate a comment with id ${commentId} by user id ${"xx"}`);
+    logger.info(`Activate a comment with id ${commentId} by admin id ${req.user.id}`);
     res.send(true);
   }),
 );

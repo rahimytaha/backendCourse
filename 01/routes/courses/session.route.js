@@ -5,6 +5,7 @@ const catchAsysnc = require("../../utils/catchAsync.util");
 const { errorResponseValidation } = require("../../utils/validation.util");
 const validator = require("express-validator");
 const logger = require("../../utils/logger");
+const { validAuth, authorizePermissions } = require("../../utils/auth.util");
 
 /**
  * @swagger
@@ -58,6 +59,8 @@ const logger = require("../../utils/logger");
  */
 courseSessionRoute.post(
   "/:courseId",
+  validAuth,
+  authorizePermissions(["courseSession:create"]),
   validator.param("courseId").notEmpty().isUUID(),
   validator.body("title").notEmpty().isString().escape(),
   validator.body("text").notEmpty().isString().escape(),
@@ -65,14 +68,15 @@ courseSessionRoute.post(
     errorResponseValidation(req, res);
     const courseId = req.params.courseId;
     const { title, text } = req.body;
-    const userId = "xx";
+    const userId = req.user.id;
+    // توجه: پارامتر userId به سرویس ارسال نشده بود؛ در صورت نیاز می‌توانید آن را اضافه کنید
     await courseSessionService.addCourseSession(
       title,
       text,
-      undefined,
+      undefined, // parentId
       courseId,
     );
-    logger.info(`Add Course Session by admin ${userId} for course ${courseId}`);
+    logger.info(`Add Course Session by user ${userId} for course ${courseId}`);
     res.send(true);
   }),
 );
@@ -114,6 +118,7 @@ courseSessionRoute.post(
  *                     type: string
  *                     format: date-time
  */
+// این مسیر عمومی است و نیازی به احراز هویت ندارد
 courseSessionRoute.get(
   "/:courseId",
   validator.param("courseId").notEmpty().isUUID(),
@@ -157,12 +162,16 @@ courseSessionRoute.get(
  */
 courseSessionRoute.delete(
   "/:id",
+  validAuth,
+  authorizePermissions(["courseSession:delete"]),
   validator.param("id").notEmpty().isUUID(),
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
     const id = req.params.id;
-    const data = await courseSessionService.deleteCourseSessions(id);
-    logger.info(`Deleting Course Session with id ${id}`);
+    const userId = req.user.id;
+    // در صورت نیاز به بررسی مالکیت، userId را به سرویس ارسال کنید
+    await courseSessionService.deleteCourseSessions(id);
+    logger.info(`Deleting Course Session with id ${id} by user ${userId}`);
     res.send(true);
   }),
 );
