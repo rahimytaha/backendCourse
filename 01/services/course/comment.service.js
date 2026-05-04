@@ -33,13 +33,13 @@ const listComment = async (
   });
   return data;
 };
-const updateComment = async (id, data) => {
-  await detailComment(id, true);
-  await prisma.course_comment.update({ where: { id }, data });
+const updateComment = async (id, data, userId) => {
+  await detailComment(id, true, userId);
+  await prisma.course_comment.update({ where: { id, user_id: userId }, data });
 };
-const detailComment = async (id, isActive) => {
+const detailComment = async (id, isActive, userId) => {
   const comment = await prisma.course_comment.findFirst({
-    where: { id, isActive },
+    where: { id, isActive, user_id: userId },
   });
   if (!comment)
     throw Error({
@@ -56,4 +56,11 @@ const acceptComment = async (id) => {
   });
   // send notification
 };
-module.exports = {};
+module.exports = {
+  createComment,
+  deleteComment,
+  listComment,
+  updateComment,
+  detailComment,
+  acceptComment,
+};

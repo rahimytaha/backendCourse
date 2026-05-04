@@ -1,12 +1,12 @@
-const express = require('express');
-require('module-alias/register');
-require('dotenv').config();
-require('./config/component.swagger');
+const express = require("express");
+require("module-alias/register");
+require("dotenv").config();
+require("./config/component.swagger");
 
-const swaggerJsdocs = require('swagger-jsdoc');
-const swaggerUi = require('swagger-ui-express');
-const morgan = require('morgan');
-const logger = require('./utils/logger');
+const swaggerJsdocs = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
+const morgan = require("morgan");
+const logger = require("./utils/logger");
 
 const swagger_option = {
   definition: {
@@ -39,7 +39,7 @@ const app = express();
 app.use(
   "/doc",
   swaggerUi.serve,
-  swaggerUi.setup(swaggerJsdocs(swagger_option))
+  swaggerUi.setup(swaggerJsdocs(swagger_option)),
 );
 
 const errorHandler = require("./utils/errorHandler.util");
@@ -52,6 +52,13 @@ const authRouter = require("./routes/auth/index.route");
 const userRouter = require("./routes/users/index.route");
 const courseRouter = require("./routes/courses/index.route");
 const newsRouter = require("./routes/news/index.route");
+const winston = require("winston");
+const { courseCategoryRouter } = require("./routes/courses/category.route");
+const { courseCommmentRouter } = require("./routes/courses/comment.route");
+const { courseFavoriteRoute } = require("./routes/courses/favorite.route");
+const { courseRateRoute } = require("./routes/courses/rate.route");
+const { courseSessionRoute } = require("./routes/courses/session.route");
+const { courseTypeRoute } = require("./routes/courses/type.route");
 const winston = require('winston');
 const newsReactionRouter = require('./routes/news/news-reaction.route');
 const commentReactionRouter = require('./routes/news/comment-reaction.route');
@@ -63,6 +70,12 @@ app.use("/public", express.static("public"));
 app.use("/auth", authRouter);
 app.use("/users", userRouter);
 app.use("/course", courseRouter);
+app.use("/courseCategory", courseCategoryRouter);
+app.use("/courseComment", courseCommmentRouter);
+app.use("/courseFavorite", courseFavoriteRoute);
+app.use("/courseRate", courseRateRoute);
+app.use("/courseSession", courseSessionRoute);
+app.use("/courseType", courseTypeRoute);
 app.use("/news", newsRouter);
 app.use("/news/reaction", newsReactionRouter)
 app.use("/news/favorite", newsFavoriteRouter)
@@ -73,7 +86,7 @@ app.get("/", (req, res, next) => {
   res.send("test");
 });
 
-app.use(morgan('combined', { stream: winston.stream.write }));
+// app.use(morgan("combined", { stream: winston.stream.write }));
 app.use(errorHandler);
 
 app.listen(port, () => {
