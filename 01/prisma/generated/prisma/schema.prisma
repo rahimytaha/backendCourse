@@ -34,6 +34,7 @@ model user {
   news_dislikes     news_dislike[]
   likedComments     news_comment_like[]    @relation("UserLikedComments")
   dislikedComments  news_comment_dislike[] @relation("UserDislikedComments")
+  notifications     notification[]
 }
 
 model user_role {
@@ -224,4 +225,15 @@ model news_dislike {
   news_id Int
   user    user   @relation(fields: [user_id], references: [id])
   news    news   @relation(fields: [news_id], references: [id])
+}
+
+model notification {
+  id        String   @id @default(uuid())
+  user_id   String
+  title     String
+  message   String
+  type      String
+  is_read   Boolean  @default(false)
+  createdAt DateTime @default(now())
+  user      user     @relation(fields: [user_id], references: [id])
 }

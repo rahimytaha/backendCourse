@@ -1,17 +1,18 @@
 const {
   hashPassword,
   comparePassword,
-  generateToken,
   verifyToken,
   generateReferralCode,
   toRoleNames,
   toPermissions,
+  generateToken,
 } = require("../../utils/auth.util");
 const prisma = require("../../utils/client.util");
 const {
   generateForgotPasswordEmail,
   sendEmail,
 } = require("../../utils/sendEmail");
+const { createNotification } = require("../notification/notification.service");
 
 const ACCESS_TOKEN_TTL = process.env.ACCESS_TOKEN_TTL || "24h";
 const RESET_TOKEN_TTL = process.env.RESET_TOKEN_TTL || "15m";
@@ -109,122 +110,135 @@ const buildAuthPayload = (user) => {
 };
 
 const register = async (data) => {
-  // this function is for creating starting role (i explained it in top)
   await ensureBaseRoles();
-  // first check the use exists already or not
-  const checkUser = await prisma.user.findUnique({
+
+  const existingUser = await prisma.user.findUnique({
     where: { email: data.email },
   });
+  if (existingUser) throw new Error("email already exists");
 
-  if (checkUser) throw new Error("this email exist");
-
-  // this part is for checking referral code
-  let checkReferral = null;
+  let referralUser = null;
 
   if (data.referral_code) {
-    checkReferral = await prisma.user.findUnique({
+    referralUser = await prisma.user.findUnique({
       where: { referral_code: data.referral_code },
     });
-
-    if (!checkReferral) {
-      throw new Error("referral code is invalid");
-    }
+    if (!referralUser) throw new Error("invalid referral code");
   }
 
-  // consts (userCount for counting)
-  // (defaultRoleName: if the it is the first user it's going to be get the owner role (unique role))
-  // (defaultRole: role name by id (use function getRoleByName))
-  // (hashedPassword: hashing password for security)
-  // (referralCode: generating referral code)
   const usersCount = await prisma.user.count();
   const defaultRoleName = usersCount === 0 ? "owner" : "student";
   const defaultRole = await getRoleByName(defaultRoleName);
-  const hashedPassword = hashPassword(data.password);
+
+  const hashedPassword = await hashPassword(data.password);
   const referralCode = generateReferralCode();
 
-  // and finally create the user (register)
   const newUser = await prisma.user.create({
     data: {
       ...data,
       password: hashedPassword,
       referral_code: referralCode,
-      referral_user_id: checkReferral ? checkReferral.id : null,
+      referral_user_id: referralUser?.id || null,
     },
   });
 
-  // then attach the role to this user (the default roles we determined top)
   await attachRoleToUser(newUser.id, defaultRole.id);
+
   const userWithRoles = await getUserWithRolesById(newUser.id);
-  // fetching the access_token
+
+  // notification
+  await createNotification({
+    userId: newUser.id,
+    title: "Welcome",
+    message: "Your account has been created",
+    sendEmailFlag: true,
+    emailData: {
+      to: newUser.email,
+      subject: "Welcome!",
+      htmlContent: `<h2>Welcome ${newUser.name}</h2>`,
+    },
+  });
+
   return buildAuthPayload(userWithRoles);
 };
 
 const login = async (data) => {
-  // check user exists or not
-  const checkUser = await getUserWithRolesByEmail(data.email);
+  const user = await getUserWithRolesByEmail(data.email);
+  if (!user) throw new Error("invalid credentials");
 
-  if (!checkUser) throw new Error("this email not exist");
+  const isValid = await comparePassword(user.password, data.password);
+  if (!isValid) throw new Error("invalid credentials");
 
-  // comparing password (valid password)
-  const isPasswordValid = comparePassword(checkUser.password, data.password);
-  if (!isPasswordValid) throw new Error("invalid password");
+  // login notification
+  await createNotification({
+    userId: user.id,
+    title: "New Login",
+    message: "A new login to your account detected",
+  });
 
-  // get the access_token
-  return buildAuthPayload(checkUser);
+  return buildAuthPayload(user);
 };
 
 const forgotPassword = async (email, url) => {
-  // check user that exists or not
   const user = await prisma.user.findUnique({ where: { email } });
+
   if (!user) return { success: true };
 
-  // create reste_token
   const resetToken = generateToken(
-    { sub: user.id, email: user.email, type: "reset" },
+    { sub: user.id, type: "reset" },
     RESET_TOKEN_TTL,
   );
 
-  // reset url (for sending to email)
   const resetUrl = `${url}?token=${resetToken}`;
 
-  // if the project could be in the development it would run first section else second section
-  if (NODE_ENV === "development") {
-    // return reset_token as mock
-    return {
-      success: true,
-      reset_token: resetToken,
-    };
-  } else {
-    // send reset_url to users email
-    await sendEmail({
+  // notification + email
+  await createNotification({
+    userId: user.id,
+    title: "Password Reset",
+    message: "Reset password requested",
+    sendEmailFlag: true,
+    emailData: {
       to: user.email,
-      subject: "Password Reset Request",
+      subject: "Reset Password",
       htmlContent: generateForgotPasswordEmail(user.name, resetUrl),
-    });
+    },
+  });
 
-    // return the message that url sent for you body...
-    return {
-      success: true,
-      message: "Reset token sent to email successfully",
-    };
+  // dev
+  if (NODE_ENV === "development") {
+    return { success: true, resetToken };
   }
+
+  return { success: true };
 };
 
 const resetPassword = async (token, newPassword) => {
-  // decoding token (verifying token)
   const decoded = verifyToken(token);
-  if (decoded.type !== "reset") throw new Error("invalid token type");
-  // check user
-  const user = await prisma.user.findUnique({ where: { id: decoded.sub } });
+
+  if (decoded.type !== "reset") {
+    throw new Error("invalid token");
+  }
+
+  const user = await prisma.user.findUnique({
+    where: { id: decoded.sub },
+  });
+
   if (!user) throw new Error("user not found");
 
-  // hash password
-  const hashedPassword = hashPassword(newPassword);
-  // update password
+  const hashedPassword = await hashPassword(newPassword);
+
   await prisma.user.update({
     where: { id: user.id },
     data: { password: hashedPassword },
   });
+
+  // notification
+  await createNotification({
+    userId: user.id,
+    title: "Password Changed",
+    message: "Your password has been updated",
+  });
+
   return { success: true };
 };
 
@@ -284,4 +298,5 @@ module.exports = {
   createRole,
   assignRoleToUser,
   removeRoleFromUser,
+  sanitizeUser,
 };
