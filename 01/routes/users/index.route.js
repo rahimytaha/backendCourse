@@ -68,7 +68,7 @@ const logger = require("../../utils/logger");
  *         name: page
  *         schema:
  *           type: integer
- *           default: 0
+ *           default: 1
  *       - in: query
  *         name: query
  *         schema:
@@ -80,6 +80,7 @@ const logger = require("../../utils/logger");
  *           type: integer
  *           default: 10
  *       - in: query
+ *         type: "createdAt"
  *         name: orderBy
  *       - in: query
  *         name: orderType
@@ -117,7 +118,7 @@ userRouter.get(
     logger.info(
       `Fetching all users with query: ${req.query.query}, page: ${req.query.page}`,
     );
-    const data = await getAllUsers(query, page, limit, orderBy, orderType);
+    const data = await getAllUsers({ query, page, limit, orderBy, orderType });
     res.status(200).send(data);
   }),
 );
@@ -185,6 +186,7 @@ userRouter.post(
   catchAsysnc(async (req, res, next) => {
     errorResponseValidation(req, res);
     logger.info(`Creating user with email: ${req.body.email}`);
+    console.log(req.body);
     const data = await createUser(req.body);
     res.status(201).send(data);
   }),
@@ -288,9 +290,9 @@ userRouter.put(
 );
 /**
  * @swagger
- * /users/:
+ * /users/{id}/me:
  *  put:
- *    summary: update user by id
+ *    summary: update own user
  *    tags:
  *      - Users
  *    requestBody:
@@ -331,7 +333,7 @@ userRouter.put(
  */
 // update profile by user
 userRouter.put(
-  "/",
+  "/:id",
 
   passwordValidationChain(),
   expressValidator.body("name").notEmpty().escape(),
@@ -345,7 +347,7 @@ userRouter.put(
   validAuth,
   authorizePermissions(["user:update:own"]),
   catchAsysnc(async (req, res, next) => {
-    const userId = 1;
+    const userId = req.user.id;
     errorResponseValidation(req, res);
     logger.info(`Updating user profile (own profile): ${userId}`);
     const data = await updateUser(userId, req.body);
@@ -430,81 +432,4 @@ userRouter.patch(
   }),
 );
 
-// /**
-//  * @swagger
-//  * /users/role:
-//  *   get:
-//  *     summary: get all roles (admin)
-//  *     tags: [Roles,Users]
-//  *     responses:
-//  *       400:
-//  *         $ref: '#/components/responses/400Err'
-//  *       403:
-//  *         $ref:  '#/components/responses/403Err'
-//  *
-//  */
-// // role system routers
-// userRouter.get(
-//   "role/list",
-//   catchAsysnc(async (req, res) => {
-//     const data = await getRoleList();
-//     res.send(data);
-//   }),
-// );
-// /**
-//  * @swagger
-//  * /users/role/{id}/{roleId}:
-//  *   patch:
-//  *     summary: add role to an user (admin)
-//  *     tags:
-//  *       - Users
-//  *       - Roles
-//  *     parameters:
-//  *       - in: path
-//  *         name: id
-//  *         required: true
-//  *       - in: path
-//  *         name: roleId
-//  *         required: true
-//  *     responses:
-//  *       400:
-//  *         $ref: '#/components/responses/400Err'
-//  *       403:
-//  *         $ref:  '#/components/responses/403Err'
-//  *   delete:
-//  *     summary: delete role from an user (admin)
-//  *     tags:
-//  *       - Users
-//  *       - Roles
-//  *     parameters:
-//  *       - in: path
-//  *         name: id
-//  *         required: true
-//  *       - in: path
-//  *         name: roleId
-//  *         required: true
-//  *     responses:
-//  *       400:
-//  *         $ref: '#/components/responses/400Err'
-//  *       403:
-//  *         $ref:  '#/components/responses/403Err'
-//  */
-// userRouter.patch(
-//   "role/:id/:roleId",
-//   expressValidator.param("id").notEmpty().isUUID(),
-//   expressValidator.param("roleId").notEmpty().isUUID(),
-//   catchAsysnc(async (req, res) => {
-//     await addRole(req.params.id, req.params.roleId);
-//     res.send(true);
-//   }),
-// );
-// userRouter.delete(
-//   "role/:id/:roleId",
-//   expressValidator.param("id").notEmpty().isUUID(),
-//   expressValidator.param("roleId").notEmpty().isUUID(),
-//   catchAsysnc(async (req, res) => {
-//     await deleteRole(req.params.id, req.params.roleId);
-//     res.send(true);
-//   }),
-// );
 module.exports = userRouter;

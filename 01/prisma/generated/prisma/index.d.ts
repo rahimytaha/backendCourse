@@ -19,6 +19,16 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type user = $Result.DefaultSelection<Prisma.$userPayload>
 /**
+ * Model two_factor_auth
+ * 
+ */
+export type two_factor_auth = $Result.DefaultSelection<Prisma.$two_factor_authPayload>
+/**
+ * Model user_account
+ * 
+ */
+export type user_account = $Result.DefaultSelection<Prisma.$user_accountPayload>
+/**
  * Model user_role
  * 
  */
@@ -118,6 +128,11 @@ export type news_like = $Result.DefaultSelection<Prisma.$news_likePayload>
  * 
  */
 export type news_dislike = $Result.DefaultSelection<Prisma.$news_dislikePayload>
+/**
+ * Model notification
+ * 
+ */
+export type notification = $Result.DefaultSelection<Prisma.$notificationPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -249,6 +264,26 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.userDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.two_factor_auth`: Exposes CRUD operations for the **two_factor_auth** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Two_factor_auths
+    * const two_factor_auths = await prisma.two_factor_auth.findMany()
+    * ```
+    */
+  get two_factor_auth(): Prisma.two_factor_authDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.user_account`: Exposes CRUD operations for the **user_account** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more User_accounts
+    * const user_accounts = await prisma.user_account.findMany()
+    * ```
+    */
+  get user_account(): Prisma.user_accountDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.user_role`: Exposes CRUD operations for the **user_role** model.
@@ -449,6 +484,16 @@ export class PrismaClient<
     * ```
     */
   get news_dislike(): Prisma.news_dislikeDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.notification`: Exposes CRUD operations for the **notification** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Notifications
+    * const notifications = await prisma.notification.findMany()
+    * ```
+    */
+  get notification(): Prisma.notificationDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -884,6 +929,8 @@ export namespace Prisma {
 
   export const ModelName: {
     user: 'user',
+    two_factor_auth: 'two_factor_auth',
+    user_account: 'user_account',
     user_role: 'user_role',
     role: 'role',
     login_transaction: 'login_transaction',
@@ -903,7 +950,8 @@ export namespace Prisma {
     news_comment_dislike: 'news_comment_dislike',
     news_favorite: 'news_favorite',
     news_like: 'news_like',
-    news_dislike: 'news_dislike'
+    news_dislike: 'news_dislike',
+    notification: 'notification'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -919,7 +967,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "user_role" | "role" | "login_transaction" | "course" | "course_rate" | "course_favorite" | "course_comment" | "course_session" | "course_type" | "category" | "course_category" | "order" | "course_order" | "news" | "news_comment" | "news_comment_like" | "news_comment_dislike" | "news_favorite" | "news_like" | "news_dislike"
+      modelProps: "user" | "two_factor_auth" | "user_account" | "user_role" | "role" | "login_transaction" | "course" | "course_rate" | "course_favorite" | "course_comment" | "course_session" | "course_type" | "category" | "course_category" | "order" | "course_order" | "news" | "news_comment" | "news_comment_like" | "news_comment_dislike" | "news_favorite" | "news_like" | "news_dislike" | "notification"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -994,6 +1042,154 @@ export namespace Prisma {
           count: {
             args: Prisma.userCountArgs<ExtArgs>
             result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      two_factor_auth: {
+        payload: Prisma.$two_factor_authPayload<ExtArgs>
+        fields: Prisma.two_factor_authFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.two_factor_authFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$two_factor_authPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.two_factor_authFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$two_factor_authPayload>
+          }
+          findFirst: {
+            args: Prisma.two_factor_authFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$two_factor_authPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.two_factor_authFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$two_factor_authPayload>
+          }
+          findMany: {
+            args: Prisma.two_factor_authFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$two_factor_authPayload>[]
+          }
+          create: {
+            args: Prisma.two_factor_authCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$two_factor_authPayload>
+          }
+          createMany: {
+            args: Prisma.two_factor_authCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.two_factor_authCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$two_factor_authPayload>[]
+          }
+          delete: {
+            args: Prisma.two_factor_authDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$two_factor_authPayload>
+          }
+          update: {
+            args: Prisma.two_factor_authUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$two_factor_authPayload>
+          }
+          deleteMany: {
+            args: Prisma.two_factor_authDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.two_factor_authUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.two_factor_authUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$two_factor_authPayload>[]
+          }
+          upsert: {
+            args: Prisma.two_factor_authUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$two_factor_authPayload>
+          }
+          aggregate: {
+            args: Prisma.Two_factor_authAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTwo_factor_auth>
+          }
+          groupBy: {
+            args: Prisma.two_factor_authGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Two_factor_authGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.two_factor_authCountArgs<ExtArgs>
+            result: $Utils.Optional<Two_factor_authCountAggregateOutputType> | number
+          }
+        }
+      }
+      user_account: {
+        payload: Prisma.$user_accountPayload<ExtArgs>
+        fields: Prisma.user_accountFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.user_accountFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$user_accountPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.user_accountFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$user_accountPayload>
+          }
+          findFirst: {
+            args: Prisma.user_accountFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$user_accountPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.user_accountFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$user_accountPayload>
+          }
+          findMany: {
+            args: Prisma.user_accountFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$user_accountPayload>[]
+          }
+          create: {
+            args: Prisma.user_accountCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$user_accountPayload>
+          }
+          createMany: {
+            args: Prisma.user_accountCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.user_accountCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$user_accountPayload>[]
+          }
+          delete: {
+            args: Prisma.user_accountDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$user_accountPayload>
+          }
+          update: {
+            args: Prisma.user_accountUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$user_accountPayload>
+          }
+          deleteMany: {
+            args: Prisma.user_accountDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.user_accountUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.user_accountUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$user_accountPayload>[]
+          }
+          upsert: {
+            args: Prisma.user_accountUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$user_accountPayload>
+          }
+          aggregate: {
+            args: Prisma.User_accountAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUser_account>
+          }
+          groupBy: {
+            args: Prisma.user_accountGroupByArgs<ExtArgs>
+            result: $Utils.Optional<User_accountGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.user_accountCountArgs<ExtArgs>
+            result: $Utils.Optional<User_accountCountAggregateOutputType> | number
           }
         }
       }
@@ -2477,6 +2673,80 @@ export namespace Prisma {
           }
         }
       }
+      notification: {
+        payload: Prisma.$notificationPayload<ExtArgs>
+        fields: Prisma.notificationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.notificationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$notificationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.notificationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$notificationPayload>
+          }
+          findFirst: {
+            args: Prisma.notificationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$notificationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.notificationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$notificationPayload>
+          }
+          findMany: {
+            args: Prisma.notificationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$notificationPayload>[]
+          }
+          create: {
+            args: Prisma.notificationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$notificationPayload>
+          }
+          createMany: {
+            args: Prisma.notificationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.notificationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$notificationPayload>[]
+          }
+          delete: {
+            args: Prisma.notificationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$notificationPayload>
+          }
+          update: {
+            args: Prisma.notificationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$notificationPayload>
+          }
+          deleteMany: {
+            args: Prisma.notificationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.notificationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.notificationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$notificationPayload>[]
+          }
+          upsert: {
+            args: Prisma.notificationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$notificationPayload>
+          }
+          aggregate: {
+            args: Prisma.NotificationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateNotification>
+          }
+          groupBy: {
+            args: Prisma.notificationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<NotificationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.notificationCountArgs<ExtArgs>
+            result: $Utils.Optional<NotificationCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2586,6 +2856,8 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     user?: userOmit
+    two_factor_auth?: two_factor_authOmit
+    user_account?: user_accountOmit
     user_role?: user_roleOmit
     role?: roleOmit
     login_transaction?: login_transactionOmit
@@ -2606,6 +2878,7 @@ export namespace Prisma {
     news_favorite?: news_favoriteOmit
     news_like?: news_likeOmit
     news_dislike?: news_dislikeOmit
+    notification?: notificationOmit
   }
 
   /* Types for Logging */
@@ -2698,6 +2971,8 @@ export namespace Prisma {
     news_dislikes: number
     likedComments: number
     dislikedComments: number
+    notifications: number
+    accounts: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2713,6 +2988,8 @@ export namespace Prisma {
     news_dislikes?: boolean | UserCountOutputTypeCountNews_dislikesArgs
     likedComments?: boolean | UserCountOutputTypeCountLikedCommentsArgs
     dislikedComments?: boolean | UserCountOutputTypeCountDislikedCommentsArgs
+    notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
+    accounts?: boolean | UserCountOutputTypeCountAccountsArgs
   }
 
   // Custom InputTypes
@@ -2808,6 +3085,20 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountDislikedCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: news_comment_dislikeWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountNotificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: notificationWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountAccountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: user_accountWhereInput
   }
 
 
@@ -3321,6 +3612,9 @@ export namespace Prisma {
     news_dislikes?: boolean | user$news_dislikesArgs<ExtArgs>
     likedComments?: boolean | user$likedCommentsArgs<ExtArgs>
     dislikedComments?: boolean | user$dislikedCommentsArgs<ExtArgs>
+    notifications?: boolean | user$notificationsArgs<ExtArgs>
+    twoFactorAuth?: boolean | user$twoFactorAuthArgs<ExtArgs>
+    accounts?: boolean | user$accountsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -3374,6 +3668,9 @@ export namespace Prisma {
     news_dislikes?: boolean | user$news_dislikesArgs<ExtArgs>
     likedComments?: boolean | user$likedCommentsArgs<ExtArgs>
     dislikedComments?: boolean | user$dislikedCommentsArgs<ExtArgs>
+    notifications?: boolean | user$notificationsArgs<ExtArgs>
+    twoFactorAuth?: boolean | user$twoFactorAuthArgs<ExtArgs>
+    accounts?: boolean | user$accountsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type userIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3394,6 +3691,9 @@ export namespace Prisma {
       news_dislikes: Prisma.$news_dislikePayload<ExtArgs>[]
       likedComments: Prisma.$news_comment_likePayload<ExtArgs>[]
       dislikedComments: Prisma.$news_comment_dislikePayload<ExtArgs>[]
+      notifications: Prisma.$notificationPayload<ExtArgs>[]
+      twoFactorAuth: Prisma.$two_factor_authPayload<ExtArgs> | null
+      accounts: Prisma.$user_accountPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3811,6 +4111,9 @@ export namespace Prisma {
     news_dislikes<T extends user$news_dislikesArgs<ExtArgs> = {}>(args?: Subset<T, user$news_dislikesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_dislikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     likedComments<T extends user$likedCommentsArgs<ExtArgs> = {}>(args?: Subset<T, user$likedCommentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_comment_likePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     dislikedComments<T extends user$dislikedCommentsArgs<ExtArgs> = {}>(args?: Subset<T, user$dislikedCommentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_comment_dislikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    notifications<T extends user$notificationsArgs<ExtArgs> = {}>(args?: Subset<T, user$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$notificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    twoFactorAuth<T extends user$twoFactorAuthArgs<ExtArgs> = {}>(args?: Subset<T, user$twoFactorAuthArgs<ExtArgs>>): Prisma__two_factor_authClient<$Result.GetResult<Prisma.$two_factor_authPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    accounts<T extends user$accountsArgs<ExtArgs> = {}>(args?: Subset<T, user$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$user_accountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4530,6 +4833,73 @@ export namespace Prisma {
   }
 
   /**
+   * user.notifications
+   */
+  export type user$notificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notification
+     */
+    select?: notificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the notification
+     */
+    omit?: notificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: notificationInclude<ExtArgs> | null
+    where?: notificationWhereInput
+    orderBy?: notificationOrderByWithRelationInput | notificationOrderByWithRelationInput[]
+    cursor?: notificationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * user.twoFactorAuth
+   */
+  export type user$twoFactorAuthArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the two_factor_auth
+     */
+    select?: two_factor_authSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the two_factor_auth
+     */
+    omit?: two_factor_authOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: two_factor_authInclude<ExtArgs> | null
+    where?: two_factor_authWhereInput
+  }
+
+  /**
+   * user.accounts
+   */
+  export type user$accountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the user_account
+     */
+    select?: user_accountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the user_account
+     */
+    omit?: user_accountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: user_accountInclude<ExtArgs> | null
+    where?: user_accountWhereInput
+    orderBy?: user_accountOrderByWithRelationInput | user_accountOrderByWithRelationInput[]
+    cursor?: user_accountWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: User_accountScalarFieldEnum | User_accountScalarFieldEnum[]
+  }
+
+  /**
    * user without action
    */
   export type userDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4545,6 +4915,2171 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: userInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model two_factor_auth
+   */
+
+  export type AggregateTwo_factor_auth = {
+    _count: Two_factor_authCountAggregateOutputType | null
+    _min: Two_factor_authMinAggregateOutputType | null
+    _max: Two_factor_authMaxAggregateOutputType | null
+  }
+
+  export type Two_factor_authMinAggregateOutputType = {
+    id: string | null
+    user_id: string | null
+    is_enabled: boolean | null
+    otp: string | null
+    otp_expires_at: Date | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type Two_factor_authMaxAggregateOutputType = {
+    id: string | null
+    user_id: string | null
+    is_enabled: boolean | null
+    otp: string | null
+    otp_expires_at: Date | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type Two_factor_authCountAggregateOutputType = {
+    id: number
+    user_id: number
+    is_enabled: number
+    otp: number
+    otp_expires_at: number
+    created_at: number
+    updated_at: number
+    _all: number
+  }
+
+
+  export type Two_factor_authMinAggregateInputType = {
+    id?: true
+    user_id?: true
+    is_enabled?: true
+    otp?: true
+    otp_expires_at?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type Two_factor_authMaxAggregateInputType = {
+    id?: true
+    user_id?: true
+    is_enabled?: true
+    otp?: true
+    otp_expires_at?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type Two_factor_authCountAggregateInputType = {
+    id?: true
+    user_id?: true
+    is_enabled?: true
+    otp?: true
+    otp_expires_at?: true
+    created_at?: true
+    updated_at?: true
+    _all?: true
+  }
+
+  export type Two_factor_authAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which two_factor_auth to aggregate.
+     */
+    where?: two_factor_authWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of two_factor_auths to fetch.
+     */
+    orderBy?: two_factor_authOrderByWithRelationInput | two_factor_authOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: two_factor_authWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` two_factor_auths from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` two_factor_auths.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned two_factor_auths
+    **/
+    _count?: true | Two_factor_authCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Two_factor_authMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Two_factor_authMaxAggregateInputType
+  }
+
+  export type GetTwo_factor_authAggregateType<T extends Two_factor_authAggregateArgs> = {
+        [P in keyof T & keyof AggregateTwo_factor_auth]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTwo_factor_auth[P]>
+      : GetScalarType<T[P], AggregateTwo_factor_auth[P]>
+  }
+
+
+
+
+  export type two_factor_authGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: two_factor_authWhereInput
+    orderBy?: two_factor_authOrderByWithAggregationInput | two_factor_authOrderByWithAggregationInput[]
+    by: Two_factor_authScalarFieldEnum[] | Two_factor_authScalarFieldEnum
+    having?: two_factor_authScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Two_factor_authCountAggregateInputType | true
+    _min?: Two_factor_authMinAggregateInputType
+    _max?: Two_factor_authMaxAggregateInputType
+  }
+
+  export type Two_factor_authGroupByOutputType = {
+    id: string
+    user_id: string
+    is_enabled: boolean
+    otp: string | null
+    otp_expires_at: Date | null
+    created_at: Date
+    updated_at: Date
+    _count: Two_factor_authCountAggregateOutputType | null
+    _min: Two_factor_authMinAggregateOutputType | null
+    _max: Two_factor_authMaxAggregateOutputType | null
+  }
+
+  type GetTwo_factor_authGroupByPayload<T extends two_factor_authGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Two_factor_authGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Two_factor_authGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Two_factor_authGroupByOutputType[P]>
+            : GetScalarType<T[P], Two_factor_authGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type two_factor_authSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    is_enabled?: boolean
+    otp?: boolean
+    otp_expires_at?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    user?: boolean | userDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["two_factor_auth"]>
+
+  export type two_factor_authSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    is_enabled?: boolean
+    otp?: boolean
+    otp_expires_at?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    user?: boolean | userDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["two_factor_auth"]>
+
+  export type two_factor_authSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    is_enabled?: boolean
+    otp?: boolean
+    otp_expires_at?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    user?: boolean | userDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["two_factor_auth"]>
+
+  export type two_factor_authSelectScalar = {
+    id?: boolean
+    user_id?: boolean
+    is_enabled?: boolean
+    otp?: boolean
+    otp_expires_at?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }
+
+  export type two_factor_authOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "is_enabled" | "otp" | "otp_expires_at" | "created_at" | "updated_at", ExtArgs["result"]["two_factor_auth"]>
+  export type two_factor_authInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | userDefaultArgs<ExtArgs>
+  }
+  export type two_factor_authIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | userDefaultArgs<ExtArgs>
+  }
+  export type two_factor_authIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | userDefaultArgs<ExtArgs>
+  }
+
+  export type $two_factor_authPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "two_factor_auth"
+    objects: {
+      user: Prisma.$userPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      user_id: string
+      is_enabled: boolean
+      otp: string | null
+      otp_expires_at: Date | null
+      created_at: Date
+      updated_at: Date
+    }, ExtArgs["result"]["two_factor_auth"]>
+    composites: {}
+  }
+
+  type two_factor_authGetPayload<S extends boolean | null | undefined | two_factor_authDefaultArgs> = $Result.GetResult<Prisma.$two_factor_authPayload, S>
+
+  type two_factor_authCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<two_factor_authFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Two_factor_authCountAggregateInputType | true
+    }
+
+  export interface two_factor_authDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['two_factor_auth'], meta: { name: 'two_factor_auth' } }
+    /**
+     * Find zero or one Two_factor_auth that matches the filter.
+     * @param {two_factor_authFindUniqueArgs} args - Arguments to find a Two_factor_auth
+     * @example
+     * // Get one Two_factor_auth
+     * const two_factor_auth = await prisma.two_factor_auth.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends two_factor_authFindUniqueArgs>(args: SelectSubset<T, two_factor_authFindUniqueArgs<ExtArgs>>): Prisma__two_factor_authClient<$Result.GetResult<Prisma.$two_factor_authPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Two_factor_auth that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {two_factor_authFindUniqueOrThrowArgs} args - Arguments to find a Two_factor_auth
+     * @example
+     * // Get one Two_factor_auth
+     * const two_factor_auth = await prisma.two_factor_auth.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends two_factor_authFindUniqueOrThrowArgs>(args: SelectSubset<T, two_factor_authFindUniqueOrThrowArgs<ExtArgs>>): Prisma__two_factor_authClient<$Result.GetResult<Prisma.$two_factor_authPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Two_factor_auth that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {two_factor_authFindFirstArgs} args - Arguments to find a Two_factor_auth
+     * @example
+     * // Get one Two_factor_auth
+     * const two_factor_auth = await prisma.two_factor_auth.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends two_factor_authFindFirstArgs>(args?: SelectSubset<T, two_factor_authFindFirstArgs<ExtArgs>>): Prisma__two_factor_authClient<$Result.GetResult<Prisma.$two_factor_authPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Two_factor_auth that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {two_factor_authFindFirstOrThrowArgs} args - Arguments to find a Two_factor_auth
+     * @example
+     * // Get one Two_factor_auth
+     * const two_factor_auth = await prisma.two_factor_auth.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends two_factor_authFindFirstOrThrowArgs>(args?: SelectSubset<T, two_factor_authFindFirstOrThrowArgs<ExtArgs>>): Prisma__two_factor_authClient<$Result.GetResult<Prisma.$two_factor_authPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Two_factor_auths that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {two_factor_authFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Two_factor_auths
+     * const two_factor_auths = await prisma.two_factor_auth.findMany()
+     * 
+     * // Get first 10 Two_factor_auths
+     * const two_factor_auths = await prisma.two_factor_auth.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const two_factor_authWithIdOnly = await prisma.two_factor_auth.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends two_factor_authFindManyArgs>(args?: SelectSubset<T, two_factor_authFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$two_factor_authPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Two_factor_auth.
+     * @param {two_factor_authCreateArgs} args - Arguments to create a Two_factor_auth.
+     * @example
+     * // Create one Two_factor_auth
+     * const Two_factor_auth = await prisma.two_factor_auth.create({
+     *   data: {
+     *     // ... data to create a Two_factor_auth
+     *   }
+     * })
+     * 
+     */
+    create<T extends two_factor_authCreateArgs>(args: SelectSubset<T, two_factor_authCreateArgs<ExtArgs>>): Prisma__two_factor_authClient<$Result.GetResult<Prisma.$two_factor_authPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Two_factor_auths.
+     * @param {two_factor_authCreateManyArgs} args - Arguments to create many Two_factor_auths.
+     * @example
+     * // Create many Two_factor_auths
+     * const two_factor_auth = await prisma.two_factor_auth.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends two_factor_authCreateManyArgs>(args?: SelectSubset<T, two_factor_authCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Two_factor_auths and returns the data saved in the database.
+     * @param {two_factor_authCreateManyAndReturnArgs} args - Arguments to create many Two_factor_auths.
+     * @example
+     * // Create many Two_factor_auths
+     * const two_factor_auth = await prisma.two_factor_auth.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Two_factor_auths and only return the `id`
+     * const two_factor_authWithIdOnly = await prisma.two_factor_auth.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends two_factor_authCreateManyAndReturnArgs>(args?: SelectSubset<T, two_factor_authCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$two_factor_authPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Two_factor_auth.
+     * @param {two_factor_authDeleteArgs} args - Arguments to delete one Two_factor_auth.
+     * @example
+     * // Delete one Two_factor_auth
+     * const Two_factor_auth = await prisma.two_factor_auth.delete({
+     *   where: {
+     *     // ... filter to delete one Two_factor_auth
+     *   }
+     * })
+     * 
+     */
+    delete<T extends two_factor_authDeleteArgs>(args: SelectSubset<T, two_factor_authDeleteArgs<ExtArgs>>): Prisma__two_factor_authClient<$Result.GetResult<Prisma.$two_factor_authPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Two_factor_auth.
+     * @param {two_factor_authUpdateArgs} args - Arguments to update one Two_factor_auth.
+     * @example
+     * // Update one Two_factor_auth
+     * const two_factor_auth = await prisma.two_factor_auth.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends two_factor_authUpdateArgs>(args: SelectSubset<T, two_factor_authUpdateArgs<ExtArgs>>): Prisma__two_factor_authClient<$Result.GetResult<Prisma.$two_factor_authPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Two_factor_auths.
+     * @param {two_factor_authDeleteManyArgs} args - Arguments to filter Two_factor_auths to delete.
+     * @example
+     * // Delete a few Two_factor_auths
+     * const { count } = await prisma.two_factor_auth.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends two_factor_authDeleteManyArgs>(args?: SelectSubset<T, two_factor_authDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Two_factor_auths.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {two_factor_authUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Two_factor_auths
+     * const two_factor_auth = await prisma.two_factor_auth.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends two_factor_authUpdateManyArgs>(args: SelectSubset<T, two_factor_authUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Two_factor_auths and returns the data updated in the database.
+     * @param {two_factor_authUpdateManyAndReturnArgs} args - Arguments to update many Two_factor_auths.
+     * @example
+     * // Update many Two_factor_auths
+     * const two_factor_auth = await prisma.two_factor_auth.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Two_factor_auths and only return the `id`
+     * const two_factor_authWithIdOnly = await prisma.two_factor_auth.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends two_factor_authUpdateManyAndReturnArgs>(args: SelectSubset<T, two_factor_authUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$two_factor_authPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Two_factor_auth.
+     * @param {two_factor_authUpsertArgs} args - Arguments to update or create a Two_factor_auth.
+     * @example
+     * // Update or create a Two_factor_auth
+     * const two_factor_auth = await prisma.two_factor_auth.upsert({
+     *   create: {
+     *     // ... data to create a Two_factor_auth
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Two_factor_auth we want to update
+     *   }
+     * })
+     */
+    upsert<T extends two_factor_authUpsertArgs>(args: SelectSubset<T, two_factor_authUpsertArgs<ExtArgs>>): Prisma__two_factor_authClient<$Result.GetResult<Prisma.$two_factor_authPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Two_factor_auths.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {two_factor_authCountArgs} args - Arguments to filter Two_factor_auths to count.
+     * @example
+     * // Count the number of Two_factor_auths
+     * const count = await prisma.two_factor_auth.count({
+     *   where: {
+     *     // ... the filter for the Two_factor_auths we want to count
+     *   }
+     * })
+    **/
+    count<T extends two_factor_authCountArgs>(
+      args?: Subset<T, two_factor_authCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Two_factor_authCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Two_factor_auth.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Two_factor_authAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Two_factor_authAggregateArgs>(args: Subset<T, Two_factor_authAggregateArgs>): Prisma.PrismaPromise<GetTwo_factor_authAggregateType<T>>
+
+    /**
+     * Group by Two_factor_auth.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {two_factor_authGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends two_factor_authGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: two_factor_authGroupByArgs['orderBy'] }
+        : { orderBy?: two_factor_authGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, two_factor_authGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTwo_factor_authGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the two_factor_auth model
+   */
+  readonly fields: two_factor_authFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for two_factor_auth.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__two_factor_authClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends userDefaultArgs<ExtArgs> = {}>(args?: Subset<T, userDefaultArgs<ExtArgs>>): Prisma__userClient<$Result.GetResult<Prisma.$userPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the two_factor_auth model
+   */
+  interface two_factor_authFieldRefs {
+    readonly id: FieldRef<"two_factor_auth", 'String'>
+    readonly user_id: FieldRef<"two_factor_auth", 'String'>
+    readonly is_enabled: FieldRef<"two_factor_auth", 'Boolean'>
+    readonly otp: FieldRef<"two_factor_auth", 'String'>
+    readonly otp_expires_at: FieldRef<"two_factor_auth", 'DateTime'>
+    readonly created_at: FieldRef<"two_factor_auth", 'DateTime'>
+    readonly updated_at: FieldRef<"two_factor_auth", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * two_factor_auth findUnique
+   */
+  export type two_factor_authFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the two_factor_auth
+     */
+    select?: two_factor_authSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the two_factor_auth
+     */
+    omit?: two_factor_authOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: two_factor_authInclude<ExtArgs> | null
+    /**
+     * Filter, which two_factor_auth to fetch.
+     */
+    where: two_factor_authWhereUniqueInput
+  }
+
+  /**
+   * two_factor_auth findUniqueOrThrow
+   */
+  export type two_factor_authFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the two_factor_auth
+     */
+    select?: two_factor_authSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the two_factor_auth
+     */
+    omit?: two_factor_authOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: two_factor_authInclude<ExtArgs> | null
+    /**
+     * Filter, which two_factor_auth to fetch.
+     */
+    where: two_factor_authWhereUniqueInput
+  }
+
+  /**
+   * two_factor_auth findFirst
+   */
+  export type two_factor_authFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the two_factor_auth
+     */
+    select?: two_factor_authSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the two_factor_auth
+     */
+    omit?: two_factor_authOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: two_factor_authInclude<ExtArgs> | null
+    /**
+     * Filter, which two_factor_auth to fetch.
+     */
+    where?: two_factor_authWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of two_factor_auths to fetch.
+     */
+    orderBy?: two_factor_authOrderByWithRelationInput | two_factor_authOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for two_factor_auths.
+     */
+    cursor?: two_factor_authWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` two_factor_auths from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` two_factor_auths.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of two_factor_auths.
+     */
+    distinct?: Two_factor_authScalarFieldEnum | Two_factor_authScalarFieldEnum[]
+  }
+
+  /**
+   * two_factor_auth findFirstOrThrow
+   */
+  export type two_factor_authFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the two_factor_auth
+     */
+    select?: two_factor_authSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the two_factor_auth
+     */
+    omit?: two_factor_authOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: two_factor_authInclude<ExtArgs> | null
+    /**
+     * Filter, which two_factor_auth to fetch.
+     */
+    where?: two_factor_authWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of two_factor_auths to fetch.
+     */
+    orderBy?: two_factor_authOrderByWithRelationInput | two_factor_authOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for two_factor_auths.
+     */
+    cursor?: two_factor_authWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` two_factor_auths from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` two_factor_auths.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of two_factor_auths.
+     */
+    distinct?: Two_factor_authScalarFieldEnum | Two_factor_authScalarFieldEnum[]
+  }
+
+  /**
+   * two_factor_auth findMany
+   */
+  export type two_factor_authFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the two_factor_auth
+     */
+    select?: two_factor_authSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the two_factor_auth
+     */
+    omit?: two_factor_authOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: two_factor_authInclude<ExtArgs> | null
+    /**
+     * Filter, which two_factor_auths to fetch.
+     */
+    where?: two_factor_authWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of two_factor_auths to fetch.
+     */
+    orderBy?: two_factor_authOrderByWithRelationInput | two_factor_authOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing two_factor_auths.
+     */
+    cursor?: two_factor_authWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` two_factor_auths from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` two_factor_auths.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of two_factor_auths.
+     */
+    distinct?: Two_factor_authScalarFieldEnum | Two_factor_authScalarFieldEnum[]
+  }
+
+  /**
+   * two_factor_auth create
+   */
+  export type two_factor_authCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the two_factor_auth
+     */
+    select?: two_factor_authSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the two_factor_auth
+     */
+    omit?: two_factor_authOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: two_factor_authInclude<ExtArgs> | null
+    /**
+     * The data needed to create a two_factor_auth.
+     */
+    data: XOR<two_factor_authCreateInput, two_factor_authUncheckedCreateInput>
+  }
+
+  /**
+   * two_factor_auth createMany
+   */
+  export type two_factor_authCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many two_factor_auths.
+     */
+    data: two_factor_authCreateManyInput | two_factor_authCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * two_factor_auth createManyAndReturn
+   */
+  export type two_factor_authCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the two_factor_auth
+     */
+    select?: two_factor_authSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the two_factor_auth
+     */
+    omit?: two_factor_authOmit<ExtArgs> | null
+    /**
+     * The data used to create many two_factor_auths.
+     */
+    data: two_factor_authCreateManyInput | two_factor_authCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: two_factor_authIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * two_factor_auth update
+   */
+  export type two_factor_authUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the two_factor_auth
+     */
+    select?: two_factor_authSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the two_factor_auth
+     */
+    omit?: two_factor_authOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: two_factor_authInclude<ExtArgs> | null
+    /**
+     * The data needed to update a two_factor_auth.
+     */
+    data: XOR<two_factor_authUpdateInput, two_factor_authUncheckedUpdateInput>
+    /**
+     * Choose, which two_factor_auth to update.
+     */
+    where: two_factor_authWhereUniqueInput
+  }
+
+  /**
+   * two_factor_auth updateMany
+   */
+  export type two_factor_authUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update two_factor_auths.
+     */
+    data: XOR<two_factor_authUpdateManyMutationInput, two_factor_authUncheckedUpdateManyInput>
+    /**
+     * Filter which two_factor_auths to update
+     */
+    where?: two_factor_authWhereInput
+    /**
+     * Limit how many two_factor_auths to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * two_factor_auth updateManyAndReturn
+   */
+  export type two_factor_authUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the two_factor_auth
+     */
+    select?: two_factor_authSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the two_factor_auth
+     */
+    omit?: two_factor_authOmit<ExtArgs> | null
+    /**
+     * The data used to update two_factor_auths.
+     */
+    data: XOR<two_factor_authUpdateManyMutationInput, two_factor_authUncheckedUpdateManyInput>
+    /**
+     * Filter which two_factor_auths to update
+     */
+    where?: two_factor_authWhereInput
+    /**
+     * Limit how many two_factor_auths to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: two_factor_authIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * two_factor_auth upsert
+   */
+  export type two_factor_authUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the two_factor_auth
+     */
+    select?: two_factor_authSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the two_factor_auth
+     */
+    omit?: two_factor_authOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: two_factor_authInclude<ExtArgs> | null
+    /**
+     * The filter to search for the two_factor_auth to update in case it exists.
+     */
+    where: two_factor_authWhereUniqueInput
+    /**
+     * In case the two_factor_auth found by the `where` argument doesn't exist, create a new two_factor_auth with this data.
+     */
+    create: XOR<two_factor_authCreateInput, two_factor_authUncheckedCreateInput>
+    /**
+     * In case the two_factor_auth was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<two_factor_authUpdateInput, two_factor_authUncheckedUpdateInput>
+  }
+
+  /**
+   * two_factor_auth delete
+   */
+  export type two_factor_authDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the two_factor_auth
+     */
+    select?: two_factor_authSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the two_factor_auth
+     */
+    omit?: two_factor_authOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: two_factor_authInclude<ExtArgs> | null
+    /**
+     * Filter which two_factor_auth to delete.
+     */
+    where: two_factor_authWhereUniqueInput
+  }
+
+  /**
+   * two_factor_auth deleteMany
+   */
+  export type two_factor_authDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which two_factor_auths to delete
+     */
+    where?: two_factor_authWhereInput
+    /**
+     * Limit how many two_factor_auths to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * two_factor_auth without action
+   */
+  export type two_factor_authDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the two_factor_auth
+     */
+    select?: two_factor_authSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the two_factor_auth
+     */
+    omit?: two_factor_authOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: two_factor_authInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model user_account
+   */
+
+  export type AggregateUser_account = {
+    _count: User_accountCountAggregateOutputType | null
+    _min: User_accountMinAggregateOutputType | null
+    _max: User_accountMaxAggregateOutputType | null
+  }
+
+  export type User_accountMinAggregateOutputType = {
+    id: string | null
+    user_id: string | null
+    provider: string | null
+    provider_id: string | null
+    email: string | null
+    created_at: Date | null
+  }
+
+  export type User_accountMaxAggregateOutputType = {
+    id: string | null
+    user_id: string | null
+    provider: string | null
+    provider_id: string | null
+    email: string | null
+    created_at: Date | null
+  }
+
+  export type User_accountCountAggregateOutputType = {
+    id: number
+    user_id: number
+    provider: number
+    provider_id: number
+    email: number
+    created_at: number
+    _all: number
+  }
+
+
+  export type User_accountMinAggregateInputType = {
+    id?: true
+    user_id?: true
+    provider?: true
+    provider_id?: true
+    email?: true
+    created_at?: true
+  }
+
+  export type User_accountMaxAggregateInputType = {
+    id?: true
+    user_id?: true
+    provider?: true
+    provider_id?: true
+    email?: true
+    created_at?: true
+  }
+
+  export type User_accountCountAggregateInputType = {
+    id?: true
+    user_id?: true
+    provider?: true
+    provider_id?: true
+    email?: true
+    created_at?: true
+    _all?: true
+  }
+
+  export type User_accountAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which user_account to aggregate.
+     */
+    where?: user_accountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of user_accounts to fetch.
+     */
+    orderBy?: user_accountOrderByWithRelationInput | user_accountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: user_accountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` user_accounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` user_accounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned user_accounts
+    **/
+    _count?: true | User_accountCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: User_accountMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: User_accountMaxAggregateInputType
+  }
+
+  export type GetUser_accountAggregateType<T extends User_accountAggregateArgs> = {
+        [P in keyof T & keyof AggregateUser_account]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUser_account[P]>
+      : GetScalarType<T[P], AggregateUser_account[P]>
+  }
+
+
+
+
+  export type user_accountGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: user_accountWhereInput
+    orderBy?: user_accountOrderByWithAggregationInput | user_accountOrderByWithAggregationInput[]
+    by: User_accountScalarFieldEnum[] | User_accountScalarFieldEnum
+    having?: user_accountScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: User_accountCountAggregateInputType | true
+    _min?: User_accountMinAggregateInputType
+    _max?: User_accountMaxAggregateInputType
+  }
+
+  export type User_accountGroupByOutputType = {
+    id: string
+    user_id: string
+    provider: string
+    provider_id: string
+    email: string | null
+    created_at: Date
+    _count: User_accountCountAggregateOutputType | null
+    _min: User_accountMinAggregateOutputType | null
+    _max: User_accountMaxAggregateOutputType | null
+  }
+
+  type GetUser_accountGroupByPayload<T extends user_accountGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<User_accountGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof User_accountGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], User_accountGroupByOutputType[P]>
+            : GetScalarType<T[P], User_accountGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type user_accountSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    provider?: boolean
+    provider_id?: boolean
+    email?: boolean
+    created_at?: boolean
+    user?: boolean | userDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["user_account"]>
+
+  export type user_accountSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    provider?: boolean
+    provider_id?: boolean
+    email?: boolean
+    created_at?: boolean
+    user?: boolean | userDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["user_account"]>
+
+  export type user_accountSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    provider?: boolean
+    provider_id?: boolean
+    email?: boolean
+    created_at?: boolean
+    user?: boolean | userDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["user_account"]>
+
+  export type user_accountSelectScalar = {
+    id?: boolean
+    user_id?: boolean
+    provider?: boolean
+    provider_id?: boolean
+    email?: boolean
+    created_at?: boolean
+  }
+
+  export type user_accountOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "provider" | "provider_id" | "email" | "created_at", ExtArgs["result"]["user_account"]>
+  export type user_accountInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | userDefaultArgs<ExtArgs>
+  }
+  export type user_accountIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | userDefaultArgs<ExtArgs>
+  }
+  export type user_accountIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | userDefaultArgs<ExtArgs>
+  }
+
+  export type $user_accountPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "user_account"
+    objects: {
+      user: Prisma.$userPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      user_id: string
+      provider: string
+      provider_id: string
+      email: string | null
+      created_at: Date
+    }, ExtArgs["result"]["user_account"]>
+    composites: {}
+  }
+
+  type user_accountGetPayload<S extends boolean | null | undefined | user_accountDefaultArgs> = $Result.GetResult<Prisma.$user_accountPayload, S>
+
+  type user_accountCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<user_accountFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: User_accountCountAggregateInputType | true
+    }
+
+  export interface user_accountDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['user_account'], meta: { name: 'user_account' } }
+    /**
+     * Find zero or one User_account that matches the filter.
+     * @param {user_accountFindUniqueArgs} args - Arguments to find a User_account
+     * @example
+     * // Get one User_account
+     * const user_account = await prisma.user_account.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends user_accountFindUniqueArgs>(args: SelectSubset<T, user_accountFindUniqueArgs<ExtArgs>>): Prisma__user_accountClient<$Result.GetResult<Prisma.$user_accountPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one User_account that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {user_accountFindUniqueOrThrowArgs} args - Arguments to find a User_account
+     * @example
+     * // Get one User_account
+     * const user_account = await prisma.user_account.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends user_accountFindUniqueOrThrowArgs>(args: SelectSubset<T, user_accountFindUniqueOrThrowArgs<ExtArgs>>): Prisma__user_accountClient<$Result.GetResult<Prisma.$user_accountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first User_account that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {user_accountFindFirstArgs} args - Arguments to find a User_account
+     * @example
+     * // Get one User_account
+     * const user_account = await prisma.user_account.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends user_accountFindFirstArgs>(args?: SelectSubset<T, user_accountFindFirstArgs<ExtArgs>>): Prisma__user_accountClient<$Result.GetResult<Prisma.$user_accountPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first User_account that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {user_accountFindFirstOrThrowArgs} args - Arguments to find a User_account
+     * @example
+     * // Get one User_account
+     * const user_account = await prisma.user_account.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends user_accountFindFirstOrThrowArgs>(args?: SelectSubset<T, user_accountFindFirstOrThrowArgs<ExtArgs>>): Prisma__user_accountClient<$Result.GetResult<Prisma.$user_accountPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more User_accounts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {user_accountFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all User_accounts
+     * const user_accounts = await prisma.user_account.findMany()
+     * 
+     * // Get first 10 User_accounts
+     * const user_accounts = await prisma.user_account.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const user_accountWithIdOnly = await prisma.user_account.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends user_accountFindManyArgs>(args?: SelectSubset<T, user_accountFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$user_accountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a User_account.
+     * @param {user_accountCreateArgs} args - Arguments to create a User_account.
+     * @example
+     * // Create one User_account
+     * const User_account = await prisma.user_account.create({
+     *   data: {
+     *     // ... data to create a User_account
+     *   }
+     * })
+     * 
+     */
+    create<T extends user_accountCreateArgs>(args: SelectSubset<T, user_accountCreateArgs<ExtArgs>>): Prisma__user_accountClient<$Result.GetResult<Prisma.$user_accountPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many User_accounts.
+     * @param {user_accountCreateManyArgs} args - Arguments to create many User_accounts.
+     * @example
+     * // Create many User_accounts
+     * const user_account = await prisma.user_account.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends user_accountCreateManyArgs>(args?: SelectSubset<T, user_accountCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many User_accounts and returns the data saved in the database.
+     * @param {user_accountCreateManyAndReturnArgs} args - Arguments to create many User_accounts.
+     * @example
+     * // Create many User_accounts
+     * const user_account = await prisma.user_account.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many User_accounts and only return the `id`
+     * const user_accountWithIdOnly = await prisma.user_account.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends user_accountCreateManyAndReturnArgs>(args?: SelectSubset<T, user_accountCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$user_accountPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a User_account.
+     * @param {user_accountDeleteArgs} args - Arguments to delete one User_account.
+     * @example
+     * // Delete one User_account
+     * const User_account = await prisma.user_account.delete({
+     *   where: {
+     *     // ... filter to delete one User_account
+     *   }
+     * })
+     * 
+     */
+    delete<T extends user_accountDeleteArgs>(args: SelectSubset<T, user_accountDeleteArgs<ExtArgs>>): Prisma__user_accountClient<$Result.GetResult<Prisma.$user_accountPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one User_account.
+     * @param {user_accountUpdateArgs} args - Arguments to update one User_account.
+     * @example
+     * // Update one User_account
+     * const user_account = await prisma.user_account.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends user_accountUpdateArgs>(args: SelectSubset<T, user_accountUpdateArgs<ExtArgs>>): Prisma__user_accountClient<$Result.GetResult<Prisma.$user_accountPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more User_accounts.
+     * @param {user_accountDeleteManyArgs} args - Arguments to filter User_accounts to delete.
+     * @example
+     * // Delete a few User_accounts
+     * const { count } = await prisma.user_account.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends user_accountDeleteManyArgs>(args?: SelectSubset<T, user_accountDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more User_accounts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {user_accountUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many User_accounts
+     * const user_account = await prisma.user_account.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends user_accountUpdateManyArgs>(args: SelectSubset<T, user_accountUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more User_accounts and returns the data updated in the database.
+     * @param {user_accountUpdateManyAndReturnArgs} args - Arguments to update many User_accounts.
+     * @example
+     * // Update many User_accounts
+     * const user_account = await prisma.user_account.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more User_accounts and only return the `id`
+     * const user_accountWithIdOnly = await prisma.user_account.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends user_accountUpdateManyAndReturnArgs>(args: SelectSubset<T, user_accountUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$user_accountPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one User_account.
+     * @param {user_accountUpsertArgs} args - Arguments to update or create a User_account.
+     * @example
+     * // Update or create a User_account
+     * const user_account = await prisma.user_account.upsert({
+     *   create: {
+     *     // ... data to create a User_account
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the User_account we want to update
+     *   }
+     * })
+     */
+    upsert<T extends user_accountUpsertArgs>(args: SelectSubset<T, user_accountUpsertArgs<ExtArgs>>): Prisma__user_accountClient<$Result.GetResult<Prisma.$user_accountPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of User_accounts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {user_accountCountArgs} args - Arguments to filter User_accounts to count.
+     * @example
+     * // Count the number of User_accounts
+     * const count = await prisma.user_account.count({
+     *   where: {
+     *     // ... the filter for the User_accounts we want to count
+     *   }
+     * })
+    **/
+    count<T extends user_accountCountArgs>(
+      args?: Subset<T, user_accountCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], User_accountCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a User_account.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {User_accountAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends User_accountAggregateArgs>(args: Subset<T, User_accountAggregateArgs>): Prisma.PrismaPromise<GetUser_accountAggregateType<T>>
+
+    /**
+     * Group by User_account.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {user_accountGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends user_accountGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: user_accountGroupByArgs['orderBy'] }
+        : { orderBy?: user_accountGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, user_accountGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUser_accountGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the user_account model
+   */
+  readonly fields: user_accountFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for user_account.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__user_accountClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends userDefaultArgs<ExtArgs> = {}>(args?: Subset<T, userDefaultArgs<ExtArgs>>): Prisma__userClient<$Result.GetResult<Prisma.$userPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the user_account model
+   */
+  interface user_accountFieldRefs {
+    readonly id: FieldRef<"user_account", 'String'>
+    readonly user_id: FieldRef<"user_account", 'String'>
+    readonly provider: FieldRef<"user_account", 'String'>
+    readonly provider_id: FieldRef<"user_account", 'String'>
+    readonly email: FieldRef<"user_account", 'String'>
+    readonly created_at: FieldRef<"user_account", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * user_account findUnique
+   */
+  export type user_accountFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the user_account
+     */
+    select?: user_accountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the user_account
+     */
+    omit?: user_accountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: user_accountInclude<ExtArgs> | null
+    /**
+     * Filter, which user_account to fetch.
+     */
+    where: user_accountWhereUniqueInput
+  }
+
+  /**
+   * user_account findUniqueOrThrow
+   */
+  export type user_accountFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the user_account
+     */
+    select?: user_accountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the user_account
+     */
+    omit?: user_accountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: user_accountInclude<ExtArgs> | null
+    /**
+     * Filter, which user_account to fetch.
+     */
+    where: user_accountWhereUniqueInput
+  }
+
+  /**
+   * user_account findFirst
+   */
+  export type user_accountFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the user_account
+     */
+    select?: user_accountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the user_account
+     */
+    omit?: user_accountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: user_accountInclude<ExtArgs> | null
+    /**
+     * Filter, which user_account to fetch.
+     */
+    where?: user_accountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of user_accounts to fetch.
+     */
+    orderBy?: user_accountOrderByWithRelationInput | user_accountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for user_accounts.
+     */
+    cursor?: user_accountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` user_accounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` user_accounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of user_accounts.
+     */
+    distinct?: User_accountScalarFieldEnum | User_accountScalarFieldEnum[]
+  }
+
+  /**
+   * user_account findFirstOrThrow
+   */
+  export type user_accountFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the user_account
+     */
+    select?: user_accountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the user_account
+     */
+    omit?: user_accountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: user_accountInclude<ExtArgs> | null
+    /**
+     * Filter, which user_account to fetch.
+     */
+    where?: user_accountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of user_accounts to fetch.
+     */
+    orderBy?: user_accountOrderByWithRelationInput | user_accountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for user_accounts.
+     */
+    cursor?: user_accountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` user_accounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` user_accounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of user_accounts.
+     */
+    distinct?: User_accountScalarFieldEnum | User_accountScalarFieldEnum[]
+  }
+
+  /**
+   * user_account findMany
+   */
+  export type user_accountFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the user_account
+     */
+    select?: user_accountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the user_account
+     */
+    omit?: user_accountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: user_accountInclude<ExtArgs> | null
+    /**
+     * Filter, which user_accounts to fetch.
+     */
+    where?: user_accountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of user_accounts to fetch.
+     */
+    orderBy?: user_accountOrderByWithRelationInput | user_accountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing user_accounts.
+     */
+    cursor?: user_accountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` user_accounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` user_accounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of user_accounts.
+     */
+    distinct?: User_accountScalarFieldEnum | User_accountScalarFieldEnum[]
+  }
+
+  /**
+   * user_account create
+   */
+  export type user_accountCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the user_account
+     */
+    select?: user_accountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the user_account
+     */
+    omit?: user_accountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: user_accountInclude<ExtArgs> | null
+    /**
+     * The data needed to create a user_account.
+     */
+    data: XOR<user_accountCreateInput, user_accountUncheckedCreateInput>
+  }
+
+  /**
+   * user_account createMany
+   */
+  export type user_accountCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many user_accounts.
+     */
+    data: user_accountCreateManyInput | user_accountCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * user_account createManyAndReturn
+   */
+  export type user_accountCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the user_account
+     */
+    select?: user_accountSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the user_account
+     */
+    omit?: user_accountOmit<ExtArgs> | null
+    /**
+     * The data used to create many user_accounts.
+     */
+    data: user_accountCreateManyInput | user_accountCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: user_accountIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * user_account update
+   */
+  export type user_accountUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the user_account
+     */
+    select?: user_accountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the user_account
+     */
+    omit?: user_accountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: user_accountInclude<ExtArgs> | null
+    /**
+     * The data needed to update a user_account.
+     */
+    data: XOR<user_accountUpdateInput, user_accountUncheckedUpdateInput>
+    /**
+     * Choose, which user_account to update.
+     */
+    where: user_accountWhereUniqueInput
+  }
+
+  /**
+   * user_account updateMany
+   */
+  export type user_accountUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update user_accounts.
+     */
+    data: XOR<user_accountUpdateManyMutationInput, user_accountUncheckedUpdateManyInput>
+    /**
+     * Filter which user_accounts to update
+     */
+    where?: user_accountWhereInput
+    /**
+     * Limit how many user_accounts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * user_account updateManyAndReturn
+   */
+  export type user_accountUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the user_account
+     */
+    select?: user_accountSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the user_account
+     */
+    omit?: user_accountOmit<ExtArgs> | null
+    /**
+     * The data used to update user_accounts.
+     */
+    data: XOR<user_accountUpdateManyMutationInput, user_accountUncheckedUpdateManyInput>
+    /**
+     * Filter which user_accounts to update
+     */
+    where?: user_accountWhereInput
+    /**
+     * Limit how many user_accounts to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: user_accountIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * user_account upsert
+   */
+  export type user_accountUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the user_account
+     */
+    select?: user_accountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the user_account
+     */
+    omit?: user_accountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: user_accountInclude<ExtArgs> | null
+    /**
+     * The filter to search for the user_account to update in case it exists.
+     */
+    where: user_accountWhereUniqueInput
+    /**
+     * In case the user_account found by the `where` argument doesn't exist, create a new user_account with this data.
+     */
+    create: XOR<user_accountCreateInput, user_accountUncheckedCreateInput>
+    /**
+     * In case the user_account was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<user_accountUpdateInput, user_accountUncheckedUpdateInput>
+  }
+
+  /**
+   * user_account delete
+   */
+  export type user_accountDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the user_account
+     */
+    select?: user_accountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the user_account
+     */
+    omit?: user_accountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: user_accountInclude<ExtArgs> | null
+    /**
+     * Filter which user_account to delete.
+     */
+    where: user_accountWhereUniqueInput
+  }
+
+  /**
+   * user_account deleteMany
+   */
+  export type user_accountDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which user_accounts to delete
+     */
+    where?: user_accountWhereInput
+    /**
+     * Limit how many user_accounts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * user_account without action
+   */
+  export type user_accountDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the user_account
+     */
+    select?: user_accountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the user_account
+     */
+    omit?: user_accountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: user_accountInclude<ExtArgs> | null
   }
 
 
@@ -26274,6 +28809,1095 @@ export namespace Prisma {
 
 
   /**
+   * Model notification
+   */
+
+  export type AggregateNotification = {
+    _count: NotificationCountAggregateOutputType | null
+    _min: NotificationMinAggregateOutputType | null
+    _max: NotificationMaxAggregateOutputType | null
+  }
+
+  export type NotificationMinAggregateOutputType = {
+    id: string | null
+    user_id: string | null
+    title: string | null
+    message: string | null
+    type: string | null
+    is_read: boolean | null
+    createdAt: Date | null
+  }
+
+  export type NotificationMaxAggregateOutputType = {
+    id: string | null
+    user_id: string | null
+    title: string | null
+    message: string | null
+    type: string | null
+    is_read: boolean | null
+    createdAt: Date | null
+  }
+
+  export type NotificationCountAggregateOutputType = {
+    id: number
+    user_id: number
+    title: number
+    message: number
+    type: number
+    is_read: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type NotificationMinAggregateInputType = {
+    id?: true
+    user_id?: true
+    title?: true
+    message?: true
+    type?: true
+    is_read?: true
+    createdAt?: true
+  }
+
+  export type NotificationMaxAggregateInputType = {
+    id?: true
+    user_id?: true
+    title?: true
+    message?: true
+    type?: true
+    is_read?: true
+    createdAt?: true
+  }
+
+  export type NotificationCountAggregateInputType = {
+    id?: true
+    user_id?: true
+    title?: true
+    message?: true
+    type?: true
+    is_read?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type NotificationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which notification to aggregate.
+     */
+    where?: notificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of notifications to fetch.
+     */
+    orderBy?: notificationOrderByWithRelationInput | notificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: notificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` notifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned notifications
+    **/
+    _count?: true | NotificationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: NotificationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: NotificationMaxAggregateInputType
+  }
+
+  export type GetNotificationAggregateType<T extends NotificationAggregateArgs> = {
+        [P in keyof T & keyof AggregateNotification]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateNotification[P]>
+      : GetScalarType<T[P], AggregateNotification[P]>
+  }
+
+
+
+
+  export type notificationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: notificationWhereInput
+    orderBy?: notificationOrderByWithAggregationInput | notificationOrderByWithAggregationInput[]
+    by: NotificationScalarFieldEnum[] | NotificationScalarFieldEnum
+    having?: notificationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: NotificationCountAggregateInputType | true
+    _min?: NotificationMinAggregateInputType
+    _max?: NotificationMaxAggregateInputType
+  }
+
+  export type NotificationGroupByOutputType = {
+    id: string
+    user_id: string
+    title: string
+    message: string
+    type: string
+    is_read: boolean
+    createdAt: Date
+    _count: NotificationCountAggregateOutputType | null
+    _min: NotificationMinAggregateOutputType | null
+    _max: NotificationMaxAggregateOutputType | null
+  }
+
+  type GetNotificationGroupByPayload<T extends notificationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<NotificationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof NotificationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], NotificationGroupByOutputType[P]>
+            : GetScalarType<T[P], NotificationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type notificationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    title?: boolean
+    message?: boolean
+    type?: boolean
+    is_read?: boolean
+    createdAt?: boolean
+    user?: boolean | userDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["notification"]>
+
+  export type notificationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    title?: boolean
+    message?: boolean
+    type?: boolean
+    is_read?: boolean
+    createdAt?: boolean
+    user?: boolean | userDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["notification"]>
+
+  export type notificationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    title?: boolean
+    message?: boolean
+    type?: boolean
+    is_read?: boolean
+    createdAt?: boolean
+    user?: boolean | userDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["notification"]>
+
+  export type notificationSelectScalar = {
+    id?: boolean
+    user_id?: boolean
+    title?: boolean
+    message?: boolean
+    type?: boolean
+    is_read?: boolean
+    createdAt?: boolean
+  }
+
+  export type notificationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "title" | "message" | "type" | "is_read" | "createdAt", ExtArgs["result"]["notification"]>
+  export type notificationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | userDefaultArgs<ExtArgs>
+  }
+  export type notificationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | userDefaultArgs<ExtArgs>
+  }
+  export type notificationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | userDefaultArgs<ExtArgs>
+  }
+
+  export type $notificationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "notification"
+    objects: {
+      user: Prisma.$userPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      user_id: string
+      title: string
+      message: string
+      type: string
+      is_read: boolean
+      createdAt: Date
+    }, ExtArgs["result"]["notification"]>
+    composites: {}
+  }
+
+  type notificationGetPayload<S extends boolean | null | undefined | notificationDefaultArgs> = $Result.GetResult<Prisma.$notificationPayload, S>
+
+  type notificationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<notificationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: NotificationCountAggregateInputType | true
+    }
+
+  export interface notificationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['notification'], meta: { name: 'notification' } }
+    /**
+     * Find zero or one Notification that matches the filter.
+     * @param {notificationFindUniqueArgs} args - Arguments to find a Notification
+     * @example
+     * // Get one Notification
+     * const notification = await prisma.notification.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends notificationFindUniqueArgs>(args: SelectSubset<T, notificationFindUniqueArgs<ExtArgs>>): Prisma__notificationClient<$Result.GetResult<Prisma.$notificationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Notification that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {notificationFindUniqueOrThrowArgs} args - Arguments to find a Notification
+     * @example
+     * // Get one Notification
+     * const notification = await prisma.notification.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends notificationFindUniqueOrThrowArgs>(args: SelectSubset<T, notificationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__notificationClient<$Result.GetResult<Prisma.$notificationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Notification that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {notificationFindFirstArgs} args - Arguments to find a Notification
+     * @example
+     * // Get one Notification
+     * const notification = await prisma.notification.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends notificationFindFirstArgs>(args?: SelectSubset<T, notificationFindFirstArgs<ExtArgs>>): Prisma__notificationClient<$Result.GetResult<Prisma.$notificationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Notification that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {notificationFindFirstOrThrowArgs} args - Arguments to find a Notification
+     * @example
+     * // Get one Notification
+     * const notification = await prisma.notification.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends notificationFindFirstOrThrowArgs>(args?: SelectSubset<T, notificationFindFirstOrThrowArgs<ExtArgs>>): Prisma__notificationClient<$Result.GetResult<Prisma.$notificationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Notifications that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {notificationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Notifications
+     * const notifications = await prisma.notification.findMany()
+     * 
+     * // Get first 10 Notifications
+     * const notifications = await prisma.notification.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const notificationWithIdOnly = await prisma.notification.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends notificationFindManyArgs>(args?: SelectSubset<T, notificationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$notificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Notification.
+     * @param {notificationCreateArgs} args - Arguments to create a Notification.
+     * @example
+     * // Create one Notification
+     * const Notification = await prisma.notification.create({
+     *   data: {
+     *     // ... data to create a Notification
+     *   }
+     * })
+     * 
+     */
+    create<T extends notificationCreateArgs>(args: SelectSubset<T, notificationCreateArgs<ExtArgs>>): Prisma__notificationClient<$Result.GetResult<Prisma.$notificationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Notifications.
+     * @param {notificationCreateManyArgs} args - Arguments to create many Notifications.
+     * @example
+     * // Create many Notifications
+     * const notification = await prisma.notification.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends notificationCreateManyArgs>(args?: SelectSubset<T, notificationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Notifications and returns the data saved in the database.
+     * @param {notificationCreateManyAndReturnArgs} args - Arguments to create many Notifications.
+     * @example
+     * // Create many Notifications
+     * const notification = await prisma.notification.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Notifications and only return the `id`
+     * const notificationWithIdOnly = await prisma.notification.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends notificationCreateManyAndReturnArgs>(args?: SelectSubset<T, notificationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$notificationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Notification.
+     * @param {notificationDeleteArgs} args - Arguments to delete one Notification.
+     * @example
+     * // Delete one Notification
+     * const Notification = await prisma.notification.delete({
+     *   where: {
+     *     // ... filter to delete one Notification
+     *   }
+     * })
+     * 
+     */
+    delete<T extends notificationDeleteArgs>(args: SelectSubset<T, notificationDeleteArgs<ExtArgs>>): Prisma__notificationClient<$Result.GetResult<Prisma.$notificationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Notification.
+     * @param {notificationUpdateArgs} args - Arguments to update one Notification.
+     * @example
+     * // Update one Notification
+     * const notification = await prisma.notification.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends notificationUpdateArgs>(args: SelectSubset<T, notificationUpdateArgs<ExtArgs>>): Prisma__notificationClient<$Result.GetResult<Prisma.$notificationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Notifications.
+     * @param {notificationDeleteManyArgs} args - Arguments to filter Notifications to delete.
+     * @example
+     * // Delete a few Notifications
+     * const { count } = await prisma.notification.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends notificationDeleteManyArgs>(args?: SelectSubset<T, notificationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Notifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {notificationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Notifications
+     * const notification = await prisma.notification.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends notificationUpdateManyArgs>(args: SelectSubset<T, notificationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Notifications and returns the data updated in the database.
+     * @param {notificationUpdateManyAndReturnArgs} args - Arguments to update many Notifications.
+     * @example
+     * // Update many Notifications
+     * const notification = await prisma.notification.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Notifications and only return the `id`
+     * const notificationWithIdOnly = await prisma.notification.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends notificationUpdateManyAndReturnArgs>(args: SelectSubset<T, notificationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$notificationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Notification.
+     * @param {notificationUpsertArgs} args - Arguments to update or create a Notification.
+     * @example
+     * // Update or create a Notification
+     * const notification = await prisma.notification.upsert({
+     *   create: {
+     *     // ... data to create a Notification
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Notification we want to update
+     *   }
+     * })
+     */
+    upsert<T extends notificationUpsertArgs>(args: SelectSubset<T, notificationUpsertArgs<ExtArgs>>): Prisma__notificationClient<$Result.GetResult<Prisma.$notificationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Notifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {notificationCountArgs} args - Arguments to filter Notifications to count.
+     * @example
+     * // Count the number of Notifications
+     * const count = await prisma.notification.count({
+     *   where: {
+     *     // ... the filter for the Notifications we want to count
+     *   }
+     * })
+    **/
+    count<T extends notificationCountArgs>(
+      args?: Subset<T, notificationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], NotificationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Notification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends NotificationAggregateArgs>(args: Subset<T, NotificationAggregateArgs>): Prisma.PrismaPromise<GetNotificationAggregateType<T>>
+
+    /**
+     * Group by Notification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {notificationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends notificationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: notificationGroupByArgs['orderBy'] }
+        : { orderBy?: notificationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, notificationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetNotificationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the notification model
+   */
+  readonly fields: notificationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for notification.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__notificationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends userDefaultArgs<ExtArgs> = {}>(args?: Subset<T, userDefaultArgs<ExtArgs>>): Prisma__userClient<$Result.GetResult<Prisma.$userPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the notification model
+   */
+  interface notificationFieldRefs {
+    readonly id: FieldRef<"notification", 'String'>
+    readonly user_id: FieldRef<"notification", 'String'>
+    readonly title: FieldRef<"notification", 'String'>
+    readonly message: FieldRef<"notification", 'String'>
+    readonly type: FieldRef<"notification", 'String'>
+    readonly is_read: FieldRef<"notification", 'Boolean'>
+    readonly createdAt: FieldRef<"notification", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * notification findUnique
+   */
+  export type notificationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notification
+     */
+    select?: notificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the notification
+     */
+    omit?: notificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: notificationInclude<ExtArgs> | null
+    /**
+     * Filter, which notification to fetch.
+     */
+    where: notificationWhereUniqueInput
+  }
+
+  /**
+   * notification findUniqueOrThrow
+   */
+  export type notificationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notification
+     */
+    select?: notificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the notification
+     */
+    omit?: notificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: notificationInclude<ExtArgs> | null
+    /**
+     * Filter, which notification to fetch.
+     */
+    where: notificationWhereUniqueInput
+  }
+
+  /**
+   * notification findFirst
+   */
+  export type notificationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notification
+     */
+    select?: notificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the notification
+     */
+    omit?: notificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: notificationInclude<ExtArgs> | null
+    /**
+     * Filter, which notification to fetch.
+     */
+    where?: notificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of notifications to fetch.
+     */
+    orderBy?: notificationOrderByWithRelationInput | notificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for notifications.
+     */
+    cursor?: notificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` notifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of notifications.
+     */
+    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * notification findFirstOrThrow
+   */
+  export type notificationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notification
+     */
+    select?: notificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the notification
+     */
+    omit?: notificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: notificationInclude<ExtArgs> | null
+    /**
+     * Filter, which notification to fetch.
+     */
+    where?: notificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of notifications to fetch.
+     */
+    orderBy?: notificationOrderByWithRelationInput | notificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for notifications.
+     */
+    cursor?: notificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` notifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of notifications.
+     */
+    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * notification findMany
+   */
+  export type notificationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notification
+     */
+    select?: notificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the notification
+     */
+    omit?: notificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: notificationInclude<ExtArgs> | null
+    /**
+     * Filter, which notifications to fetch.
+     */
+    where?: notificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of notifications to fetch.
+     */
+    orderBy?: notificationOrderByWithRelationInput | notificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing notifications.
+     */
+    cursor?: notificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` notifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of notifications.
+     */
+    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * notification create
+   */
+  export type notificationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notification
+     */
+    select?: notificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the notification
+     */
+    omit?: notificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: notificationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a notification.
+     */
+    data: XOR<notificationCreateInput, notificationUncheckedCreateInput>
+  }
+
+  /**
+   * notification createMany
+   */
+  export type notificationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many notifications.
+     */
+    data: notificationCreateManyInput | notificationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * notification createManyAndReturn
+   */
+  export type notificationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notification
+     */
+    select?: notificationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the notification
+     */
+    omit?: notificationOmit<ExtArgs> | null
+    /**
+     * The data used to create many notifications.
+     */
+    data: notificationCreateManyInput | notificationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: notificationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * notification update
+   */
+  export type notificationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notification
+     */
+    select?: notificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the notification
+     */
+    omit?: notificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: notificationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a notification.
+     */
+    data: XOR<notificationUpdateInput, notificationUncheckedUpdateInput>
+    /**
+     * Choose, which notification to update.
+     */
+    where: notificationWhereUniqueInput
+  }
+
+  /**
+   * notification updateMany
+   */
+  export type notificationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update notifications.
+     */
+    data: XOR<notificationUpdateManyMutationInput, notificationUncheckedUpdateManyInput>
+    /**
+     * Filter which notifications to update
+     */
+    where?: notificationWhereInput
+    /**
+     * Limit how many notifications to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * notification updateManyAndReturn
+   */
+  export type notificationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notification
+     */
+    select?: notificationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the notification
+     */
+    omit?: notificationOmit<ExtArgs> | null
+    /**
+     * The data used to update notifications.
+     */
+    data: XOR<notificationUpdateManyMutationInput, notificationUncheckedUpdateManyInput>
+    /**
+     * Filter which notifications to update
+     */
+    where?: notificationWhereInput
+    /**
+     * Limit how many notifications to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: notificationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * notification upsert
+   */
+  export type notificationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notification
+     */
+    select?: notificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the notification
+     */
+    omit?: notificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: notificationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the notification to update in case it exists.
+     */
+    where: notificationWhereUniqueInput
+    /**
+     * In case the notification found by the `where` argument doesn't exist, create a new notification with this data.
+     */
+    create: XOR<notificationCreateInput, notificationUncheckedCreateInput>
+    /**
+     * In case the notification was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<notificationUpdateInput, notificationUncheckedUpdateInput>
+  }
+
+  /**
+   * notification delete
+   */
+  export type notificationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notification
+     */
+    select?: notificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the notification
+     */
+    omit?: notificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: notificationInclude<ExtArgs> | null
+    /**
+     * Filter which notification to delete.
+     */
+    where: notificationWhereUniqueInput
+  }
+
+  /**
+   * notification deleteMany
+   */
+  export type notificationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which notifications to delete
+     */
+    where?: notificationWhereInput
+    /**
+     * Limit how many notifications to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * notification without action
+   */
+  export type notificationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notification
+     */
+    select?: notificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the notification
+     */
+    omit?: notificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: notificationInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -26300,6 +29924,31 @@ export namespace Prisma {
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+  export const Two_factor_authScalarFieldEnum: {
+    id: 'id',
+    user_id: 'user_id',
+    is_enabled: 'is_enabled',
+    otp: 'otp',
+    otp_expires_at: 'otp_expires_at',
+    created_at: 'created_at',
+    updated_at: 'updated_at'
+  };
+
+  export type Two_factor_authScalarFieldEnum = (typeof Two_factor_authScalarFieldEnum)[keyof typeof Two_factor_authScalarFieldEnum]
+
+
+  export const User_accountScalarFieldEnum: {
+    id: 'id',
+    user_id: 'user_id',
+    provider: 'provider',
+    provider_id: 'provider_id',
+    email: 'email',
+    created_at: 'created_at'
+  };
+
+  export type User_accountScalarFieldEnum = (typeof User_accountScalarFieldEnum)[keyof typeof User_accountScalarFieldEnum]
 
 
   export const User_roleScalarFieldEnum: {
@@ -26507,6 +30156,19 @@ export namespace Prisma {
   export type News_dislikeScalarFieldEnum = (typeof News_dislikeScalarFieldEnum)[keyof typeof News_dislikeScalarFieldEnum]
 
 
+  export const NotificationScalarFieldEnum: {
+    id: 'id',
+    user_id: 'user_id',
+    title: 'title',
+    message: 'message',
+    type: 'type',
+    is_read: 'is_read',
+    createdAt: 'createdAt'
+  };
+
+  export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -26641,6 +30303,9 @@ export namespace Prisma {
     news_dislikes?: News_dislikeListRelationFilter
     likedComments?: News_comment_likeListRelationFilter
     dislikedComments?: News_comment_dislikeListRelationFilter
+    notifications?: NotificationListRelationFilter
+    twoFactorAuth?: XOR<Two_factor_authNullableScalarRelationFilter, two_factor_authWhereInput> | null
+    accounts?: User_accountListRelationFilter
   }
 
   export type userOrderByWithRelationInput = {
@@ -26665,6 +30330,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeOrderByRelationAggregateInput
     likedComments?: news_comment_likeOrderByRelationAggregateInput
     dislikedComments?: news_comment_dislikeOrderByRelationAggregateInput
+    notifications?: notificationOrderByRelationAggregateInput
+    twoFactorAuth?: two_factor_authOrderByWithRelationInput
+    accounts?: user_accountOrderByRelationAggregateInput
   }
 
   export type userWhereUniqueInput = Prisma.AtLeast<{
@@ -26692,6 +30360,9 @@ export namespace Prisma {
     news_dislikes?: News_dislikeListRelationFilter
     likedComments?: News_comment_likeListRelationFilter
     dislikedComments?: News_comment_dislikeListRelationFilter
+    notifications?: NotificationListRelationFilter
+    twoFactorAuth?: XOR<Two_factor_authNullableScalarRelationFilter, two_factor_authWhereInput> | null
+    accounts?: User_accountListRelationFilter
   }, "id" | "email" | "referral_code">
 
   export type userOrderByWithAggregationInput = {
@@ -26722,6 +30393,132 @@ export namespace Prisma {
     referral_user_id?: StringNullableWithAggregatesFilter<"user"> | string | null
     national_code?: StringNullableWithAggregatesFilter<"user"> | string | null
     location?: StringNullableWithAggregatesFilter<"user"> | string | null
+  }
+
+  export type two_factor_authWhereInput = {
+    AND?: two_factor_authWhereInput | two_factor_authWhereInput[]
+    OR?: two_factor_authWhereInput[]
+    NOT?: two_factor_authWhereInput | two_factor_authWhereInput[]
+    id?: StringFilter<"two_factor_auth"> | string
+    user_id?: StringFilter<"two_factor_auth"> | string
+    is_enabled?: BoolFilter<"two_factor_auth"> | boolean
+    otp?: StringNullableFilter<"two_factor_auth"> | string | null
+    otp_expires_at?: DateTimeNullableFilter<"two_factor_auth"> | Date | string | null
+    created_at?: DateTimeFilter<"two_factor_auth"> | Date | string
+    updated_at?: DateTimeFilter<"two_factor_auth"> | Date | string
+    user?: XOR<UserScalarRelationFilter, userWhereInput>
+  }
+
+  export type two_factor_authOrderByWithRelationInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    is_enabled?: SortOrder
+    otp?: SortOrderInput | SortOrder
+    otp_expires_at?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    user?: userOrderByWithRelationInput
+  }
+
+  export type two_factor_authWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    user_id?: string
+    AND?: two_factor_authWhereInput | two_factor_authWhereInput[]
+    OR?: two_factor_authWhereInput[]
+    NOT?: two_factor_authWhereInput | two_factor_authWhereInput[]
+    is_enabled?: BoolFilter<"two_factor_auth"> | boolean
+    otp?: StringNullableFilter<"two_factor_auth"> | string | null
+    otp_expires_at?: DateTimeNullableFilter<"two_factor_auth"> | Date | string | null
+    created_at?: DateTimeFilter<"two_factor_auth"> | Date | string
+    updated_at?: DateTimeFilter<"two_factor_auth"> | Date | string
+    user?: XOR<UserScalarRelationFilter, userWhereInput>
+  }, "id" | "user_id">
+
+  export type two_factor_authOrderByWithAggregationInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    is_enabled?: SortOrder
+    otp?: SortOrderInput | SortOrder
+    otp_expires_at?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    _count?: two_factor_authCountOrderByAggregateInput
+    _max?: two_factor_authMaxOrderByAggregateInput
+    _min?: two_factor_authMinOrderByAggregateInput
+  }
+
+  export type two_factor_authScalarWhereWithAggregatesInput = {
+    AND?: two_factor_authScalarWhereWithAggregatesInput | two_factor_authScalarWhereWithAggregatesInput[]
+    OR?: two_factor_authScalarWhereWithAggregatesInput[]
+    NOT?: two_factor_authScalarWhereWithAggregatesInput | two_factor_authScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"two_factor_auth"> | string
+    user_id?: StringWithAggregatesFilter<"two_factor_auth"> | string
+    is_enabled?: BoolWithAggregatesFilter<"two_factor_auth"> | boolean
+    otp?: StringNullableWithAggregatesFilter<"two_factor_auth"> | string | null
+    otp_expires_at?: DateTimeNullableWithAggregatesFilter<"two_factor_auth"> | Date | string | null
+    created_at?: DateTimeWithAggregatesFilter<"two_factor_auth"> | Date | string
+    updated_at?: DateTimeWithAggregatesFilter<"two_factor_auth"> | Date | string
+  }
+
+  export type user_accountWhereInput = {
+    AND?: user_accountWhereInput | user_accountWhereInput[]
+    OR?: user_accountWhereInput[]
+    NOT?: user_accountWhereInput | user_accountWhereInput[]
+    id?: StringFilter<"user_account"> | string
+    user_id?: StringFilter<"user_account"> | string
+    provider?: StringFilter<"user_account"> | string
+    provider_id?: StringFilter<"user_account"> | string
+    email?: StringNullableFilter<"user_account"> | string | null
+    created_at?: DateTimeFilter<"user_account"> | Date | string
+    user?: XOR<UserScalarRelationFilter, userWhereInput>
+  }
+
+  export type user_accountOrderByWithRelationInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    provider?: SortOrder
+    provider_id?: SortOrder
+    email?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    user?: userOrderByWithRelationInput
+  }
+
+  export type user_accountWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    provider_provider_id?: user_accountProviderProvider_idCompoundUniqueInput
+    AND?: user_accountWhereInput | user_accountWhereInput[]
+    OR?: user_accountWhereInput[]
+    NOT?: user_accountWhereInput | user_accountWhereInput[]
+    user_id?: StringFilter<"user_account"> | string
+    provider?: StringFilter<"user_account"> | string
+    provider_id?: StringFilter<"user_account"> | string
+    email?: StringNullableFilter<"user_account"> | string | null
+    created_at?: DateTimeFilter<"user_account"> | Date | string
+    user?: XOR<UserScalarRelationFilter, userWhereInput>
+  }, "id" | "provider_provider_id">
+
+  export type user_accountOrderByWithAggregationInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    provider?: SortOrder
+    provider_id?: SortOrder
+    email?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    _count?: user_accountCountOrderByAggregateInput
+    _max?: user_accountMaxOrderByAggregateInput
+    _min?: user_accountMinOrderByAggregateInput
+  }
+
+  export type user_accountScalarWhereWithAggregatesInput = {
+    AND?: user_accountScalarWhereWithAggregatesInput | user_accountScalarWhereWithAggregatesInput[]
+    OR?: user_accountScalarWhereWithAggregatesInput[]
+    NOT?: user_accountScalarWhereWithAggregatesInput | user_accountScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"user_account"> | string
+    user_id?: StringWithAggregatesFilter<"user_account"> | string
+    provider?: StringWithAggregatesFilter<"user_account"> | string
+    provider_id?: StringWithAggregatesFilter<"user_account"> | string
+    email?: StringNullableWithAggregatesFilter<"user_account"> | string | null
+    created_at?: DateTimeWithAggregatesFilter<"user_account"> | Date | string
   }
 
   export type user_roleWhereInput = {
@@ -27835,6 +31632,71 @@ export namespace Prisma {
     news_id?: IntWithAggregatesFilter<"news_dislike"> | number
   }
 
+  export type notificationWhereInput = {
+    AND?: notificationWhereInput | notificationWhereInput[]
+    OR?: notificationWhereInput[]
+    NOT?: notificationWhereInput | notificationWhereInput[]
+    id?: StringFilter<"notification"> | string
+    user_id?: StringFilter<"notification"> | string
+    title?: StringFilter<"notification"> | string
+    message?: StringFilter<"notification"> | string
+    type?: StringFilter<"notification"> | string
+    is_read?: BoolFilter<"notification"> | boolean
+    createdAt?: DateTimeFilter<"notification"> | Date | string
+    user?: XOR<UserScalarRelationFilter, userWhereInput>
+  }
+
+  export type notificationOrderByWithRelationInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    title?: SortOrder
+    message?: SortOrder
+    type?: SortOrder
+    is_read?: SortOrder
+    createdAt?: SortOrder
+    user?: userOrderByWithRelationInput
+  }
+
+  export type notificationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: notificationWhereInput | notificationWhereInput[]
+    OR?: notificationWhereInput[]
+    NOT?: notificationWhereInput | notificationWhereInput[]
+    user_id?: StringFilter<"notification"> | string
+    title?: StringFilter<"notification"> | string
+    message?: StringFilter<"notification"> | string
+    type?: StringFilter<"notification"> | string
+    is_read?: BoolFilter<"notification"> | boolean
+    createdAt?: DateTimeFilter<"notification"> | Date | string
+    user?: XOR<UserScalarRelationFilter, userWhereInput>
+  }, "id">
+
+  export type notificationOrderByWithAggregationInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    title?: SortOrder
+    message?: SortOrder
+    type?: SortOrder
+    is_read?: SortOrder
+    createdAt?: SortOrder
+    _count?: notificationCountOrderByAggregateInput
+    _max?: notificationMaxOrderByAggregateInput
+    _min?: notificationMinOrderByAggregateInput
+  }
+
+  export type notificationScalarWhereWithAggregatesInput = {
+    AND?: notificationScalarWhereWithAggregatesInput | notificationScalarWhereWithAggregatesInput[]
+    OR?: notificationScalarWhereWithAggregatesInput[]
+    NOT?: notificationScalarWhereWithAggregatesInput | notificationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"notification"> | string
+    user_id?: StringWithAggregatesFilter<"notification"> | string
+    title?: StringWithAggregatesFilter<"notification"> | string
+    message?: StringWithAggregatesFilter<"notification"> | string
+    type?: StringWithAggregatesFilter<"notification"> | string
+    is_read?: BoolWithAggregatesFilter<"notification"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"notification"> | Date | string
+  }
+
   export type userCreateInput = {
     id?: string
     name: string
@@ -27857,6 +31719,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
     dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
+    notifications?: notificationCreateNestedManyWithoutUserInput
+    twoFactorAuth?: two_factor_authCreateNestedOneWithoutUserInput
+    accounts?: user_accountCreateNestedManyWithoutUserInput
   }
 
   export type userUncheckedCreateInput = {
@@ -27881,6 +31746,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
     dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
+    notifications?: notificationUncheckedCreateNestedManyWithoutUserInput
+    twoFactorAuth?: two_factor_authUncheckedCreateNestedOneWithoutUserInput
+    accounts?: user_accountUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type userUpdateInput = {
@@ -27905,6 +31773,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
     dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
+    notifications?: notificationUpdateManyWithoutUserNestedInput
+    twoFactorAuth?: two_factor_authUpdateOneWithoutUserNestedInput
+    accounts?: user_accountUpdateManyWithoutUserNestedInput
   }
 
   export type userUncheckedUpdateInput = {
@@ -27929,6 +31800,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
     dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: notificationUncheckedUpdateManyWithoutUserNestedInput
+    twoFactorAuth?: two_factor_authUncheckedUpdateOneWithoutUserNestedInput
+    accounts?: user_accountUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type userCreateManyInput = {
@@ -27965,6 +31839,137 @@ export namespace Prisma {
     referral_user_id?: NullableStringFieldUpdateOperationsInput | string | null
     national_code?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type two_factor_authCreateInput = {
+    id?: string
+    is_enabled?: boolean
+    otp?: string | null
+    otp_expires_at?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    user: userCreateNestedOneWithoutTwoFactorAuthInput
+  }
+
+  export type two_factor_authUncheckedCreateInput = {
+    id?: string
+    user_id: string
+    is_enabled?: boolean
+    otp?: string | null
+    otp_expires_at?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type two_factor_authUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    is_enabled?: BoolFieldUpdateOperationsInput | boolean
+    otp?: NullableStringFieldUpdateOperationsInput | string | null
+    otp_expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: userUpdateOneRequiredWithoutTwoFactorAuthNestedInput
+  }
+
+  export type two_factor_authUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    is_enabled?: BoolFieldUpdateOperationsInput | boolean
+    otp?: NullableStringFieldUpdateOperationsInput | string | null
+    otp_expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type two_factor_authCreateManyInput = {
+    id?: string
+    user_id: string
+    is_enabled?: boolean
+    otp?: string | null
+    otp_expires_at?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type two_factor_authUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    is_enabled?: BoolFieldUpdateOperationsInput | boolean
+    otp?: NullableStringFieldUpdateOperationsInput | string | null
+    otp_expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type two_factor_authUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    is_enabled?: BoolFieldUpdateOperationsInput | boolean
+    otp?: NullableStringFieldUpdateOperationsInput | string | null
+    otp_expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type user_accountCreateInput = {
+    id?: string
+    provider: string
+    provider_id: string
+    email?: string | null
+    created_at?: Date | string
+    user: userCreateNestedOneWithoutAccountsInput
+  }
+
+  export type user_accountUncheckedCreateInput = {
+    id?: string
+    user_id: string
+    provider: string
+    provider_id: string
+    email?: string | null
+    created_at?: Date | string
+  }
+
+  export type user_accountUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    provider_id?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: userUpdateOneRequiredWithoutAccountsNestedInput
+  }
+
+  export type user_accountUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    provider_id?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type user_accountCreateManyInput = {
+    id?: string
+    user_id: string
+    provider: string
+    provider_id: string
+    email?: string | null
+    created_at?: Date | string
+  }
+
+  export type user_accountUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    provider_id?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type user_accountUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    provider_id?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type user_roleCreateInput = {
@@ -29015,6 +33020,75 @@ export namespace Prisma {
     news_id?: IntFieldUpdateOperationsInput | number
   }
 
+  export type notificationCreateInput = {
+    id?: string
+    title: string
+    message: string
+    type: string
+    is_read?: boolean
+    createdAt?: Date | string
+    user: userCreateNestedOneWithoutNotificationsInput
+  }
+
+  export type notificationUncheckedCreateInput = {
+    id?: string
+    user_id: string
+    title: string
+    message: string
+    type: string
+    is_read?: boolean
+    createdAt?: Date | string
+  }
+
+  export type notificationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    is_read?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: userUpdateOneRequiredWithoutNotificationsNestedInput
+  }
+
+  export type notificationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    is_read?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type notificationCreateManyInput = {
+    id?: string
+    user_id: string
+    title: string
+    message: string
+    type: string
+    is_read?: boolean
+    createdAt?: Date | string
+  }
+
+  export type notificationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    is_read?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type notificationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    is_read?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -29117,6 +33191,23 @@ export namespace Prisma {
     none?: news_comment_dislikeWhereInput
   }
 
+  export type NotificationListRelationFilter = {
+    every?: notificationWhereInput
+    some?: notificationWhereInput
+    none?: notificationWhereInput
+  }
+
+  export type Two_factor_authNullableScalarRelationFilter = {
+    is?: two_factor_authWhereInput | null
+    isNot?: two_factor_authWhereInput | null
+  }
+
+  export type User_accountListRelationFilter = {
+    every?: user_accountWhereInput
+    some?: user_accountWhereInput
+    none?: user_accountWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -29167,6 +33258,14 @@ export namespace Prisma {
   }
 
   export type news_comment_dislikeOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type notificationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type user_accountOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -29247,6 +33346,17 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -29258,14 +33368,112 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type RoleScalarRelationFilter = {
-    is?: roleWhereInput
-    isNot?: roleWhereInput
-  }
-
   export type UserScalarRelationFilter = {
     is?: userWhereInput
     isNot?: userWhereInput
+  }
+
+  export type two_factor_authCountOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    is_enabled?: SortOrder
+    otp?: SortOrder
+    otp_expires_at?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type two_factor_authMaxOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    is_enabled?: SortOrder
+    otp?: SortOrder
+    otp_expires_at?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type two_factor_authMinOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    is_enabled?: SortOrder
+    otp?: SortOrder
+    otp_expires_at?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type user_accountProviderProvider_idCompoundUniqueInput = {
+    provider: string
+    provider_id: string
+  }
+
+  export type user_accountCountOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    provider?: SortOrder
+    provider_id?: SortOrder
+    email?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type user_accountMaxOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    provider?: SortOrder
+    provider_id?: SortOrder
+    email?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type user_accountMinOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    provider?: SortOrder
+    provider_id?: SortOrder
+    email?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type RoleScalarRelationFilter = {
+    is?: roleWhereInput
+    isNot?: roleWhereInput
   }
 
   export type user_roleCountOrderByAggregateInput = {
@@ -29290,28 +33498,6 @@ export namespace Prisma {
     role_id?: SortOrder
     isActive?: SortOrder
     created_at?: SortOrder
-  }
-
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type roleCountOrderByAggregateInput = {
@@ -29921,6 +34107,36 @@ export namespace Prisma {
     news_id?: SortOrder
   }
 
+  export type notificationCountOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    title?: SortOrder
+    message?: SortOrder
+    type?: SortOrder
+    is_read?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type notificationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    title?: SortOrder
+    message?: SortOrder
+    type?: SortOrder
+    is_read?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type notificationMinOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    title?: SortOrder
+    message?: SortOrder
+    type?: SortOrder
+    is_read?: SortOrder
+    createdAt?: SortOrder
+  }
+
   export type user_roleCreateNestedManyWithoutUserInput = {
     create?: XOR<user_roleCreateWithoutUserInput, user_roleUncheckedCreateWithoutUserInput> | user_roleCreateWithoutUserInput[] | user_roleUncheckedCreateWithoutUserInput[]
     connectOrCreate?: user_roleCreateOrConnectWithoutUserInput | user_roleCreateOrConnectWithoutUserInput[]
@@ -30005,6 +34221,26 @@ export namespace Prisma {
     connect?: news_comment_dislikeWhereUniqueInput | news_comment_dislikeWhereUniqueInput[]
   }
 
+  export type notificationCreateNestedManyWithoutUserInput = {
+    create?: XOR<notificationCreateWithoutUserInput, notificationUncheckedCreateWithoutUserInput> | notificationCreateWithoutUserInput[] | notificationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: notificationCreateOrConnectWithoutUserInput | notificationCreateOrConnectWithoutUserInput[]
+    createMany?: notificationCreateManyUserInputEnvelope
+    connect?: notificationWhereUniqueInput | notificationWhereUniqueInput[]
+  }
+
+  export type two_factor_authCreateNestedOneWithoutUserInput = {
+    create?: XOR<two_factor_authCreateWithoutUserInput, two_factor_authUncheckedCreateWithoutUserInput>
+    connectOrCreate?: two_factor_authCreateOrConnectWithoutUserInput
+    connect?: two_factor_authWhereUniqueInput
+  }
+
+  export type user_accountCreateNestedManyWithoutUserInput = {
+    create?: XOR<user_accountCreateWithoutUserInput, user_accountUncheckedCreateWithoutUserInput> | user_accountCreateWithoutUserInput[] | user_accountUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: user_accountCreateOrConnectWithoutUserInput | user_accountCreateOrConnectWithoutUserInput[]
+    createMany?: user_accountCreateManyUserInputEnvelope
+    connect?: user_accountWhereUniqueInput | user_accountWhereUniqueInput[]
+  }
+
   export type user_roleUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<user_roleCreateWithoutUserInput, user_roleUncheckedCreateWithoutUserInput> | user_roleCreateWithoutUserInput[] | user_roleUncheckedCreateWithoutUserInput[]
     connectOrCreate?: user_roleCreateOrConnectWithoutUserInput | user_roleCreateOrConnectWithoutUserInput[]
@@ -30087,6 +34323,26 @@ export namespace Prisma {
     connectOrCreate?: news_comment_dislikeCreateOrConnectWithoutUserInput | news_comment_dislikeCreateOrConnectWithoutUserInput[]
     createMany?: news_comment_dislikeCreateManyUserInputEnvelope
     connect?: news_comment_dislikeWhereUniqueInput | news_comment_dislikeWhereUniqueInput[]
+  }
+
+  export type notificationUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<notificationCreateWithoutUserInput, notificationUncheckedCreateWithoutUserInput> | notificationCreateWithoutUserInput[] | notificationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: notificationCreateOrConnectWithoutUserInput | notificationCreateOrConnectWithoutUserInput[]
+    createMany?: notificationCreateManyUserInputEnvelope
+    connect?: notificationWhereUniqueInput | notificationWhereUniqueInput[]
+  }
+
+  export type two_factor_authUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<two_factor_authCreateWithoutUserInput, two_factor_authUncheckedCreateWithoutUserInput>
+    connectOrCreate?: two_factor_authCreateOrConnectWithoutUserInput
+    connect?: two_factor_authWhereUniqueInput
+  }
+
+  export type user_accountUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<user_accountCreateWithoutUserInput, user_accountUncheckedCreateWithoutUserInput> | user_accountCreateWithoutUserInput[] | user_accountUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: user_accountCreateOrConnectWithoutUserInput | user_accountCreateOrConnectWithoutUserInput[]
+    createMany?: user_accountCreateManyUserInputEnvelope
+    connect?: user_accountWhereUniqueInput | user_accountWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -30265,6 +34521,44 @@ export namespace Prisma {
     deleteMany?: news_comment_dislikeScalarWhereInput | news_comment_dislikeScalarWhereInput[]
   }
 
+  export type notificationUpdateManyWithoutUserNestedInput = {
+    create?: XOR<notificationCreateWithoutUserInput, notificationUncheckedCreateWithoutUserInput> | notificationCreateWithoutUserInput[] | notificationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: notificationCreateOrConnectWithoutUserInput | notificationCreateOrConnectWithoutUserInput[]
+    upsert?: notificationUpsertWithWhereUniqueWithoutUserInput | notificationUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: notificationCreateManyUserInputEnvelope
+    set?: notificationWhereUniqueInput | notificationWhereUniqueInput[]
+    disconnect?: notificationWhereUniqueInput | notificationWhereUniqueInput[]
+    delete?: notificationWhereUniqueInput | notificationWhereUniqueInput[]
+    connect?: notificationWhereUniqueInput | notificationWhereUniqueInput[]
+    update?: notificationUpdateWithWhereUniqueWithoutUserInput | notificationUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: notificationUpdateManyWithWhereWithoutUserInput | notificationUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: notificationScalarWhereInput | notificationScalarWhereInput[]
+  }
+
+  export type two_factor_authUpdateOneWithoutUserNestedInput = {
+    create?: XOR<two_factor_authCreateWithoutUserInput, two_factor_authUncheckedCreateWithoutUserInput>
+    connectOrCreate?: two_factor_authCreateOrConnectWithoutUserInput
+    upsert?: two_factor_authUpsertWithoutUserInput
+    disconnect?: two_factor_authWhereInput | boolean
+    delete?: two_factor_authWhereInput | boolean
+    connect?: two_factor_authWhereUniqueInput
+    update?: XOR<XOR<two_factor_authUpdateToOneWithWhereWithoutUserInput, two_factor_authUpdateWithoutUserInput>, two_factor_authUncheckedUpdateWithoutUserInput>
+  }
+
+  export type user_accountUpdateManyWithoutUserNestedInput = {
+    create?: XOR<user_accountCreateWithoutUserInput, user_accountUncheckedCreateWithoutUserInput> | user_accountCreateWithoutUserInput[] | user_accountUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: user_accountCreateOrConnectWithoutUserInput | user_accountCreateOrConnectWithoutUserInput[]
+    upsert?: user_accountUpsertWithWhereUniqueWithoutUserInput | user_accountUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: user_accountCreateManyUserInputEnvelope
+    set?: user_accountWhereUniqueInput | user_accountWhereUniqueInput[]
+    disconnect?: user_accountWhereUniqueInput | user_accountWhereUniqueInput[]
+    delete?: user_accountWhereUniqueInput | user_accountWhereUniqueInput[]
+    connect?: user_accountWhereUniqueInput | user_accountWhereUniqueInput[]
+    update?: user_accountUpdateWithWhereUniqueWithoutUserInput | user_accountUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: user_accountUpdateManyWithWhereWithoutUserInput | user_accountUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: user_accountScalarWhereInput | user_accountScalarWhereInput[]
+  }
+
   export type user_roleUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<user_roleCreateWithoutUserInput, user_roleUncheckedCreateWithoutUserInput> | user_roleCreateWithoutUserInput[] | user_roleUncheckedCreateWithoutUserInput[]
     connectOrCreate?: user_roleCreateOrConnectWithoutUserInput | user_roleCreateOrConnectWithoutUserInput[]
@@ -30433,6 +34727,84 @@ export namespace Prisma {
     deleteMany?: news_comment_dislikeScalarWhereInput | news_comment_dislikeScalarWhereInput[]
   }
 
+  export type notificationUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<notificationCreateWithoutUserInput, notificationUncheckedCreateWithoutUserInput> | notificationCreateWithoutUserInput[] | notificationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: notificationCreateOrConnectWithoutUserInput | notificationCreateOrConnectWithoutUserInput[]
+    upsert?: notificationUpsertWithWhereUniqueWithoutUserInput | notificationUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: notificationCreateManyUserInputEnvelope
+    set?: notificationWhereUniqueInput | notificationWhereUniqueInput[]
+    disconnect?: notificationWhereUniqueInput | notificationWhereUniqueInput[]
+    delete?: notificationWhereUniqueInput | notificationWhereUniqueInput[]
+    connect?: notificationWhereUniqueInput | notificationWhereUniqueInput[]
+    update?: notificationUpdateWithWhereUniqueWithoutUserInput | notificationUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: notificationUpdateManyWithWhereWithoutUserInput | notificationUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: notificationScalarWhereInput | notificationScalarWhereInput[]
+  }
+
+  export type two_factor_authUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<two_factor_authCreateWithoutUserInput, two_factor_authUncheckedCreateWithoutUserInput>
+    connectOrCreate?: two_factor_authCreateOrConnectWithoutUserInput
+    upsert?: two_factor_authUpsertWithoutUserInput
+    disconnect?: two_factor_authWhereInput | boolean
+    delete?: two_factor_authWhereInput | boolean
+    connect?: two_factor_authWhereUniqueInput
+    update?: XOR<XOR<two_factor_authUpdateToOneWithWhereWithoutUserInput, two_factor_authUpdateWithoutUserInput>, two_factor_authUncheckedUpdateWithoutUserInput>
+  }
+
+  export type user_accountUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<user_accountCreateWithoutUserInput, user_accountUncheckedCreateWithoutUserInput> | user_accountCreateWithoutUserInput[] | user_accountUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: user_accountCreateOrConnectWithoutUserInput | user_accountCreateOrConnectWithoutUserInput[]
+    upsert?: user_accountUpsertWithWhereUniqueWithoutUserInput | user_accountUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: user_accountCreateManyUserInputEnvelope
+    set?: user_accountWhereUniqueInput | user_accountWhereUniqueInput[]
+    disconnect?: user_accountWhereUniqueInput | user_accountWhereUniqueInput[]
+    delete?: user_accountWhereUniqueInput | user_accountWhereUniqueInput[]
+    connect?: user_accountWhereUniqueInput | user_accountWhereUniqueInput[]
+    update?: user_accountUpdateWithWhereUniqueWithoutUserInput | user_accountUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: user_accountUpdateManyWithWhereWithoutUserInput | user_accountUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: user_accountScalarWhereInput | user_accountScalarWhereInput[]
+  }
+
+  export type userCreateNestedOneWithoutTwoFactorAuthInput = {
+    create?: XOR<userCreateWithoutTwoFactorAuthInput, userUncheckedCreateWithoutTwoFactorAuthInput>
+    connectOrCreate?: userCreateOrConnectWithoutTwoFactorAuthInput
+    connect?: userWhereUniqueInput
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
+  export type userUpdateOneRequiredWithoutTwoFactorAuthNestedInput = {
+    create?: XOR<userCreateWithoutTwoFactorAuthInput, userUncheckedCreateWithoutTwoFactorAuthInput>
+    connectOrCreate?: userCreateOrConnectWithoutTwoFactorAuthInput
+    upsert?: userUpsertWithoutTwoFactorAuthInput
+    connect?: userWhereUniqueInput
+    update?: XOR<XOR<userUpdateToOneWithWhereWithoutTwoFactorAuthInput, userUpdateWithoutTwoFactorAuthInput>, userUncheckedUpdateWithoutTwoFactorAuthInput>
+  }
+
+  export type userCreateNestedOneWithoutAccountsInput = {
+    create?: XOR<userCreateWithoutAccountsInput, userUncheckedCreateWithoutAccountsInput>
+    connectOrCreate?: userCreateOrConnectWithoutAccountsInput
+    connect?: userWhereUniqueInput
+  }
+
+  export type userUpdateOneRequiredWithoutAccountsNestedInput = {
+    create?: XOR<userCreateWithoutAccountsInput, userUncheckedCreateWithoutAccountsInput>
+    connectOrCreate?: userCreateOrConnectWithoutAccountsInput
+    upsert?: userUpsertWithoutAccountsInput
+    connect?: userWhereUniqueInput
+    update?: XOR<XOR<userUpdateToOneWithWhereWithoutAccountsInput, userUpdateWithoutAccountsInput>, userUncheckedUpdateWithoutAccountsInput>
+  }
+
   export type roleCreateNestedOneWithoutUserRolesInput = {
     create?: XOR<roleCreateWithoutUserRolesInput, roleUncheckedCreateWithoutUserRolesInput>
     connectOrCreate?: roleCreateOrConnectWithoutUserRolesInput
@@ -30443,14 +34815,6 @@ export namespace Prisma {
     create?: XOR<userCreateWithoutUserRolesInput, userUncheckedCreateWithoutUserRolesInput>
     connectOrCreate?: userCreateOrConnectWithoutUserRolesInput
     connect?: userWhereUniqueInput
-  }
-
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
-  }
-
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
   }
 
   export type roleUpdateOneRequiredWithoutUserRolesNestedInput = {
@@ -31533,6 +35897,20 @@ export namespace Prisma {
     update?: XOR<XOR<newsUpdateToOneWithWhereWithoutNews_dislikesInput, newsUpdateWithoutNews_dislikesInput>, newsUncheckedUpdateWithoutNews_dislikesInput>
   }
 
+  export type userCreateNestedOneWithoutNotificationsInput = {
+    create?: XOR<userCreateWithoutNotificationsInput, userUncheckedCreateWithoutNotificationsInput>
+    connectOrCreate?: userCreateOrConnectWithoutNotificationsInput
+    connect?: userWhereUniqueInput
+  }
+
+  export type userUpdateOneRequiredWithoutNotificationsNestedInput = {
+    create?: XOR<userCreateWithoutNotificationsInput, userUncheckedCreateWithoutNotificationsInput>
+    connectOrCreate?: userCreateOrConnectWithoutNotificationsInput
+    upsert?: userUpsertWithoutNotificationsInput
+    connect?: userWhereUniqueInput
+    update?: XOR<XOR<userUpdateToOneWithWhereWithoutNotificationsInput, userUpdateWithoutNotificationsInput>, userUncheckedUpdateWithoutNotificationsInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -31622,6 +36000,17 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -31639,6 +36028,20 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -32031,6 +36434,83 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type notificationCreateWithoutUserInput = {
+    id?: string
+    title: string
+    message: string
+    type: string
+    is_read?: boolean
+    createdAt?: Date | string
+  }
+
+  export type notificationUncheckedCreateWithoutUserInput = {
+    id?: string
+    title: string
+    message: string
+    type: string
+    is_read?: boolean
+    createdAt?: Date | string
+  }
+
+  export type notificationCreateOrConnectWithoutUserInput = {
+    where: notificationWhereUniqueInput
+    create: XOR<notificationCreateWithoutUserInput, notificationUncheckedCreateWithoutUserInput>
+  }
+
+  export type notificationCreateManyUserInputEnvelope = {
+    data: notificationCreateManyUserInput | notificationCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type two_factor_authCreateWithoutUserInput = {
+    id?: string
+    is_enabled?: boolean
+    otp?: string | null
+    otp_expires_at?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type two_factor_authUncheckedCreateWithoutUserInput = {
+    id?: string
+    is_enabled?: boolean
+    otp?: string | null
+    otp_expires_at?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type two_factor_authCreateOrConnectWithoutUserInput = {
+    where: two_factor_authWhereUniqueInput
+    create: XOR<two_factor_authCreateWithoutUserInput, two_factor_authUncheckedCreateWithoutUserInput>
+  }
+
+  export type user_accountCreateWithoutUserInput = {
+    id?: string
+    provider: string
+    provider_id: string
+    email?: string | null
+    created_at?: Date | string
+  }
+
+  export type user_accountUncheckedCreateWithoutUserInput = {
+    id?: string
+    provider: string
+    provider_id: string
+    email?: string | null
+    created_at?: Date | string
+  }
+
+  export type user_accountCreateOrConnectWithoutUserInput = {
+    where: user_accountWhereUniqueInput
+    create: XOR<user_accountCreateWithoutUserInput, user_accountUncheckedCreateWithoutUserInput>
+  }
+
+  export type user_accountCreateManyUserInputEnvelope = {
+    data: user_accountCreateManyUserInput | user_accountCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type user_roleUpsertWithWhereUniqueWithoutUserInput = {
     where: user_roleWhereUniqueInput
     update: XOR<user_roleUpdateWithoutUserInput, user_roleUncheckedUpdateWithoutUserInput>
@@ -32355,6 +36835,332 @@ export namespace Prisma {
     comment_id?: StringFilter<"news_comment_dislike"> | string
   }
 
+  export type notificationUpsertWithWhereUniqueWithoutUserInput = {
+    where: notificationWhereUniqueInput
+    update: XOR<notificationUpdateWithoutUserInput, notificationUncheckedUpdateWithoutUserInput>
+    create: XOR<notificationCreateWithoutUserInput, notificationUncheckedCreateWithoutUserInput>
+  }
+
+  export type notificationUpdateWithWhereUniqueWithoutUserInput = {
+    where: notificationWhereUniqueInput
+    data: XOR<notificationUpdateWithoutUserInput, notificationUncheckedUpdateWithoutUserInput>
+  }
+
+  export type notificationUpdateManyWithWhereWithoutUserInput = {
+    where: notificationScalarWhereInput
+    data: XOR<notificationUpdateManyMutationInput, notificationUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type notificationScalarWhereInput = {
+    AND?: notificationScalarWhereInput | notificationScalarWhereInput[]
+    OR?: notificationScalarWhereInput[]
+    NOT?: notificationScalarWhereInput | notificationScalarWhereInput[]
+    id?: StringFilter<"notification"> | string
+    user_id?: StringFilter<"notification"> | string
+    title?: StringFilter<"notification"> | string
+    message?: StringFilter<"notification"> | string
+    type?: StringFilter<"notification"> | string
+    is_read?: BoolFilter<"notification"> | boolean
+    createdAt?: DateTimeFilter<"notification"> | Date | string
+  }
+
+  export type two_factor_authUpsertWithoutUserInput = {
+    update: XOR<two_factor_authUpdateWithoutUserInput, two_factor_authUncheckedUpdateWithoutUserInput>
+    create: XOR<two_factor_authCreateWithoutUserInput, two_factor_authUncheckedCreateWithoutUserInput>
+    where?: two_factor_authWhereInput
+  }
+
+  export type two_factor_authUpdateToOneWithWhereWithoutUserInput = {
+    where?: two_factor_authWhereInput
+    data: XOR<two_factor_authUpdateWithoutUserInput, two_factor_authUncheckedUpdateWithoutUserInput>
+  }
+
+  export type two_factor_authUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    is_enabled?: BoolFieldUpdateOperationsInput | boolean
+    otp?: NullableStringFieldUpdateOperationsInput | string | null
+    otp_expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type two_factor_authUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    is_enabled?: BoolFieldUpdateOperationsInput | boolean
+    otp?: NullableStringFieldUpdateOperationsInput | string | null
+    otp_expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type user_accountUpsertWithWhereUniqueWithoutUserInput = {
+    where: user_accountWhereUniqueInput
+    update: XOR<user_accountUpdateWithoutUserInput, user_accountUncheckedUpdateWithoutUserInput>
+    create: XOR<user_accountCreateWithoutUserInput, user_accountUncheckedCreateWithoutUserInput>
+  }
+
+  export type user_accountUpdateWithWhereUniqueWithoutUserInput = {
+    where: user_accountWhereUniqueInput
+    data: XOR<user_accountUpdateWithoutUserInput, user_accountUncheckedUpdateWithoutUserInput>
+  }
+
+  export type user_accountUpdateManyWithWhereWithoutUserInput = {
+    where: user_accountScalarWhereInput
+    data: XOR<user_accountUpdateManyMutationInput, user_accountUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type user_accountScalarWhereInput = {
+    AND?: user_accountScalarWhereInput | user_accountScalarWhereInput[]
+    OR?: user_accountScalarWhereInput[]
+    NOT?: user_accountScalarWhereInput | user_accountScalarWhereInput[]
+    id?: StringFilter<"user_account"> | string
+    user_id?: StringFilter<"user_account"> | string
+    provider?: StringFilter<"user_account"> | string
+    provider_id?: StringFilter<"user_account"> | string
+    email?: StringNullableFilter<"user_account"> | string | null
+    created_at?: DateTimeFilter<"user_account"> | Date | string
+  }
+
+  export type userCreateWithoutTwoFactorAuthInput = {
+    id?: string
+    name: string
+    email: string
+    password: string
+    phone_number: string
+    referral_code: string
+    referral_user_id?: string | null
+    national_code?: string | null
+    location?: string | null
+    userRoles?: user_roleCreateNestedManyWithoutUserInput
+    loginTransactions?: login_transactionCreateNestedManyWithoutUserInput
+    courses?: courseCreateNestedManyWithoutTeacherInput
+    courseRates?: course_rateCreateNestedManyWithoutUserInput
+    courseFavorites?: course_favoriteCreateNestedManyWithoutUserInput
+    courseComments?: course_commentCreateNestedManyWithoutUserInput
+    comments?: news_commentCreateNestedManyWithoutUserInput
+    favoriteNews?: news_favoriteCreateNestedManyWithoutUserInput
+    news_likes?: news_likeCreateNestedManyWithoutUserInput
+    news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
+    likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
+    dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
+    notifications?: notificationCreateNestedManyWithoutUserInput
+    accounts?: user_accountCreateNestedManyWithoutUserInput
+  }
+
+  export type userUncheckedCreateWithoutTwoFactorAuthInput = {
+    id?: string
+    name: string
+    email: string
+    password: string
+    phone_number: string
+    referral_code: string
+    referral_user_id?: string | null
+    national_code?: string | null
+    location?: string | null
+    userRoles?: user_roleUncheckedCreateNestedManyWithoutUserInput
+    loginTransactions?: login_transactionUncheckedCreateNestedManyWithoutUserInput
+    courses?: courseUncheckedCreateNestedManyWithoutTeacherInput
+    courseRates?: course_rateUncheckedCreateNestedManyWithoutUserInput
+    courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutUserInput
+    courseComments?: course_commentUncheckedCreateNestedManyWithoutUserInput
+    comments?: news_commentUncheckedCreateNestedManyWithoutUserInput
+    favoriteNews?: news_favoriteUncheckedCreateNestedManyWithoutUserInput
+    news_likes?: news_likeUncheckedCreateNestedManyWithoutUserInput
+    news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
+    likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
+    dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
+    notifications?: notificationUncheckedCreateNestedManyWithoutUserInput
+    accounts?: user_accountUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type userCreateOrConnectWithoutTwoFactorAuthInput = {
+    where: userWhereUniqueInput
+    create: XOR<userCreateWithoutTwoFactorAuthInput, userUncheckedCreateWithoutTwoFactorAuthInput>
+  }
+
+  export type userUpsertWithoutTwoFactorAuthInput = {
+    update: XOR<userUpdateWithoutTwoFactorAuthInput, userUncheckedUpdateWithoutTwoFactorAuthInput>
+    create: XOR<userCreateWithoutTwoFactorAuthInput, userUncheckedCreateWithoutTwoFactorAuthInput>
+    where?: userWhereInput
+  }
+
+  export type userUpdateToOneWithWhereWithoutTwoFactorAuthInput = {
+    where?: userWhereInput
+    data: XOR<userUpdateWithoutTwoFactorAuthInput, userUncheckedUpdateWithoutTwoFactorAuthInput>
+  }
+
+  export type userUpdateWithoutTwoFactorAuthInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    phone_number?: StringFieldUpdateOperationsInput | string
+    referral_code?: StringFieldUpdateOperationsInput | string
+    referral_user_id?: NullableStringFieldUpdateOperationsInput | string | null
+    national_code?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    userRoles?: user_roleUpdateManyWithoutUserNestedInput
+    loginTransactions?: login_transactionUpdateManyWithoutUserNestedInput
+    courses?: courseUpdateManyWithoutTeacherNestedInput
+    courseRates?: course_rateUpdateManyWithoutUserNestedInput
+    courseFavorites?: course_favoriteUpdateManyWithoutUserNestedInput
+    courseComments?: course_commentUpdateManyWithoutUserNestedInput
+    comments?: news_commentUpdateManyWithoutUserNestedInput
+    favoriteNews?: news_favoriteUpdateManyWithoutUserNestedInput
+    news_likes?: news_likeUpdateManyWithoutUserNestedInput
+    news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
+    likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
+    dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
+    notifications?: notificationUpdateManyWithoutUserNestedInput
+    accounts?: user_accountUpdateManyWithoutUserNestedInput
+  }
+
+  export type userUncheckedUpdateWithoutTwoFactorAuthInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    phone_number?: StringFieldUpdateOperationsInput | string
+    referral_code?: StringFieldUpdateOperationsInput | string
+    referral_user_id?: NullableStringFieldUpdateOperationsInput | string | null
+    national_code?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    userRoles?: user_roleUncheckedUpdateManyWithoutUserNestedInput
+    loginTransactions?: login_transactionUncheckedUpdateManyWithoutUserNestedInput
+    courses?: courseUncheckedUpdateManyWithoutTeacherNestedInput
+    courseRates?: course_rateUncheckedUpdateManyWithoutUserNestedInput
+    courseFavorites?: course_favoriteUncheckedUpdateManyWithoutUserNestedInput
+    courseComments?: course_commentUncheckedUpdateManyWithoutUserNestedInput
+    comments?: news_commentUncheckedUpdateManyWithoutUserNestedInput
+    favoriteNews?: news_favoriteUncheckedUpdateManyWithoutUserNestedInput
+    news_likes?: news_likeUncheckedUpdateManyWithoutUserNestedInput
+    news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
+    likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
+    dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: notificationUncheckedUpdateManyWithoutUserNestedInput
+    accounts?: user_accountUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type userCreateWithoutAccountsInput = {
+    id?: string
+    name: string
+    email: string
+    password: string
+    phone_number: string
+    referral_code: string
+    referral_user_id?: string | null
+    national_code?: string | null
+    location?: string | null
+    userRoles?: user_roleCreateNestedManyWithoutUserInput
+    loginTransactions?: login_transactionCreateNestedManyWithoutUserInput
+    courses?: courseCreateNestedManyWithoutTeacherInput
+    courseRates?: course_rateCreateNestedManyWithoutUserInput
+    courseFavorites?: course_favoriteCreateNestedManyWithoutUserInput
+    courseComments?: course_commentCreateNestedManyWithoutUserInput
+    comments?: news_commentCreateNestedManyWithoutUserInput
+    favoriteNews?: news_favoriteCreateNestedManyWithoutUserInput
+    news_likes?: news_likeCreateNestedManyWithoutUserInput
+    news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
+    likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
+    dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
+    notifications?: notificationCreateNestedManyWithoutUserInput
+    twoFactorAuth?: two_factor_authCreateNestedOneWithoutUserInput
+  }
+
+  export type userUncheckedCreateWithoutAccountsInput = {
+    id?: string
+    name: string
+    email: string
+    password: string
+    phone_number: string
+    referral_code: string
+    referral_user_id?: string | null
+    national_code?: string | null
+    location?: string | null
+    userRoles?: user_roleUncheckedCreateNestedManyWithoutUserInput
+    loginTransactions?: login_transactionUncheckedCreateNestedManyWithoutUserInput
+    courses?: courseUncheckedCreateNestedManyWithoutTeacherInput
+    courseRates?: course_rateUncheckedCreateNestedManyWithoutUserInput
+    courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutUserInput
+    courseComments?: course_commentUncheckedCreateNestedManyWithoutUserInput
+    comments?: news_commentUncheckedCreateNestedManyWithoutUserInput
+    favoriteNews?: news_favoriteUncheckedCreateNestedManyWithoutUserInput
+    news_likes?: news_likeUncheckedCreateNestedManyWithoutUserInput
+    news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
+    likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
+    dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
+    notifications?: notificationUncheckedCreateNestedManyWithoutUserInput
+    twoFactorAuth?: two_factor_authUncheckedCreateNestedOneWithoutUserInput
+  }
+
+  export type userCreateOrConnectWithoutAccountsInput = {
+    where: userWhereUniqueInput
+    create: XOR<userCreateWithoutAccountsInput, userUncheckedCreateWithoutAccountsInput>
+  }
+
+  export type userUpsertWithoutAccountsInput = {
+    update: XOR<userUpdateWithoutAccountsInput, userUncheckedUpdateWithoutAccountsInput>
+    create: XOR<userCreateWithoutAccountsInput, userUncheckedCreateWithoutAccountsInput>
+    where?: userWhereInput
+  }
+
+  export type userUpdateToOneWithWhereWithoutAccountsInput = {
+    where?: userWhereInput
+    data: XOR<userUpdateWithoutAccountsInput, userUncheckedUpdateWithoutAccountsInput>
+  }
+
+  export type userUpdateWithoutAccountsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    phone_number?: StringFieldUpdateOperationsInput | string
+    referral_code?: StringFieldUpdateOperationsInput | string
+    referral_user_id?: NullableStringFieldUpdateOperationsInput | string | null
+    national_code?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    userRoles?: user_roleUpdateManyWithoutUserNestedInput
+    loginTransactions?: login_transactionUpdateManyWithoutUserNestedInput
+    courses?: courseUpdateManyWithoutTeacherNestedInput
+    courseRates?: course_rateUpdateManyWithoutUserNestedInput
+    courseFavorites?: course_favoriteUpdateManyWithoutUserNestedInput
+    courseComments?: course_commentUpdateManyWithoutUserNestedInput
+    comments?: news_commentUpdateManyWithoutUserNestedInput
+    favoriteNews?: news_favoriteUpdateManyWithoutUserNestedInput
+    news_likes?: news_likeUpdateManyWithoutUserNestedInput
+    news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
+    likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
+    dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
+    notifications?: notificationUpdateManyWithoutUserNestedInput
+    twoFactorAuth?: two_factor_authUpdateOneWithoutUserNestedInput
+  }
+
+  export type userUncheckedUpdateWithoutAccountsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    phone_number?: StringFieldUpdateOperationsInput | string
+    referral_code?: StringFieldUpdateOperationsInput | string
+    referral_user_id?: NullableStringFieldUpdateOperationsInput | string | null
+    national_code?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    userRoles?: user_roleUncheckedUpdateManyWithoutUserNestedInput
+    loginTransactions?: login_transactionUncheckedUpdateManyWithoutUserNestedInput
+    courses?: courseUncheckedUpdateManyWithoutTeacherNestedInput
+    courseRates?: course_rateUncheckedUpdateManyWithoutUserNestedInput
+    courseFavorites?: course_favoriteUncheckedUpdateManyWithoutUserNestedInput
+    courseComments?: course_commentUncheckedUpdateManyWithoutUserNestedInput
+    comments?: news_commentUncheckedUpdateManyWithoutUserNestedInput
+    favoriteNews?: news_favoriteUncheckedUpdateManyWithoutUserNestedInput
+    news_likes?: news_likeUncheckedUpdateManyWithoutUserNestedInput
+    news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
+    likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
+    dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: notificationUncheckedUpdateManyWithoutUserNestedInput
+    twoFactorAuth?: two_factor_authUncheckedUpdateOneWithoutUserNestedInput
+  }
+
   export type roleCreateWithoutUserRolesInput = {
     id?: string
     name: string
@@ -32391,6 +37197,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
     dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
+    notifications?: notificationCreateNestedManyWithoutUserInput
+    twoFactorAuth?: two_factor_authCreateNestedOneWithoutUserInput
+    accounts?: user_accountCreateNestedManyWithoutUserInput
   }
 
   export type userUncheckedCreateWithoutUserRolesInput = {
@@ -32414,6 +37223,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
     dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
+    notifications?: notificationUncheckedCreateNestedManyWithoutUserInput
+    twoFactorAuth?: two_factor_authUncheckedCreateNestedOneWithoutUserInput
+    accounts?: user_accountUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type userCreateOrConnectWithoutUserRolesInput = {
@@ -32474,6 +37286,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
     dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
+    notifications?: notificationUpdateManyWithoutUserNestedInput
+    twoFactorAuth?: two_factor_authUpdateOneWithoutUserNestedInput
+    accounts?: user_accountUpdateManyWithoutUserNestedInput
   }
 
   export type userUncheckedUpdateWithoutUserRolesInput = {
@@ -32497,6 +37312,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
     dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: notificationUncheckedUpdateManyWithoutUserNestedInput
+    twoFactorAuth?: two_factor_authUncheckedUpdateOneWithoutUserNestedInput
+    accounts?: user_accountUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type user_roleCreateWithoutRoleInput = {
@@ -32560,6 +37378,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
     dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
+    notifications?: notificationCreateNestedManyWithoutUserInput
+    twoFactorAuth?: two_factor_authCreateNestedOneWithoutUserInput
+    accounts?: user_accountCreateNestedManyWithoutUserInput
   }
 
   export type userUncheckedCreateWithoutLoginTransactionsInput = {
@@ -32583,6 +37404,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
     dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
+    notifications?: notificationUncheckedCreateNestedManyWithoutUserInput
+    twoFactorAuth?: two_factor_authUncheckedCreateNestedOneWithoutUserInput
+    accounts?: user_accountUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type userCreateOrConnectWithoutLoginTransactionsInput = {
@@ -32622,6 +37446,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
     dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
+    notifications?: notificationUpdateManyWithoutUserNestedInput
+    twoFactorAuth?: two_factor_authUpdateOneWithoutUserNestedInput
+    accounts?: user_accountUpdateManyWithoutUserNestedInput
   }
 
   export type userUncheckedUpdateWithoutLoginTransactionsInput = {
@@ -32645,6 +37472,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
     dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: notificationUncheckedUpdateManyWithoutUserNestedInput
+    twoFactorAuth?: two_factor_authUncheckedUpdateOneWithoutUserNestedInput
+    accounts?: user_accountUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type course_typeCreateWithoutCoursesInput = {
@@ -32685,6 +37515,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
     dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
+    notifications?: notificationCreateNestedManyWithoutUserInput
+    twoFactorAuth?: two_factor_authCreateNestedOneWithoutUserInput
+    accounts?: user_accountCreateNestedManyWithoutUserInput
   }
 
   export type userUncheckedCreateWithoutCoursesInput = {
@@ -32708,6 +37541,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
     dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
+    notifications?: notificationUncheckedCreateNestedManyWithoutUserInput
+    twoFactorAuth?: two_factor_authUncheckedCreateNestedOneWithoutUserInput
+    accounts?: user_accountUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type userCreateOrConnectWithoutCoursesInput = {
@@ -32886,6 +37722,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
     dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
+    notifications?: notificationUpdateManyWithoutUserNestedInput
+    twoFactorAuth?: two_factor_authUpdateOneWithoutUserNestedInput
+    accounts?: user_accountUpdateManyWithoutUserNestedInput
   }
 
   export type userUncheckedUpdateWithoutCoursesInput = {
@@ -32909,6 +37748,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
     dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: notificationUncheckedUpdateManyWithoutUserNestedInput
+    twoFactorAuth?: two_factor_authUncheckedUpdateOneWithoutUserNestedInput
+    accounts?: user_accountUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type course_rateUpsertWithWhereUniqueWithoutCourseInput = {
@@ -33032,6 +37874,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
     dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
+    notifications?: notificationCreateNestedManyWithoutUserInput
+    twoFactorAuth?: two_factor_authCreateNestedOneWithoutUserInput
+    accounts?: user_accountCreateNestedManyWithoutUserInput
   }
 
   export type userUncheckedCreateWithoutCourseRatesInput = {
@@ -33055,6 +37900,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
     dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
+    notifications?: notificationUncheckedCreateNestedManyWithoutUserInput
+    twoFactorAuth?: two_factor_authUncheckedCreateNestedOneWithoutUserInput
+    accounts?: user_accountUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type userCreateOrConnectWithoutCourseRatesInput = {
@@ -33139,6 +37987,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
     dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
+    notifications?: notificationUpdateManyWithoutUserNestedInput
+    twoFactorAuth?: two_factor_authUpdateOneWithoutUserNestedInput
+    accounts?: user_accountUpdateManyWithoutUserNestedInput
   }
 
   export type userUncheckedUpdateWithoutCourseRatesInput = {
@@ -33162,6 +38013,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
     dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: notificationUncheckedUpdateManyWithoutUserNestedInput
+    twoFactorAuth?: two_factor_authUncheckedUpdateOneWithoutUserNestedInput
+    accounts?: user_accountUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type courseUpsertWithoutCourseRatesInput = {
@@ -33236,6 +38090,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
     dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
+    notifications?: notificationCreateNestedManyWithoutUserInput
+    twoFactorAuth?: two_factor_authCreateNestedOneWithoutUserInput
+    accounts?: user_accountCreateNestedManyWithoutUserInput
   }
 
   export type userUncheckedCreateWithoutCourseFavoritesInput = {
@@ -33259,6 +38116,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
     dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
+    notifications?: notificationUncheckedCreateNestedManyWithoutUserInput
+    twoFactorAuth?: two_factor_authUncheckedCreateNestedOneWithoutUserInput
+    accounts?: user_accountUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type userCreateOrConnectWithoutCourseFavoritesInput = {
@@ -33343,6 +38203,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
     dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
+    notifications?: notificationUpdateManyWithoutUserNestedInput
+    twoFactorAuth?: two_factor_authUpdateOneWithoutUserNestedInput
+    accounts?: user_accountUpdateManyWithoutUserNestedInput
   }
 
   export type userUncheckedUpdateWithoutCourseFavoritesInput = {
@@ -33366,6 +38229,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
     dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: notificationUncheckedUpdateManyWithoutUserNestedInput
+    twoFactorAuth?: two_factor_authUncheckedUpdateOneWithoutUserNestedInput
+    accounts?: user_accountUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type courseUpsertWithoutCourseFavoritesInput = {
@@ -33465,6 +38331,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
     dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
+    notifications?: notificationCreateNestedManyWithoutUserInput
+    twoFactorAuth?: two_factor_authCreateNestedOneWithoutUserInput
+    accounts?: user_accountCreateNestedManyWithoutUserInput
   }
 
   export type userUncheckedCreateWithoutCourseCommentsInput = {
@@ -33488,6 +38357,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
     dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
+    notifications?: notificationUncheckedCreateNestedManyWithoutUserInput
+    twoFactorAuth?: two_factor_authUncheckedCreateNestedOneWithoutUserInput
+    accounts?: user_accountUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type userCreateOrConnectWithoutCourseCommentsInput = {
@@ -33633,6 +38505,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
     dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
+    notifications?: notificationUpdateManyWithoutUserNestedInput
+    twoFactorAuth?: two_factor_authUpdateOneWithoutUserNestedInput
+    accounts?: user_accountUpdateManyWithoutUserNestedInput
   }
 
   export type userUncheckedUpdateWithoutCourseCommentsInput = {
@@ -33656,6 +38531,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
     dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: notificationUncheckedUpdateManyWithoutUserNestedInput
+    twoFactorAuth?: two_factor_authUncheckedUpdateOneWithoutUserNestedInput
+    accounts?: user_accountUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type course_commentUpsertWithWhereUniqueWithoutParentInput = {
@@ -34313,6 +39191,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
     dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
+    notifications?: notificationCreateNestedManyWithoutUserInput
+    twoFactorAuth?: two_factor_authCreateNestedOneWithoutUserInput
+    accounts?: user_accountCreateNestedManyWithoutUserInput
   }
 
   export type userUncheckedCreateWithoutCommentsInput = {
@@ -34336,6 +39217,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
     dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
+    notifications?: notificationUncheckedCreateNestedManyWithoutUserInput
+    twoFactorAuth?: two_factor_authUncheckedCreateNestedOneWithoutUserInput
+    accounts?: user_accountUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type userCreateOrConnectWithoutCommentsInput = {
@@ -34500,6 +39384,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
     dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
+    notifications?: notificationUpdateManyWithoutUserNestedInput
+    twoFactorAuth?: two_factor_authUpdateOneWithoutUserNestedInput
+    accounts?: user_accountUpdateManyWithoutUserNestedInput
   }
 
   export type userUncheckedUpdateWithoutCommentsInput = {
@@ -34523,6 +39410,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
     dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: notificationUncheckedUpdateManyWithoutUserNestedInput
+    twoFactorAuth?: two_factor_authUncheckedUpdateOneWithoutUserNestedInput
+    accounts?: user_accountUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type newsUpsertWithoutCommentsInput = {
@@ -34614,6 +39504,9 @@ export namespace Prisma {
     news_likes?: news_likeCreateNestedManyWithoutUserInput
     news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
     dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
+    notifications?: notificationCreateNestedManyWithoutUserInput
+    twoFactorAuth?: two_factor_authCreateNestedOneWithoutUserInput
+    accounts?: user_accountCreateNestedManyWithoutUserInput
   }
 
   export type userUncheckedCreateWithoutLikedCommentsInput = {
@@ -34637,6 +39530,9 @@ export namespace Prisma {
     news_likes?: news_likeUncheckedCreateNestedManyWithoutUserInput
     news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
     dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
+    notifications?: notificationUncheckedCreateNestedManyWithoutUserInput
+    twoFactorAuth?: two_factor_authUncheckedCreateNestedOneWithoutUserInput
+    accounts?: user_accountUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type userCreateOrConnectWithoutLikedCommentsInput = {
@@ -34709,6 +39605,9 @@ export namespace Prisma {
     news_likes?: news_likeUpdateManyWithoutUserNestedInput
     news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
     dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
+    notifications?: notificationUpdateManyWithoutUserNestedInput
+    twoFactorAuth?: two_factor_authUpdateOneWithoutUserNestedInput
+    accounts?: user_accountUpdateManyWithoutUserNestedInput
   }
 
   export type userUncheckedUpdateWithoutLikedCommentsInput = {
@@ -34732,6 +39631,9 @@ export namespace Prisma {
     news_likes?: news_likeUncheckedUpdateManyWithoutUserNestedInput
     news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
     dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: notificationUncheckedUpdateManyWithoutUserNestedInput
+    twoFactorAuth?: two_factor_authUncheckedUpdateOneWithoutUserNestedInput
+    accounts?: user_accountUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type news_commentUpsertWithoutLikesInput = {
@@ -34794,6 +39696,9 @@ export namespace Prisma {
     news_likes?: news_likeCreateNestedManyWithoutUserInput
     news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
+    notifications?: notificationCreateNestedManyWithoutUserInput
+    twoFactorAuth?: two_factor_authCreateNestedOneWithoutUserInput
+    accounts?: user_accountCreateNestedManyWithoutUserInput
   }
 
   export type userUncheckedCreateWithoutDislikedCommentsInput = {
@@ -34817,6 +39722,9 @@ export namespace Prisma {
     news_likes?: news_likeUncheckedCreateNestedManyWithoutUserInput
     news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
+    notifications?: notificationUncheckedCreateNestedManyWithoutUserInput
+    twoFactorAuth?: two_factor_authUncheckedCreateNestedOneWithoutUserInput
+    accounts?: user_accountUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type userCreateOrConnectWithoutDislikedCommentsInput = {
@@ -34889,6 +39797,9 @@ export namespace Prisma {
     news_likes?: news_likeUpdateManyWithoutUserNestedInput
     news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
+    notifications?: notificationUpdateManyWithoutUserNestedInput
+    twoFactorAuth?: two_factor_authUpdateOneWithoutUserNestedInput
+    accounts?: user_accountUpdateManyWithoutUserNestedInput
   }
 
   export type userUncheckedUpdateWithoutDislikedCommentsInput = {
@@ -34912,6 +39823,9 @@ export namespace Prisma {
     news_likes?: news_likeUncheckedUpdateManyWithoutUserNestedInput
     news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: notificationUncheckedUpdateManyWithoutUserNestedInput
+    twoFactorAuth?: two_factor_authUncheckedUpdateOneWithoutUserNestedInput
+    accounts?: user_accountUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type news_commentUpsertWithoutDislikesInput = {
@@ -34974,6 +39888,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
     dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
+    notifications?: notificationCreateNestedManyWithoutUserInput
+    twoFactorAuth?: two_factor_authCreateNestedOneWithoutUserInput
+    accounts?: user_accountCreateNestedManyWithoutUserInput
   }
 
   export type userUncheckedCreateWithoutFavoriteNewsInput = {
@@ -34997,6 +39914,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
     dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
+    notifications?: notificationUncheckedCreateNestedManyWithoutUserInput
+    twoFactorAuth?: two_factor_authUncheckedCreateNestedOneWithoutUserInput
+    accounts?: user_accountUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type userCreateOrConnectWithoutFavoriteNewsInput = {
@@ -35066,6 +39986,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
     dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
+    notifications?: notificationUpdateManyWithoutUserNestedInput
+    twoFactorAuth?: two_factor_authUpdateOneWithoutUserNestedInput
+    accounts?: user_accountUpdateManyWithoutUserNestedInput
   }
 
   export type userUncheckedUpdateWithoutFavoriteNewsInput = {
@@ -35089,6 +40012,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
     dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: notificationUncheckedUpdateManyWithoutUserNestedInput
+    twoFactorAuth?: two_factor_authUncheckedUpdateOneWithoutUserNestedInput
+    accounts?: user_accountUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type newsUpsertWithoutFavoritesInput = {
@@ -35148,6 +40074,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
     dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
+    notifications?: notificationCreateNestedManyWithoutUserInput
+    twoFactorAuth?: two_factor_authCreateNestedOneWithoutUserInput
+    accounts?: user_accountCreateNestedManyWithoutUserInput
   }
 
   export type userUncheckedCreateWithoutNews_likesInput = {
@@ -35171,6 +40100,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
     dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
+    notifications?: notificationUncheckedCreateNestedManyWithoutUserInput
+    twoFactorAuth?: two_factor_authUncheckedCreateNestedOneWithoutUserInput
+    accounts?: user_accountUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type userCreateOrConnectWithoutNews_likesInput = {
@@ -35240,6 +40172,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
     dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
+    notifications?: notificationUpdateManyWithoutUserNestedInput
+    twoFactorAuth?: two_factor_authUpdateOneWithoutUserNestedInput
+    accounts?: user_accountUpdateManyWithoutUserNestedInput
   }
 
   export type userUncheckedUpdateWithoutNews_likesInput = {
@@ -35263,6 +40198,9 @@ export namespace Prisma {
     news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
     dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: notificationUncheckedUpdateManyWithoutUserNestedInput
+    twoFactorAuth?: two_factor_authUncheckedUpdateOneWithoutUserNestedInput
+    accounts?: user_accountUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type newsUpsertWithoutNews_likesInput = {
@@ -35322,6 +40260,9 @@ export namespace Prisma {
     news_likes?: news_likeCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
     dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
+    notifications?: notificationCreateNestedManyWithoutUserInput
+    twoFactorAuth?: two_factor_authCreateNestedOneWithoutUserInput
+    accounts?: user_accountCreateNestedManyWithoutUserInput
   }
 
   export type userUncheckedCreateWithoutNews_dislikesInput = {
@@ -35345,6 +40286,9 @@ export namespace Prisma {
     news_likes?: news_likeUncheckedCreateNestedManyWithoutUserInput
     likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
     dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
+    notifications?: notificationUncheckedCreateNestedManyWithoutUserInput
+    twoFactorAuth?: two_factor_authUncheckedCreateNestedOneWithoutUserInput
+    accounts?: user_accountUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type userCreateOrConnectWithoutNews_dislikesInput = {
@@ -35414,6 +40358,9 @@ export namespace Prisma {
     news_likes?: news_likeUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
     dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
+    notifications?: notificationUpdateManyWithoutUserNestedInput
+    twoFactorAuth?: two_factor_authUpdateOneWithoutUserNestedInput
+    accounts?: user_accountUpdateManyWithoutUserNestedInput
   }
 
   export type userUncheckedUpdateWithoutNews_dislikesInput = {
@@ -35437,6 +40384,9 @@ export namespace Prisma {
     news_likes?: news_likeUncheckedUpdateManyWithoutUserNestedInput
     likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
     dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: notificationUncheckedUpdateManyWithoutUserNestedInput
+    twoFactorAuth?: two_factor_authUncheckedUpdateOneWithoutUserNestedInput
+    accounts?: user_accountUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type newsUpsertWithoutNews_dislikesInput = {
@@ -35473,6 +40423,126 @@ export namespace Prisma {
     comments?: news_commentUncheckedUpdateManyWithoutNewsNestedInput
     favorites?: news_favoriteUncheckedUpdateManyWithoutNewsNestedInput
     news_likes?: news_likeUncheckedUpdateManyWithoutNewsNestedInput
+  }
+
+  export type userCreateWithoutNotificationsInput = {
+    id?: string
+    name: string
+    email: string
+    password: string
+    phone_number: string
+    referral_code: string
+    referral_user_id?: string | null
+    national_code?: string | null
+    location?: string | null
+    userRoles?: user_roleCreateNestedManyWithoutUserInput
+    loginTransactions?: login_transactionCreateNestedManyWithoutUserInput
+    courses?: courseCreateNestedManyWithoutTeacherInput
+    courseRates?: course_rateCreateNestedManyWithoutUserInput
+    courseFavorites?: course_favoriteCreateNestedManyWithoutUserInput
+    courseComments?: course_commentCreateNestedManyWithoutUserInput
+    comments?: news_commentCreateNestedManyWithoutUserInput
+    favoriteNews?: news_favoriteCreateNestedManyWithoutUserInput
+    news_likes?: news_likeCreateNestedManyWithoutUserInput
+    news_dislikes?: news_dislikeCreateNestedManyWithoutUserInput
+    likedComments?: news_comment_likeCreateNestedManyWithoutUserInput
+    dislikedComments?: news_comment_dislikeCreateNestedManyWithoutUserInput
+    twoFactorAuth?: two_factor_authCreateNestedOneWithoutUserInput
+    accounts?: user_accountCreateNestedManyWithoutUserInput
+  }
+
+  export type userUncheckedCreateWithoutNotificationsInput = {
+    id?: string
+    name: string
+    email: string
+    password: string
+    phone_number: string
+    referral_code: string
+    referral_user_id?: string | null
+    national_code?: string | null
+    location?: string | null
+    userRoles?: user_roleUncheckedCreateNestedManyWithoutUserInput
+    loginTransactions?: login_transactionUncheckedCreateNestedManyWithoutUserInput
+    courses?: courseUncheckedCreateNestedManyWithoutTeacherInput
+    courseRates?: course_rateUncheckedCreateNestedManyWithoutUserInput
+    courseFavorites?: course_favoriteUncheckedCreateNestedManyWithoutUserInput
+    courseComments?: course_commentUncheckedCreateNestedManyWithoutUserInput
+    comments?: news_commentUncheckedCreateNestedManyWithoutUserInput
+    favoriteNews?: news_favoriteUncheckedCreateNestedManyWithoutUserInput
+    news_likes?: news_likeUncheckedCreateNestedManyWithoutUserInput
+    news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutUserInput
+    likedComments?: news_comment_likeUncheckedCreateNestedManyWithoutUserInput
+    dislikedComments?: news_comment_dislikeUncheckedCreateNestedManyWithoutUserInput
+    twoFactorAuth?: two_factor_authUncheckedCreateNestedOneWithoutUserInput
+    accounts?: user_accountUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type userCreateOrConnectWithoutNotificationsInput = {
+    where: userWhereUniqueInput
+    create: XOR<userCreateWithoutNotificationsInput, userUncheckedCreateWithoutNotificationsInput>
+  }
+
+  export type userUpsertWithoutNotificationsInput = {
+    update: XOR<userUpdateWithoutNotificationsInput, userUncheckedUpdateWithoutNotificationsInput>
+    create: XOR<userCreateWithoutNotificationsInput, userUncheckedCreateWithoutNotificationsInput>
+    where?: userWhereInput
+  }
+
+  export type userUpdateToOneWithWhereWithoutNotificationsInput = {
+    where?: userWhereInput
+    data: XOR<userUpdateWithoutNotificationsInput, userUncheckedUpdateWithoutNotificationsInput>
+  }
+
+  export type userUpdateWithoutNotificationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    phone_number?: StringFieldUpdateOperationsInput | string
+    referral_code?: StringFieldUpdateOperationsInput | string
+    referral_user_id?: NullableStringFieldUpdateOperationsInput | string | null
+    national_code?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    userRoles?: user_roleUpdateManyWithoutUserNestedInput
+    loginTransactions?: login_transactionUpdateManyWithoutUserNestedInput
+    courses?: courseUpdateManyWithoutTeacherNestedInput
+    courseRates?: course_rateUpdateManyWithoutUserNestedInput
+    courseFavorites?: course_favoriteUpdateManyWithoutUserNestedInput
+    courseComments?: course_commentUpdateManyWithoutUserNestedInput
+    comments?: news_commentUpdateManyWithoutUserNestedInput
+    favoriteNews?: news_favoriteUpdateManyWithoutUserNestedInput
+    news_likes?: news_likeUpdateManyWithoutUserNestedInput
+    news_dislikes?: news_dislikeUpdateManyWithoutUserNestedInput
+    likedComments?: news_comment_likeUpdateManyWithoutUserNestedInput
+    dislikedComments?: news_comment_dislikeUpdateManyWithoutUserNestedInput
+    twoFactorAuth?: two_factor_authUpdateOneWithoutUserNestedInput
+    accounts?: user_accountUpdateManyWithoutUserNestedInput
+  }
+
+  export type userUncheckedUpdateWithoutNotificationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    phone_number?: StringFieldUpdateOperationsInput | string
+    referral_code?: StringFieldUpdateOperationsInput | string
+    referral_user_id?: NullableStringFieldUpdateOperationsInput | string | null
+    national_code?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    userRoles?: user_roleUncheckedUpdateManyWithoutUserNestedInput
+    loginTransactions?: login_transactionUncheckedUpdateManyWithoutUserNestedInput
+    courses?: courseUncheckedUpdateManyWithoutTeacherNestedInput
+    courseRates?: course_rateUncheckedUpdateManyWithoutUserNestedInput
+    courseFavorites?: course_favoriteUncheckedUpdateManyWithoutUserNestedInput
+    courseComments?: course_commentUncheckedUpdateManyWithoutUserNestedInput
+    comments?: news_commentUncheckedUpdateManyWithoutUserNestedInput
+    favoriteNews?: news_favoriteUncheckedUpdateManyWithoutUserNestedInput
+    news_likes?: news_likeUncheckedUpdateManyWithoutUserNestedInput
+    news_dislikes?: news_dislikeUncheckedUpdateManyWithoutUserNestedInput
+    likedComments?: news_comment_likeUncheckedUpdateManyWithoutUserNestedInput
+    dislikedComments?: news_comment_dislikeUncheckedUpdateManyWithoutUserNestedInput
+    twoFactorAuth?: two_factor_authUncheckedUpdateOneWithoutUserNestedInput
+    accounts?: user_accountUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type user_roleCreateManyUserInput = {
@@ -35557,6 +40627,23 @@ export namespace Prisma {
   export type news_comment_dislikeCreateManyUserInput = {
     id?: string
     comment_id: string
+  }
+
+  export type notificationCreateManyUserInput = {
+    id?: string
+    title: string
+    message: string
+    type: string
+    is_read?: boolean
+    createdAt?: Date | string
+  }
+
+  export type user_accountCreateManyUserInput = {
+    id?: string
+    provider: string
+    provider_id: string
+    email?: string | null
+    created_at?: Date | string
   }
 
   export type user_roleUpdateWithoutUserInput = {
@@ -35827,6 +40914,57 @@ export namespace Prisma {
   export type news_comment_dislikeUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     comment_id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type notificationUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    is_read?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type notificationUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    is_read?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type notificationUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    is_read?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type user_accountUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    provider_id?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type user_accountUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    provider_id?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type user_accountUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    provider_id?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type user_roleCreateManyRoleInput = {

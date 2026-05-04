@@ -1,100 +1,215 @@
+const { generateReferralCode } = require("../../utils/auth.util");
 const prisma = require("../../utils/client.util");
-const getAllUsers = async (
-  query = null,
-  page = 0,
+const { sanitizeUser } = require("../auth/index.service");
+const { createNotification } = require("../notification/notification.service");
+
+const getAllUsers = async ({
+  query = "",
+  page = 1,
   limit = 10,
   orderBy = "name",
   orderType = "desc",
-) => {
-  const startRecord = page * limit;
-  const endRecord = (page + 1) * limit;
+} = {}) => {
+  const skip = (page - 1) * limit;
 
-  const filterOption = {
-    OR: query
-      ? [
-          { name: { contains: query } },
-          { email: { contains: query } },
-          { phone_number: { contains: query } },
-        ]
-      : undefined,
+  const where = query
+    ? {
+        OR: [
+          { name: { contains: query, mode: "insensitive" } },
+          { email: { contains: query, mode: "insensitive" } },
+          { phone_number: { contains: query, mode: "insensitive" } },
+        ],
+      }
+    : {};
+
+  const [users, total] = await Promise.all([
+    prisma.user.findMany({
+      where,
+      skip,
+      take: Number(limit),
+      orderBy: { [orderBy]: orderType },
+      include: {
+        userRoles: {
+          include: { role: true },
+        },
+      },
+    }),
+    prisma.user.count({ where }),
+  ]);
+
+  return {
+    data: users.map((user) => {
+      return sanitizeUser(user);
+    }),
+    meta: {
+      page: Number(page),
+      limit: Number(limit),
+      total,
+      totalPages: Math.ceil(total / limit),
+    },
   };
-  const users = await prisma.user.findMany({
-    where: filterOption,
-    // omit: { password: true },
-    skip: startRecord,
-    take: endRecord,
-    orderBy: { [orderBy]: orderType },
-  });
-  return users;
 };
-const createUser = async (data) => {
-  const checkUser = await prisma.user.findUnique({
-    where: { email: data.email },
+
+const getUserById = async (userId, shouldExist = true) => {
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    include: {
+      userRoles: {
+        include: { role: true },
+      },
+    },
   });
-  if (checkUser) throw Error("this email exist ");
-  const newUser = await prisma.user.create({ data });
+
+  if (shouldExist && !user) {
+    throw new Error("User not found");
+  }
+
+  if (!shouldExist && user) {
+    throw new Error("User already exists");
+  }
+
+  return sanitizeUser(user);
+};
+
+const createUser = async (data) => {
+  const existingUser = await prisma.user.findFirst({
+    where: {
+      OR: [{ email: data.email }, { phone_number: data.phone_number }],
+    },
+  });
+
+  if (existingUser) {
+    throw new Error("Email or phone already exists");
+  }
+
+  const referral_code = generateReferralCode();
+
+  const newUser = await prisma.user.create({
+    data: { ...data, referral_code },
+  });
+
+  // Notification
+  await createNotification({
+    userId: newUser.id,
+    title: "Welcome",
+    message: "Your account has been created successfully",
+  });
+
   return newUser;
 };
+
 const updateUser = async (userId, data) => {
-  await getUserById(userId);
-  await prisma.user.update({ where: { id: userId }, data });
-};
-const deleteUser = async (userId) => {
-  await getUserById(userId);
-  await prisma.user.delete({ where: { id: userId } });
-};
-const getUserById = async (userId, shouldExist = true) => {
-  const user = await prisma.user.findFirst({
+  const user = await getUserById(userId);
+
+  const updatedUser = await prisma.user.update({
     where: { id: userId },
-    include: { userRoles: { include: { role: true } } },
+    data,
   });
-  if (shouldExist && !user) {
-    throw Error("user could not found");
+
+  // Notification
+  await createNotification({
+    userId,
+    title: "Profile Updated",
+    message: "Your profile information has been updated",
+  });
+
+  return updatedUser;
+};
+
+const deleteUser = async (userId, adminId = null) => {
+  await getUserById(userId);
+
+  await prisma.user.delete({
+    where: { id: userId },
+  });
+
+  // Notification for admin (optional)
+  if (adminId) {
+    await createNotification({
+      userId: adminId,
+      title: "User Deleted",
+      message: `User ${userId} has been deleted`,
+    });
   }
-  if (!shouldExist && user) {
-    throw Error("user exist ");
-  }
-  return user;
+
+  return true;
 };
 
 const loginAs = async (userId) => {
-  await getUserById(userId);
-  return "token";
+  const user = await getUserById(userId);
+
+  // Notification
+  await createNotification({
+    userId,
+    title: "New Login",
+    message: "You logged into your account",
+  });
+
+  // generate JWT
+  return {
+    token: "mock-token",
+    user,
+  };
 };
 
-/// role section
-// const addRole = async (userId, roleId) => {
-//   const checlExistRole = await prisma.user_role.findFirst({
-//     where: { user_id: userId, role_id: roleId },
-//   });
-//   if (checlExistRole) throw Error("user have this role");
-//   await prisma.user_role.create({ data: { user_id: userId, role_id: roleId } });
-// };
-// const deleteRole = async (userId, roleId) => {
-//   const checlExistRole = await prisma.user_role.findFirst({
-//     where: { user_id: userId, role_id: roleId },
-//   });
-//   if (!checlExistRole) throw Error("user have not this role");
-//   await prisma.user_role.delete({ where: { id: checlExistRole.id } });
-// };
-// const getRoleList = async () => {
-//   const list = await prisma.role.findMany();
-//   return list;
-// };
-// const getRoleById = async (roleId) => {
-//   const role = await prisma.role.findFirst({ where: { id: roleId } });
-//   if (!role) throw Error("role could not found");
-//   return role;
-// };
+const addRoleToUser = async (userId, roleId) => {
+  await getUserById(userId);
+
+  const existing = await prisma.user_role.findFirst({
+    where: { user_id: userId, role_id: roleId },
+  });
+
+  if (existing) {
+    throw new Error("User already has this role");
+  }
+
+  const userRole = await prisma.user_role.create({
+    data: {
+      user_id: userId,
+      role_id: roleId,
+    },
+  });
+
+  await createNotification({
+    userId,
+    title: "Role Assigned",
+    message: "A new role has been assigned to your account",
+  });
+
+  return userRole;
+};
+
+const removeRoleFromUser = async (userId, roleId) => {
+  await getUserById(userId);
+
+  const existing = await prisma.user_role.findFirst({
+    where: { user_id: userId, role_id: roleId },
+  });
+
+  if (!existing) {
+    throw new Error("User does not have this role");
+  }
+
+  await prisma.user_role.delete({
+    where: { id: existing.id },
+  });
+
+  await createNotification({
+    userId,
+    title: "Role Removed",
+    message: "A role has been removed from your account",
+  });
+
+  return true;
+};
+
 module.exports = {
   getAllUsers,
-  loginAs,
+  getUserById,
   createUser,
   updateUser,
   deleteUser,
-  getUserById,
-  // getRoleById,
-  // getRoleList,
-  // addRole,
-  // deleteRole,
+  loginAs,
+  addRoleToUser,
+  removeRoleFromUser,
 };

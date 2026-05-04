@@ -1,7 +1,4 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
+// schema.prisma — simplified 2FA (email OTP only, no TOTP/QR)
 
 generator client {
   provider = "prisma-client-js"
@@ -13,15 +10,16 @@ datasource db {
 }
 
 model user {
-  id                String                 @id @default(uuid())
-  name              String
-  email             String                 @unique
-  password          String
-  phone_number      String
-  referral_code     String                 @unique
-  referral_user_id  String?
-  national_code     String?
-  location          String?
+  id               String  @id @default(uuid())
+  name             String
+  email            String  @unique
+  password         String
+  phone_number     String
+  referral_code    String  @unique
+  referral_user_id String?
+  national_code    String?
+  location         String?
+
   userRoles         user_role[]
   loginTransactions login_transaction[]
   courses           course[]
@@ -34,6 +32,36 @@ model user {
   news_dislikes     news_dislike[]
   likedComments     news_comment_like[]    @relation("UserLikedComments")
   dislikedComments  news_comment_dislike[] @relation("UserDislikedComments")
+  notifications     notification[]
+  twoFactorAuth     two_factor_auth?
+  accounts          user_account[]
+}
+
+model two_factor_auth {
+  id         String  @id @default(uuid())
+  user_id    String  @unique
+  is_enabled Boolean @default(false)
+
+  otp            String?
+  otp_expires_at DateTime?
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  user user @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+model user_account {
+  id          String   @id @default(uuid())
+  user_id     String
+  provider    String
+  provider_id String
+  email       String?
+  created_at  DateTime @default(now())
+
+  user user @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@unique([provider, provider_id])
 }
 
 model user_role {
@@ -42,8 +70,9 @@ model user_role {
   role_id    String
   isActive   Boolean  @default(true)
   created_at DateTime @default(now())
-  role       role     @relation(fields: [role_id], references: [id], onDelete: NoAction)
-  user       user     @relation(fields: [user_id], references: [id], onDelete: NoAction)
+
+  role role @relation(fields: [role_id], references: [id], onDelete: NoAction)
+  user user @relation(fields: [user_id], references: [id], onDelete: NoAction)
 }
 
 model role {
@@ -61,27 +90,27 @@ model login_transaction {
 }
 
 model course {
-  id    String @id @default(uuid())
-  title String
-
+  id                 String   @id @default(uuid())
+  title              String
   description        String
   mini_description   String
-  isActive           Boolean           @default(false)
+  isActive           Boolean  @default(false)
   picture            String
   price              Decimal
-  discount           Decimal           @default(0)
+  discount           Decimal  @default(0)
   google_title       String
   google_description String
   created_by         String
   type_id            String
-  type               course_type       @relation(fields: [type_id], references: [id], onDelete: NoAction)
-  created_at         DateTime          @default(now())
-  teacher            user              @relation(fields: [created_by], references: [id])
-  courseRates        course_rate[]
-  courseFavorites    course_favorite[]
-  courseSessions     course_session[]
-  courseCategories   course_category[]
-  courseComments     course_comment[]
+  created_at         DateTime @default(now())
+
+  type             course_type       @relation(fields: [type_id], references: [id], onDelete: NoAction)
+  teacher          user              @relation(fields: [created_by], references: [id])
+  courseRates      course_rate[]
+  courseFavorites  course_favorite[]
+  courseSessions   course_session[]
+  courseCategories course_category[]
+  courseComments   course_comment[]
 }
 
 model course_rate {
@@ -102,13 +131,14 @@ model course_favorite {
 }
 
 model course_comment {
-  id             String           @id @default(uuid())
-  title          String
-  text           String
-  user_id        String
-  isActive       Boolean          @default(false)
-  parent_id      String?
-  course_id      String
+  id        String  @id @default(uuid())
+  title     String
+  text      String
+  user_id   String
+  isActive  Boolean @default(false)
+  parent_id String?
+  course_id String
+
   parent         course_comment?  @relation(fields: [parent_id], references: [id], name: "course_comment_children", onDelete: Cascade)
   user           user             @relation(fields: [user_id], references: [id])
   courseComments course_comment[] @relation(name: "course_comment_children")
@@ -169,21 +199,22 @@ model news {
 }
 
 model news_comment {
-  id        String                 @id @default(uuid())
+  id        String   @id @default(uuid())
   title     String
   content   String
   rate      Int
   user_id   String
   news_id   Int
   parent_id String?
-  isActive  Boolean                @default(true)
-  createdAt DateTime               @default(now())
-  parent    news_comment?          @relation("news_comment_parent", fields: [parent_id], references: [id], onDelete: Cascade)
-  replies   news_comment[]         @relation("news_comment_parent")
-  user      user                   @relation(fields: [user_id], references: [id])
-  news      news                   @relation(fields: [news_id], references: [id])
-  likes     news_comment_like[]
-  dislikes  news_comment_dislike[]
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  parent   news_comment?          @relation("news_comment_parent", fields: [parent_id], references: [id], onDelete: Cascade)
+  replies  news_comment[]         @relation("news_comment_parent")
+  user     user                   @relation(fields: [user_id], references: [id])
+  news     news                   @relation(fields: [news_id], references: [id])
+  likes    news_comment_like[]
+  dislikes news_comment_dislike[]
 }
 
 model news_comment_like {
@@ -224,4 +255,15 @@ model news_dislike {
   news_id Int
   user    user   @relation(fields: [user_id], references: [id])
   news    news   @relation(fields: [news_id], references: [id])
+}
+
+model notification {
+  id        String   @id @default(uuid())
+  user_id   String
+  title     String
+  message   String
+  type      String
+  is_read   Boolean  @default(false)
+  createdAt DateTime @default(now())
+  user      user     @relation(fields: [user_id], references: [id])
 }
