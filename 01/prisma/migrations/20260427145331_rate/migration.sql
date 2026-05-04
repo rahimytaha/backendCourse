@@ -6,7 +6,7 @@ CREATE TABLE "user" (
     "password" TEXT NOT NULL,
     "phone_number" TEXT NOT NULL,
     "referral_code" TEXT NOT NULL,
-    "referral_user_id" TEXT NOT NULL,
+    "referral_user_id" TEXT,
     "national_code" TEXT,
     "location" TEXT,
 
@@ -146,7 +146,7 @@ CREATE TABLE "course_order" (
 );
 
 -- CreateTable
-CREATE TABLE "News" (
+CREATE TABLE "news" (
     "id" SERIAL NOT NULL,
     "title" TEXT NOT NULL,
     "content" TEXT NOT NULL,
@@ -155,7 +155,67 @@ CREATE TABLE "News" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "News_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "news_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "news_comment" (
+    "id" TEXT NOT NULL,
+    "title" TEXT NOT NULL,
+    "content" TEXT NOT NULL,
+    "rate" INTEGER NOT NULL,
+    "user_id" TEXT NOT NULL,
+    "news_id" INTEGER NOT NULL,
+    "parent_id" TEXT,
+    "isActive" BOOLEAN NOT NULL DEFAULT true,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "news_comment_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "news_comment_like" (
+    "id" TEXT NOT NULL,
+    "user_id" TEXT NOT NULL,
+    "comment_id" TEXT NOT NULL,
+
+    CONSTRAINT "news_comment_like_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "news_comment_dislike" (
+    "id" TEXT NOT NULL,
+    "user_id" TEXT NOT NULL,
+    "comment_id" TEXT NOT NULL,
+
+    CONSTRAINT "news_comment_dislike_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "news_favorite" (
+    "id" TEXT NOT NULL,
+    "user_id" TEXT NOT NULL,
+    "news_id" INTEGER NOT NULL,
+
+    CONSTRAINT "news_favorite_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "news_like" (
+    "id" TEXT NOT NULL,
+    "user_id" TEXT NOT NULL,
+    "news_id" INTEGER NOT NULL,
+
+    CONSTRAINT "news_like_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "news_dislike" (
+    "id" TEXT NOT NULL,
+    "user_id" TEXT NOT NULL,
+    "news_id" INTEGER NOT NULL,
+
+    CONSTRAINT "news_dislike_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
@@ -208,3 +268,42 @@ ALTER TABLE "course_category" ADD CONSTRAINT "course_category_category_id_fkey" 
 
 -- AddForeignKey
 ALTER TABLE "course_category" ADD CONSTRAINT "course_category_course_id_fkey" FOREIGN KEY ("course_id") REFERENCES "course"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "news_comment" ADD CONSTRAINT "news_comment_parent_id_fkey" FOREIGN KEY ("parent_id") REFERENCES "news_comment"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "news_comment" ADD CONSTRAINT "news_comment_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "news_comment" ADD CONSTRAINT "news_comment_news_id_fkey" FOREIGN KEY ("news_id") REFERENCES "news"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "news_comment_like" ADD CONSTRAINT "news_comment_like_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "news_comment_like" ADD CONSTRAINT "news_comment_like_comment_id_fkey" FOREIGN KEY ("comment_id") REFERENCES "news_comment"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "news_comment_dislike" ADD CONSTRAINT "news_comment_dislike_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "news_comment_dislike" ADD CONSTRAINT "news_comment_dislike_comment_id_fkey" FOREIGN KEY ("comment_id") REFERENCES "news_comment"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "news_favorite" ADD CONSTRAINT "news_favorite_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "news_favorite" ADD CONSTRAINT "news_favorite_news_id_fkey" FOREIGN KEY ("news_id") REFERENCES "news"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "news_like" ADD CONSTRAINT "news_like_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "news_like" ADD CONSTRAINT "news_like_news_id_fkey" FOREIGN KEY ("news_id") REFERENCES "news"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "news_dislike" ADD CONSTRAINT "news_dislike_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "news_dislike" ADD CONSTRAINT "news_dislike_news_id_fkey" FOREIGN KEY ("news_id") REFERENCES "news"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

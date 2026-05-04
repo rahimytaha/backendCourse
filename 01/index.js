@@ -59,6 +59,11 @@ const { courseFavoriteRoute } = require("./routes/courses/favorite.route");
 const { courseRateRoute } = require("./routes/courses/rate.route");
 const { courseSessionRoute } = require("./routes/courses/session.route");
 const { courseTypeRoute } = require("./routes/courses/type.route");
+const winston = require('winston');
+const newsReactionRouter = require('./routes/news/news-reaction.route');
+const commentReactionRouter = require('./routes/news/comment-reaction.route');
+const newsFavoriteRouter = require('./routes/news/favorite.route');
+const newsCommentRouter = require('./routes/news/comment.route');
 
 app.use("/public", express.static("public"));
 
@@ -72,6 +77,10 @@ app.use("/courseRate", courseRateRoute);
 app.use("/courseSession", courseSessionRoute);
 app.use("/courseType", courseTypeRoute);
 app.use("/news", newsRouter);
+app.use("/news/reaction", newsReactionRouter)
+app.use("/news/favorite", newsFavoriteRouter)
+app.use("/news/comments", newsCommentRouter)
+app.use("/news/comments/reaction", commentReactionRouter)
 
 app.get("/", (req, res, next) => {
   res.send("test");
