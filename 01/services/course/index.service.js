@@ -1,9 +1,27 @@
 const prisma = require("../../utils/client.util");
 
-const createCourse = async (data) => {
-  const newCourse = await prisma.course.create({ data });
+const createCourse = async (data, user_id) => {
+  const typeExists = await prisma.course_type.findUnique({
+    where: { id: data.type_id },
+  });
+
+  if (!typeExists) {
+    throw new Error("Invalid course type");
+  }
+
+  const { type_id, ...restData } = data;
+
+  const newCourse = await prisma.course.create({
+    data: {
+      ...restData,
+      isActive: Boolean(data.isActive),
+      type: { connect: { id: type_id } },
+      teacher: { connect: { id: user_id } },
+    },
+  });
   return newCourse;
 };
+
 const allCourses = async (
   page = 0,
   perPage = 10,
@@ -20,36 +38,56 @@ const allCourses = async (
   categoryRequirment = 0,
 ) => {
   const skip = page * perPage;
-  const limit = (page + 1) * perPage;
+  const take = Number(perPage);
+
   const data = await prisma.course.findMany({
     where: {
-      price: { gte: minPrice, lte: maxPrice },
-      type_id: typeId,
-      isActive,
-      OR: [
-        { title: { contains: query } },
-        { mini_description: { contains: query } },
-      ],
+      ...(minPrice || maxPrice
+        ? {
+            price: {
+              ...(minPrice && { gte: minPrice }),
+              ...(maxPrice && { lte: maxPrice }),
+            },
+          }
+        : {}),
+      ...(typeId && { type_id: typeId }),
+      ...(typeof isActive === "boolean" && { isActive }),
+      ...(query && {
+        OR: [
+          { title: { contains: query, mode: "insensitive" } },
+          { mini_description: { contains: query, mode: "insensitive" } },
+        ],
+      }),
     },
     skip,
-    take: limit,
+    take,
     orderBy: { [orderBy]: orderType },
   });
+
+  return data;
 };
-const detailCourse = async (id,isActive) => {
-  const course = await prisma.course.findFirst({ where: { id } });
-  if (!course) new Error({ status: 404, message: "course not found" });
+
+const detailCourse = async (id, isActive) => {
+  const where = { id };
+  if (typeof isActive === "boolean") where.isActive = isActive;
+  const course = await prisma.course.findFirst({ where });
+  if (!course) {
+    throw new Error("course not found");
+  }
   return course;
 };
+
 const updateCourse = async (id, data) => {
   await detailCourse(id);
   const course = await prisma.course.update({ where: { id }, data });
   return course;
 };
+
 const deleteCourse = async (id) => {
   await detailCourse(id);
   await prisma.course.delete({ where: { id } });
 };
+
 module.exports = {
   deleteCourse,
   updateCourse,

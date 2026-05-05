@@ -286,7 +286,7 @@ courseRouter.get(
  *         name: page
  *         schema:
  *           type: integer
- *           default: 0
+ *           default: 1
  *       - in: query
  *         name: perPage
  *         schema:
@@ -416,6 +416,7 @@ courseRouter.get(
  *           schema:
  *             type: object
  *             required:
+ *               - title
  *               - description
  *               - mini_description
  *               - picture
@@ -425,6 +426,8 @@ courseRouter.get(
  *               - price
  *               - discount
  *             properties:
+ *               title:
+ *                 type: string
  *               description:
  *                 type: string
  *               mini_description:
@@ -461,6 +464,7 @@ courseRouter.post(
   "/admin",
   validAuth,
   authorizePermissions(["course:create"]),
+  validator.body("title").escape().notEmpty().isString(),
   validator.body("description").escape().notEmpty().isString(),
   validator.body("mini_description").escape().notEmpty().isString(),
   validator.body("picture").escape().notEmpty().isString(),
@@ -476,7 +480,7 @@ courseRouter.post(
     logger.info(
       `Admin creating new course with data: ${JSON.stringify(req.body)}`,
     );
-    const newCourse = await courseService.createCourse(data);
+    const newCourse = await courseService.createCourse(data, req.user.id);
     res.send(newCourse);
   }),
 );
@@ -603,7 +607,9 @@ courseRouter.patch(
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
     const { id, status } = req.params;
-    logger.info(`Updating course status for course with id: ${req.params.id}, new status: ${req.params.status}`);
+    logger.info(
+      `Updating course status for course with id: ${req.params.id}, new status: ${req.params.status}`,
+    );
     const course = await courseService.updateCourse(id, { isActive: status });
     res.send(course);
   }),
@@ -686,7 +692,9 @@ courseRouter.put(
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
     const { id } = req.params;
-    logger.info(`Updating course with id: ${req.params.id}, new data: ${JSON.stringify(req.body)}`);
+    logger.info(
+      `Updating course with id: ${req.params.id}, new data: ${JSON.stringify(req.body)}`,
+    );
     const data = req.body;
     const course = await courseService.updateCourse(id, data);
     res.send(course);

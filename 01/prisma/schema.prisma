@@ -37,6 +37,12 @@ model user {
   accounts          user_account[]
   tickets           ticket[]
   ticketMessages    ticket_message[]
+
+  wallet               wallet?
+  orders               order[]
+  invoices             invoice[]
+  user_courses         user_course[]
+  schedule_enrollments schedule_enrollment[]
 }
 
 model two_factor_auth {
@@ -113,6 +119,11 @@ model course {
   courseSessions   course_session[]
   courseCategories course_category[]
   courseComments   course_comment[]
+
+  package_courses package_course[]
+  schedules       course_schedule[]
+  user_courses    user_course[]
+  order_items     order_item[]
 }
 
 model course_rate {
@@ -154,6 +165,8 @@ model course_session {
   file      String?
   course_id String
   course    course  @relation(fields: [course_id], references: [id])
+
+  progress course_progress[]
 }
 
 model course_type {
@@ -178,10 +191,6 @@ model course_category {
   course      course   @relation(fields: [course_id], references: [id])
 }
 
-model order {
-  id String @id @default(uuid())
-}
-
 model course_order {
   id String @id @default(uuid())
 }
@@ -198,6 +207,7 @@ model news {
   favorites     news_favorite[]
   news_likes    news_like[]
   news_dislikes news_dislike[]
+  attachments news_attachment[]
 }
 
 model news_comment {
@@ -308,4 +318,145 @@ enum ticket_priority {
   medium
   high
   urgent
+}
+
+model wallet {
+  id           String               @id @default(uuid())
+  user_id      String               @unique
+  balance      Decimal              @default(0)
+  created_at   DateTime             @default(now())
+  updated_at   DateTime             @updatedAt
+  user         user                 @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  transactions wallet_transaction[]
+}
+
+model wallet_transaction {
+  id         String   @id @default(uuid())
+  wallet_id  String
+  type       String // deposit | payment | refund
+  amount     Decimal
+  reference  String?
+  created_at DateTime @default(now())
+  wallet     wallet   @relation(fields: [wallet_id], references: [id], onDelete: Cascade)
+}
+
+model course_package {
+  id          String           @id @default(uuid())
+  title       String
+  price       Decimal
+  discount    Decimal          @default(0)
+  is_active   Boolean          @default(true)
+  created_at  DateTime         @default(now())
+  items       package_course[]
+  order_items order_item[]
+}
+
+model package_course {
+  id         String         @id @default(uuid())
+  package_id String
+  course_id  String
+  package    course_package @relation(fields: [package_id], references: [id], onDelete: Cascade)
+  course     course         @relation(fields: [course_id], references: [id], onDelete: Cascade)
+
+  @@unique([package_id, course_id])
+}
+
+model order {
+  id             String       @id @default(uuid())
+  user_id        String
+  status         String       @default("pending")
+  total          Decimal
+  payment_method String       @default("wallet")
+  payment_ref    String?
+  created_at     DateTime     @default(now())
+  updated_at     DateTime     @updatedAt
+  user           user         @relation(fields: [user_id], references: [id])
+  items          order_item[]
+  invoice        invoice?
+}
+
+model order_item {
+  id         String          @id @default(uuid())
+  order_id   String
+  course_id  String?
+  package_id String?
+  unit_price Decimal
+  quantity   Int             @default(1)
+  order      order           @relation(fields: [order_id], references: [id], onDelete: Cascade)
+  course     course?         @relation(fields: [course_id], references: [id])
+  package    course_package? @relation(fields: [package_id], references: [id])
+}
+
+model invoice {
+  id         String    @id @default(uuid())
+  order_id   String    @unique
+  user_id    String
+  amount     Decimal
+  status     String    @default("unpaid")
+  paid_at    DateTime?
+  created_at DateTime  @default(now())
+  order      order     @relation(fields: [order_id], references: [id])
+  user       user      @relation(fields: [user_id], references: [id])
+}
+
+model course_schedule {
+  id          String                @id @default(uuid())
+  course_id   String
+  title       String?
+  starts_at   DateTime
+  ends_at     DateTime
+  capacity    Int?
+  type        String                @default("live")
+  location    String?
+  created_at  DateTime              @default(now())
+  course      course                @relation(fields: [course_id], references: [id], onDelete: Cascade)
+  enrollments schedule_enrollment[]
+}
+
+model schedule_enrollment {
+  id          String          @id @default(uuid())
+  user_id     String
+  schedule_id String
+  status      String          @default("enrolled")
+  enrolled_at DateTime        @default(now())
+  user        user            @relation(fields: [user_id], references: [id])
+  schedule    course_schedule @relation(fields: [schedule_id], references: [id], onDelete: Cascade)
+
+  @@unique([user_id, schedule_id])
+}
+
+model user_course {
+  id         String            @id @default(uuid())
+  user_id    String
+  course_id  String
+  order_id   String?
+  created_at DateTime          @default(now())
+  user       user              @relation(fields: [user_id], references: [id])
+  course     course            @relation(fields: [course_id], references: [id])
+  progress   course_progress[]
+
+  @@unique([user_id, course_id])
+}
+
+model course_progress {
+  id             String         @id @default(uuid())
+  user_course_id String
+  session_id     String
+  completed_at   DateTime?
+  user_course    user_course    @relation(fields: [user_course_id], references: [id], onDelete: Cascade)
+  session        course_session @relation(fields: [session_id], references: [id])
+
+  @@unique([user_course_id, session_id])
+}
+
+model news_attachment {
+  id         String   @id @default(uuid())
+  news_id    Int
+  filename   String
+  path       String
+  mimetype   String
+  size       Int
+  created_at DateTime @default(now())
+
+  news news @relation(fields: [news_id], references: [id], onDelete: Cascade)
 }

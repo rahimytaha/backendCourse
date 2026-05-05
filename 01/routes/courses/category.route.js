@@ -32,7 +32,6 @@ const { validAuth, authorizePermissions } = require("../../utils/auth.util");
  *             properties:
  *               title:
  *                 type: string
- *                 description: Category title
  *     responses:
  *       401:
  *         $ref: '#/components/responses/401Err'
@@ -40,16 +39,6 @@ const { validAuth, authorizePermissions } = require("../../utils/auth.util");
  *         $ref: '#/components/responses/403Err'
  *       200:
  *         description: Created category
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 id:
- *                   type: string
- *                   format: uuid
- *                 title:
- *                   type: string
  */
 courseCategoryRouter.post(
   "/",
@@ -58,13 +47,8 @@ courseCategoryRouter.post(
   validation.body("title").notEmpty().escape(),
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
-    const newCategory = await courseCategoryService.addCategory(
-      req.body.title,
-      undefined,
-    );
-    logger.info(
-      `Creating a category by userId xx and category id ${newCategory.id}`,
-    );
+    const newCategory = await courseCategoryService.addCategory(req.body.title, undefined);
+    logger.info(`Creating a category with id ${newCategory.id}`);
     res.send(newCategory);
   }),
 );
@@ -78,24 +62,10 @@ courseCategoryRouter.post(
  *     responses:
  *       200:
  *         description: List of categories
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 type: object
- *                 properties:
- *                   id:
- *                     type: string
- *                     format: uuid
- *                   title:
- *                     type: string
  */
 courseCategoryRouter.get(
   "/",
   catchAsysnc(async (req, res) => {
-    errorResponseValidation(req, res);
-
     const data = await courseCategoryService.listCategory();
     logger.info(`Fetching course category list`);
     res.send(data);
@@ -106,7 +76,7 @@ courseCategoryRouter.get(
  * @swagger
  * /courseCategory/{catId}/{courseId}:
  *   patch:
- *     summary: Add a course to a category (many-to-many relation)
+ *     summary: Add a course to a category
  *     tags: [Course Categories]
  *     security:
  *       - bearerAuth: []
@@ -117,26 +87,15 @@ courseCategoryRouter.get(
  *         schema:
  *           type: string
  *           format: uuid
- *         description: Category ID
  *       - in: path
  *         name: courseId
  *         required: true
  *         schema:
  *           type: string
  *           format: uuid
- *         description: Course ID
  *     responses:
- *       401:
- *         $ref: '#/components/responses/401Err'
- *       403:
- *         $ref: '#/components/responses/403Err'
  *       200:
  *         description: Operation successful
- *         content:
- *           application/json:
- *             schema:
- *               type: boolean
- *               example: true
  */
 courseCategoryRouter.patch(
   "/:catId/:courseId",
@@ -146,12 +105,9 @@ courseCategoryRouter.patch(
   validation.param("courseId").notEmpty().escape().isUUID(),
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
-
     const { catId, courseId } = req.params;
     await courseCategoryService.addCourseCategory(catId, courseId);
-    await logger.info(
-      `Adding course id ${courseId} to category with id ${catId}`,
-    );
+    logger.info(`Adding course ${courseId} to category ${catId}`);
     res.send(true);
   }),
 );
@@ -160,7 +116,7 @@ courseCategoryRouter.patch(
  * @swagger
  * /courseCategory/course/{courseCatId}:
  *   delete:
- *     summary: Remove a course from a category (delete many-to-many relation)
+ *     summary: Remove a course from a category
  *     tags: [Course Categories]
  *     security:
  *       - bearerAuth: []
@@ -171,19 +127,9 @@ courseCategoryRouter.patch(
  *         schema:
  *           type: string
  *           format: uuid
- *         description: ID of the course-category junction record
  *     responses:
- *       401:
- *         $ref: '#/components/responses/401Err'
- *       403:
- *         $ref: '#/components/responses/403Err'
  *       200:
  *         description: Deletion successful
- *         content:
- *           application/json:
- *             schema:
- *               type: boolean
- *               example: true
  */
 courseCategoryRouter.delete(
   "/course/:courseCatId",
@@ -194,9 +140,7 @@ courseCategoryRouter.delete(
     errorResponseValidation(req, res);
     const { courseCatId } = req.params;
     await courseCategoryService.deleteCourseCategory(courseCatId);
-    await logger.info(
-      `deleting course category (manyToMany) with id ${courseCatId} by user id xx`,
-    );
+    logger.info(`Deleting course-category relation with id ${courseCatId}`);
     res.send(true);
   }),
 );
@@ -216,19 +160,9 @@ courseCategoryRouter.delete(
  *         schema:
  *           type: string
  *           format: uuid
- *         description: Category ID
  *     responses:
- *       401:
- *         $ref: '#/components/responses/401Err'
- *       403:
- *         $ref: '#/components/responses/403Err'
  *       200:
  *         description: Deletion successful
- *         content:
- *           application/json:
- *             schema:
- *               type: boolean
- *               example: true
  */
 courseCategoryRouter.delete(
   "/:catId",
@@ -239,9 +173,7 @@ courseCategoryRouter.delete(
     errorResponseValidation(req, res);
     const { catId } = req.params;
     await courseCategoryService.deleteCategory(catId);
-    await logger.info(
-      `deleting course category with id ${catId} by user id xx`,
-    );
+    logger.info(`Deleting course category with id ${catId}`);
     res.send(true);
   }),
 );
@@ -250,7 +182,7 @@ courseCategoryRouter.delete(
  * @swagger
  * /courseCategory/{catId}:
  *   put:
- *     summary: Fully update a course category
+ *     summary: Update a course category
  *     tags: [Course Categories]
  *     security:
  *       - bearerAuth: []
@@ -261,7 +193,6 @@ courseCategoryRouter.delete(
  *         schema:
  *           type: string
  *           format: uuid
- *         description: Category ID
  *     requestBody:
  *       required: true
  *       content:
@@ -273,31 +204,22 @@ courseCategoryRouter.delete(
  *             properties:
  *               title:
  *                 type: string
- *                 description: New category title
  *     responses:
- *       401:
- *         $ref: '#/components/responses/401Err'
- *       403:
- *         $ref: '#/components/responses/403Err'
  *       200:
  *         description: Update successful
- *         content:
- *           application/json:
- *             schema:
- *               type: boolean
- *               example: true
  */
 courseCategoryRouter.put(
   "/:catId",
   validAuth,
   authorizePermissions(["courseCategory:update"]),
   validation.param("catId").notEmpty().escape().isUUID(),
+  validation.body("title").notEmpty().escape(),
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
     const { catId } = req.params;
     const { title } = req.body;
     await courseCategoryService.updateCategory(catId, title, undefined);
-    await logger.info(`update course category with id ${catId} by user id xx`);
+    logger.info(`Updating course category with id ${catId}`);
     res.send(true);
   }),
 );
@@ -315,24 +237,9 @@ courseCategoryRouter.put(
  *         schema:
  *           type: string
  *           format: uuid
- *         description: Category ID
  *     responses:
- *       401:
- *         $ref: '#/components/responses/401Err'
- *       403:
- *         $ref: '#/components/responses/403Err'
  *       200:
  *         description: Category details
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 id:
- *                   type: string
- *                   format: uuid
- *                 title:
- *                   type: string
  */
 courseCategoryRouter.get(
   "/:catId",
@@ -340,9 +247,9 @@ courseCategoryRouter.get(
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
     const { catId } = req.params;
-    await courseCategoryService.detailCategory(catId);
-    await logger.info(`get course category with id ${catId} by user id xx`);
-    res.send(true);
+    const data = await courseCategoryService.detailCategory(catId);
+    logger.info(`Fetching course category with id ${catId}`);
+    res.send(data);
   }),
 );
 

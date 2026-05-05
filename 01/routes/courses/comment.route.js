@@ -46,16 +46,8 @@ const { validAuth, authorizePermissions } = require("../../utils/auth.util");
  *               text:
  *                 type: string
  *     responses:
- *       401:
- *         $ref: '#/components/responses/401Err'
- *       403:
- *         $ref: '#/components/responses/403Err'
  *       200:
  *         description: Created comment
- *         content:
- *           application/json:
- *             schema:
- *               type: object
  */
 courseCommmentRouter.post(
   "/",
@@ -63,18 +55,12 @@ courseCommmentRouter.post(
   authorizePermissions(["courseComment:create"]),
   validator.body("title").notEmpty().escape().isString(),
   validator.body("text").notEmpty().escape().isString(),
-  validator.body("course_id").notEmpty().escape().isString(),
+  validator.body("course_id").notEmpty().escape().isUUID(),
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
     const userId = req.user.id;
-    const newComment = await courseCommentService.createComment(
-      req.body,
-      undefined,
-      userId,
-    );
-    logger.info(
-      `Adding a course comment with id ${newComment.id} by user with id ${userId}`,
-    );
+    const newComment = await courseCommentService.createComment(req.body, undefined, userId);
+    logger.info(`Adding a course comment with id ${newComment.id} by user ${userId}`);
     res.send(newComment);
   }),
 );
@@ -94,7 +80,6 @@ courseCommmentRouter.post(
  *         schema:
  *           type: string
  *           format: uuid
- *         description: Parent comment ID
  *     requestBody:
  *       required: true
  *       content:
@@ -104,22 +89,17 @@ courseCommmentRouter.post(
  *             required:
  *               - title
  *               - text
+ *               - course_id
  *             properties:
  *               title:
  *                 type: string
  *               text:
  *                 type: string
+ *               course_id:
+ *                 type: string
  *     responses:
- *       401:
- *         $ref: '#/components/responses/401Err'
- *       403:
- *         $ref: '#/components/responses/403Err'
  *       200:
  *         description: Created reply comment
- *         content:
- *           application/json:
- *             schema:
- *               type: object
  */
 courseCommmentRouter.post(
   "/child/:parentId",
@@ -127,20 +107,14 @@ courseCommmentRouter.post(
   authorizePermissions(["courseComment:create"]),
   validator.body("title").notEmpty().escape().isString(),
   validator.body("text").notEmpty().escape().isString(),
+  validator.body("course_id").notEmpty().escape().isUUID(),
   validator.param("parentId").notEmpty().escape().isUUID(),
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
     const userId = req.user.id;
     const parentId = req.params.parentId;
-    // توجه: احتمالاً باید parentId را به سرویس ارسال کنید، کد قبلی userId را به اشتباه به عنوان parentId فرستاده بود
-    const newComment = await courseCommentService.createComment(
-      req.body,
-      parentId,   // اصلاح ارسال parentId
-      userId,
-    );
-    logger.info(
-      `Adding a course comment reply with id ${newComment.id} by user with id ${userId}`,
-    );
+    const newComment = await courseCommentService.createComment(req.body, parentId, userId);
+    logger.info(`Adding a course comment reply with id ${newComment.id} by user ${userId}`);
     res.send(newComment);
   }),
 );
@@ -149,7 +123,7 @@ courseCommmentRouter.post(
  * @swagger
  * /courseComment/{id}:
  *   delete:
- *     summary: Delete a course comment by ID (owner or admin)
+ *     summary: Delete a course comment by ID
  *     tags: [Course Comments]
  *     security:
  *       - bearerAuth: []
@@ -160,18 +134,9 @@ courseCommmentRouter.post(
  *         schema:
  *           type: string
  *           format: uuid
- *         description: Comment ID
  *     responses:
- *       401:
- *         $ref: '#/components/responses/401Err'
- *       403:
- *         $ref: '#/components/responses/403Err'
  *       200:
- *         description: Deleted comment data
- *         content:
- *           application/json:
- *             schema:
- *               type: object
+ *         description: Deleted
  */
 courseCommmentRouter.delete(
   "/:id",
@@ -181,11 +146,9 @@ courseCommmentRouter.delete(
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
     const { id } = req.params;
-    const data = await courseCommentService.deleteComment(id, req.user.id);
-    logger.info(
-      `Deleting a course comment with id ${id} by user with id ${req.user.id}`,
-    );
-    res.send(data);
+    await courseCommentService.deleteComment(id);
+    logger.info(`Deleting a course comment with id ${id} by user ${req.user.id}`);
+    res.send(true);
   }),
 );
 
@@ -207,12 +170,11 @@ courseCommmentRouter.delete(
  *         name: perPage
  *         schema:
  *           type: integer
- *           default: 1
+ *           default: 10
  *       - in: query
  *         name: query
  *         schema:
  *           type: string
- *           default: ""
  *       - in: query
  *         name: orderBy
  *         schema:
@@ -223,26 +185,16 @@ courseCommmentRouter.delete(
  *           type: string
  *       - in: query
  *         name: isActive
- *         required: true
  *         schema:
  *           type: boolean
  *       - in: query
  *         name: courseId
- *         required: true
  *         schema:
  *           type: string
  *           format: uuid
  *     responses:
- *       401:
- *         $ref: '#/components/responses/401Err'
- *       403:
- *         $ref: '#/components/responses/403Err'
  *       200:
  *         description: List of comments
- *         content:
- *           application/json:
- *             schema:
- *               type: object
  */
 courseCommmentRouter.get(
   "/",
@@ -253,21 +205,12 @@ courseCommmentRouter.get(
   queryChain(),
   orderByChain(),
   orderTypeChain(),
-  validator.query("isActive").notEmpty().escape().toBoolean(),
-  validator.query("courseId").notEmpty().escape().isUUID(),
+  validator.query("isActive").optional().toBoolean(),
+  validator.query("courseId").optional().escape().isUUID(),
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
-    const { page, perPage, query, orderBy, orderType, isActive, courseId } =
-      req.query;
-    const data = await courseCommentService.listComment(
-      page,
-      perPage,
-      query,
-      orderBy,
-      orderType,
-      courseId,
-      isActive,
-    );
+    const { page, perPage, query, orderBy, orderType, isActive, courseId } = req.query;
+    const data = await courseCommentService.listComment(page, perPage, query, orderBy, orderType, courseId, isActive);
     logger.info(`Fetching all course comments by admin`);
     res.send(data);
   }),
@@ -277,7 +220,7 @@ courseCommmentRouter.get(
  * @swagger
  * /courseComment/{courseId}:
  *   get:
- *     summary: Get comments for a specific course (public)
+ *     summary: Get active comments for a specific course (public)
  *     tags: [Course Comments]
  *     parameters:
  *       - in: path
@@ -286,39 +229,10 @@ courseCommmentRouter.get(
  *         schema:
  *           type: string
  *           format: uuid
- *         description: Course ID
- *       - in: query
- *         name: page
- *         schema:
- *           type: integer
- *           default: 0
- *       - in: query
- *         name: perPage
- *         schema:
- *           type: integer
- *           default: 1
- *       - in: query
- *         name: query
- *         schema:
- *           type: string
- *           default: ""
- *       - in: query
- *         name: orderBy
- *         schema:
- *           type: string
- *       - in: query
- *         name: orderType
- *         schema:
- *           type: string
  *     responses:
  *       200:
- *         description: List of active comments for the course
- *         content:
- *           application/json:
- *             schema:
- *               type: object
+ *         description: List of active comments
  */
-// این مسیر عمومی است و نیازی به احراز هویت ندارد
 courseCommmentRouter.get(
   "/:courseId",
   pageChain(),
@@ -331,16 +245,8 @@ courseCommmentRouter.get(
     errorResponseValidation(req, res);
     const { page, perPage, query, orderBy, orderType } = req.query;
     const { courseId } = req.params;
-    const data = await courseCommentService.listComment(
-      page,
-      perPage,
-      query,
-      orderBy,
-      orderType,
-      courseId,
-      true,
-    );
-    logger.info(`Fetching all course comments for course ${courseId} by user`);
+    const data = await courseCommentService.listComment(page, perPage, query, orderBy, orderType, courseId, true);
+    logger.info(`Fetching active course comments for course ${courseId}`);
     res.send(data);
   }),
 );
@@ -360,9 +266,7 @@ courseCommmentRouter.get(
  *         schema:
  *           type: string
  *           format: uuid
- *         description: Comment ID
  *     requestBody:
- *       required: true
  *       content:
  *         application/json:
  *           schema:
@@ -373,17 +277,8 @@ courseCommmentRouter.get(
  *               text:
  *                 type: string
  *     responses:
- *       401:
- *         $ref: '#/components/responses/401Err'
- *       403:
- *         $ref: '#/components/responses/403Err'
  *       200:
  *         description: Update successful
- *         content:
- *           application/json:
- *             schema:
- *               type: boolean
- *               example: true
  */
 courseCommmentRouter.put(
   "/admin/:commentId",
@@ -395,9 +290,9 @@ courseCommmentRouter.put(
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
     const { commentId } = req.params;
-    const { title = undefined, text = undefined } = req.body;
+    const { title, text } = req.body;
     await courseCommentService.updateComment(commentId, { title, text });
-    logger.info(`Update Comment With id ${commentId} by admin id ${req.user.id}`);
+    logger.info(`Update Comment ${commentId} by admin ${req.user.id}`);
     res.send(true);
   }),
 );
@@ -406,7 +301,7 @@ courseCommmentRouter.put(
  * @swagger
  * /courseComment/user/{commentId}:
  *   put:
- *     summary: Update a comment by user (owner)
+ *     summary: Update a comment by its owner
  *     tags: [Course Comments]
  *     security:
  *       - bearerAuth: []
@@ -417,9 +312,7 @@ courseCommmentRouter.put(
  *         schema:
  *           type: string
  *           format: uuid
- *         description: Comment ID
  *     requestBody:
- *       required: true
  *       content:
  *         application/json:
  *           schema:
@@ -430,17 +323,8 @@ courseCommmentRouter.put(
  *               text:
  *                 type: string
  *     responses:
- *       401:
- *         $ref: '#/components/responses/401Err'
- *       403:
- *         $ref: '#/components/responses/403Err'
  *       200:
  *         description: Update successful
- *         content:
- *           application/json:
- *             schema:
- *               type: boolean
- *               example: true
  */
 courseCommmentRouter.put(
   "/user/:commentId",
@@ -452,14 +336,10 @@ courseCommmentRouter.put(
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
     const { commentId } = req.params;
-    const { title = undefined, text = undefined } = req.body;
+    const { title, text } = req.body;
     const userId = req.user.id;
-    await courseCommentService.updateComment(
-      commentId,
-      { title, text },
-      userId,
-    );
-    logger.info(`Update Comment With id ${commentId} by user id ${userId}`);
+    await courseCommentService.updateComment(commentId, { title, text }, userId);
+    logger.info(`Update Comment ${commentId} by user ${userId}`);
     res.send(true);
   }),
 );
@@ -468,7 +348,7 @@ courseCommmentRouter.put(
  * @swagger
  * /courseComment/{commentId}:
  *   patch:
- *     summary: Activate a comment (set isActive to true) - admin only
+ *     summary: Activate a comment (admin only)
  *     tags: [Course Comments]
  *     security:
  *       - bearerAuth: []
@@ -479,19 +359,9 @@ courseCommmentRouter.put(
  *         schema:
  *           type: string
  *           format: uuid
- *         description: Comment ID
  *     responses:
- *       401:
- *         $ref: '#/components/responses/401Err'
- *       403:
- *         $ref: '#/components/responses/403Err'
  *       200:
  *         description: Activation successful
- *         content:
- *           application/json:
- *             schema:
- *               type: boolean
- *               example: true
  */
 courseCommmentRouter.patch(
   "/:commentId",
@@ -501,8 +371,8 @@ courseCommmentRouter.patch(
   catchAsysnc(async (req, res) => {
     errorResponseValidation(req, res);
     const { commentId } = req.params;
-    await courseCommentService.updateComment(commentId, { isActive: true });
-    logger.info(`Activate a comment with id ${commentId} by admin id ${req.user.id}`);
+    await courseCommentService.acceptComment(commentId);
+    logger.info(`Activating comment ${commentId} by admin ${req.user.id}`);
     res.send(true);
   }),
 );
