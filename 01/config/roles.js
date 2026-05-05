@@ -2,7 +2,6 @@ const ROLE_PERMISSIONS = {
   owner: ["*"],
   admin: ["*"],
   teacher: [
-
     //user
     "user:read:own",
     "user:update:own",
@@ -54,9 +53,13 @@ const ROLE_PERMISSIONS = {
     "tickets:read:own",
     "tickets:message:create",
     "tickets:message:read",
+
+    "wallet:deposit",
+    "order:create",
+    "my-courses:read",
+    "schedule:enroll",
   ],
   student: [
-
     //course
     "course:read:any",
     "course:read:own",
@@ -69,6 +72,11 @@ const ROLE_PERMISSIONS = {
     "tickets:read:own",
     "tickets:message:create",
     "tickets:message:read",
+
+    "wallet:deposit",
+    "order:create",
+    "my-courses:read",
+    "schedule:enroll",
 
     "courseComment:read",
     "courseComment:create",
@@ -91,11 +99,10 @@ const ROLE_PERMISSIONS = {
     "news:comments:react",
   ],
   author: [
-    
     //user
     "user:read:own",
     "user:update:own",
-    
+
     //news
     "news:update",
     "news:delete",

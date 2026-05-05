@@ -3,7 +3,7 @@ require("module-alias/register");
 require("dotenv").config();
 require("./config/component.swagger");
 
-const winston = require('winston');
+const winston = require("winston");
 const swaggerJsdocs = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 const morgan = require("morgan");
@@ -59,11 +59,15 @@ const { courseFavoriteRoute } = require("./routes/courses/favorite.route");
 const { courseRateRoute } = require("./routes/courses/rate.route");
 const { courseSessionRoute } = require("./routes/courses/session.route");
 const { courseTypeRoute } = require("./routes/courses/type.route");
-const newsReactionRouter = require('./routes/news/news-reaction.route');
-const commentReactionRouter = require('./routes/news/comment-reaction.route');
-const newsFavoriteRouter = require('./routes/news/favorite.route');
-const newsCommentRouter = require('./routes/news/comment.route');
+const newsReactionRouter = require("./routes/news/news-reaction.route");
+const commentReactionRouter = require("./routes/news/comment-reaction.route");
+const newsFavoriteRouter = require("./routes/news/favorite.route");
+const newsCommentRouter = require("./routes/news/comment.route");
 const ticketRouter = require("./routes/tickets/index.route");
+const walletRouter = require("./routes/order/wallet.route");
+const orderRouter = require("./routes/order/index.route");
+const scheduleRouter = require("./routes/order/schedule.route");
+const userCoursesRouter = require("./routes/order/userCourse.route");
 
 app.use("/public", express.static("public"));
 
@@ -77,11 +81,15 @@ app.use("/courseRate", courseRateRoute);
 app.use("/courseSession", courseSessionRoute);
 app.use("/courseType", courseTypeRoute);
 app.use("/news", newsRouter);
-app.use("/news/reaction", newsReactionRouter)
-app.use("/news/favorite", newsFavoriteRouter)
-app.use("/news/comments", newsCommentRouter)
-app.use("/news/comments/reaction", commentReactionRouter)
-app.use("/tickets", ticketRouter)
+app.use("/news/reaction", newsReactionRouter);
+app.use("/news/favorite", newsFavoriteRouter);
+app.use("/news/comments", newsCommentRouter);
+app.use("/news/comments/reaction", commentReactionRouter);
+app.use("/tickets", ticketRouter);
+app.use("/wallet", walletRouter);
+app.use("/orders", orderRouter);
+app.use("/schedule", scheduleRouter);
+app.use("/my-courses", userCoursesRouter);
 
 app.get("/", (req, res, next) => {
   res.send("server is successfully running...");

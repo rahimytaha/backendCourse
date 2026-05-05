@@ -236,10 +236,6 @@ exports.Prisma.Course_categoryScalarFieldEnum = {
   category_id: 'category_id'
 };
 
-exports.Prisma.OrderScalarFieldEnum = {
-  id: 'id'
-};
-
 exports.Prisma.Course_orderScalarFieldEnum = {
   id: 'id'
 };
@@ -325,6 +321,103 @@ exports.Prisma.Ticket_messageScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.WalletScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  balance: 'balance',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.Wallet_transactionScalarFieldEnum = {
+  id: 'id',
+  wallet_id: 'wallet_id',
+  type: 'type',
+  amount: 'amount',
+  reference: 'reference',
+  created_at: 'created_at'
+};
+
+exports.Prisma.Course_packageScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  price: 'price',
+  discount: 'discount',
+  is_active: 'is_active',
+  created_at: 'created_at'
+};
+
+exports.Prisma.Package_courseScalarFieldEnum = {
+  id: 'id',
+  package_id: 'package_id',
+  course_id: 'course_id'
+};
+
+exports.Prisma.OrderScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  status: 'status',
+  total: 'total',
+  payment_method: 'payment_method',
+  payment_ref: 'payment_ref',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.Order_itemScalarFieldEnum = {
+  id: 'id',
+  order_id: 'order_id',
+  course_id: 'course_id',
+  package_id: 'package_id',
+  unit_price: 'unit_price',
+  quantity: 'quantity'
+};
+
+exports.Prisma.InvoiceScalarFieldEnum = {
+  id: 'id',
+  order_id: 'order_id',
+  user_id: 'user_id',
+  amount: 'amount',
+  status: 'status',
+  paid_at: 'paid_at',
+  created_at: 'created_at'
+};
+
+exports.Prisma.Course_scheduleScalarFieldEnum = {
+  id: 'id',
+  course_id: 'course_id',
+  title: 'title',
+  starts_at: 'starts_at',
+  ends_at: 'ends_at',
+  capacity: 'capacity',
+  type: 'type',
+  location: 'location',
+  created_at: 'created_at'
+};
+
+exports.Prisma.Schedule_enrollmentScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  schedule_id: 'schedule_id',
+  status: 'status',
+  enrolled_at: 'enrolled_at'
+};
+
+exports.Prisma.User_courseScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  course_id: 'course_id',
+  order_id: 'order_id',
+  created_at: 'created_at'
+};
+
+exports.Prisma.Course_progressScalarFieldEnum = {
+  id: 'id',
+  user_course_id: 'user_course_id',
+  session_id: 'session_id',
+  completed_at: 'completed_at'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -356,7 +449,6 @@ exports.Prisma.ModelName = {
   course_type: 'course_type',
   category: 'category',
   course_category: 'course_category',
-  order: 'order',
   course_order: 'course_order',
   news: 'news',
   news_comment: 'news_comment',
@@ -367,7 +459,18 @@ exports.Prisma.ModelName = {
   news_dislike: 'news_dislike',
   notification: 'notification',
   ticket: 'ticket',
-  ticket_message: 'ticket_message'
+  ticket_message: 'ticket_message',
+  wallet: 'wallet',
+  wallet_transaction: 'wallet_transaction',
+  course_package: 'course_package',
+  package_course: 'package_course',
+  order: 'order',
+  order_item: 'order_item',
+  invoice: 'invoice',
+  course_schedule: 'course_schedule',
+  schedule_enrollment: 'schedule_enrollment',
+  user_course: 'user_course',
+  course_progress: 'course_progress'
 };
 
 /**
