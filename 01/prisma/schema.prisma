@@ -207,6 +207,7 @@ model news {
   favorites     news_favorite[]
   news_likes    news_like[]
   news_dislikes news_dislike[]
+  attachments news_attachment[]
 }
 
 model news_comment {
@@ -446,4 +447,16 @@ model course_progress {
   session        course_session @relation(fields: [session_id], references: [id])
 
   @@unique([user_course_id, session_id])
+}
+
+model news_attachment {
+  id         String   @id @default(uuid())
+  news_id    Int
+  filename   String
+  path       String
+  mimetype   String
+  size       Int
+  created_at DateTime @default(now())
+
+  news news @relation(fields: [news_id], references: [id], onDelete: Cascade)
 }

@@ -418,6 +418,16 @@ exports.Prisma.Course_progressScalarFieldEnum = {
   completed_at: 'completed_at'
 };
 
+exports.Prisma.News_attachmentScalarFieldEnum = {
+  id: 'id',
+  news_id: 'news_id',
+  filename: 'filename',
+  path: 'path',
+  mimetype: 'mimetype',
+  size: 'size',
+  created_at: 'created_at'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -470,7 +480,8 @@ exports.Prisma.ModelName = {
   course_schedule: 'course_schedule',
   schedule_enrollment: 'schedule_enrollment',
   user_course: 'user_course',
-  course_progress: 'course_progress'
+  course_progress: 'course_progress',
+  news_attachment: 'news_attachment'
 };
 
 /**

@@ -193,6 +193,11 @@ export type user_course = $Result.DefaultSelection<Prisma.$user_coursePayload>
  * 
  */
 export type course_progress = $Result.DefaultSelection<Prisma.$course_progressPayload>
+/**
+ * Model news_attachment
+ * 
+ */
+export type news_attachment = $Result.DefaultSelection<Prisma.$news_attachmentPayload>
 
 /**
  * Enums
@@ -707,6 +712,16 @@ export class PrismaClient<
     * ```
     */
   get course_progress(): Prisma.course_progressDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.news_attachment`: Exposes CRUD operations for the **news_attachment** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more News_attachments
+    * const news_attachments = await prisma.news_attachment.findMany()
+    * ```
+    */
+  get news_attachment(): Prisma.news_attachmentDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1176,7 +1191,8 @@ export namespace Prisma {
     course_schedule: 'course_schedule',
     schedule_enrollment: 'schedule_enrollment',
     user_course: 'user_course',
-    course_progress: 'course_progress'
+    course_progress: 'course_progress',
+    news_attachment: 'news_attachment'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1192,7 +1208,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "two_factor_auth" | "user_account" | "user_role" | "role" | "login_transaction" | "course" | "course_rate" | "course_favorite" | "course_comment" | "course_session" | "course_type" | "category" | "course_category" | "course_order" | "news" | "news_comment" | "news_comment_like" | "news_comment_dislike" | "news_favorite" | "news_like" | "news_dislike" | "notification" | "ticket" | "ticket_message" | "wallet" | "wallet_transaction" | "course_package" | "package_course" | "order" | "order_item" | "invoice" | "course_schedule" | "schedule_enrollment" | "user_course" | "course_progress"
+      modelProps: "user" | "two_factor_auth" | "user_account" | "user_role" | "role" | "login_transaction" | "course" | "course_rate" | "course_favorite" | "course_comment" | "course_session" | "course_type" | "category" | "course_category" | "course_order" | "news" | "news_comment" | "news_comment_like" | "news_comment_dislike" | "news_favorite" | "news_like" | "news_dislike" | "notification" | "ticket" | "ticket_message" | "wallet" | "wallet_transaction" | "course_package" | "package_course" | "order" | "order_item" | "invoice" | "course_schedule" | "schedule_enrollment" | "user_course" | "course_progress" | "news_attachment"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3860,6 +3876,80 @@ export namespace Prisma {
           }
         }
       }
+      news_attachment: {
+        payload: Prisma.$news_attachmentPayload<ExtArgs>
+        fields: Prisma.news_attachmentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.news_attachmentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_attachmentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.news_attachmentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_attachmentPayload>
+          }
+          findFirst: {
+            args: Prisma.news_attachmentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_attachmentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.news_attachmentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_attachmentPayload>
+          }
+          findMany: {
+            args: Prisma.news_attachmentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_attachmentPayload>[]
+          }
+          create: {
+            args: Prisma.news_attachmentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_attachmentPayload>
+          }
+          createMany: {
+            args: Prisma.news_attachmentCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.news_attachmentCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_attachmentPayload>[]
+          }
+          delete: {
+            args: Prisma.news_attachmentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_attachmentPayload>
+          }
+          update: {
+            args: Prisma.news_attachmentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_attachmentPayload>
+          }
+          deleteMany: {
+            args: Prisma.news_attachmentDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.news_attachmentUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.news_attachmentUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_attachmentPayload>[]
+          }
+          upsert: {
+            args: Prisma.news_attachmentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$news_attachmentPayload>
+          }
+          aggregate: {
+            args: Prisma.News_attachmentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateNews_attachment>
+          }
+          groupBy: {
+            args: Prisma.news_attachmentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<News_attachmentGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.news_attachmentCountArgs<ExtArgs>
+            result: $Utils.Optional<News_attachmentCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -4004,6 +4094,7 @@ export namespace Prisma {
     schedule_enrollment?: schedule_enrollmentOmit
     user_course?: user_courseOmit
     course_progress?: course_progressOmit
+    news_attachment?: news_attachmentOmit
   }
 
   /* Types for Logging */
@@ -4548,6 +4639,7 @@ export namespace Prisma {
     favorites: number
     news_likes: number
     news_dislikes: number
+    attachments: number
   }
 
   export type NewsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4555,6 +4647,7 @@ export namespace Prisma {
     favorites?: boolean | NewsCountOutputTypeCountFavoritesArgs
     news_likes?: boolean | NewsCountOutputTypeCountNews_likesArgs
     news_dislikes?: boolean | NewsCountOutputTypeCountNews_dislikesArgs
+    attachments?: boolean | NewsCountOutputTypeCountAttachmentsArgs
   }
 
   // Custom InputTypes
@@ -4594,6 +4687,13 @@ export namespace Prisma {
    */
   export type NewsCountOutputTypeCountNews_dislikesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: news_dislikeWhereInput
+  }
+
+  /**
+   * NewsCountOutputType without action
+   */
+  export type NewsCountOutputTypeCountAttachmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: news_attachmentWhereInput
   }
 
 
@@ -22032,6 +22132,7 @@ export namespace Prisma {
     favorites?: boolean | news$favoritesArgs<ExtArgs>
     news_likes?: boolean | news$news_likesArgs<ExtArgs>
     news_dislikes?: boolean | news$news_dislikesArgs<ExtArgs>
+    attachments?: boolean | news$attachmentsArgs<ExtArgs>
     _count?: boolean | NewsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["news"]>
 
@@ -22071,6 +22172,7 @@ export namespace Prisma {
     favorites?: boolean | news$favoritesArgs<ExtArgs>
     news_likes?: boolean | news$news_likesArgs<ExtArgs>
     news_dislikes?: boolean | news$news_dislikesArgs<ExtArgs>
+    attachments?: boolean | news$attachmentsArgs<ExtArgs>
     _count?: boolean | NewsCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type newsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -22083,6 +22185,7 @@ export namespace Prisma {
       favorites: Prisma.$news_favoritePayload<ExtArgs>[]
       news_likes: Prisma.$news_likePayload<ExtArgs>[]
       news_dislikes: Prisma.$news_dislikePayload<ExtArgs>[]
+      attachments: Prisma.$news_attachmentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -22490,6 +22593,7 @@ export namespace Prisma {
     favorites<T extends news$favoritesArgs<ExtArgs> = {}>(args?: Subset<T, news$favoritesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_favoritePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     news_likes<T extends news$news_likesArgs<ExtArgs> = {}>(args?: Subset<T, news$news_likesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_likePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     news_dislikes<T extends news$news_dislikesArgs<ExtArgs> = {}>(args?: Subset<T, news$news_dislikesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_dislikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    attachments<T extends news$attachmentsArgs<ExtArgs> = {}>(args?: Subset<T, news$attachmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_attachmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -23012,6 +23116,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: News_dislikeScalarFieldEnum | News_dislikeScalarFieldEnum[]
+  }
+
+  /**
+   * news.attachments
+   */
+  export type news$attachmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_attachment
+     */
+    select?: news_attachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_attachment
+     */
+    omit?: news_attachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_attachmentInclude<ExtArgs> | null
+    where?: news_attachmentWhereInput
+    orderBy?: news_attachmentOrderByWithRelationInput | news_attachmentOrderByWithRelationInput[]
+    cursor?: news_attachmentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: News_attachmentScalarFieldEnum | News_attachmentScalarFieldEnum[]
   }
 
   /**
@@ -45260,6 +45388,1133 @@ export namespace Prisma {
 
 
   /**
+   * Model news_attachment
+   */
+
+  export type AggregateNews_attachment = {
+    _count: News_attachmentCountAggregateOutputType | null
+    _avg: News_attachmentAvgAggregateOutputType | null
+    _sum: News_attachmentSumAggregateOutputType | null
+    _min: News_attachmentMinAggregateOutputType | null
+    _max: News_attachmentMaxAggregateOutputType | null
+  }
+
+  export type News_attachmentAvgAggregateOutputType = {
+    news_id: number | null
+    size: number | null
+  }
+
+  export type News_attachmentSumAggregateOutputType = {
+    news_id: number | null
+    size: number | null
+  }
+
+  export type News_attachmentMinAggregateOutputType = {
+    id: string | null
+    news_id: number | null
+    filename: string | null
+    path: string | null
+    mimetype: string | null
+    size: number | null
+    created_at: Date | null
+  }
+
+  export type News_attachmentMaxAggregateOutputType = {
+    id: string | null
+    news_id: number | null
+    filename: string | null
+    path: string | null
+    mimetype: string | null
+    size: number | null
+    created_at: Date | null
+  }
+
+  export type News_attachmentCountAggregateOutputType = {
+    id: number
+    news_id: number
+    filename: number
+    path: number
+    mimetype: number
+    size: number
+    created_at: number
+    _all: number
+  }
+
+
+  export type News_attachmentAvgAggregateInputType = {
+    news_id?: true
+    size?: true
+  }
+
+  export type News_attachmentSumAggregateInputType = {
+    news_id?: true
+    size?: true
+  }
+
+  export type News_attachmentMinAggregateInputType = {
+    id?: true
+    news_id?: true
+    filename?: true
+    path?: true
+    mimetype?: true
+    size?: true
+    created_at?: true
+  }
+
+  export type News_attachmentMaxAggregateInputType = {
+    id?: true
+    news_id?: true
+    filename?: true
+    path?: true
+    mimetype?: true
+    size?: true
+    created_at?: true
+  }
+
+  export type News_attachmentCountAggregateInputType = {
+    id?: true
+    news_id?: true
+    filename?: true
+    path?: true
+    mimetype?: true
+    size?: true
+    created_at?: true
+    _all?: true
+  }
+
+  export type News_attachmentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which news_attachment to aggregate.
+     */
+    where?: news_attachmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of news_attachments to fetch.
+     */
+    orderBy?: news_attachmentOrderByWithRelationInput | news_attachmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: news_attachmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` news_attachments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` news_attachments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned news_attachments
+    **/
+    _count?: true | News_attachmentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: News_attachmentAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: News_attachmentSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: News_attachmentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: News_attachmentMaxAggregateInputType
+  }
+
+  export type GetNews_attachmentAggregateType<T extends News_attachmentAggregateArgs> = {
+        [P in keyof T & keyof AggregateNews_attachment]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateNews_attachment[P]>
+      : GetScalarType<T[P], AggregateNews_attachment[P]>
+  }
+
+
+
+
+  export type news_attachmentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: news_attachmentWhereInput
+    orderBy?: news_attachmentOrderByWithAggregationInput | news_attachmentOrderByWithAggregationInput[]
+    by: News_attachmentScalarFieldEnum[] | News_attachmentScalarFieldEnum
+    having?: news_attachmentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: News_attachmentCountAggregateInputType | true
+    _avg?: News_attachmentAvgAggregateInputType
+    _sum?: News_attachmentSumAggregateInputType
+    _min?: News_attachmentMinAggregateInputType
+    _max?: News_attachmentMaxAggregateInputType
+  }
+
+  export type News_attachmentGroupByOutputType = {
+    id: string
+    news_id: number
+    filename: string
+    path: string
+    mimetype: string
+    size: number
+    created_at: Date
+    _count: News_attachmentCountAggregateOutputType | null
+    _avg: News_attachmentAvgAggregateOutputType | null
+    _sum: News_attachmentSumAggregateOutputType | null
+    _min: News_attachmentMinAggregateOutputType | null
+    _max: News_attachmentMaxAggregateOutputType | null
+  }
+
+  type GetNews_attachmentGroupByPayload<T extends news_attachmentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<News_attachmentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof News_attachmentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], News_attachmentGroupByOutputType[P]>
+            : GetScalarType<T[P], News_attachmentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type news_attachmentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    news_id?: boolean
+    filename?: boolean
+    path?: boolean
+    mimetype?: boolean
+    size?: boolean
+    created_at?: boolean
+    news?: boolean | newsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["news_attachment"]>
+
+  export type news_attachmentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    news_id?: boolean
+    filename?: boolean
+    path?: boolean
+    mimetype?: boolean
+    size?: boolean
+    created_at?: boolean
+    news?: boolean | newsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["news_attachment"]>
+
+  export type news_attachmentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    news_id?: boolean
+    filename?: boolean
+    path?: boolean
+    mimetype?: boolean
+    size?: boolean
+    created_at?: boolean
+    news?: boolean | newsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["news_attachment"]>
+
+  export type news_attachmentSelectScalar = {
+    id?: boolean
+    news_id?: boolean
+    filename?: boolean
+    path?: boolean
+    mimetype?: boolean
+    size?: boolean
+    created_at?: boolean
+  }
+
+  export type news_attachmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "news_id" | "filename" | "path" | "mimetype" | "size" | "created_at", ExtArgs["result"]["news_attachment"]>
+  export type news_attachmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    news?: boolean | newsDefaultArgs<ExtArgs>
+  }
+  export type news_attachmentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    news?: boolean | newsDefaultArgs<ExtArgs>
+  }
+  export type news_attachmentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    news?: boolean | newsDefaultArgs<ExtArgs>
+  }
+
+  export type $news_attachmentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "news_attachment"
+    objects: {
+      news: Prisma.$newsPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      news_id: number
+      filename: string
+      path: string
+      mimetype: string
+      size: number
+      created_at: Date
+    }, ExtArgs["result"]["news_attachment"]>
+    composites: {}
+  }
+
+  type news_attachmentGetPayload<S extends boolean | null | undefined | news_attachmentDefaultArgs> = $Result.GetResult<Prisma.$news_attachmentPayload, S>
+
+  type news_attachmentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<news_attachmentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: News_attachmentCountAggregateInputType | true
+    }
+
+  export interface news_attachmentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['news_attachment'], meta: { name: 'news_attachment' } }
+    /**
+     * Find zero or one News_attachment that matches the filter.
+     * @param {news_attachmentFindUniqueArgs} args - Arguments to find a News_attachment
+     * @example
+     * // Get one News_attachment
+     * const news_attachment = await prisma.news_attachment.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends news_attachmentFindUniqueArgs>(args: SelectSubset<T, news_attachmentFindUniqueArgs<ExtArgs>>): Prisma__news_attachmentClient<$Result.GetResult<Prisma.$news_attachmentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one News_attachment that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {news_attachmentFindUniqueOrThrowArgs} args - Arguments to find a News_attachment
+     * @example
+     * // Get one News_attachment
+     * const news_attachment = await prisma.news_attachment.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends news_attachmentFindUniqueOrThrowArgs>(args: SelectSubset<T, news_attachmentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__news_attachmentClient<$Result.GetResult<Prisma.$news_attachmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first News_attachment that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {news_attachmentFindFirstArgs} args - Arguments to find a News_attachment
+     * @example
+     * // Get one News_attachment
+     * const news_attachment = await prisma.news_attachment.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends news_attachmentFindFirstArgs>(args?: SelectSubset<T, news_attachmentFindFirstArgs<ExtArgs>>): Prisma__news_attachmentClient<$Result.GetResult<Prisma.$news_attachmentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first News_attachment that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {news_attachmentFindFirstOrThrowArgs} args - Arguments to find a News_attachment
+     * @example
+     * // Get one News_attachment
+     * const news_attachment = await prisma.news_attachment.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends news_attachmentFindFirstOrThrowArgs>(args?: SelectSubset<T, news_attachmentFindFirstOrThrowArgs<ExtArgs>>): Prisma__news_attachmentClient<$Result.GetResult<Prisma.$news_attachmentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more News_attachments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {news_attachmentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all News_attachments
+     * const news_attachments = await prisma.news_attachment.findMany()
+     * 
+     * // Get first 10 News_attachments
+     * const news_attachments = await prisma.news_attachment.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const news_attachmentWithIdOnly = await prisma.news_attachment.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends news_attachmentFindManyArgs>(args?: SelectSubset<T, news_attachmentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_attachmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a News_attachment.
+     * @param {news_attachmentCreateArgs} args - Arguments to create a News_attachment.
+     * @example
+     * // Create one News_attachment
+     * const News_attachment = await prisma.news_attachment.create({
+     *   data: {
+     *     // ... data to create a News_attachment
+     *   }
+     * })
+     * 
+     */
+    create<T extends news_attachmentCreateArgs>(args: SelectSubset<T, news_attachmentCreateArgs<ExtArgs>>): Prisma__news_attachmentClient<$Result.GetResult<Prisma.$news_attachmentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many News_attachments.
+     * @param {news_attachmentCreateManyArgs} args - Arguments to create many News_attachments.
+     * @example
+     * // Create many News_attachments
+     * const news_attachment = await prisma.news_attachment.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends news_attachmentCreateManyArgs>(args?: SelectSubset<T, news_attachmentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many News_attachments and returns the data saved in the database.
+     * @param {news_attachmentCreateManyAndReturnArgs} args - Arguments to create many News_attachments.
+     * @example
+     * // Create many News_attachments
+     * const news_attachment = await prisma.news_attachment.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many News_attachments and only return the `id`
+     * const news_attachmentWithIdOnly = await prisma.news_attachment.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends news_attachmentCreateManyAndReturnArgs>(args?: SelectSubset<T, news_attachmentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_attachmentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a News_attachment.
+     * @param {news_attachmentDeleteArgs} args - Arguments to delete one News_attachment.
+     * @example
+     * // Delete one News_attachment
+     * const News_attachment = await prisma.news_attachment.delete({
+     *   where: {
+     *     // ... filter to delete one News_attachment
+     *   }
+     * })
+     * 
+     */
+    delete<T extends news_attachmentDeleteArgs>(args: SelectSubset<T, news_attachmentDeleteArgs<ExtArgs>>): Prisma__news_attachmentClient<$Result.GetResult<Prisma.$news_attachmentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one News_attachment.
+     * @param {news_attachmentUpdateArgs} args - Arguments to update one News_attachment.
+     * @example
+     * // Update one News_attachment
+     * const news_attachment = await prisma.news_attachment.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends news_attachmentUpdateArgs>(args: SelectSubset<T, news_attachmentUpdateArgs<ExtArgs>>): Prisma__news_attachmentClient<$Result.GetResult<Prisma.$news_attachmentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more News_attachments.
+     * @param {news_attachmentDeleteManyArgs} args - Arguments to filter News_attachments to delete.
+     * @example
+     * // Delete a few News_attachments
+     * const { count } = await prisma.news_attachment.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends news_attachmentDeleteManyArgs>(args?: SelectSubset<T, news_attachmentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more News_attachments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {news_attachmentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many News_attachments
+     * const news_attachment = await prisma.news_attachment.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends news_attachmentUpdateManyArgs>(args: SelectSubset<T, news_attachmentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more News_attachments and returns the data updated in the database.
+     * @param {news_attachmentUpdateManyAndReturnArgs} args - Arguments to update many News_attachments.
+     * @example
+     * // Update many News_attachments
+     * const news_attachment = await prisma.news_attachment.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more News_attachments and only return the `id`
+     * const news_attachmentWithIdOnly = await prisma.news_attachment.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends news_attachmentUpdateManyAndReturnArgs>(args: SelectSubset<T, news_attachmentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$news_attachmentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one News_attachment.
+     * @param {news_attachmentUpsertArgs} args - Arguments to update or create a News_attachment.
+     * @example
+     * // Update or create a News_attachment
+     * const news_attachment = await prisma.news_attachment.upsert({
+     *   create: {
+     *     // ... data to create a News_attachment
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the News_attachment we want to update
+     *   }
+     * })
+     */
+    upsert<T extends news_attachmentUpsertArgs>(args: SelectSubset<T, news_attachmentUpsertArgs<ExtArgs>>): Prisma__news_attachmentClient<$Result.GetResult<Prisma.$news_attachmentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of News_attachments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {news_attachmentCountArgs} args - Arguments to filter News_attachments to count.
+     * @example
+     * // Count the number of News_attachments
+     * const count = await prisma.news_attachment.count({
+     *   where: {
+     *     // ... the filter for the News_attachments we want to count
+     *   }
+     * })
+    **/
+    count<T extends news_attachmentCountArgs>(
+      args?: Subset<T, news_attachmentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], News_attachmentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a News_attachment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {News_attachmentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends News_attachmentAggregateArgs>(args: Subset<T, News_attachmentAggregateArgs>): Prisma.PrismaPromise<GetNews_attachmentAggregateType<T>>
+
+    /**
+     * Group by News_attachment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {news_attachmentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends news_attachmentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: news_attachmentGroupByArgs['orderBy'] }
+        : { orderBy?: news_attachmentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, news_attachmentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetNews_attachmentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the news_attachment model
+   */
+  readonly fields: news_attachmentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for news_attachment.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__news_attachmentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    news<T extends newsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, newsDefaultArgs<ExtArgs>>): Prisma__newsClient<$Result.GetResult<Prisma.$newsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the news_attachment model
+   */
+  interface news_attachmentFieldRefs {
+    readonly id: FieldRef<"news_attachment", 'String'>
+    readonly news_id: FieldRef<"news_attachment", 'Int'>
+    readonly filename: FieldRef<"news_attachment", 'String'>
+    readonly path: FieldRef<"news_attachment", 'String'>
+    readonly mimetype: FieldRef<"news_attachment", 'String'>
+    readonly size: FieldRef<"news_attachment", 'Int'>
+    readonly created_at: FieldRef<"news_attachment", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * news_attachment findUnique
+   */
+  export type news_attachmentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_attachment
+     */
+    select?: news_attachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_attachment
+     */
+    omit?: news_attachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_attachmentInclude<ExtArgs> | null
+    /**
+     * Filter, which news_attachment to fetch.
+     */
+    where: news_attachmentWhereUniqueInput
+  }
+
+  /**
+   * news_attachment findUniqueOrThrow
+   */
+  export type news_attachmentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_attachment
+     */
+    select?: news_attachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_attachment
+     */
+    omit?: news_attachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_attachmentInclude<ExtArgs> | null
+    /**
+     * Filter, which news_attachment to fetch.
+     */
+    where: news_attachmentWhereUniqueInput
+  }
+
+  /**
+   * news_attachment findFirst
+   */
+  export type news_attachmentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_attachment
+     */
+    select?: news_attachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_attachment
+     */
+    omit?: news_attachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_attachmentInclude<ExtArgs> | null
+    /**
+     * Filter, which news_attachment to fetch.
+     */
+    where?: news_attachmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of news_attachments to fetch.
+     */
+    orderBy?: news_attachmentOrderByWithRelationInput | news_attachmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for news_attachments.
+     */
+    cursor?: news_attachmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` news_attachments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` news_attachments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of news_attachments.
+     */
+    distinct?: News_attachmentScalarFieldEnum | News_attachmentScalarFieldEnum[]
+  }
+
+  /**
+   * news_attachment findFirstOrThrow
+   */
+  export type news_attachmentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_attachment
+     */
+    select?: news_attachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_attachment
+     */
+    omit?: news_attachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_attachmentInclude<ExtArgs> | null
+    /**
+     * Filter, which news_attachment to fetch.
+     */
+    where?: news_attachmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of news_attachments to fetch.
+     */
+    orderBy?: news_attachmentOrderByWithRelationInput | news_attachmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for news_attachments.
+     */
+    cursor?: news_attachmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` news_attachments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` news_attachments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of news_attachments.
+     */
+    distinct?: News_attachmentScalarFieldEnum | News_attachmentScalarFieldEnum[]
+  }
+
+  /**
+   * news_attachment findMany
+   */
+  export type news_attachmentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_attachment
+     */
+    select?: news_attachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_attachment
+     */
+    omit?: news_attachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_attachmentInclude<ExtArgs> | null
+    /**
+     * Filter, which news_attachments to fetch.
+     */
+    where?: news_attachmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of news_attachments to fetch.
+     */
+    orderBy?: news_attachmentOrderByWithRelationInput | news_attachmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing news_attachments.
+     */
+    cursor?: news_attachmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` news_attachments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` news_attachments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of news_attachments.
+     */
+    distinct?: News_attachmentScalarFieldEnum | News_attachmentScalarFieldEnum[]
+  }
+
+  /**
+   * news_attachment create
+   */
+  export type news_attachmentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_attachment
+     */
+    select?: news_attachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_attachment
+     */
+    omit?: news_attachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_attachmentInclude<ExtArgs> | null
+    /**
+     * The data needed to create a news_attachment.
+     */
+    data: XOR<news_attachmentCreateInput, news_attachmentUncheckedCreateInput>
+  }
+
+  /**
+   * news_attachment createMany
+   */
+  export type news_attachmentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many news_attachments.
+     */
+    data: news_attachmentCreateManyInput | news_attachmentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * news_attachment createManyAndReturn
+   */
+  export type news_attachmentCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_attachment
+     */
+    select?: news_attachmentSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_attachment
+     */
+    omit?: news_attachmentOmit<ExtArgs> | null
+    /**
+     * The data used to create many news_attachments.
+     */
+    data: news_attachmentCreateManyInput | news_attachmentCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_attachmentIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * news_attachment update
+   */
+  export type news_attachmentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_attachment
+     */
+    select?: news_attachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_attachment
+     */
+    omit?: news_attachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_attachmentInclude<ExtArgs> | null
+    /**
+     * The data needed to update a news_attachment.
+     */
+    data: XOR<news_attachmentUpdateInput, news_attachmentUncheckedUpdateInput>
+    /**
+     * Choose, which news_attachment to update.
+     */
+    where: news_attachmentWhereUniqueInput
+  }
+
+  /**
+   * news_attachment updateMany
+   */
+  export type news_attachmentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update news_attachments.
+     */
+    data: XOR<news_attachmentUpdateManyMutationInput, news_attachmentUncheckedUpdateManyInput>
+    /**
+     * Filter which news_attachments to update
+     */
+    where?: news_attachmentWhereInput
+    /**
+     * Limit how many news_attachments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * news_attachment updateManyAndReturn
+   */
+  export type news_attachmentUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_attachment
+     */
+    select?: news_attachmentSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_attachment
+     */
+    omit?: news_attachmentOmit<ExtArgs> | null
+    /**
+     * The data used to update news_attachments.
+     */
+    data: XOR<news_attachmentUpdateManyMutationInput, news_attachmentUncheckedUpdateManyInput>
+    /**
+     * Filter which news_attachments to update
+     */
+    where?: news_attachmentWhereInput
+    /**
+     * Limit how many news_attachments to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_attachmentIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * news_attachment upsert
+   */
+  export type news_attachmentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_attachment
+     */
+    select?: news_attachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_attachment
+     */
+    omit?: news_attachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_attachmentInclude<ExtArgs> | null
+    /**
+     * The filter to search for the news_attachment to update in case it exists.
+     */
+    where: news_attachmentWhereUniqueInput
+    /**
+     * In case the news_attachment found by the `where` argument doesn't exist, create a new news_attachment with this data.
+     */
+    create: XOR<news_attachmentCreateInput, news_attachmentUncheckedCreateInput>
+    /**
+     * In case the news_attachment was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<news_attachmentUpdateInput, news_attachmentUncheckedUpdateInput>
+  }
+
+  /**
+   * news_attachment delete
+   */
+  export type news_attachmentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_attachment
+     */
+    select?: news_attachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_attachment
+     */
+    omit?: news_attachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_attachmentInclude<ExtArgs> | null
+    /**
+     * Filter which news_attachment to delete.
+     */
+    where: news_attachmentWhereUniqueInput
+  }
+
+  /**
+   * news_attachment deleteMany
+   */
+  export type news_attachmentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which news_attachments to delete
+     */
+    where?: news_attachmentWhereInput
+    /**
+     * Limit how many news_attachments to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * news_attachment without action
+   */
+  export type news_attachmentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the news_attachment
+     */
+    select?: news_attachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the news_attachment
+     */
+    omit?: news_attachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: news_attachmentInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -45677,6 +46932,19 @@ export namespace Prisma {
   };
 
   export type Course_progressScalarFieldEnum = (typeof Course_progressScalarFieldEnum)[keyof typeof Course_progressScalarFieldEnum]
+
+
+  export const News_attachmentScalarFieldEnum: {
+    id: 'id',
+    news_id: 'news_id',
+    filename: 'filename',
+    path: 'path',
+    mimetype: 'mimetype',
+    size: 'size',
+    created_at: 'created_at'
+  };
+
+  export type News_attachmentScalarFieldEnum = (typeof News_attachmentScalarFieldEnum)[keyof typeof News_attachmentScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -46747,6 +48015,7 @@ export namespace Prisma {
     favorites?: News_favoriteListRelationFilter
     news_likes?: News_likeListRelationFilter
     news_dislikes?: News_dislikeListRelationFilter
+    attachments?: News_attachmentListRelationFilter
   }
 
   export type newsOrderByWithRelationInput = {
@@ -46761,6 +48030,7 @@ export namespace Prisma {
     favorites?: news_favoriteOrderByRelationAggregateInput
     news_likes?: news_likeOrderByRelationAggregateInput
     news_dislikes?: news_dislikeOrderByRelationAggregateInput
+    attachments?: news_attachmentOrderByRelationAggregateInput
   }
 
   export type newsWhereUniqueInput = Prisma.AtLeast<{
@@ -46778,6 +48048,7 @@ export namespace Prisma {
     favorites?: News_favoriteListRelationFilter
     news_likes?: News_likeListRelationFilter
     news_dislikes?: News_dislikeListRelationFilter
+    attachments?: News_attachmentListRelationFilter
   }, "id">
 
   export type newsOrderByWithAggregationInput = {
@@ -48049,6 +49320,73 @@ export namespace Prisma {
     completed_at?: DateTimeNullableWithAggregatesFilter<"course_progress"> | Date | string | null
   }
 
+  export type news_attachmentWhereInput = {
+    AND?: news_attachmentWhereInput | news_attachmentWhereInput[]
+    OR?: news_attachmentWhereInput[]
+    NOT?: news_attachmentWhereInput | news_attachmentWhereInput[]
+    id?: StringFilter<"news_attachment"> | string
+    news_id?: IntFilter<"news_attachment"> | number
+    filename?: StringFilter<"news_attachment"> | string
+    path?: StringFilter<"news_attachment"> | string
+    mimetype?: StringFilter<"news_attachment"> | string
+    size?: IntFilter<"news_attachment"> | number
+    created_at?: DateTimeFilter<"news_attachment"> | Date | string
+    news?: XOR<NewsScalarRelationFilter, newsWhereInput>
+  }
+
+  export type news_attachmentOrderByWithRelationInput = {
+    id?: SortOrder
+    news_id?: SortOrder
+    filename?: SortOrder
+    path?: SortOrder
+    mimetype?: SortOrder
+    size?: SortOrder
+    created_at?: SortOrder
+    news?: newsOrderByWithRelationInput
+  }
+
+  export type news_attachmentWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: news_attachmentWhereInput | news_attachmentWhereInput[]
+    OR?: news_attachmentWhereInput[]
+    NOT?: news_attachmentWhereInput | news_attachmentWhereInput[]
+    news_id?: IntFilter<"news_attachment"> | number
+    filename?: StringFilter<"news_attachment"> | string
+    path?: StringFilter<"news_attachment"> | string
+    mimetype?: StringFilter<"news_attachment"> | string
+    size?: IntFilter<"news_attachment"> | number
+    created_at?: DateTimeFilter<"news_attachment"> | Date | string
+    news?: XOR<NewsScalarRelationFilter, newsWhereInput>
+  }, "id">
+
+  export type news_attachmentOrderByWithAggregationInput = {
+    id?: SortOrder
+    news_id?: SortOrder
+    filename?: SortOrder
+    path?: SortOrder
+    mimetype?: SortOrder
+    size?: SortOrder
+    created_at?: SortOrder
+    _count?: news_attachmentCountOrderByAggregateInput
+    _avg?: news_attachmentAvgOrderByAggregateInput
+    _max?: news_attachmentMaxOrderByAggregateInput
+    _min?: news_attachmentMinOrderByAggregateInput
+    _sum?: news_attachmentSumOrderByAggregateInput
+  }
+
+  export type news_attachmentScalarWhereWithAggregatesInput = {
+    AND?: news_attachmentScalarWhereWithAggregatesInput | news_attachmentScalarWhereWithAggregatesInput[]
+    OR?: news_attachmentScalarWhereWithAggregatesInput[]
+    NOT?: news_attachmentScalarWhereWithAggregatesInput | news_attachmentScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"news_attachment"> | string
+    news_id?: IntWithAggregatesFilter<"news_attachment"> | number
+    filename?: StringWithAggregatesFilter<"news_attachment"> | string
+    path?: StringWithAggregatesFilter<"news_attachment"> | string
+    mimetype?: StringWithAggregatesFilter<"news_attachment"> | string
+    size?: IntWithAggregatesFilter<"news_attachment"> | number
+    created_at?: DateTimeWithAggregatesFilter<"news_attachment"> | Date | string
+  }
+
   export type userCreateInput = {
     id?: string
     name: string
@@ -49027,6 +50365,7 @@ export namespace Prisma {
     favorites?: news_favoriteCreateNestedManyWithoutNewsInput
     news_likes?: news_likeCreateNestedManyWithoutNewsInput
     news_dislikes?: news_dislikeCreateNestedManyWithoutNewsInput
+    attachments?: news_attachmentCreateNestedManyWithoutNewsInput
   }
 
   export type newsUncheckedCreateInput = {
@@ -49041,6 +50380,7 @@ export namespace Prisma {
     favorites?: news_favoriteUncheckedCreateNestedManyWithoutNewsInput
     news_likes?: news_likeUncheckedCreateNestedManyWithoutNewsInput
     news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutNewsInput
+    attachments?: news_attachmentUncheckedCreateNestedManyWithoutNewsInput
   }
 
   export type newsUpdateInput = {
@@ -49054,6 +50394,7 @@ export namespace Prisma {
     favorites?: news_favoriteUpdateManyWithoutNewsNestedInput
     news_likes?: news_likeUpdateManyWithoutNewsNestedInput
     news_dislikes?: news_dislikeUpdateManyWithoutNewsNestedInput
+    attachments?: news_attachmentUpdateManyWithoutNewsNestedInput
   }
 
   export type newsUncheckedUpdateInput = {
@@ -49068,6 +50409,7 @@ export namespace Prisma {
     favorites?: news_favoriteUncheckedUpdateManyWithoutNewsNestedInput
     news_likes?: news_likeUncheckedUpdateManyWithoutNewsNestedInput
     news_dislikes?: news_dislikeUncheckedUpdateManyWithoutNewsNestedInput
+    attachments?: news_attachmentUncheckedUpdateManyWithoutNewsNestedInput
   }
 
   export type newsCreateManyInput = {
@@ -50285,6 +51627,75 @@ export namespace Prisma {
     completed_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
+  export type news_attachmentCreateInput = {
+    id?: string
+    filename: string
+    path: string
+    mimetype: string
+    size: number
+    created_at?: Date | string
+    news: newsCreateNestedOneWithoutAttachmentsInput
+  }
+
+  export type news_attachmentUncheckedCreateInput = {
+    id?: string
+    news_id: number
+    filename: string
+    path: string
+    mimetype: string
+    size: number
+    created_at?: Date | string
+  }
+
+  export type news_attachmentUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    filename?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    mimetype?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    news?: newsUpdateOneRequiredWithoutAttachmentsNestedInput
+  }
+
+  export type news_attachmentUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    news_id?: IntFieldUpdateOperationsInput | number
+    filename?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    mimetype?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type news_attachmentCreateManyInput = {
+    id?: string
+    news_id: number
+    filename: string
+    path: string
+    mimetype: string
+    size: number
+    created_at?: Date | string
+  }
+
+  export type news_attachmentUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    filename?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    mimetype?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type news_attachmentUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    news_id?: IntFieldUpdateOperationsInput | number
+    filename?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    mimetype?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -51167,6 +52578,16 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type News_attachmentListRelationFilter = {
+    every?: news_attachmentWhereInput
+    some?: news_attachmentWhereInput
+    none?: news_attachmentWhereInput
+  }
+
+  export type news_attachmentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type newsCountOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
@@ -51939,6 +53360,46 @@ export namespace Prisma {
     user_course_id?: SortOrder
     session_id?: SortOrder
     completed_at?: SortOrder
+  }
+
+  export type news_attachmentCountOrderByAggregateInput = {
+    id?: SortOrder
+    news_id?: SortOrder
+    filename?: SortOrder
+    path?: SortOrder
+    mimetype?: SortOrder
+    size?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type news_attachmentAvgOrderByAggregateInput = {
+    news_id?: SortOrder
+    size?: SortOrder
+  }
+
+  export type news_attachmentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    news_id?: SortOrder
+    filename?: SortOrder
+    path?: SortOrder
+    mimetype?: SortOrder
+    size?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type news_attachmentMinOrderByAggregateInput = {
+    id?: SortOrder
+    news_id?: SortOrder
+    filename?: SortOrder
+    path?: SortOrder
+    mimetype?: SortOrder
+    size?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type news_attachmentSumOrderByAggregateInput = {
+    news_id?: SortOrder
+    size?: SortOrder
   }
 
   export type user_roleCreateNestedManyWithoutUserInput = {
@@ -53737,6 +55198,13 @@ export namespace Prisma {
     connect?: news_dislikeWhereUniqueInput | news_dislikeWhereUniqueInput[]
   }
 
+  export type news_attachmentCreateNestedManyWithoutNewsInput = {
+    create?: XOR<news_attachmentCreateWithoutNewsInput, news_attachmentUncheckedCreateWithoutNewsInput> | news_attachmentCreateWithoutNewsInput[] | news_attachmentUncheckedCreateWithoutNewsInput[]
+    connectOrCreate?: news_attachmentCreateOrConnectWithoutNewsInput | news_attachmentCreateOrConnectWithoutNewsInput[]
+    createMany?: news_attachmentCreateManyNewsInputEnvelope
+    connect?: news_attachmentWhereUniqueInput | news_attachmentWhereUniqueInput[]
+  }
+
   export type news_commentUncheckedCreateNestedManyWithoutNewsInput = {
     create?: XOR<news_commentCreateWithoutNewsInput, news_commentUncheckedCreateWithoutNewsInput> | news_commentCreateWithoutNewsInput[] | news_commentUncheckedCreateWithoutNewsInput[]
     connectOrCreate?: news_commentCreateOrConnectWithoutNewsInput | news_commentCreateOrConnectWithoutNewsInput[]
@@ -53763,6 +55231,13 @@ export namespace Prisma {
     connectOrCreate?: news_dislikeCreateOrConnectWithoutNewsInput | news_dislikeCreateOrConnectWithoutNewsInput[]
     createMany?: news_dislikeCreateManyNewsInputEnvelope
     connect?: news_dislikeWhereUniqueInput | news_dislikeWhereUniqueInput[]
+  }
+
+  export type news_attachmentUncheckedCreateNestedManyWithoutNewsInput = {
+    create?: XOR<news_attachmentCreateWithoutNewsInput, news_attachmentUncheckedCreateWithoutNewsInput> | news_attachmentCreateWithoutNewsInput[] | news_attachmentUncheckedCreateWithoutNewsInput[]
+    connectOrCreate?: news_attachmentCreateOrConnectWithoutNewsInput | news_attachmentCreateOrConnectWithoutNewsInput[]
+    createMany?: news_attachmentCreateManyNewsInputEnvelope
+    connect?: news_attachmentWhereUniqueInput | news_attachmentWhereUniqueInput[]
   }
 
   export type news_commentUpdateManyWithoutNewsNestedInput = {
@@ -53819,6 +55294,20 @@ export namespace Prisma {
     update?: news_dislikeUpdateWithWhereUniqueWithoutNewsInput | news_dislikeUpdateWithWhereUniqueWithoutNewsInput[]
     updateMany?: news_dislikeUpdateManyWithWhereWithoutNewsInput | news_dislikeUpdateManyWithWhereWithoutNewsInput[]
     deleteMany?: news_dislikeScalarWhereInput | news_dislikeScalarWhereInput[]
+  }
+
+  export type news_attachmentUpdateManyWithoutNewsNestedInput = {
+    create?: XOR<news_attachmentCreateWithoutNewsInput, news_attachmentUncheckedCreateWithoutNewsInput> | news_attachmentCreateWithoutNewsInput[] | news_attachmentUncheckedCreateWithoutNewsInput[]
+    connectOrCreate?: news_attachmentCreateOrConnectWithoutNewsInput | news_attachmentCreateOrConnectWithoutNewsInput[]
+    upsert?: news_attachmentUpsertWithWhereUniqueWithoutNewsInput | news_attachmentUpsertWithWhereUniqueWithoutNewsInput[]
+    createMany?: news_attachmentCreateManyNewsInputEnvelope
+    set?: news_attachmentWhereUniqueInput | news_attachmentWhereUniqueInput[]
+    disconnect?: news_attachmentWhereUniqueInput | news_attachmentWhereUniqueInput[]
+    delete?: news_attachmentWhereUniqueInput | news_attachmentWhereUniqueInput[]
+    connect?: news_attachmentWhereUniqueInput | news_attachmentWhereUniqueInput[]
+    update?: news_attachmentUpdateWithWhereUniqueWithoutNewsInput | news_attachmentUpdateWithWhereUniqueWithoutNewsInput[]
+    updateMany?: news_attachmentUpdateManyWithWhereWithoutNewsInput | news_attachmentUpdateManyWithWhereWithoutNewsInput[]
+    deleteMany?: news_attachmentScalarWhereInput | news_attachmentScalarWhereInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -53883,6 +55372,20 @@ export namespace Prisma {
     update?: news_dislikeUpdateWithWhereUniqueWithoutNewsInput | news_dislikeUpdateWithWhereUniqueWithoutNewsInput[]
     updateMany?: news_dislikeUpdateManyWithWhereWithoutNewsInput | news_dislikeUpdateManyWithWhereWithoutNewsInput[]
     deleteMany?: news_dislikeScalarWhereInput | news_dislikeScalarWhereInput[]
+  }
+
+  export type news_attachmentUncheckedUpdateManyWithoutNewsNestedInput = {
+    create?: XOR<news_attachmentCreateWithoutNewsInput, news_attachmentUncheckedCreateWithoutNewsInput> | news_attachmentCreateWithoutNewsInput[] | news_attachmentUncheckedCreateWithoutNewsInput[]
+    connectOrCreate?: news_attachmentCreateOrConnectWithoutNewsInput | news_attachmentCreateOrConnectWithoutNewsInput[]
+    upsert?: news_attachmentUpsertWithWhereUniqueWithoutNewsInput | news_attachmentUpsertWithWhereUniqueWithoutNewsInput[]
+    createMany?: news_attachmentCreateManyNewsInputEnvelope
+    set?: news_attachmentWhereUniqueInput | news_attachmentWhereUniqueInput[]
+    disconnect?: news_attachmentWhereUniqueInput | news_attachmentWhereUniqueInput[]
+    delete?: news_attachmentWhereUniqueInput | news_attachmentWhereUniqueInput[]
+    connect?: news_attachmentWhereUniqueInput | news_attachmentWhereUniqueInput[]
+    update?: news_attachmentUpdateWithWhereUniqueWithoutNewsInput | news_attachmentUpdateWithWhereUniqueWithoutNewsInput[]
+    updateMany?: news_attachmentUpdateManyWithWhereWithoutNewsInput | news_attachmentUpdateManyWithWhereWithoutNewsInput[]
+    deleteMany?: news_attachmentScalarWhereInput | news_attachmentScalarWhereInput[]
   }
 
   export type news_commentCreateNestedOneWithoutRepliesInput = {
@@ -54825,6 +56328,20 @@ export namespace Prisma {
     upsert?: course_sessionUpsertWithoutProgressInput
     connect?: course_sessionWhereUniqueInput
     update?: XOR<XOR<course_sessionUpdateToOneWithWhereWithoutProgressInput, course_sessionUpdateWithoutProgressInput>, course_sessionUncheckedUpdateWithoutProgressInput>
+  }
+
+  export type newsCreateNestedOneWithoutAttachmentsInput = {
+    create?: XOR<newsCreateWithoutAttachmentsInput, newsUncheckedCreateWithoutAttachmentsInput>
+    connectOrCreate?: newsCreateOrConnectWithoutAttachmentsInput
+    connect?: newsWhereUniqueInput
+  }
+
+  export type newsUpdateOneRequiredWithoutAttachmentsNestedInput = {
+    create?: XOR<newsCreateWithoutAttachmentsInput, newsUncheckedCreateWithoutAttachmentsInput>
+    connectOrCreate?: newsCreateOrConnectWithoutAttachmentsInput
+    upsert?: newsUpsertWithoutAttachmentsInput
+    connect?: newsWhereUniqueInput
+    update?: XOR<XOR<newsUpdateToOneWithWhereWithoutAttachmentsInput, newsUpdateWithoutAttachmentsInput>, newsUncheckedUpdateWithoutAttachmentsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -58940,6 +60457,34 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type news_attachmentCreateWithoutNewsInput = {
+    id?: string
+    filename: string
+    path: string
+    mimetype: string
+    size: number
+    created_at?: Date | string
+  }
+
+  export type news_attachmentUncheckedCreateWithoutNewsInput = {
+    id?: string
+    filename: string
+    path: string
+    mimetype: string
+    size: number
+    created_at?: Date | string
+  }
+
+  export type news_attachmentCreateOrConnectWithoutNewsInput = {
+    where: news_attachmentWhereUniqueInput
+    create: XOR<news_attachmentCreateWithoutNewsInput, news_attachmentUncheckedCreateWithoutNewsInput>
+  }
+
+  export type news_attachmentCreateManyNewsInputEnvelope = {
+    data: news_attachmentCreateManyNewsInput | news_attachmentCreateManyNewsInput[]
+    skipDuplicates?: boolean
+  }
+
   export type news_commentUpsertWithWhereUniqueWithoutNewsInput = {
     where: news_commentWhereUniqueInput
     update: XOR<news_commentUpdateWithoutNewsInput, news_commentUncheckedUpdateWithoutNewsInput>
@@ -59002,6 +60547,35 @@ export namespace Prisma {
   export type news_dislikeUpdateManyWithWhereWithoutNewsInput = {
     where: news_dislikeScalarWhereInput
     data: XOR<news_dislikeUpdateManyMutationInput, news_dislikeUncheckedUpdateManyWithoutNewsInput>
+  }
+
+  export type news_attachmentUpsertWithWhereUniqueWithoutNewsInput = {
+    where: news_attachmentWhereUniqueInput
+    update: XOR<news_attachmentUpdateWithoutNewsInput, news_attachmentUncheckedUpdateWithoutNewsInput>
+    create: XOR<news_attachmentCreateWithoutNewsInput, news_attachmentUncheckedCreateWithoutNewsInput>
+  }
+
+  export type news_attachmentUpdateWithWhereUniqueWithoutNewsInput = {
+    where: news_attachmentWhereUniqueInput
+    data: XOR<news_attachmentUpdateWithoutNewsInput, news_attachmentUncheckedUpdateWithoutNewsInput>
+  }
+
+  export type news_attachmentUpdateManyWithWhereWithoutNewsInput = {
+    where: news_attachmentScalarWhereInput
+    data: XOR<news_attachmentUpdateManyMutationInput, news_attachmentUncheckedUpdateManyWithoutNewsInput>
+  }
+
+  export type news_attachmentScalarWhereInput = {
+    AND?: news_attachmentScalarWhereInput | news_attachmentScalarWhereInput[]
+    OR?: news_attachmentScalarWhereInput[]
+    NOT?: news_attachmentScalarWhereInput | news_attachmentScalarWhereInput[]
+    id?: StringFilter<"news_attachment"> | string
+    news_id?: IntFilter<"news_attachment"> | number
+    filename?: StringFilter<"news_attachment"> | string
+    path?: StringFilter<"news_attachment"> | string
+    mimetype?: StringFilter<"news_attachment"> | string
+    size?: IntFilter<"news_attachment"> | number
+    created_at?: DateTimeFilter<"news_attachment"> | Date | string
   }
 
   export type news_commentCreateWithoutRepliesInput = {
@@ -59156,6 +60730,7 @@ export namespace Prisma {
     favorites?: news_favoriteCreateNestedManyWithoutNewsInput
     news_likes?: news_likeCreateNestedManyWithoutNewsInput
     news_dislikes?: news_dislikeCreateNestedManyWithoutNewsInput
+    attachments?: news_attachmentCreateNestedManyWithoutNewsInput
   }
 
   export type newsUncheckedCreateWithoutCommentsInput = {
@@ -59169,6 +60744,7 @@ export namespace Prisma {
     favorites?: news_favoriteUncheckedCreateNestedManyWithoutNewsInput
     news_likes?: news_likeUncheckedCreateNestedManyWithoutNewsInput
     news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutNewsInput
+    attachments?: news_attachmentUncheckedCreateNestedManyWithoutNewsInput
   }
 
   export type newsCreateOrConnectWithoutCommentsInput = {
@@ -59369,6 +60945,7 @@ export namespace Prisma {
     favorites?: news_favoriteUpdateManyWithoutNewsNestedInput
     news_likes?: news_likeUpdateManyWithoutNewsNestedInput
     news_dislikes?: news_dislikeUpdateManyWithoutNewsNestedInput
+    attachments?: news_attachmentUpdateManyWithoutNewsNestedInput
   }
 
   export type newsUncheckedUpdateWithoutCommentsInput = {
@@ -59382,6 +60959,7 @@ export namespace Prisma {
     favorites?: news_favoriteUncheckedUpdateManyWithoutNewsNestedInput
     news_likes?: news_likeUncheckedUpdateManyWithoutNewsNestedInput
     news_dislikes?: news_dislikeUncheckedUpdateManyWithoutNewsNestedInput
+    attachments?: news_attachmentUncheckedUpdateManyWithoutNewsNestedInput
   }
 
   export type news_comment_likeUpsertWithWhereUniqueWithoutNewsCommentInput = {
@@ -59937,6 +61515,7 @@ export namespace Prisma {
     comments?: news_commentCreateNestedManyWithoutNewsInput
     news_likes?: news_likeCreateNestedManyWithoutNewsInput
     news_dislikes?: news_dislikeCreateNestedManyWithoutNewsInput
+    attachments?: news_attachmentCreateNestedManyWithoutNewsInput
   }
 
   export type newsUncheckedCreateWithoutFavoritesInput = {
@@ -59950,6 +61529,7 @@ export namespace Prisma {
     comments?: news_commentUncheckedCreateNestedManyWithoutNewsInput
     news_likes?: news_likeUncheckedCreateNestedManyWithoutNewsInput
     news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutNewsInput
+    attachments?: news_attachmentUncheckedCreateNestedManyWithoutNewsInput
   }
 
   export type newsCreateOrConnectWithoutFavoritesInput = {
@@ -60055,6 +61635,7 @@ export namespace Prisma {
     comments?: news_commentUpdateManyWithoutNewsNestedInput
     news_likes?: news_likeUpdateManyWithoutNewsNestedInput
     news_dislikes?: news_dislikeUpdateManyWithoutNewsNestedInput
+    attachments?: news_attachmentUpdateManyWithoutNewsNestedInput
   }
 
   export type newsUncheckedUpdateWithoutFavoritesInput = {
@@ -60068,6 +61649,7 @@ export namespace Prisma {
     comments?: news_commentUncheckedUpdateManyWithoutNewsNestedInput
     news_likes?: news_likeUncheckedUpdateManyWithoutNewsNestedInput
     news_dislikes?: news_dislikeUncheckedUpdateManyWithoutNewsNestedInput
+    attachments?: news_attachmentUncheckedUpdateManyWithoutNewsNestedInput
   }
 
   export type userCreateWithoutNews_likesInput = {
@@ -60151,6 +61733,7 @@ export namespace Prisma {
     comments?: news_commentCreateNestedManyWithoutNewsInput
     favorites?: news_favoriteCreateNestedManyWithoutNewsInput
     news_dislikes?: news_dislikeCreateNestedManyWithoutNewsInput
+    attachments?: news_attachmentCreateNestedManyWithoutNewsInput
   }
 
   export type newsUncheckedCreateWithoutNews_likesInput = {
@@ -60164,6 +61747,7 @@ export namespace Prisma {
     comments?: news_commentUncheckedCreateNestedManyWithoutNewsInput
     favorites?: news_favoriteUncheckedCreateNestedManyWithoutNewsInput
     news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutNewsInput
+    attachments?: news_attachmentUncheckedCreateNestedManyWithoutNewsInput
   }
 
   export type newsCreateOrConnectWithoutNews_likesInput = {
@@ -60269,6 +61853,7 @@ export namespace Prisma {
     comments?: news_commentUpdateManyWithoutNewsNestedInput
     favorites?: news_favoriteUpdateManyWithoutNewsNestedInput
     news_dislikes?: news_dislikeUpdateManyWithoutNewsNestedInput
+    attachments?: news_attachmentUpdateManyWithoutNewsNestedInput
   }
 
   export type newsUncheckedUpdateWithoutNews_likesInput = {
@@ -60282,6 +61867,7 @@ export namespace Prisma {
     comments?: news_commentUncheckedUpdateManyWithoutNewsNestedInput
     favorites?: news_favoriteUncheckedUpdateManyWithoutNewsNestedInput
     news_dislikes?: news_dislikeUncheckedUpdateManyWithoutNewsNestedInput
+    attachments?: news_attachmentUncheckedUpdateManyWithoutNewsNestedInput
   }
 
   export type userCreateWithoutNews_dislikesInput = {
@@ -60365,6 +61951,7 @@ export namespace Prisma {
     comments?: news_commentCreateNestedManyWithoutNewsInput
     favorites?: news_favoriteCreateNestedManyWithoutNewsInput
     news_likes?: news_likeCreateNestedManyWithoutNewsInput
+    attachments?: news_attachmentCreateNestedManyWithoutNewsInput
   }
 
   export type newsUncheckedCreateWithoutNews_dislikesInput = {
@@ -60378,6 +61965,7 @@ export namespace Prisma {
     comments?: news_commentUncheckedCreateNestedManyWithoutNewsInput
     favorites?: news_favoriteUncheckedCreateNestedManyWithoutNewsInput
     news_likes?: news_likeUncheckedCreateNestedManyWithoutNewsInput
+    attachments?: news_attachmentUncheckedCreateNestedManyWithoutNewsInput
   }
 
   export type newsCreateOrConnectWithoutNews_dislikesInput = {
@@ -60483,6 +62071,7 @@ export namespace Prisma {
     comments?: news_commentUpdateManyWithoutNewsNestedInput
     favorites?: news_favoriteUpdateManyWithoutNewsNestedInput
     news_likes?: news_likeUpdateManyWithoutNewsNestedInput
+    attachments?: news_attachmentUpdateManyWithoutNewsNestedInput
   }
 
   export type newsUncheckedUpdateWithoutNews_dislikesInput = {
@@ -60496,6 +62085,7 @@ export namespace Prisma {
     comments?: news_commentUncheckedUpdateManyWithoutNewsNestedInput
     favorites?: news_favoriteUncheckedUpdateManyWithoutNewsNestedInput
     news_likes?: news_likeUncheckedUpdateManyWithoutNewsNestedInput
+    attachments?: news_attachmentUncheckedUpdateManyWithoutNewsNestedInput
   }
 
   export type userCreateWithoutNotificationsInput = {
@@ -62982,6 +64572,76 @@ export namespace Prisma {
     course_id?: StringFieldUpdateOperationsInput | string
   }
 
+  export type newsCreateWithoutAttachmentsInput = {
+    title: string
+    content: string
+    author_id: string
+    published?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    comments?: news_commentCreateNestedManyWithoutNewsInput
+    favorites?: news_favoriteCreateNestedManyWithoutNewsInput
+    news_likes?: news_likeCreateNestedManyWithoutNewsInput
+    news_dislikes?: news_dislikeCreateNestedManyWithoutNewsInput
+  }
+
+  export type newsUncheckedCreateWithoutAttachmentsInput = {
+    id?: number
+    title: string
+    content: string
+    author_id: string
+    published?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    comments?: news_commentUncheckedCreateNestedManyWithoutNewsInput
+    favorites?: news_favoriteUncheckedCreateNestedManyWithoutNewsInput
+    news_likes?: news_likeUncheckedCreateNestedManyWithoutNewsInput
+    news_dislikes?: news_dislikeUncheckedCreateNestedManyWithoutNewsInput
+  }
+
+  export type newsCreateOrConnectWithoutAttachmentsInput = {
+    where: newsWhereUniqueInput
+    create: XOR<newsCreateWithoutAttachmentsInput, newsUncheckedCreateWithoutAttachmentsInput>
+  }
+
+  export type newsUpsertWithoutAttachmentsInput = {
+    update: XOR<newsUpdateWithoutAttachmentsInput, newsUncheckedUpdateWithoutAttachmentsInput>
+    create: XOR<newsCreateWithoutAttachmentsInput, newsUncheckedCreateWithoutAttachmentsInput>
+    where?: newsWhereInput
+  }
+
+  export type newsUpdateToOneWithWhereWithoutAttachmentsInput = {
+    where?: newsWhereInput
+    data: XOR<newsUpdateWithoutAttachmentsInput, newsUncheckedUpdateWithoutAttachmentsInput>
+  }
+
+  export type newsUpdateWithoutAttachmentsInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    author_id?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comments?: news_commentUpdateManyWithoutNewsNestedInput
+    favorites?: news_favoriteUpdateManyWithoutNewsNestedInput
+    news_likes?: news_likeUpdateManyWithoutNewsNestedInput
+    news_dislikes?: news_dislikeUpdateManyWithoutNewsNestedInput
+  }
+
+  export type newsUncheckedUpdateWithoutAttachmentsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    author_id?: StringFieldUpdateOperationsInput | string
+    published?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comments?: news_commentUncheckedUpdateManyWithoutNewsNestedInput
+    favorites?: news_favoriteUncheckedUpdateManyWithoutNewsNestedInput
+    news_likes?: news_likeUncheckedUpdateManyWithoutNewsNestedInput
+    news_dislikes?: news_dislikeUncheckedUpdateManyWithoutNewsNestedInput
+  }
+
   export type user_roleCreateManyUserInput = {
     id?: string
     role_id: string
@@ -64094,6 +65754,15 @@ export namespace Prisma {
     user_id: string
   }
 
+  export type news_attachmentCreateManyNewsInput = {
+    id?: string
+    filename: string
+    path: string
+    mimetype: string
+    size: number
+    created_at?: Date | string
+  }
+
   export type news_commentUpdateWithoutNewsInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
@@ -64176,6 +65845,33 @@ export namespace Prisma {
   export type news_dislikeUncheckedUpdateManyWithoutNewsInput = {
     id?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type news_attachmentUpdateWithoutNewsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    filename?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    mimetype?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type news_attachmentUncheckedUpdateWithoutNewsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    filename?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    mimetype?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type news_attachmentUncheckedUpdateManyWithoutNewsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    filename?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    mimetype?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type news_commentCreateManyParentInput = {

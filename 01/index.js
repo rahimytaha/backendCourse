@@ -68,6 +68,7 @@ const walletRouter = require("./routes/order/wallet.route");
 const orderRouter = require("./routes/order/index.route");
 const scheduleRouter = require("./routes/order/schedule.route");
 const userCoursesRouter = require("./routes/order/userCourse.route");
+const newsAttachmentRouter = require("./routes/news/attachment.route");
 
 app.use("/public", express.static("public"));
 
@@ -85,6 +86,7 @@ app.use("/news/reaction", newsReactionRouter);
 app.use("/news/favorite", newsFavoriteRouter);
 app.use("/news/comments", newsCommentRouter);
 app.use("/news/comments/reaction", commentReactionRouter);
+app.use("/news/attachments", newsAttachmentRouter);
 app.use("/tickets", ticketRouter);
 app.use("/wallet", walletRouter);
 app.use("/orders", orderRouter);
